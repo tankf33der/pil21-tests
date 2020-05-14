@@ -1,6 +1,7 @@
 (gc 256)
 (prinl "xxx:check ulimit")
 (load "math.l")
+(load "low-upp.l")
 (msg 'All-OK)
 (gc 0)
 (bye)

@@ -31,3 +31,5 @@
 ### fold ###
 (test "1a2b3" (fold " 1A 2-b/3"))
 (test "1a2" (fold " 1A 2-B/3" 3))
+
+(msg 'low-upp-OK)
