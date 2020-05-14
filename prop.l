@@ -1,3 +1,6 @@
+# Original test code from PicoLisp
+# copy-paste
+#
 ### put get prop ; =: : :: putl getl ###
 (let (A (box)  B (box A)  C (box (cons A B)))
    (put B 'a A)
