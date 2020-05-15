@@ -38,3 +38,12 @@ Raw list of appended found and not fixed yet issue(s), should be empty.
    (dm "foo>" (X Y)
       (* X (+ X Y)) ) )
 ```
+
+```
+# finally, should not be NIL
+(finally (prinl "Done!")
+   (println 123)
+   (quit)
+   (println 456) )
+```
+

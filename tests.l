@@ -4,6 +4,7 @@
 (load "low-upp.l")
 (load "utf8.l")
 (load "cXr.l")
+(load "flow.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
