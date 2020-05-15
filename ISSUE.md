@@ -47,3 +47,9 @@ Raw list of appended found and not fixed yet issue(s), should be empty.
    (println 456) )
 ```
 
+```
+# hangs
+(gc 256)
+fibonacci coroutine generator
+(gc 0)
+```

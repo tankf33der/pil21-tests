@@ -5,6 +5,7 @@
 (load "utf8.l")
 (load "cXr.l")
 (load "flow.l")
+(load "mapping.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
