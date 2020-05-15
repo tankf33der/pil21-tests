@@ -49,7 +49,18 @@ Raw list of appended found and not fixed yet issue(s), should be empty.
 
 ```
 # hangs
-(gc 256)
-fibonacci coroutine generator
-(gc 0)
+# fibonacci coroutine generator
+(de coFibo ()
+   (co 'fibo
+      (let (A 0  B 1)
+         (loop
+            (yield
+               (swap 'B (+ (swap 'A B) B)) ) ) ) ) )
+# XXX
+(prinl "start")
+(setq L
+   (make
+      (do 100
+         (link (coFibo)) ) ) )
+(gc 0) # <- hang
 ```
