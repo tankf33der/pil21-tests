@@ -64,3 +64,8 @@ Raw list of appended found and not fixed yet issue(s), should be empty.
          (link (coFibo)) ) ) )
 (gc 0) # <- hang
 ```
+
+```
+: (need 3 0)
+(NIL NIL NIL)
+```
