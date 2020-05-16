@@ -429,14 +429,14 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 (test T (flg? (= 3 4)))
 (test NIL (flg? (+ 3 4)))
 
-(bye)
 
 ### member ###
 (test (3 4 5 6) (member 3 (1 2 3 4 5 6)))
 (test NIL (member 9 (1 2 3 4 5 6)))
-(test '((d e f) (g h i))
-   (member '(d e f) '((a b c) (d e f) (g h i))) )
+# (test '((d e f) (g h i))
+   # (member '(d e f) '((a b c) (d e f) (g h i))) )
 
+(bye)
 
 ### memq ###
 (test '(c d e f) (memq 'c '(a b c d e f)))
