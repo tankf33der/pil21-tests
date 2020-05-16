@@ -67,5 +67,32 @@ Raw list of appended found and not fixed yet issue(s), should be empty.
 
 ```
 : (need 3 0)
-(NIL NIL NIL)
+-> (NIL NIL NIL)
+```
+
+```
+: (memq 'c '(a b . c)))
+-> NIL
+```
+
+```
+# hang
+(memq 'd '(a b c .))
+```
+
+```
+$ pil
+: (test T (match '(@X (d @Y) @Z) '((a b c) (d (e f) g)h i)))
+-> NIL
+: (test T (match '(@X (d @Y) @Z) '((a b c) (d (e f) g)h i)))
+# XXX, hang
+```
+
+```
+: (fill (1 ^ (list 'a 'b 'c) 9))
+-> (1 c 9)
+```
+
+```
+(let X 2 (test (1 2 3) (fill (1 X 3) 'X)))
 ```

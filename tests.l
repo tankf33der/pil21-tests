@@ -6,6 +6,7 @@
 (load "cXr.l")
 (load "flow.l")
 (load "mapping.l")
+(load "lists.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
