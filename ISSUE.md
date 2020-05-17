@@ -1,7 +1,22 @@
 Raw list of appended found and not fixed yet issue(s), should be empty.
 ```
-# hang
+# hang, looks like the same issue or very close
 : (test '((1)) '((1)))
+$ pil
+: (match '(1 (2) 3) '(1 (2) 3))
+# ^^^ hang
+
+$ pil
+: (test T (match '(@X (d @Y) @Z) '((a b c) (d (e f) g)h i)))
+-> NIL
+: (test T (match '(@X (d @Y) @Z) '((a b c) (d (e f) g)h i)))
+# XXX, hang
+
+$ pil
+: (match '(@X (d @Y) @Z) '((a b c) (d (e f) g) h i))
+-> T
+: (match '(@X (d @Y) @Z) '((a b c) (d (e f) g) h i))
+# hang
 ```
 
 ```
@@ -81,14 +96,6 @@ Raw list of appended found and not fixed yet issue(s), should be empty.
 ```
 # hang
 (memq 'd '(a b c .))
-```
-
-```
-$ pil
-: (test T (match '(@X (d @Y) @Z) '((a b c) (d (e f) g)h i)))
--> NIL
-: (test T (match '(@X (d @Y) @Z) '((a b c) (d (e f) g)h i)))
-# XXX, hang
 ```
 
 ```
