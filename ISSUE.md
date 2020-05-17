@@ -34,6 +34,7 @@ Raw list of appended found and not fixed yet issue(s), should be empty.
 ```
 
 ```
+# failed
 (test '"foo>"
    (dm "foo>" (X Y)
       (* X (+ X Y)) ) )
@@ -66,11 +67,13 @@ Raw list of appended found and not fixed yet issue(s), should be empty.
 ```
 
 ```
+# wrong
 : (need 3 0)
 -> (NIL NIL NIL)
 ```
 
 ```
+# wrong
 : (memq 'c '(a b . c)))
 -> NIL
 ```
@@ -89,10 +92,12 @@ $ pil
 ```
 
 ```
+# wrong result
 : (fill (1 ^ (list 'a 'b 'c) 9))
 -> (1 c 9)
 ```
 
 ```
+# test failed
 (let X 2 (test (1 2 3) (fill (1 X 3) 'X)))
 ```
