@@ -247,8 +247,6 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 (test '(a " " b) (clip '(" " a " " b " ")))
 }#
 
-# XXX, undefined
-#{
 ### head ###
 (test '(a b c) (head 3 '(a b c d e f)))
 (test NIL (head NIL '(a b c d e f)))
@@ -256,10 +254,7 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 (test '(a b c d e f) (head 10 '(a b c d e f)))
 (test '(a b c d) (head -2 '(a b c d e f)))
 (test '(a b c) (head '(a b c) '(a b c d e f)))
-}#
 
-# XXX, undefined
-#{
 ### tail ###
 (test '(d e f) (tail 3 '(a b c d e f)))
 (test '(c d e f) (tail -2 '(a b c d e f)))
@@ -267,7 +262,6 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 (test NIL (tail 0 '(a b c d e f)))
 (test '(a b c d e f) (tail 10 '(a b c d e f)))
 (test '(d e f) (tail '(d e f) '(a b c d e f)))
-}#
 
 # XXX, undefined
 #{
