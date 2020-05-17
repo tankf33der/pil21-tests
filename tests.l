@@ -7,6 +7,7 @@
 (load "flow.l")
 (load "mapping.l")
 (load "lists.l")
+(load "prop.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
