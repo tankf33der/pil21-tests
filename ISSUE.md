@@ -135,5 +135,5 @@ fetch will not work
 (fifo 'X) -> 2 - ok
 (fifo 'X) -> 1 - not ok
 so.
-if call fifo with *one* arguments it would insert and fetch in correct order
+if call fifo with *single* argument it would insert and fetch in correct order
 ```
