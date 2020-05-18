@@ -1,4 +1,7 @@
-Raw list of appended found and not fixed yet issue(s), should be empty.
+Requirements to this file and repo are:
+* Raw list of appended found and not fixed yet issue(s), file should be empty
+* find . -name "*.l" | xargs grep -ci "xxx" - should returns all zeroes
+
 ```
 # hang, looks like the same issue or very close
 : (test '((1)) '((1)))
