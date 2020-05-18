@@ -125,12 +125,11 @@
 (test NIL (ext? 'abc))
 (test NIL (ext? "abc"))
 (test NIL (ext? 123))
-}#
 
 ### touch ###
 (test *DB (touch *DB))
 (rollback)
-
+}#
 
 ### zap ###
 (test "abc" (str? (zap 'abc)))
