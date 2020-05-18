@@ -5,7 +5,7 @@
          (loop
             (yield
                (swap 'B (+ (swap 'A B) B)) ) ) ) ) )
-# XXXX
+# XXX, hanging
 #{
 (let L
    (make
@@ -26,11 +26,18 @@
          (apply mapcar Mat2
             '(@ (sum * Row (rest))) ) )
       Mat1 ) )
-(println (matTrans '((1 2 3) (4 5 6))))
- (println
-   (matMul
-      '((1 2 3) (4 5 6))
-      '((6 -1) (3 2) (0 -3)) ) )
+# XXX, test-bug
+# (test
+   # '((1 4) (2 5) (3 6))
+   # (matTrans '((1 2 3) (4 5 6))) )
+# XXX, test-bug
+# (test
+   # '((12 -6) (39 -12))
+   # (matMul
+      # '((1 2 3) (4 5 6))
+      # '((6 -1) (3 2) (0 -3)) ) )
+
+
 
 # Original test code below
 # copy-paste

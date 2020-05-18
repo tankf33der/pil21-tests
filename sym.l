@@ -1,7 +1,20 @@
-# TODO:
-# add accu
-# add fifo call with one argument
+# accu
+(let Sum NIL
+   (accu 'Sum 'a 1)
+   (accu 'Sum 'a 5)
+   (accu 'Sum 22 100)
+   # XXX, test-bug
+   #(test '((22 . 100) (a . 6)) Sum)
+)
 
+# fifo, single
+(let X NIL
+   (fifo 'X 1)
+   (fifo 'X 2)
+   (fifo 'X 3)
+   (test 1 (fifo 'X))
+   (test 2 (fifo 'X))
+   (test 3 (fifo 'X)) )
 
 
 
