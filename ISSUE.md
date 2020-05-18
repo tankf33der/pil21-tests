@@ -108,3 +108,29 @@ $ pil
 # test failed
 (let X 2 (test (1 2 3) (fill (1 X 3) 'X)))
 ```
+
+```
+# bug
+(setq X (box))
+(name X "xxx")
+(test "xxx" (name X))
+```
+
+```
+(glue NIL 1)
+should 1
+```
+
+```
+(off X)
+(fifo 'X 1)
+(fifo 'X 2 3) -> returns 2, should 3
+// inserted wrongly
+ok
+fetch will not work
+(fifo 'X) -> 1 - ok
+(fifo 'X) -> 2 - ok
+(fifo 'X) -> 1 - not ok
+so.
+if call fifo with *one* arguments it would insert and fetch in correct order
+```

@@ -8,6 +8,7 @@
 (load "mapping.l")
 (load "lists.l")
 (load "prop.l")
+(load "sym.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
