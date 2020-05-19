@@ -9,6 +9,7 @@
 (load "lists.l")
 (load "prop.l")
 (load "sym.l")
+(load "system.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
