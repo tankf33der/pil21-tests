@@ -454,7 +454,7 @@
 }#
 
 ### co yield ###
-# XXX, (test) failed
+# XXX, co hangs
 #{
 (when co
    (test (1 2 3 (1 2 3))

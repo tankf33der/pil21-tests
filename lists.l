@@ -36,8 +36,7 @@
 ### cons ###
 (test (1 . 2) (cons 1 2))
 (test '(a b c d) (cons 'a '(b c d)))
-# XXX
-#(test '((a b) c d) (cons '(a b) '(c d)))
+(test '((a b) c d) (cons '(a b) '(c d)))
 (test '(a b c . d) (cons 'a 'b 'c 'd))
 
 
@@ -65,8 +64,7 @@
 
 ### list ###
 (test (1 2 3 4) (list 1 2 3 4))
-# XXX
-#(test '(a (2 3) "OK") (list 'a (2 3) "OK"))
+(test '(a (2 3) "OK") (list 'a (2 3) "OK"))
 
 
 ### need ###
@@ -74,7 +72,7 @@
 (test '(NIL NIL a b c) (need 5 '(a b c)))
 (test '(a b c NIL NIL) (need -5 '(a b c)))
 (test '(" " " " a b c) (need 5 '(a b c) " "))
-# XXX, bug
+# XXX, need-bug
 #(test (0 0 0) (need 3 0))
 
 
@@ -109,13 +107,10 @@
       (make (chain (1 2 3)) (chain (4 5 6) (7 8 9))) )
    (test '(a b c)
       (make (yoke 'b) (link 'c) (yoke 'a)) )
-   # XXX
-   # (test '((x y z) (y z) (z) (z) a)
-      # (make (link (for (A '(x y z) A (cdr A)) (link A))) (link A)) )
-   # XXX
-   #(test (1 (x y z) 2 (y z) 3 (z) (z) i a)
-   #   (make (link (for ((I . A) '(x y z) A (cdr A)) (link I A))) (link I A)) )
-       )
+   (test '((x y z) (y z) (z) (z) a)
+      (make (link (for (A '(x y z) A (cdr A)) (link A))) (link A)) )
+   (test (1 (x y z) 2 (y z) 3 (z) (z) i a)
+      (make (link (for ((I . A) '(x y z) A (cdr A)) (link I A))) (link I A)) ) )
 
 
 # XXX, undefined
@@ -209,9 +204,8 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 }#
 
 ### split ###
-# XXX, test-bug
-#(test '((1) (2 b) (c 4 d 5) (6))
-#   (split (1 a 2 b 3 c 4 d 5 e 6) 'e 3 'a) )
+(test '((1) (2 b) (c 4 d 5) (6))
+   (split (1 a 2 b 3 c 4 d 5 e 6) 'e 3 'a) )
 (test '("The" "quick" "brown" "fox")
    (mapcar pack (split (chop "The quick brown fox") " ")) )
 
@@ -550,15 +544,13 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 (use (@A @B @X @Y @Z)
    (test T
       (match '(@A is @B) '(This is a test)) )
-   #(test '(This) @A)
-   #(test '(a test) @B)
-   # XXX, hang
-   #(test T
-   #   (match '(@X (d @Y) @Z) '((a b c) (d (e f) g) h i)) )
-   #(test '((a b c)) @X)
-   # (test '((e f) g) @Y)
-   # (test '(h i) @Z)
-)
+   (test '(This) @A)
+   (test '(a test) @B)
+   (test T
+      (match '(@X (d @Y) @Z) '((a b c) (d (e f) g) h i)) )
+   (test '((a b c)) @X)
+   (test '((e f) g) @Y)
+   (test '(h i) @Z) )
 
 
 
@@ -568,7 +560,7 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
    # (test '(a b (c 1234) (((1 2 3 4) . d) e))
       # (fill '(a b (c @X) ((@Y . d) e))) )
 )
-# XXX, bug
+# XXX, fill-bug
 # (test (1 a b c 9)
    # (fill (1 ^ (list 'a 'b 'c) 9)) )
 (test (1 9)
