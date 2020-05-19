@@ -29,7 +29,8 @@
    (test (3 . z) (prop C 0 -1 'a 'z))
    (test 9 (with C (=: 0 -1 a z (* 3 3))))
    (test (9 . z) (with C (:: 0 -1 a z)))
-   # XXX, hang
+   # XXX, hang-bug
+   # flip undef, putl wrong
    #(test (putl C 0 -1 'a '((1 . x) (2 . y))) (flip (getl C 'b 0)))
 )
 

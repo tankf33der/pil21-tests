@@ -107,3 +107,10 @@ fetch will not work
 so.
 if call fifo with *single* argument it would insert and fetch in correct order
 ```
+
+```
+# putl+get - wrong
+(putl 'X '((123 . a) flg ("Hello" . b)))
+(get 'X 'a) -> NIL
+(getl 'X) -> NIL
+```
