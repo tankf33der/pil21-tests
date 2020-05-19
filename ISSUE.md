@@ -114,3 +114,8 @@ if call fifo with *single* argument it would insert and fetch in correct order
 (get 'X 'a) -> NIL
 (getl 'X) -> NIL
 ```
+
+```
+putl can hang too
+: (let (A (box) B (box A) C (cons (cons A B))) (putl C 0))
+```
