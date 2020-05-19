@@ -55,7 +55,6 @@
 
 ### getd ###
 (test car (getd 'car))
-# XXX, test
 (test '((File . @) (load File))
    (getd 'script) )
 (test NIL (getd 1))
@@ -91,15 +90,6 @@
 # XXX, undef
 #(test *DB (extern "1"))
 
-
-# XXX, will not be implemented
-#{
-### ==== ###
-(setq *Sym "abc")
-(test T (== *Sym "abc"))
-(====)
-(test NIL (== *Sym "abc"))
-}#
 
 ### box? ###
 (let X (box)
@@ -147,7 +137,7 @@
 
 
 ### glue ###
-# XXX, bug
+# XXX, glue-bug
 #(test 1 (glue NIL 1))
 (test "a" (glue NIL '(a)))
 (test "ab" (glue NIL '(a b)))

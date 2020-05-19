@@ -54,17 +54,17 @@
 ### def ###
 (test '"a"
    (def '"a" '((X Y) (* X (+ X Y)))) )
-# XXX
-#(test '((X Y) (* X (+ X Y)))
-#   "a" )
+(test
+   '((X Y) (* X (+ X Y)))
+   "a" )
 
 
 ### de ###
 (test '"b"
    (de "b" (X Y) (* X (+ X Y))) )
-# XXX
-#(test '((X Y) (* X (+ X Y)))
-#   "b" )
+(test
+   '((X Y) (* X (+ X Y)))
+   "b" )
 
 
 ### dm ###
@@ -175,14 +175,13 @@
 
 (when (== 64 64)
    # XXX, (test) issues
-   # (test (1 2 (3) 4)
-      # (let (A 1  (B . C) (2 3)  D 4)
-         # (list A B C D) ) )
-   # XXX
-   # (test (1 (2 3) 4 (7 8 9))
-      # (let (((A . B) (C) . D) '((1 2 3) (4 5 6) 7 8 9))
-         # (list A B C D) ) )
-   # XXX, no trail
+   (test (1 2 (3) 4)
+      (let (A 1  (B . C) (2 3)  D 4)
+         (list A B C D) ) )
+   (test (1 (2 3) 4 (7 8 9))
+      (let (((A . B) (C) . D) '((1 2 3) (4 5 6) 7 8 9))
+         (list A B C D) ) )
+   # XXX, trail undef
    # (test '(A 1 D 8)
       # (let (((A . NIL) NIL NIL D) '((1 2 3) (4 5 6) 7 8 9))
          # (trail T) ) )
@@ -440,11 +439,11 @@
       ("expected" (shouldNotComeHere))
       (T @) ) )
 
-# XXX
+# XXX, finally bug
 ### finally ###
 #{
 (test 'B
-   (let X 'A
+  mi I (let X 'A
       (catch NIL
          (finally (setq X 'B)
             (setq X 'C)

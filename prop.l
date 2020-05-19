@@ -29,7 +29,7 @@
    (test (3 . z) (prop C 0 -1 'a 'z))
    (test 9 (with C (=: 0 -1 a z (* 3 3))))
    (test (9 . z) (with C (:: 0 -1 a z)))
-   # XXX
+   # XXX, hang
    #(test (putl C 0 -1 'a '((1 . x) (2 . y))) (flip (getl C 'b 0)))
 )
 
@@ -46,8 +46,7 @@
    (put X 'a 1)
    (put X 'b 2)
    (test (1 2 3 4) (val X))
-   # XXX
-   #(test '((2 . b) (1 . a)) (getl X))
+   (test '((2 . b) (1 . a)) (getl X))
    (wipe X)
    (test NIL (val X))
    (test NIL (getl X)) )
@@ -57,13 +56,12 @@
 (put '"W" 'a 1)
 (put '"W" 'b 2)
 (test (1 2 3 4) "W")
-# XXX
-#(test '((2 . b) (1 . a)) (getl '"W"))
+(test '((2 . b) (1 . a)) (getl '"W"))
 (wipe '"W")
 (test NIL "W")
 (test NIL (getl '"W"))
 
-# XXX
+# XXX, *DB
 #{
 (set *DB (1 2 3 4))
 (put *DB 'a 1)
