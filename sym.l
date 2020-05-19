@@ -25,7 +25,7 @@
 (let X (box)
    (test NIL (name X))
    (name X "xxx")
-   # XXX, bug
+   # XXX, name-bug
    #(test "xxx" (name X))
 )
 
@@ -56,8 +56,8 @@
 ### getd ###
 (test car (getd 'car))
 # XXX, test
-#(test '((File . @) (load File))
-#   (getd 'script) )
+(test '((File . @) (load File))
+   (getd 'script) )
 (test NIL (getd 1))
 
 
