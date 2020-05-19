@@ -80,12 +80,9 @@
 (test NIL (getl '"W"))
 }#
 
-# XXX
 ### meta ###
 (let A '("B")
    (put '"B" 'a 123)
-   # failed
-   #(test 123 (meta 'A 'a))
-)
+   (test 123 (meta 'A 'a)) )
 
 (msg 'prop-OK)

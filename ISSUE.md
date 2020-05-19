@@ -3,36 +3,6 @@ Requirements to this file and repo are:
 * find . -name "*.l" | xargs grep -ci "xxx" - should returns all zeroes
 
 ```
-# hang, looks like the same issue or very close
-: (test '((1)) '((1)))
-$ pil
-: (match '(1 (2) 3) '(1 (2) 3))
-# ^^^ hang
-
-$ pil
-: (test T (match '(@X (d @Y) @Z) '((a b c) (d (e f) g)h i)))
--> NIL
-: (test T (match '(@X (d @Y) @Z) '((a b c) (d (e f) g)h i)))
-# XXX, hang
-
-$ pil
-: (match '(@X (d @Y) @Z) '((a b c) (d (e f) g) h i))
--> T
-: (match '(@X (d @Y) @Z) '((a b c) (d (e f) g) h i))
-# hang
-```
-
-```
-: (setq A '(B))
--> (B)
-: (put 'B 'a 123)
--> 123
-: (meta 'A 'a)
--> NIL
-   ^^^ should be 123
-```
-
-```
 # eval
 (let N 1
    ((quote (N)

@@ -3,9 +3,7 @@
    (accu 'Sum 'a 1)
    (accu 'Sum 'a 5)
    (accu 'Sum 22 100)
-   # XXX, test-bug
-   #(test '((22 . 100) (a . 6)) Sum)
-)
+   (test '((22 . 100) (a . 6)) Sum) )
 
 # fifo, single
 (let X NIL
@@ -272,9 +270,7 @@
 (let L NIL
    (test (2) (push1q 'L 'a (1) 'b (2)))
    (test (1) (push1q 'L 'b (1)))
-   # XXX test-bug
-   #(test '((1) (2) b (1) a) L)
-)
+   (test '((1) (2) b (1) a) L) )
 
 
 ### del ###
@@ -314,9 +310,6 @@
    (test 3 (fifo 'X)) )
 }#
 
-# XXX, test-bug
-# lets comment all for simplicity
-#{
 ### idx lup ###
 (let X NIL
    (test NIL (idx 'X 'd T))
@@ -344,9 +337,6 @@
       (lup X 3 5) )
    (test '((1 . A) (2 . B) (3 . C) (4 . D) (5 . E) (6 . F) (7 . G))
          (lup X 0 9) ) )
-}#
-
-
 
 # XXX
 # [sym.l:405] !? (set *DB (1 2 3 4))
