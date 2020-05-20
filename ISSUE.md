@@ -52,6 +52,11 @@ Requirements to this file and repo are:
       (do 100
          (link (coFibo)) ) ) )
 (gc 0) # <- hang
+
+XXX, it can be trigger easier way:
+$ pil
+(co 'd (cons))
+(gc) <- hang
 ```
 
 ```
