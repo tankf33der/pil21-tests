@@ -125,3 +125,15 @@ if call fifo with *single* argument it would insert and fetch in correct order
 putl can hang too
 : (let (A (box) B (box A) C (cons (cons A B))) (putl C 0))
 ```
+
+
+```
+# if you replace println with test equal lists would fail testing
+(de f (A B)
+   (g (inc A) (dec B)) )
+(de g (X Y)
+    (trail T) )
+(println
+    '((f 3 4) A 3 B 4 (g (inc A) (dec B)) X 4 Y 3)
+    (f 3 4) )
+```

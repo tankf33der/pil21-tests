@@ -174,17 +174,16 @@
    (test 1 N) )
 
 (when (== 64 64)
-   # XXX, (test) issues
    (test (1 2 (3) 4)
       (let (A 1  (B . C) (2 3)  D 4)
          (list A B C D) ) )
    (test (1 (2 3) 4 (7 8 9))
       (let (((A . B) (C) . D) '((1 2 3) (4 5 6) 7 8 9))
          (list A B C D) ) )
-   # XXX, trail undef
-   # (test '(A 1 D 8)
-      # (let (((A . NIL) NIL NIL D) '((1 2 3) (4 5 6) 7 8 9))
-         # (trail T) ) )
+   # XXX, test-bug
+   (test '(A 1 D 8)
+      (let (((A . NIL) NIL NIL D) '((1 2 3) (4 5 6) 7 8 9))
+         (trail T) ) )
 )
 
 
