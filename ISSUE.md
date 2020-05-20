@@ -83,7 +83,8 @@ Requirements to this file and repo are:
 ```
 
 ```
-# bug
+# ???
+# Second argument to 'name' (i.e. renaming) is removed
 (setq X (box))
 (name X "xxx")
 (test "xxx" (name X))
