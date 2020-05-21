@@ -3,7 +3,8 @@
    (adr Lst) )
 (let (L1 (range 1 3)  L2 (range 1 3))
    (test T (not (= (adr L1) (adr L2))))
-   (test (adr L1) (adr1 L1)) )
+   (test (adr L1) (adr1 L1))
+   (seek '((Lst) (test (adr Lst) (adr1 Lst))) L1) )
 
 # dir
 (let L (dir "/etc" T)
