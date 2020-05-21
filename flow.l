@@ -1,3 +1,12 @@
+# trail
+(de f (A B)
+   (g (inc A) (dec B)) )
+(de g (X Y)
+   (trail T) )
+(setq *Trail (f 3 4))
+(test
+   '((f 3 4) A 3 B 4 (g (inc A) (dec B)) X 4 Y 3)
+   *Trail )
 
 # Original test code from PicoLisp
 # copy-paste
@@ -180,7 +189,7 @@
    (test (1 (2 3) 4 (7 8 9))
       (let (((A . B) (C) . D) '((1 2 3) (4 5 6) 7 8 9))
          (list A B C D) ) )
-   # XXX, test-bug
+   # unsupported form anymore, keep for history
    # (test '(A 1 D 8)
       # (let (((A . NIL) NIL NIL D) '((1 2 3) (4 5 6) 7 8 9))
          # (trail T) ) )

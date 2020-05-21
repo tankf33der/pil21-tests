@@ -128,17 +128,6 @@ putl can hang too
 
 
 ```
-# if you replace println with test equal lists would fail testing
-(de f (A B)
-   (g (inc A) (dec B)) )
-(de g (X Y)
-    (trail T) )
-(println
-    '((f 3 4) A 3 B 4 (g (inc A) (dec B)) X 4 Y 3)
-    (f 3 4) )
-```
-
-```
 # crashes
 (fully num? (cons 1 2))
 (mapcar num? (cons 1 2))
