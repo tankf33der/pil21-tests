@@ -1,3 +1,11 @@
+# adr
+(de adr1 (Lst)
+   (adr Lst) )
+(let (L1 (range 1 3)  L2 (range 1 3))
+   (test T (not (= (adr L1) (adr L2))))
+   (test (adr L1) (adr1 L1)) )
+
+
 # dir
 (let L (dir "/etc" T)
    (test "." (car L)) )
@@ -7,6 +15,7 @@
 (test 2 (length (info "/etc/passwd")))
 # XXX crash, deep bug
 #(test T (fully num? (info "/etc/passwd")))
+
 
 ### date time ###
 # XXX, time undef
