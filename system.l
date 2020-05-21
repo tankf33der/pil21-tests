@@ -10,7 +10,6 @@
 
 ### date time ###
 # XXX, time undef
-#{
 (use (Dat1 Tim1 Dat2 Tim2 D1 T1 D2 T2)
    (until
       (=
@@ -30,7 +29,6 @@
    (test Dat1 (date D1))
    (test Dat1 (apply date D1))
    (test Dat2 (date D2)) )
-}#
 
 (test (2000 7 15) (date 730622))
 (test 730622 (date 2000 7 15))
@@ -38,12 +36,10 @@
 (test NIL (date NIL))
 
 # XXX, time undef
-#{
 (test (11 17 23) (time 40643))
 (test 40643 (time 11 17 23))
 (test 40643 (time (11 17 23)))
 (test NIL (time NIL))
-}#
 
 ### dat$ ###
 (test "20070601" (dat$ (date 2007 6 1)))
