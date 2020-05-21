@@ -134,7 +134,7 @@ putl can hang too
 ```
 
 ```
-# will loop forever
-(setq L (range 1 10))
-(while (cut 3 'L) (println '@ @))
+# cut should return NIL, not (NIL)
+: (cut 4 'L)
+-> (NIL)
 ```
