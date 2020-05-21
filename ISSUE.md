@@ -132,3 +132,9 @@ putl can hang too
 (fully num? (cons 1 2))
 (mapcar num? (cons 1 2))
 ```
+
+```
+# will loop forever
+(setq L (range 1 10))
+(while (cut 3 'L) (println '@ @))
+```
