@@ -1,6 +1,7 @@
 (gc 256)
 (prinl "xxx:check ulimit")
 (load "math.l")
+(load "montgomery.l")
 (load "low-upp.l")
 (load "utf8.l")
 (load "cXr.l")
