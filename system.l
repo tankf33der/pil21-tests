@@ -5,7 +5,6 @@
    (test T (not (= (adr L1) (adr L2))))
    (test (adr L1) (adr1 L1)) )
 
-
 # dir
 (let L (dir "/etc" T)
    (test "." (car L)) )
