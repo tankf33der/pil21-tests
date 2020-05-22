@@ -138,3 +138,23 @@ putl can hang too
 : (cut 4 'L)
 -> (NIL)
 ```
+
+```
+# will fail test
+(de w (N)
+   (co (intern (pack 'i N))
+      (let (N N  G)
+         (setq G (yield))
+         (cons N G) ) ) )
+(w 1)
+(test (1 . 2) (yield 2 'i1))
+
+# Mike, when above will be fixed checkout this error and crash again:
+#
+$ pil21 tankf33der/co-ring.l
+loop NIL Rnd 8 Got 10 C 1
+[co-ring.l:30] !? (yield (inc 'Rnd Got) Send)
+i71 -- Reentrant coroutine
+? (bye)
+Segmentation fault
+```
