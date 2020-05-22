@@ -1,5 +1,5 @@
 (gc 256)
-(prinl "xxx:check ulimit")
+(prinl "check ulimit or crash!")
 (load "math.l")
 (load "montgomery.l")
 (load "low-upp.l")
