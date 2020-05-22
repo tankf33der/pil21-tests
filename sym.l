@@ -14,6 +14,15 @@
    (test 2 (fifo 'X))
    (test 3 (fifo 'X)) )
 
+(de m1 (L)
+   (set L 9) )
+(de m2 ("L")
+   (set (cdr (val "L")) 7) )
+(let L (range 1 3)
+   (m1 L)
+   (test (9 2 3) L)
+   (m2 'L)
+   (test (9 7 3) L) )
 
 
 # Original test code from PicoLisp
