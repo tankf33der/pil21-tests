@@ -11,6 +11,7 @@
 (load "prop.l")
 (load "sym.l")
 (load "system.l")
+(load "tomohiko.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
