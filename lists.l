@@ -13,6 +13,19 @@
          (apply + S)
          (sum prog S) ) )
 
+# let it be
+(test
+   "njlf"
+   (pack
+      (mapcar
+         char
+            (mapcar
+               inc
+                  (mapcar
+                     char
+                        (chop "mike") ) ) ) ) )
+
+
 
 # Original test code from PicoLisp
 # copy-paste with modifications
