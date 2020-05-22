@@ -1,6 +1,22 @@
-# 24oct18abu
-# (c) Software Lab. Alexander Burger
+# apply
+(let L '((1 2 3) (4 5 6) (7 8 9))
+   (test
+      '((1 4 7) (2 5 8) (3 6 9))
+      (apply mapcar L list) ) )
 
+# circ
+(let
+   (L (apply circ (range 1 3))
+      S (make (do 10 (link (++ L)))) )
+      (test T (fully num? S))
+      (test
+         (apply + S)
+         (sum prog S) ) )
+
+
+# Original test code from PicoLisp
+# copy-paste with modifications
+###
 ### c[ad]*r ###
 (let L '(1 2 3 4 5)
    (test 1 (car L))
@@ -52,6 +68,7 @@
 ### circ ###
 (let C (circ 'a 'b 'c)
    (test '(a b c . @) C)
+   (test T (length C))
    (test T (== C (cdddr C))) )
 
 
