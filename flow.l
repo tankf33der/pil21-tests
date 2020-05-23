@@ -207,31 +207,27 @@
 (test 7 (or NIL 7 123))
 
 
-# XXX, undefined
 ### nand ###
-# (test NIL (nand T 123 7))
-# (test T (nand NIL 123))
+(test NIL (nand T 123 7))
+(test T (nand NIL 123))
 
 
-# XXX, undefined
 ### nor ###
-# (test T (nor NIL))
-# (test NIL (nor NIL 7 123))
+(test T (nor NIL))
+(test NIL (nor NIL 7 123))
 
 
-# XXX, undefined
 ### xor ###
-# (test T (xor T NIL))
-# (test T (xor NIL T))
-# (test NIL (xor NIL NIL))
-# (test NIL (xor T T))
+(test T (xor T NIL))
+(test T (xor NIL T))
+(test NIL (xor NIL NIL))
+(test NIL (xor T T))
 
 
-# XXX, undefined
 ### bool ###
-# (test T (bool 'a))
-# (test T (bool 123))
-# (test NIL (bool NIL))
+(test T (bool 'a))
+(test T (bool 123))
+(test NIL (bool NIL))
 
 
 ### not ###
