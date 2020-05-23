@@ -13,6 +13,7 @@
 (load "sym.l")
 (load "system.l")
 (load "tomohiko.l")
+(load "grid.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
