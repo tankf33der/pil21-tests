@@ -2,6 +2,7 @@
 (prinl "check ulimit or crash!")
 (load "math.l")
 (load "montgomery.l")
+(load "frac.l")
 (load "low-upp.l")
 (load "utf8.l")
 (load "cXr.l")
