@@ -158,3 +158,10 @@ i71 -- Reentrant coroutine
 ? (bye)
 Segmentation fault
 ```
+
+
+```
+seond test failed
+(test 201 (length (chop (** 100 100))))
+(test 201 (length (** 100 100)))
+```

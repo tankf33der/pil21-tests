@@ -1,3 +1,8 @@
+# **
+(test 201 (length (chop (** 100 100))))
+# XXX, bug
+#(test 201 (length (** 100 100)))
+
 # pi.l from picolisp
 (de pi (N Eps)
    (default N *Scl  Eps 100)
