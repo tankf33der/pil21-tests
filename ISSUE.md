@@ -158,3 +158,8 @@ i71 -- Reentrant coroutine
 ? (bye)
 Segmentation fault
 ```
+
+```
+# XXX
+add coroutine ring(s) for testings
+```
