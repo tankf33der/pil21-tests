@@ -33,5 +33,3 @@
             (day (date Y M D))
             (dow Y M D) ]
 (msg 'tomohiko-OK)
-
-

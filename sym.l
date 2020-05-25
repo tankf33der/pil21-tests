@@ -1,3 +1,13 @@
+# idx
+(let (C 0  R)
+   (for A (range -128 128)
+      (for B (range -128 128)
+         (let (X (cons A B)  K (cons (char (hash X)) X))
+            (if (idx 'R K)
+               (inc 'C)    # collision
+               (idx 'R K T) ) ) ) )
+   (test 0 C) )
+
 # accu
 (let Sum NIL
    (accu 'Sum 'a 1)
