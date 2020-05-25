@@ -1,7 +1,10 @@
 # **
-(test 201 (length (chop (** 100 100))))
-# XXX, bug
-#(test 201 (length (** 100 100)))
+(let N (** 100 100)
+   (test 201 (length (chop N)))
+   (test 1 (sum format (chop N)))
+   # XXX, bug
+   #(test 201 (length N))
+)
 
 # pi.l from picolisp
 (de pi (N Eps)
