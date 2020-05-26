@@ -183,3 +183,10 @@ $ pil21 +
 -> Segmentation fault (core dumped)
 ```
 
+```
+not equal to pil64 output
+in "data.txt"
+    (while (line NIL 2 0)
+        (println @) ) )
+```
+
