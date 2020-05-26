@@ -183,22 +183,3 @@ $ pil21 +
 -> Segmentation fault (core dumped)
 ```
 
-```
-pil21 and pil64
-
-$ pil21 +
-: (car (all))
--> !
-: (++ pico~(all))
--> NIL
-: (car (all))
--> $177414125330173
-: (head 10 (all))
--> ($177414125330173 ! % & * + - / : ;)
-
-$ pil +
-: (++ pico~(all))
--> NIL
-: (head 10 (all))
--> (NIL ! $ % & * + - / :)
-```
