@@ -185,8 +185,13 @@ $ pil21 +
 
 ```
 not equal to pil64 output
-in "data.txt"
+(in "data.txt"
     (while (line NIL 2 0)
         (println @) ) )
 ```
 
+```
+$ pil21 +
+: [22]
+(22) -- Super parentheses mismatch
+```
