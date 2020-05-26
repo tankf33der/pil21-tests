@@ -163,3 +163,22 @@ Segmentation fault
 # XXX
 add coroutine ring(s) for testings
 ```
+
+```
+get crash
+$ pil +
+: (setq L '((1 2) 3))
+-> ((1 2) 3)
+: (get L)
+-> ((1 2) 3)
+: (get L NIL)
+-> NIL
+
+$ pil21 +
+: (setq L '((1 2) 3))
+-> ((1 2) 3)
+: (get L)
+-> ((1 2) 3)
+: (get L NIL)
+-> Segmentation fault (core dumped)
+```
