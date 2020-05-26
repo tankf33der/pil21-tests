@@ -182,3 +182,15 @@ $ pil21 +
 : (get L NIL)
 -> Segmentation fault (core dumped)
 ```
+
+```
+$ pil21 +
+: (car (all))
+-> !
+: (++ pico~(all))
+-> NIL
+: (car (all))
+-> $177414125330173
+: (head 10 (all))
+-> ($177414125330173 ! % & * + - / : ;)
+```
