@@ -195,3 +195,17 @@ $ pil21 +
 : [22]
 (22) -- Super parentheses mismatch
 ```
+
+
+```
+name dont support additional arguments
+$ pil +
+: (read "_" "#")
+#3dddd
+abc
+-> abc
+
+$ pil21 +
+: (read "_" "#")
+-> NIL
+```
