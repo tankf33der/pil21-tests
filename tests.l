@@ -14,6 +14,7 @@
 (load "system.l")
 (load "tomohiko.l")
 (load "grid.l")
+(load "io.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
