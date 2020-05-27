@@ -191,13 +191,6 @@ not equal to pil64 output
 ```
 
 ```
-$ pil21 +
-: [22]
-(22) -- Super parentheses mismatch
-```
-
-
-```
 name dont support additional arguments
 $ pil +
 : (read "_" "#")
