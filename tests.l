@@ -16,6 +16,7 @@
 (load "grid.l")
 (load "io.l")
 (load "setf.l")
+(load "sieve.l")
 (msg 'All-OK)
 (gc 0)
 (bye)
