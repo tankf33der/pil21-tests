@@ -23,6 +23,28 @@
          # (while (read "_" "#")
             # (link @) ) ) ) )
 
+### skip ###
+(test "a"
+   (pipe (prinl "# Comment^Ja")
+      (skip "#") ) )
+(test "#"
+   (pipe (prinl "# Comment^Ja")
+      (skip) ) )
+
+
+### eof ###
+(test T (pipe NIL (eof)))
+(test NIL (pipe (prin "a") (eof)))
+(test T (pipe (prin "a") (eof T) (eof)))
+
+
+### from till ###
+(test "cd"
+   (pipe (prin "ab.cd:ef")
+      (from ".")
+      (till ":" T) ) )
+
+
 ### line ###
 (test '("a" "b" "c")
    (pipe (prin "abc^J") (line)) )
