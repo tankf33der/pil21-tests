@@ -125,6 +125,25 @@
       (out '(tr "[a-z]" "[A-Z]") (prinl "abc def ghi"))
       (line T) ) )
 
+
+# XXX, undef, call via tmp
+### echo ###
+# (out (tmp "echo")
+   # (in (tmp "file")
+      # (echo) ) )
+# (in (tmp "echo")
+   # (test 123 (read))
+   # (test 'abc (read))
+   # (test '(d e f) (read)) )
+# (let F (tmp "file")
+   # (test "12"
+      # (pipe (in F (echo 2))
+         # (line T) ) )
+   # (test "23"
+      # (pipe (in F (echo 1 2))
+         # (line T) ) ) )
+
+
 ### prin prinl space print printsp println ###
 # XXX, call undef
 # (out (tmp "prin")
