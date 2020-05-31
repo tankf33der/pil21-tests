@@ -202,3 +202,8 @@ $ pil21 +
 : (read "_" "#")
 -> NIL
 ```
+
+```
+double.l is wrong output
+you have to rewrite
+```
