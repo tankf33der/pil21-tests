@@ -208,17 +208,3 @@ double.l is wrong output
 you have to rewrite
 ```
 
-```
-XXX, bug workaround in double.l
-
-[mpech@lambda pil21-tests]$ pil +
-: (hd "test-.txt")
-00000000  3A 2E 20 20 3A 20 31 32 33 20 3A 20 34 35 36 0A  :.  : 123 : 456.
-00000010  37 38 39 20 30 31 32 33 0A                       789 0123.
--> NIL
-: (in "test-.txt" (line) (eol))
--> T
-: (in "test-.txt" (line) (char) (eol))
--> NIL
-:
-```

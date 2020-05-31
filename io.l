@@ -11,14 +11,6 @@
 (in "test-.txt"
    (do 3 (from ":"))
    (test 456 (read)) )
-(let S 0
-   (in "test-.txt"
-      (line)
-      # XXX, bug workaround
-      (eof)
-      (until (eol)
-         (inc 'S (read)) ) )
-   (test 912 S) )
 
 # Original PicoLisp test code
 # copy-paste
