@@ -14,6 +14,9 @@
 (test
    ":."
    (pipe (in "test-.txt" (echo 2)) (line T)) )
+(test
+   "89"
+   (pipe (in "test-.txt" (line) (echo 1 2)) (line T)) )
 
 
 # Original PicoLisp test code
