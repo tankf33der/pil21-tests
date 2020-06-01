@@ -207,8 +207,3 @@ $ pil21 +
 double.l is wrong output
 you have to rewrite
 ```
-
-```
-# something is wrong
-(pipe (in "test-.txt" (echo 2)) (line T))
-```

@@ -11,6 +11,10 @@
 (in "test-.txt"
    (do 3 (from ":"))
    (test 456 (read)) )
+(test
+   ":."
+   (pipe (in "test-.txt" (echo 2)) (line T)) )
+
 
 # Original PicoLisp test code
 # copy-paste
