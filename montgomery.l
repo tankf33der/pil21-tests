@@ -76,4 +76,3 @@
          (reduce Prod)
          (**Mod X1 X2 M) ) ) )
 (msg 'montgomery-OK)
-#(bye)
