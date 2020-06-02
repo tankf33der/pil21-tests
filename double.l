@@ -1,6 +1,5 @@
 # Based on group of Rosetta Code tasks
-http://rosettacode.org/wiki/Doubly-linked_list/Definition#PicoLisp
-
+# http://rosettacode.org/wiki/Doubly-linked_list/Definition#PicoLisp
 (de 2list @
    (let Prev NIL
       (let L
