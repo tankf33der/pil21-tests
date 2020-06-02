@@ -202,19 +202,3 @@ $ pil21 +
 : (read "_" "#")
 -> NIL
 ```
-
-```
-double.l is wrong output
-you have to rewrite
- $ pil +
- : (make (setq L (chain (list 1 (list 2 4)))))
- -> (1 (2 4))
- : L
- -> (1 (2 4))
-
- $ pil21 +
- : (make (setq L (chain (list 1 (list 2 4)))))
- -> (1 (2 4))
- : L
- -> (chain (list 1 (list 2 4)))
-```

@@ -164,6 +164,4 @@
    # (in (tmp "prin")
       # (list (read) (char) (char) (read) (read)) ) )
 
-
 (msg 'io-OK)
-(bye)
