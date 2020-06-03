@@ -1,3 +1,19 @@
+# pythag
+#{
+(de pythag (N)   # A generator function
+   (if (=T N)
+      (co 'rt)  # Stop
+      (co 'rt
+         (for X N
+            (for Y (range X N)
+               (for Z (range Y N)
+                  (when (= (+ (* X X) (* Y Y)) (* Z Z))
+                     (yield (list X Y Z)) ) ) ) ) ) ) )
+(let L (pythag 20)
+   (pythag T)
+   (test L (pythag 20)) )
+}#
+
 # **
 (let N (** 100 100)
    (test 201 (length (chop N)))

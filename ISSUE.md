@@ -215,3 +215,7 @@ catch-throw hang
                (throw 'Found) ) ) ) ) )
 (z1-2 "mike.dat")
 ```
+
+```
+pythag coroutine code crash-hang in math.l
+```
