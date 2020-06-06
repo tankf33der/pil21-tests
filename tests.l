@@ -18,6 +18,7 @@
 (load "setf.l")
 (load "sieve.l")
 (load "double.l")
+(load "passwd.l")
 (prinl "======")
 (msg 'All-OK)
 (gc 0)
