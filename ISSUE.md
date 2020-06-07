@@ -223,3 +223,10 @@ pythag coroutine code crash-hang in math.l
 ```
 add tankf33der/cartesian.l
 ```
+
+```
+(later)
+(prog1
+   (mapcan '((N) (later (cons) (* N N))) (1 2 3 4))
+      (wait NIL (full @)) )
+```
