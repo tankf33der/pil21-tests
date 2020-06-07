@@ -225,8 +225,13 @@ add tankf33der/cartesian.l
 ```
 
 ```
+1.
 (later)
+2.
 (prog1
    (mapcan '((N) (later (cons) (* N N))) (1 2 3 4))
       (wait NIL (full @)) )
+3.
+(key)
+# press arrow up
 ```
