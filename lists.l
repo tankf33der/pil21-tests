@@ -239,35 +239,22 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 (test '("The" "quick" "brown" "fox")
    (mapcar pack (split (chop "The quick brown fox") " ")) )
 
-
-# XXX, undefined
-#{
 ### reverse ###
 (test (4 3 2 1) (reverse (1 2 3 4)))
 (test NIL (reverse NIL))
-}#
 
-# XXX, undefined
-#{
 ### flip ###
 (test (4 3 2 1) (flip (1 2 3 4)))
 (test (3 2 1 4 5 6) (flip (1 2 3 4 5 6) 3))
 (test NIL (flip NIL))
-}#
 
-# XXX, undefined
-#{
 ### trim ###
 (test (1 NIL 2) (trim (1 NIL 2 NIL NIL)))
 (test '(a b) (trim '(a b " " " ")))
-}#
 
-# XXX, undefined
-#{
 ### clip ###
 (test (1 NIL 2) (clip '(NIL 1 NIL 2 NIL)))
 (test '(a " " b) (clip '(" " a " " b " ")))
-}#
 
 ### head ###
 (test '(a b c) (head 3 '(a b c d e f)))
