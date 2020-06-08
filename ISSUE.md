@@ -1,4 +1,5 @@
 Requirements to this file and repo are:
+* TODO
 * Raw list of appended found and not fixed yet issue(s), file should be empty
 * find . -name "*.l" | xargs grep -ci "xxx" - should returns all zeroes
 
@@ -234,4 +235,8 @@ add tankf33der/cartesian.l
 3.
 (key)
 # press arrow up
+```
+
+```
+add atomic.l task (requires DB)
 ```
