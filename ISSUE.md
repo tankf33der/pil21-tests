@@ -240,3 +240,12 @@ add tankf33der/cartesian.l
 ```
 add atomic.l task (requires DB)
 ```
+
+```
+(setq L (mapcar inc (range 1 1000)))
+(println (length L))
+(setq L (mapcar inc (range 1 10000)))
+(println (length L))
+(setq L (mapcar inc (range 1 100000)))
+(println (length L))
+```
