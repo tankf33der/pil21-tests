@@ -1,4 +1,4 @@
-(gc 256)
+#(gc 256)
 (prinl "check ulimit or crash!")
 (load "math.l")
 (load "montgomery.l")
@@ -21,5 +21,5 @@
 (load "passwd.l")
 (prinl "======")
 (msg 'All-OK)
-(gc 0)
+#(gc 0) # (gc 256) (gc 0) helped gc coroutine's data
 (bye)
