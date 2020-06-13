@@ -8,8 +8,10 @@
 
 # dir
 # XXX, fix test, "." could not be first element
-#(let L (dir "/etc" T)
-#   (test "." (car L)) )
+(let L (dir "/etc" T)
+   (test
+      T
+      (bool (num? (index ".." L))) ) )
 
 # info
 (test '(T . @) (info "/etc"))
