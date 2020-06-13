@@ -7,7 +7,6 @@
    (seek '((Lst) (test (adr Lst) (adr1 Lst))) L1) )
 
 # dir
-# XXX, fix test, "." could not be first element
 (let L (dir "/etc" T)
    (test
       T
