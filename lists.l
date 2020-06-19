@@ -143,8 +143,6 @@
       (make (link (for ((I . A) '(x y z) A (cdr A)) (link I A))) (link I A)) ) )
 
 
-# XXX, undefined
-#{
 ### copy ###
 (test T (=T (copy T)))
 (let L (1 2 3)
@@ -152,7 +150,6 @@
    (test NIL (== L (copy L)))
    (test T (= L (copy L)))
    (test T (= (1 2 3) (copy L))) )
-}#
 
 
 # XXX, undefined
@@ -162,12 +159,9 @@
 (test '(a A d D) (mix '(a b c d) 1 'A 4 'D))
 }#
 
-# XXX, undefined
-#{
 ### append ###
 (test '(a b c 1 2 3) (append '(a b c) (1 2 3)))
 (test (1 2 3 . 4) (append (1) (2) (3) 4))
-}#
 
 # XXX, undefined
 #{
