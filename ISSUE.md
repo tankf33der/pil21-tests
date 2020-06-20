@@ -228,3 +228,17 @@ add tankf33der/cartesian.l
 ```
 add atomic.l task (requires DB)
 ```
+
+
+```
+: [mpech@lambda crypto]$ pil21 +
+: (gc 64)
+-> 64
+: (load "test-sha512.l")
+OK-test-SHA512
+-> OK-test-SHA512
+:
+[mpech@lambda crypto]$ pil21 test-sha512.l
+Segmentation fault (core dumped)
+[mpech@lambda crypto]$
+```
