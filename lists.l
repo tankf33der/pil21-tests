@@ -102,8 +102,7 @@
 (test '(NIL NIL a b c) (need 5 '(a b c)))
 (test '(a b c NIL NIL) (need -5 '(a b c)))
 (test '(" " " " a b c) (need 5 '(a b c) " "))
-# XXX, need-bug
-#(test (0 0 0) (need 3 0))
+(test (0 0 0) (need 3 0))
 
 
 ### range ###
@@ -439,7 +438,7 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 (test NIL (memq (2) '((1) (2) (3))))
 (test 'c (memq 'c '(a b . c)))
 (test '(b c a . @Z) (memq 'b '(a b c .)))
-# XXX
+# XXX, hangs
 #(test NIL (memq 'd '(a b c .)))
 
 

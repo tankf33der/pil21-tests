@@ -67,12 +67,6 @@ $ pil
 ```
 
 ```
-# wrong
-: (memq 'c '(a b . c)))
--> NIL
-```
-
-```
 # hang
 (memq 'd '(a b c .))
 ```
@@ -132,12 +126,6 @@ putl can hang too
 # crashes
 (fully num? (cons 1 2))
 (mapcar num? (cons 1 2))
-```
-
-```
-# cut should return NIL, not (NIL)
-: (cut 4 'L)
--> (NIL)
 ```
 
 ```
