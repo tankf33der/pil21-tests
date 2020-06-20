@@ -430,16 +430,16 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 ### member ###
 (test (3 4 5 6) (member 3 (1 2 3 4 5 6)))
 (test NIL (member 9 (1 2 3 4 5 6)))
-# (test '((d e f) (g h i))
-   # (member '(d e f) '((a b c) (d e f) (g h i))) )
+(test '((d e f) (g h i))
+   (member '(d e f) '((a b c) (d e f) (g h i))) )
 
 
 ### memq ###
 (test '(c d e f) (memq 'c '(a b c d e f)))
 (test NIL (memq (2) '((1) (2) (3))))
-# XXX, undefined
-#(test 'c (memq 'c '(a b . c)))
+(test 'c (memq 'c '(a b . c)))
 (test '(b c a . @Z) (memq 'b '(a b c .)))
+# XXX
 #(test NIL (memq 'd '(a b c .)))
 
 
