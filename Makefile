@@ -1,2 +1,2 @@
 all:
-	pil21 tests.l +
+	pil21 tests.l
