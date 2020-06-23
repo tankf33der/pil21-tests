@@ -61,28 +61,6 @@ $ pil
 ```
 
 ```
-# wrong
-: (need 3 0)
--> (NIL NIL NIL)
-```
-
-```
-# hang
-(memq 'd '(a b c .))
-```
-
-```
-# wrong result
-: (fill (1 ^ (list 'a 'b 'c) 9))
--> (1 c 9)
-```
-
-```
-# test failed
-(let X 2 (test (1 2 3) (fill (1 X 3) 'X)))
-```
-
-```
 # ???
 # Second argument to 'name' (i.e. renaming) is removed
 (setq X (box))

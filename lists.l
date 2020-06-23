@@ -438,8 +438,7 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 (test NIL (memq (2) '((1) (2) (3))))
 (test 'c (memq 'c '(a b . c)))
 (test '(b c a . @Z) (memq 'b '(a b c .)))
-# XXX, hangs
-#(test NIL (memq 'd '(a b c .)))
+(test NIL (memq 'd '(a b c .)))
 
 
 ### mmeq ###
@@ -567,18 +566,14 @@ est '(a b c d e 777) (place 9 '(a b c d e) 777))
 ### fill ###
 (let (@X 1234  @Y (1 2 3 4))
    (test 1234 (fill '@X))
-   # (test '(a b (c 1234) (((1 2 3 4) . d) e))
-      # (fill '(a b (c @X) ((@Y . d) e))) )
-)
-# XXX, fill-bug
-# (test (1 a b c 9)
-   # (fill (1 ^ (list 'a 'b 'c) 9)) )
+   (test '(a b (c 1234) (((1 2 3 4) . d) e))
+      (fill '(a b (c @X) ((@Y . d) e))) ) )
+(test (1 a b c 9)
+   (fill (1 ^ (list 'a 'b 'c) 9)) )
 (test (1 9)
    (fill (1 ^ 7 9)) )
-# XXX, bug
-#(let X 2 (test (1 2 3) (fill (1 X 3) 'X)))
+(let X 2 (test (1 2 3) (fill (1 X 3) 'X)))
 (let X 2 (test (1 2 3) (fill (1 X 3) '(X))))
-
 
 # XXX, undefined
 #{
