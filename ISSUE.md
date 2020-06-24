@@ -194,3 +194,20 @@ OK-test-SHA512
 Segmentation fault (core dumped)
 [mpech@lambda crypto]$
 ```
+
+
+```
+crash in repl, enter:
+(
+Enter
+Ctrl-C
+Ctrl-C
+
+example:
+$ pil21
+: (
+   NIL
+NIL
+free(): double free detected in tcache 2
+Aborted (core dumped)
+```
