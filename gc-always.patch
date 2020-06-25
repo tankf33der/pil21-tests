@@ -1,0 +1,53 @@
+--- src/gc.l-	2020-06-11 11:05:38.766648153 +0200
++++ src/gc.l	2020-06-25 08:09:00.807217139 +0200
+@@ -1,4 +1,4 @@
+-# 11jun20 Software Lab. Alexander Burger
++# 25jun20 Software Lab. Alexander Burger
+ 
+ (symbols '(llvm))
+ 
+@@ -273,7 +273,7 @@
+ 
+ (de cons (Car Cdr)
+    (let P (val $Avail)
+-      (unless P
++      (when (val $Jam)
+          (save2 Car Cdr
+             (gc) )
+          (setq P (val $Avail)) )
+@@ -284,7 +284,7 @@
+ 
+ (de cons3 (Car1 Cdr1 Car2 Cdr2)
+    (let P (val $Avail)
+-      (when P
++      (unless (val $Jam)
+          (let Q (val P)
+             (when Q
+                (let R (val Q)
+@@ -313,7 +313,7 @@
+ 
+ (de consSym (Name Val)
+    (let P (val $Avail)
+-      (unless P
++      (when (val $Jam)
+          (if Val
+             (save2 Name Val
+                (gc) )
+@@ -337,7 +337,7 @@
+ 
+ (de boxNum (Dig)
+    (let P (val $Avail)
+-      (unless P
++      (when (val $Jam)
+          (gc)
+          (setq P (val $Avail)) )
+       (set $Avail (car P))
+@@ -347,7 +347,7 @@
+ 
+ (de consNum (Dig Big)
+    (let P (val $Avail)
+-      (unless P
++      (when (val $Jam)
+          (save Big
+             (gc) )
+          (setq P (val $Avail)) )
