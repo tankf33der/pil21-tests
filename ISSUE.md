@@ -197,3 +197,12 @@ NIL
 free(): double free detected in tcache 2
 Aborted (core dumped)
 ```
+
+```
+$ pil21 +
+: 123
+-> 123
+: @
+-> T
+:
+```
