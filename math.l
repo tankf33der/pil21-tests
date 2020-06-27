@@ -16,7 +16,7 @@
 
 # **
 (let N (** 100 100)
-   (test 201 (length (chop N)))
+   (test 201 (length (chop (format (pack (chop N))))))
    (test 1 (sum format (chop N)))
    (test 201 (length N)) )
 
