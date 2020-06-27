@@ -206,3 +206,8 @@ $ pil21 +
 -> T
 :
 ```
+
+```
+WHAT I NEED:
+o) huge, forth.l - peek
+```
