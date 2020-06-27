@@ -210,4 +210,7 @@ $ pil21 +
 ```
 WHAT I NEED:
 o) huge, forth.l - peek
+o) huge, parse2list - peek
+o) huge, csv - peek
+o) huge, ini - peek
 ```
