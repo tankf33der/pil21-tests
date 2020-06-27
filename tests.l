@@ -1,4 +1,3 @@
-#(gc 256)
 (prinl "check ulimit or crash!")
 (load "math.l")
 (load "montgomery.l")
@@ -21,7 +20,10 @@
 (load "passwd.l")
 (cd "hash")
 (load "test.l")
+(prinl "cryptography will take some time:")
+(prinl "...")
+(cd "../crypto")
+(load "test-ed25519.l")
 (prinl "======")
 (msg 'All-OK)
-#(gc 0) # (gc 256) (gc 0) helped gc coroutine's data
 (bye)
