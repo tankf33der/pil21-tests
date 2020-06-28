@@ -52,6 +52,7 @@
 (load "test-sha512.l")
 (load "test-threefish.l")
 (load "test-tiger.l")
+(load "test-twofish.l")
 (prinl "======")
 (msg 'All-OK)
 (bye)

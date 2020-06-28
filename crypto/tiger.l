@@ -18,14 +18,14 @@
       |
       (mapcar >> (0 -8 -16 -24 -32 -40 -48 -56) L) ) )
 (de T1 (N)
-   (sbox (inc N)) )
+   ("sbox" (inc N)) )
 (de T2 (N)
-   (sbox (inc (+ 256 N))) )
+   ("sbox" (inc (+ 256 N))) )
 (de T3 (N)
-   (sbox (inc (+ 512 N))) )
+   ("sbox" (inc (+ 512 N))) )
 (de T4 (N)
-   (sbox (inc (+ 768 N))) )
-(de sbox (N)
+   ("sbox" (inc (+ 768 N))) )
+(de "sbox" (N)
    (cache
       '(NIL)
       N
