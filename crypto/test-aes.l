@@ -1,6 +1,6 @@
 (load "aes.l")
 
-(de hex2L (H)
+(de "hex2L" (H)
    (make
       (for (L (chop H) L (cddr L))
          (link (hex (pack (car L) (cadr L)))) ) ) )
@@ -13,9 +13,9 @@
             (setq @@ (line))
             (>= 4 (format (car @@)) 1)
             (from "key=")
-            (setq K (hex2L (line T)))
+            (setq K ("hex2L" (line T)))
             (from "plain=")
-            (setq P (hex2L (line T)))
+            (setq P ("hex2L" (line T)))
             (from "cipher=")
             (setq C (line T))
             #(println K P C)

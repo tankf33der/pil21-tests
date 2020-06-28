@@ -29,7 +29,7 @@
    (mod32 (pass +)) )
 (de ror32 (X C)
    (| (>> C X) (mod32 (>> (- C 32) X))) )
-(de endian (L) # little
+(de "endian" (L) # little
    (apply
       |
       (mapcar >> (0 -8 -16 -24) L) ) )
@@ -86,7 +86,7 @@
             (M
                (make
                   (do 16
-                     (link (endian (cut 4 'Lst))) ) )
+                     (link ("endian" (cut 4 'Lst))) ) )
                V (conc (copy H) (copy *BLAKE2S-IV)) )
             (if (> 64 Len)
                (inc 'C (swap 'Len 0))

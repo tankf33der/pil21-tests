@@ -1,6 +1,6 @@
 (load "blake2s.l")
 
-(de _hex2L (H)
+(de "hex2L" (H)
    (make
       (for (L (chop H) L (cddr L))
          (link (hex (pack (car L) (cadr L)))) ) ) )
@@ -10,11 +10,11 @@
          (and
             (from "in:")
             (char)
-            (setq D (_hex2L (line)))
+            (setq D ("hex2L" (line)))
             (from "key:")
             (char)
-            (setq K (_hex2L (line)))
+            (setq K ("hex2L" (line)))
             (from "hash:")
             (char)
-            (test (_hex2L (line)) (blake2s D K)) ) ) ) )
+            (test ("hex2L" (line)) (blake2s D K)) ) ) ) )
 (msg 'blake2s-OK)
