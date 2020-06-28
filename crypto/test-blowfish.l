@@ -1,0 +1,22 @@
+(load "bcrypt-blowfish.l")
+
+(de _hex2L (H)
+   (make
+      (for (L H L (cddr L))
+         (link (hex (pack (car L) (cadr L)))) ) ) )
+# key bytes clear bytes cipher bytes
+(in "vectors/Blowfish.txt"
+   (until (eof)
+      (let L (mapcar _hex2L (split (chop (line T)) " "))
+         #(println 'L L)
+         (test (caddr L) (bl (cadr L) (car L))) ) ) )
+
+# data, result, key
+(use (D)
+   (in "vectors/Blowfish2.txt"
+      (let D (_hex2L (chop (line T)))
+         (until (eof)
+            (let L (mapcar _hex2L (split (chop (line T)) ","))
+               #(println 'L L)
+               (test (car L) (bl D (cadr L))) ) ) ) ) )
+(msg 'blowfish-OK)
