@@ -1,3 +1,4 @@
+(seed (in "/dev/urandom" (rd 8)))
 (prinl "check ulimit or crash!")
 (load "math.l")
 (load "montgomery.l")

@@ -1,13 +1,16 @@
 (load "ed25519.l")
+(de _r NIL
+   (make
+      (do 32
+         (link (rand 0 32)) ) ) )
 (let
-   (S (range 1 32)
+   (S (_r)
       P (publickey S)
-      D (range 1 128)
-      Sig (signature D S P) )
+      Sig (signature P S P) )
    (test
       T
       (checkvalid
-         (signature D S P)
-         D
+         (signature P S P)
+         P
          P ) ) )
 (msg 'ed25519-OK)
