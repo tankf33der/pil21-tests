@@ -213,4 +213,5 @@ o) huge, forth.l - peek
 o) huge, parse2list - peek
 o) huge, csv - peek
 o) huge, ini - peek
+o) crypto, md5 - math
 ```

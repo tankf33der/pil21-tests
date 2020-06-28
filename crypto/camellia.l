@@ -59,7 +59,7 @@
             -56 -48 -40 -32
             -24 -16 -8 0 )
          L ) ) )
-(de num64 (L)
+(de "num64" (L)
    (apply
       |
       (mapcar >> (-56 -48 -40 -32 -24 -16 -8 0) L) ) )
@@ -109,8 +109,8 @@
    (let
       (K (num128 Key)
          Key (genkey K (create K))
-         L1 (num64 (cut 8 'Lst))
-         L2 (num64 (cut 8 'Lst)) )
+         L1 ("num64" (cut 8 'Lst))
+         L2 ("num64" (cut 8 'Lst)) )
       (setq
          L1 (x| L1 (pop 'Key))
          L2 (x| L2 (pop 'Key)) )

@@ -32,6 +32,13 @@
 (load "test-blake2s.l")
 (load "test-blowfish.l")
 (load "test-camellia.l")
+(load "test-hkdf.l")
+(load "test-hmac.l")
+(load "test-idea.l")
+(load "test-jh.l")
+# XXX, min
+#(load "test-kangaroo12.l")
+# XXX, add keccak too
 (prinl "======")
 (msg 'All-OK)
 (bye)
