@@ -214,4 +214,5 @@ o) huge, parse2list - peek
 o) huge, csv - peek
 o) huge, ini - peek
 o) crypto, md5 - math
+o) crypto, keccak, shake, k12 - min (use smaller tests)
 ```
