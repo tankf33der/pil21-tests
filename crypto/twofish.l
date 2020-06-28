@@ -6,7 +6,7 @@
    (& N `(hex "FFFFFFFF")) )
 (de mod32+ @
    (mod32 (pass +)) )
-(de mod32* @
+(de "mod32*" @
    (mod32 (pass *)) )
 (de leftRotate (X C)
    (| (mod32 (>> (- C) X)) (>> (- 32 C) X)) )
@@ -17,7 +17,7 @@
       (do 7
          (and
             (bit? 1 A) (setq R (x| R B)) )
-         (setq 
+         (setq
             A (>> 1 A)
             B
             (x|
@@ -31,40 +31,40 @@
          MulEF (gfMult Mul01 `(hex "EF") `(hex "169")) )
       (case Col
          (0
-            (| 
-               Mul01 
+            (|
+               Mul01
                (mod32 (>> -8 Mul5B))
                (mod32 (>> -16 MulEF))
                (mod32 (>> -24 MulEF)) ) )
          (1
-            (| 
+            (|
                MulEF
                (mod32 (>> -8 MulEF))
                (mod32 (>> -16 Mul5B))
                (mod32 (>> -24 Mul01)) ) )
          (2
-            (| 
-               Mul5B 
+            (|
+               Mul5B
                (mod32 (>> -8 MulEF))
                (mod32 (>> -16 Mul01))
                (mod32 (>> -24 MulEF)) ) )
          (3
-            (| 
-               Mul5B 
+            (|
+               Mul5B
                (mod32 (>> -8 Mul01))
                (mod32 (>> -16 MulEF))
                (mod32 (>> -24 Mul5B)) ) ) ) ) )
 (de hFunc (X L1 L2)
    (x|
       (mdsColumnMult
-         (get 
+         (get
             *Sbox1
             (inc
                (x|
                   (get
-                     *Sbox0 
-                     (inc (x| (get *Sbox0 X) (car L2))) ) 
-                  (car L1) ) ) ) 
+                     *Sbox0
+                     (inc (x| (get *Sbox0 X) (car L2))) )
+                  (car L1) ) ) )
          0 )
       (mdsColumnMult
          (get
@@ -73,26 +73,26 @@
                (x|
                   (get
                      *Sbox0
-                     (inc (x| (get *Sbox1 X) (cadr L2))) ) 
-                  (cadr L1) ) ) ) 
+                     (inc (x| (get *Sbox1 X) (cadr L2))) )
+                  (cadr L1) ) ) )
          1 )
       (mdsColumnMult
          (get
             *Sbox1
             (inc
                (x|
-                  (get 
+                  (get
                      *Sbox1
-                     (inc (x| (get *Sbox0 X) (caddr L2))) ) 
-                  (caddr L1) ) ) ) 
+                     (inc (x| (get *Sbox0 X) (caddr L2))) )
+                  (caddr L1) ) ) )
          2 )
       (mdsColumnMult
-         (get 
+         (get
             *Sbox0
             (inc
-               (x| 
-                  (get 
-                     *Sbox1 
+               (x|
+                  (get
+                     *Sbox1
                      (inc (x| (get *Sbox1 X) (cadddr L2))) )
                   (cadddr L1) ) ) )
          3 ) ) )
@@ -109,7 +109,7 @@
                   B (leftRotate (hFunc (inc I) K2 K4) 8) )
                (link
                   (mod32+ A B)
-                  (leftRotate (mod32+ A (mod32* 2 B)) 9) ) ) ) ) ) )
+                  (leftRotate (mod32+ A ("mod32*" 2 B)) 9) ) ) ) ) ) )
 (de twofish (Lst Key)
    (let
       (*Stemp (need 8 0)
@@ -264,7 +264,7 @@
                               (get S3 (inc (mod8 (>> 16 C))))
                               (get S4 (inc (mod8 (>> 24 C)))) ) )
                         A (rightRotate (x| A (mod32+ Temp1 (pop 'WhiteKeys))) 1)
-                        B 
+                        B
                         (x|
                            (leftRotate B 1)
                            (mod32+ (pop 'WhiteKeys) Temp1 Temp2) ) ) ) )

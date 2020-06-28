@@ -50,9 +50,13 @@
 (load "test-sha1.l")
 (load "test-sha256.l")
 (load "test-sha512.l")
+# XXX, add shake
 (load "test-threefish.l")
 (load "test-tiger.l")
 (load "test-twofish.l")
+(load "test-whirlpool.l")
+(prinl "crypto finished!"
+(cd "..")
 (prinl "======")
 (msg 'All-OK)
 (bye)
