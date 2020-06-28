@@ -55,6 +55,7 @@
 (load "test-tiger.l")
 (load "test-twofish.l")
 (load "test-whirlpool.l")
+(prinl "...")
 (prinl "crypto finished!"
 (cd "..")
 (prinl "======")
