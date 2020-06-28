@@ -17,7 +17,7 @@
    (& N `(hex "FFFFFFFF")) )
 (de mod32+ @
    (mod32 (pass +)) )
-(de rol (X C)
+(de "rol" (X C)
    (| (mod32 (>> (- C) X)) (>> (- 32 C) X)) )
 (de lsthex (L)
    (mapcar '((N) (hex (sym N))) L) )
@@ -39,7 +39,7 @@
                (set Y
                   (x|
                      (car Y)
-                     (rol
+                     ("rol"
                         (mod32+ # XXX
                            (car (nth "Lst" (cadr R)))
                            (car (nth "Lst" (caddr R))) )
