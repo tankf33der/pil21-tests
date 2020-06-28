@@ -31,6 +31,7 @@
 (load "test-blake2.l")
 (load "test-blake2s.l")
 (load "test-blowfish.l")
+(load "test-camellia.l")
 (prinl "======")
 (msg 'All-OK)
 (bye)
