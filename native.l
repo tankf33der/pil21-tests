@@ -2,12 +2,25 @@
 (test
    NIL
    (native "./native.so" "returnvoid") )
+# XXX, not implemented
 (println
-   (native "./native.so" "returnbyte") )
+   (native "./native.so" "returnbyte" 'B) )
+(test
+   1234567890
+   (native "./native.so" "returnint" 'I) )
+(test
+   1234567890123456789
+   (native "./native.so" "returnlong" 'N) )
+# XXX, not implemented
 (println
-   (native "./native.so" "returnint") )
+   (native "./native.so" "returnbytes" '(B . 10)) )
+# XXX, not implemented
 (println
-   (native "./native.so" "returnlong") )
+   (native "./native.so" "returnints" '(I . 10)) )
+# XXX, not implemented
+(println
+   (native "./native.so" "returnlongs" '(N . 10)) )
+
 
 # native doc
 (test
