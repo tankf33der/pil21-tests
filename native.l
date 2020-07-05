@@ -1,7 +1,13 @@
-# return void
+# returns
 (test
    NIL
    (native "./native.so" "returnvoid") )
+(println
+   (native "./native.so" "returnbyte") )
+(println
+   (native "./native.so" "returnint") )
+(println
+   (native "./native.so" "returnlong") )
 
 # native doc
 (test

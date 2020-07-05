@@ -1,7 +1,7 @@
-all: clean native
+all:
 	pil21 tests.l
-native: native.c
+n:
 	gcc -fPIC -c native.c -o native.o
 	gcc -shared -Wl,-soname,native.so -o native.so native.o -lc
-clean:
+c:
 	rm -rf *.o *.so
