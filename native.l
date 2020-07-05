@@ -26,7 +26,9 @@
 # XXX, not implemented
 (println
    (native "./native.so" "returnS2" '(I (B . 4))) )
-# Mike, if above '(I (N . 4)) then fail, check paddings
+# Mike, if above '(I (N . 4)) then fail even in pil64
+# find and check paddings
+
 
 # native doc
 (test
