@@ -1,3 +1,8 @@
+# return void
+(test
+   NIL
+   (native "./native.so" "returnvoid") )
+
 # native doc
 (test
    T
