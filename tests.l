@@ -19,6 +19,7 @@
 (load "sieve.l")
 (load "double.l")
 (load "passwd.l")
+#(load "native.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")

@@ -1,3 +1,18 @@
+# native doc
+(test
+   T
+   (bool (native "@" "getenv" 'S "TERM")) )
+(test
+   11
+   (native "@" "printf" 'I "abc%d%s-OK^J" (+ 3 4) (pack "X" "Y" "Z")) )
+# XXX, not implemented
+#(println
+#   (native "@" "printf" 'I "This is %.3f^J" (123456 . 1000)) )
+# (use Tim
+   # (native "@" "time" NIL '(Tim (8 B . 8)))
+   # (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)) )
+# (native "libcrypto.so" "SHA1" '(B . 20) "abcd" 4 0)
+
 # adr example from doc
 (test
    "12"
@@ -17,3 +32,4 @@
    (native "@" "free" 'N P) )
 
 (msg 'native-OK)
+(bye)
