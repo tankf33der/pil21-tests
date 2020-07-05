@@ -26,9 +26,11 @@
 # XXX, not implemented
 (println
    (native "./native.so" "returnS2" '(I (B . 4))) )
-# Mike, if above '(I (N . 4)) then fail even in pil64
-# find and check paddings
-
+# XXX, not implemented
+# (7777 (0 0 0 0) (7 7 7 7))
+#        ^ struct padding 4 bytes
+(println
+   (native "./native.so" "returnS3" '(I (B . 4) (N . 4))) )
 
 # native doc
 (test

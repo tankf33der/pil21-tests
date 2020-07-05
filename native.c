@@ -66,3 +66,16 @@ struct S2 * returnS2(void) {
     return &R;
 }
 
+struct S3 {
+    int i;
+    long c[4];
+};
+
+struct S3 * returnS3(void) {
+    static struct S3 R;
+    R.i = 7777;
+    for (size_t i = 0; i < 4; i++) {
+        R.c[i] = 7;
+    }
+    return &R;
+}
