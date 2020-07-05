@@ -39,3 +39,30 @@ uint64_t * returnlongs(void) {
     }
     return r;
 }
+
+struct S1 {
+    int x;
+    int y;
+};
+
+struct S1 * returnS1(void) {
+    static struct S1 R;
+    R.x = 123456789;
+    R.y = 987654321;
+    return &R;
+}
+
+struct S2 {
+    int i;
+    unsigned char c[4];
+};
+
+struct S2 * returnS2(void) {
+    static struct S2 R;
+    R.i = 7777;
+    for (size_t i = 0; i < 4; i++) {
+        R.c[i] = 7;
+    }
+    return &R;
+}
+

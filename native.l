@@ -20,7 +20,13 @@
 # XXX, not implemented
 (println
    (native "./native.so" "returnlongs" '(N . 10)) )
-
+# XXX, not implemented
+(println
+   (native "./native.so" "returnS1" '(I I)) )
+# XXX, not implemented
+(println
+   (native "./native.so" "returnS2" '(I (B . 4))) )
+# Mike, if above '(I (N . 4)) then fail, check paddings
 
 # native doc
 (test
