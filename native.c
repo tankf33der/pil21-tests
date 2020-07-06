@@ -79,3 +79,14 @@ struct S3 * returnS3(void) {
     }
     return &R;
 }
+
+
+double returndouble(void) {
+    static double r = 123.455;
+    return r;
+}
+
+float returnfloat(void) {
+    static float r = 123.455;
+    return r;
+}

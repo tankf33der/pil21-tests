@@ -31,6 +31,14 @@
 #        ^ struct padding 4 bytes
 (println
    (native "./native.so" "returnS3" '(I (B . 4) (N . 4))) )
+(scl 3)
+(test
+   123455
+   (native "./native.so" "returndouble" 1.0) )
+(test
+   123455
+   (native "./native.so" "returnfloat" -1.0) )
+(scl 0)
 
 # native doc
 (test
