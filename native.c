@@ -90,3 +90,8 @@ float returnfloat(void) {
     static float r = 123.455;
     return r;
 }
+
+char * returnstr(void) {
+    static char *r = "mikeiscool";
+    return r;
+}

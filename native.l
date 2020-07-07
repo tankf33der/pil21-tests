@@ -39,6 +39,9 @@
    123455
    (native "./native.so" "returnfloat" -1.0) )
 (scl 0)
+(test
+   "mikeiscool"
+   (native "./native.so" "returnstr" 'S) )
 
 # native doc
 (test
