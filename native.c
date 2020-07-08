@@ -117,3 +117,13 @@ char * argN(uint64_t n) {
     sprintf(r, "%lu", n);
     return r;
 }
+
+char * argLB (const uint8_t *x, size_t size) {
+    static char r[BUFSIZ];
+    size_t n = 0;
+
+    for(size_t i = 0; i < size; i++)
+        n += sprintf(r+n, "%d", x[i]);
+    return r;
+}
+

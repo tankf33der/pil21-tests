@@ -46,6 +46,8 @@
 
 # arguments
 ################################################################
+
+# numbers
 (test
    "123"
    (native "./native.so" "argB" 'S 123) )
@@ -55,6 +57,17 @@
 (test
    "1234567890123456789"
    (native "./native.so" "argN" 'S 1234567890123456789) )
+
+# arrays
+(println
+   #(pack (need -6 (1 2 3) 0))
+   (native "./native.so" "argLB" 'S '(NIL (6) 1 2 3 . 0) 6) )
+
+(let L (range 11 17)
+   (println
+      # (pack (range 11 17))
+      (native "./native.so" "argLB" 'S (cons NIL (cons 7) L) 7) )
+)
 
 (msg 'args-OK)
 
