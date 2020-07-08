@@ -1,5 +1,8 @@
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdio.h>
+
+// testing return
 
 void returnvoid(void) {
 }
@@ -93,5 +96,24 @@ float returnfloat(void) {
 
 char * returnstr(void) {
     static char *r = "mikeiscool";
+    return r;
+}
+
+// testing arguments
+char * argB(uint8_t n) {
+    static char r[128];
+    sprintf(r, "%d", n);
+    return r;
+}
+
+char * argI(int n) {
+    static char r[128];
+    sprintf(r, "%d", n);
+    return r;
+}
+
+char * argN(uint64_t n) {
+    static char r[128];
+    sprintf(r, "%lu", n);
     return r;
 }

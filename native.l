@@ -1,4 +1,5 @@
-# returns
+# return values
+############################################################
 (test
    NIL
    (native "./native.so" "returnvoid") )
@@ -43,6 +44,19 @@
    "mikeiscool"
    (native "./native.so" "returnstr" 'S) )
 
+# arguments
+################################################################
+(println
+   (native "./native.so" "argB" 'S 123) )
+(println
+   (native "./native.so" "argI" 'S 1234) )
+(println
+   (native "./native.so" "argN" 'S 1234567890123456789) )
+
+(msg 'args-OK)
+
+
+################################################################
 # native doc
 (test
    T
