@@ -46,11 +46,14 @@
 
 # arguments
 ################################################################
-(println
+(test
+   "123"
    (native "./native.so" "argB" 'S 123) )
-(println
+(test
+   "1234"
    (native "./native.so" "argI" 'S 1234) )
-(println
+(test
+   "1234567890123456789"
    (native "./native.so" "argN" 'S 1234567890123456789) )
 
 (msg 'args-OK)
