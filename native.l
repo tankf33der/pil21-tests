@@ -3,8 +3,8 @@
 (test
    NIL
    (native "./native.so" "returnvoid") )
-# XXX, not implemented
-(println
+(test
+   255
    (native "./native.so" "returnbyte" 'B) )
 (test
    1234567890
@@ -12,25 +12,23 @@
 (test
    1234567890123456789
    (native "./native.so" "returnlong" 'N) )
-# XXX, not implemented
-(println
+(test
+   (range 0 9)
    (native "./native.so" "returnbytes" '(B . 10)) )
-# XXX, not implemented
-(println
+(test
+   (need 10 1234567890)
    (native "./native.so" "returnints" '(I . 10)) )
-# XXX, not implemented
-(println
+(test
+   (need 10 1234567890123456789)
    (native "./native.so" "returnlongs" '(N . 10)) )
-# XXX, not implemented
-(println
+(test
+   (list 123456789 987654321)
    (native "./native.so" "returnS1" '(I I)) )
-# XXX, not implemented
-(println
+(test
+   '(7777 (7 7 7 7))
    (native "./native.so" "returnS2" '(I (B . 4))) )
-# XXX, not implemented
-# (7777 (0 0 0 0) (7 7 7 7))
-#        ^ struct padding 4 bytes
-(println
+(test
+   '(7777 (0 0 0 0) (7 7 7 7))
    (native "./native.so" "returnS3" '(I (B . 4) (N . 4))) )
 (scl 3)
 (test
