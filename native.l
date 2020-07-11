@@ -41,6 +41,7 @@
 (test
    "mikeiscool"
    (native "./native.so" "returnstr" 'S) )
+(msg 'return-OK)
 
 # arguments
 ################################################################
@@ -55,29 +56,29 @@
 (test
    "1234567890123456789"
    (native "./native.so" "argN" 'S 1234567890123456789) )
+(msg 'args-num-OK)
 
 # arrays
-(println
-   #(pack (need -6 (1 2 3) 0))
+(test
+   (pack (need -6 (1 2 3) 0))
    (native "./native.so" "argLB" 'S '(NIL (6) 1 2 3 . 0) 6) )
-
 (let L (range 11 17)
-   (println
-      # (pack (range 11 17))
-      (native "./native.so" "argLB" 'S (cons NIL (cons 7) L) 7) )
-)
-
+   (test
+      (pack (range 11 17))
+      (native "./native.so" "argLB" 'S (cons NIL (cons 7) L) 7) ) )
 (msg 'args-OK)
-
 
 ################################################################
 # native doc
+(msg 0)
 (test
    T
    (bool (native "@" "getenv" 'S "TERM")) )
+(msg 1)
 (test
    11
    (native "@" "printf" 'I "abc%d%s-OK^J" (+ 3 4) (pack "X" "Y" "Z")) )
+(msg 2)
 # XXX, not implemented
 #(println
 #   (native "@" "printf" 'I "This is %.3f^J" (123456 . 1000)) )
@@ -85,6 +86,8 @@
    # (native "@" "time" NIL '(Tim (8 B . 8)))
    # (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)) )
 # (native "libcrypto.so" "SHA1" '(B . 20) "abcd" 4 0)
+
+
 
 # adr example from doc
 (test
