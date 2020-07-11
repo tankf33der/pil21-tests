@@ -59,6 +59,7 @@
 (msg 'args-num-OK)
 
 # arrays
+# XXX, not implemented
 (test
    (pack (need -6 (1 2 3) 0))
    (native "./native.so" "argLB" 'S '(NIL (6) 1 2 3 . 0) 6) )
@@ -66,11 +67,12 @@
    (test
       (pack (range 11 17))
       (native "./native.so" "argLB" 'S (cons NIL (cons 7) L) 7) ) )
-(msg 'args-OK)
+(msg 'args-array-OK)
 
 ################################################################
 # native doc
 (msg 0)
+(println "term")
 (test
    T
    (bool (native "@" "getenv" 'S "TERM")) )
