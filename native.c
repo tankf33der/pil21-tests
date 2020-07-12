@@ -127,3 +127,10 @@ char * argLB (const uint8_t *x, size_t size) {
     return r;
 }
 
+struct argSS {
+    int i;
+};
+
+void argS (const struct argSS *x) {
+    printf("x.i: %d\n", x->i);
+}
