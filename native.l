@@ -71,15 +71,9 @@
 (test
    T
    (bool (native "@" "getenv" 'S "TERM")) )
-(test
-   11
-   (native "@" "printf" 'I "abc%d%s-OK^J" (+ 3 4) (pack "X" "Y" "Z")) )
-# XXX, not implemented
-(println
-   (native "@" "printf" 'I "This is %.3f^J" (123456 . 1000)) )
 (use Tim
    (native "@" "time" NIL '(Tim (8 B . 8)))
-   (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)) )
+   (println (native "@" "localtime" '(I . 9) (cons NIL (8) Tim))) )
 (test
    (129 254 139 254 135 87 108 62 203 34 66 111 142 87 132 115 130 145 122 207)
    (native "libcrypto.so" "SHA1" '(B . 20) "abcd" 4 0) )
