@@ -222,5 +222,6 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
 ```
-time_t native issue
+time_t native issue (i belive this is issue)
+return back from documentation of native.
 ```
