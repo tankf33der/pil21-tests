@@ -199,15 +199,6 @@ Aborted (core dumped)
 ```
 
 ```
-$ pil21 +
-: 123
--> 123
-: @
--> T
-:
-```
-
-```
 WHAT I NEED:
 o) huge, forth.l - peek
 o) huge, parse2list - peek
@@ -219,9 +210,4 @@ o) crypto, keccak, shake, k12 - min (use smaller tests)
 
 ```
 add and readline via pkg-config, otherwise failed on FreeBSD 12
-```
-
-```
-time_t native issue (i belive this is issue)
-return back from documentation of native.
 ```

@@ -73,13 +73,14 @@
 (test
    T
    (bool (native "@" "getenv" 'S "TERM")) )
-# XXX, belive in issue.
-(use Tim
-   #(native "@" "time" NIL '(Tim (8 B . 8)))
-   #(println 'Tim Tim)
-   (setq Tim (list 251 196 14 95 0 0 0 0))
-   (println (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)))
-)
+(use (Tim R)
+   (native "@" "time" NIL '(Tim (8 B . 8)))
+   (setq R (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)))
+   (test
+      T
+      (and
+         (= 9 (length R))
+         (full '((N) (> 255 N)) R) ) ) )
 (test
    (129 254 139 254 135 87 108 62 203 34 66 111 142 87 132 115 130 145 122 207)
    (native "libcrypto.so" "SHA1" '(B . 20) "abcd" 4 0) )
@@ -107,4 +108,3 @@
    (native "@" "free" 'N P) )
 
 (msg 'native-OK)
-(bye)
