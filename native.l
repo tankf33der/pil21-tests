@@ -76,7 +76,7 @@
 # XXX, belive in issue.
 (use Tim
    #(native "@" "time" NIL '(Tim (8 B . 8)))
-   (println 'Tim Tim)
+   #(println 'Tim Tim)
    (setq Tim (list 251 196 14 95 0 0 0 0))
    (println (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)))
 )
