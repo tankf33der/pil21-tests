@@ -13,6 +13,9 @@
    1234567890123456789
    (native "./native.so" "returnlong" 'N) )
 (test
+   (94 193 14 95 0 0 0 0)
+   (native "./native.so" "return64" '(B . 8)) )
+(test
    (range 0 9)
    (native "./native.so" "returnbytes" '(B . 10)) )
 (test
@@ -72,8 +75,10 @@
    (bool (native "@" "getenv" 'S "TERM")) )
 # XXX, belive in issue.
 (use Tim
-   (native "@" "time" NIL '(Tim (8 B . 8)))
-   #(println (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)))
+   #(native "@" "time" NIL '(Tim (8 B . 8)))
+   (println 'Tim Tim)
+   (setq Tim (list 251 196 14 95 0 0 0 0))
+   (println (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)))
 )
 (test
    (129 254 139 254 135 87 108 62 203 34 66 111 142 87 132 115 130 145 122 207)

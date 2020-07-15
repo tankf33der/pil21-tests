@@ -21,6 +21,11 @@ int64_t returnlong(void) {
     return 1234567890123456789;
 }
 
+int64_t * return64(void) {
+    static int64_t r = 1594802526;
+    return &r;
+}
+
 uint8_t * returnbytes(void) {
     static uint8_t r[10];
     for (size_t i = 0; i < 10; i++) {
