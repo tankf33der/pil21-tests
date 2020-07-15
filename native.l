@@ -41,7 +41,6 @@
 (test
    "mikeiscool"
    (native "./native.so" "returnstr" 'S) )
-(msg 'return-OK)
 
 # arguments
 ################################################################
@@ -71,16 +70,17 @@
 (test
    T
    (bool (native "@" "getenv" 'S "TERM")) )
+# XXX, belive in issue.
 (use Tim
    (native "@" "time" NIL '(Tim (8 B . 8)))
-   (println (native "@" "localtime" '(I . 9) (cons NIL (8) Tim))) )
+   #(println (native "@" "localtime" '(I . 9) (cons NIL (8) Tim)))
+)
 (test
    (129 254 139 254 135 87 108 62 203 34 66 111 142 87 132 115 130 145 122 207)
    (native "libcrypto.so" "SHA1" '(B . 20) "abcd" 4 0) )
 (use M
    (native "./native.so" "argS" NIL '(M (8 B . 8) 1 2 3 4 5 6 7 8))
-   (println 'M M)
-)
+   (test (range 1 8) M) )
 
 
 # adr example from doc

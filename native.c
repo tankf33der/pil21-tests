@@ -2,8 +2,10 @@
 #include <stdint.h>
 #include <stdio.h>
 
-// testing return
+#define UNUSED(x) (void)(x)
 
+
+// testing return
 void returnvoid(void) {
 }
 
@@ -132,5 +134,5 @@ struct argSS {
 };
 
 void argS (const struct argSS *x) {
-    printf("x.i: %d\n", x->i);
+    UNUSED(x);
 }
