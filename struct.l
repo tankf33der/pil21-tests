@@ -1,0 +1,3 @@
+
+(msg 'struct-OK)
+(bye)
