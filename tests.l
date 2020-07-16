@@ -1,5 +1,6 @@
 (seed (in "/dev/urandom" (rd 8)))
 (prinl "check ulimit or crash!")
+(load "bitwise.l")
 (load "math.l")
 (load "montgomery.l")
 (load "frac.l")
