@@ -211,3 +211,7 @@ o) crypto, keccak, shake, k12 - min (use smaller tests)
 ```
 add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
+
+```
+add rc tests
+```
