@@ -144,25 +144,30 @@ void argS (const struct argSS *x) {
 }
 
 struct arg1s {
+    uint8_t  u8;
     uint32_t u32;
     uint64_t u64;
 };
 
-char * arg1(const struct arg1s *s) {
+char *arg1(const struct arg1s *s) {
     static char r[BUFSIZ];
 
     memset(r, 0, BUFSIZ);
-    fprintf(stderr, "%d,%lu\n", s->u32, s->u64);
-    fprintf(stderr, "%p,%p\n", &s->u32, &s->u64);
-    sprintf(r, "%d,%lu", s->u32, s->u64);
-    for (char *p = (char *)s, i = 0; i < 16; ++i) printf("%x ", *p++);
+    sprintf(r, "%d%d%lu", s->u8, s->u32, s->u64);
+    for (char *p = (char *)s, i = 0; i < 16; ++i) {
+        printf(" %x", *p++);
+    }
+    putchar('\n');
     return r;
 }
 
 int main(void) {
     struct arg1s s;
+    s.u8  = 123;
     s.u32 = 1234567;
     s.u64 = 1234567890123456789;
+    printf("%lu\n", sizeof(s));
+    printf("%p,%p,%p\n", &s.u8, &s.u32, &s.u64);
     printf("%s\n", arg1(&s));
 
     return 0;
