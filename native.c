@@ -141,3 +141,26 @@ struct argSS {
 void argS (const struct argSS *x) {
     UNUSED(x);
 }
+
+struct arg1s {
+    uint8_t b;
+    uint32_t i;
+    uint64_t l;
+};
+
+char * arg1(const struct arg1s *s) {
+    static char r[BUFSIZ];
+    sprintf(r, "%d%d%ju", s->b, s->i, s->l);
+    return r;
+}
+
+int main(void)  {
+    struct arg1s m;
+    m.b = 123;
+    m.i = 12345;
+    m.l = 1234567890;
+    printf("%p,%p,%p\n", &m.b, &m.i, &m.l);
+    printf("%s\n", arg1(&m));
+    return 0;
+
+}

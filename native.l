@@ -87,6 +87,16 @@
 (use M
    (native "./native.so" "argS" NIL '(M (8 B . 8) 1 2 3 4 5 6 7 8))
    (test (range 1 8) M) )
+(setq P (native "@" "malloc" 'N 32))
+
+# b,i,l
+(struct P 'P -123 (1234567 . 4) (1234567890123456789 . 8))
+(println
+   "12312345671234567890123456789"
+   (native "./native.so" "arg1" 'S P) )
+
+
+(native "@" "free" NIL P)
 
 
 # adr example from doc
