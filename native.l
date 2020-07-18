@@ -89,9 +89,21 @@
    (test (range 1 8) M) )
 
 (setq P (native "@" "malloc" 'N 32))
+# b i l
 (struct P 'N 222 (0 . 3) (1234567 . 4) (1234567890123456789 . 8))
-(println
+(test
+   "22212345671234567890123456789"
    (native "./native.so" "arg1" 'S P) )
+# i b l
+(struct P 'N (1234567 . 4) 222 (0 . 3) (1234567890123456789 . 8))
+(test
+   "12345672221234567890123456789"
+   (native "./native.so" "arg2" 'S P) )
+# i l b
+(struct P 'N (1234567 . 4) (0 . 4) (1234567890123456789 . 8) 222 (0 . 3))
+(test
+   "12345671234567890123456789222"
+   (native "./native.so" "arg3" 'S P) )
 (native "@" "free" NIL P)
 
 
