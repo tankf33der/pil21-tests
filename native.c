@@ -143,7 +143,7 @@ void argS (const struct argSS *x) {
 }
 
 struct arg1s {
-    uint8_t b;
+    uint32_t b;
     uint32_t i;
     uint64_t l;
 };
