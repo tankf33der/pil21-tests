@@ -126,7 +126,6 @@
 ### week ###
 (test 22 (week (date 2007 6 1)))
 
-#{
 ### rc ###
 (let F (tmp "rc")
    (rc F 'a 123)
@@ -136,6 +135,5 @@
    (test 123 (rc F 'a))
    (test "test" (rc F 'b))
    (test (1 2 3) (rc F 'c)) )
-}#
 
 (msg 'system-OK)

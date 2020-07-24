@@ -145,19 +145,6 @@ $ pil21 +
 ```
 
 ```
-catch-throw hang
-(de z1-2 (F)
-   (catch 'Found
-      (in F
-         (until (eof)
-            # if you remove let below it works
-            (let (N 0)
-               (println 'throw)
-               (throw 'Found) ) ) ) ) )
-(z1-2 "mike.dat")
-```
-
-```
 pythag coroutine code crash-hang in math.l
 ```
 
@@ -206,8 +193,4 @@ o) crypto, keccak, shake, k12 - min (use smaller tests)
 
 ```
 add and readline via pkg-config, otherwise failed on FreeBSD 12
-```
-
-```
-add rc tests, exits immediatly, like broken
 ```
