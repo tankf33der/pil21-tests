@@ -21,6 +21,8 @@
 (load "double.l")
 (load "passwd.l")
 (load "native.l")
+(load "base32.l")
+(load "base58.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")

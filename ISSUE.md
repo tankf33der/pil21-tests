@@ -218,8 +218,6 @@ add rc tests, exits immediatly, like broken
 
 ```
 add:
-base32.l
-base58.l
 chemical.l
 csv
 ini
