@@ -213,5 +213,5 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
 ```
-add rc tests
+add rc tests, exits immediatly, like broken
 ```
