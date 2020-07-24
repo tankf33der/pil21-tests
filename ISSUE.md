@@ -215,3 +215,13 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 add rc tests, exits immediatly, like broken
 ```
+
+```
+add:
+base32.l
+base58.l
+chemical.l
+csv
+ini
+forth
+```
