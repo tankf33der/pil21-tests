@@ -227,6 +227,7 @@
 (test '(a b d e) (remove 3 '(a b c d e)))
 (test '(b c d e) (remove 1 '(a b c d e)))
 (test '(a b c d e) (remove 9 '(a b c d e)))
+(println (remove 9 (1 2 3 4 . 6)))
 }#
 
 # XXX, undefined
