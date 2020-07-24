@@ -28,6 +28,7 @@
 (load "csv.l")
 (load "ini.l")
 (load "forth.l")
+(load "fern.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")
