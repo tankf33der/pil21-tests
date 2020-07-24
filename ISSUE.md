@@ -200,10 +200,6 @@ Aborted (core dumped)
 
 ```
 WHAT I NEED:
-o) huge, forth.l - peek
-o) huge, parse2list - peek
-o) huge, csv - peek
-o) huge, ini - peek
 o) crypto, md5 - math
 o) crypto, keccak, shake, k12 - min (use smaller tests)
 ```
@@ -214,12 +210,4 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 
 ```
 add rc tests, exits immediatly, like broken
-```
-
-```
-add:
-chemical.l
-csv
-ini
-forth
 ```
