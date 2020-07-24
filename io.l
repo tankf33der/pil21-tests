@@ -108,22 +108,20 @@
 
 
 ### in out err ###
-# XXX, call undef
-# (out (tmp "file")
-   # (println 123)
-   # (println 'abc)
-   # (println '(d e f)) )
-# (in (tmp "file")
-   # (test 123 (read))
-   # (in (tmp "file")
-      # (test 123 (read))
-      # (test 'abc (in -1 (read))) )
-   # (test '(d e f) (read)) )
-#
-# (let Err (tmp "err")
-   # (test 1 (err Err (msg 1)))
-   # (test 2 (err (pack "+" Err) (msg 2)))
-   # (test "1^J2^J" (in Err (till NIL T))) )
+(out (tmp "file")
+   (println 123)
+   (println 'abc)
+   (println '(d e f)) )
+(in (tmp "file")
+   (test 123 (read))
+   (in (tmp "file")
+      (test 123 (read))
+      (test 'abc (in -1 (read))) )
+   (test '(d e f) (read)) )
+(let Err (tmp "err")
+   (test 1 (err Err (msg 1)))
+   (test 2 (err (pack "+" Err) (msg 2)))
+   (test "1^J2^J" (in Err (till NIL T))) )
 
 ### pipe ###
 (test 123 (pipe (println 123) (read)))
@@ -132,36 +130,33 @@
       (out '(tr "[a-z]" "[A-Z]") (prinl "abc def ghi"))
       (line T) ) )
 
-
-# XXX, undef, call via tmp
 ### echo ###
-# (out (tmp "echo")
-   # (in (tmp "file")
-      # (echo) ) )
-# (in (tmp "echo")
-   # (test 123 (read))
-   # (test 'abc (read))
-   # (test '(d e f) (read)) )
-# (let F (tmp "file")
-   # (test "12"
-      # (pipe (in F (echo 2))
-         # (line T) ) )
-   # (test "23"
-      # (pipe (in F (echo 1 2))
-         # (line T) ) ) )
+(out (tmp "echo")
+   (in (tmp "file")
+      (echo) ) )
+(in (tmp "echo")
+   (test 123 (read))
+   (test 'abc (read))
+   (test '(d e f) (read)) )
+(let F (tmp "file")
+   (test "12"
+      (pipe (in F (echo 2))
+         (line T) ) )
+   (test "23"
+      (pipe (in F (echo 1 2))
+         (line T) ) ) )
 
 
 ### prin prinl space print printsp println ###
-# XXX, call undef
-# (out (tmp "prin")
-   # (prin 1)
-   # (prinl 2)
-   # (space)
-   # (print 3)
-   # (printsp 4)
-   # (println 5) )
-# (test (12 "^J" " " 34 5)
-   # (in (tmp "prin")
-      # (list (read) (char) (char) (read) (read)) ) )
+(out (tmp "prin")
+   (prin 1)
+   (prinl 2)
+   (space)
+   (print 3)
+   (printsp 4)
+   (println 5) )
+(test (12 "^J" " " 34 5)
+   (in (tmp "prin")
+      (list (read) (char) (char) (read) (read)) ) )
 
 (msg 'io-OK)
