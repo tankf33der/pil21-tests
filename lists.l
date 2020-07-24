@@ -213,39 +213,26 @@
 (test '(a B B a) (replace '(a b b a) 'b 'B))
 (test '(B A A B) (replace '(a b b a) 'a 'B 'b 'A))
 
-# XXX, undefined
-#{
 ### insert ###
 (test '(a b 777 c d e) (insert 3 '(a b c d e) 777))
 (test (777 a b c d e) (insert 1 '(a b c d e) 777))
 (test '(a b c d e 777) (insert 9 '(a b c d e) 777))
-}#
 
-# XXX, undefined
-#{
 ### remove ###
 (test '(a b d e) (remove 3 '(a b c d e)))
 (test '(b c d e) (remove 1 '(a b c d e)))
 (test '(a b c d e) (remove 9 '(a b c d e)))
-(println (remove 9 (1 2 3 4 . 6)))
-}#
+(test (1 2 3 . 4) (remove 9 (1 2 3 . 4)))
 
-# XXX, undefined
-#{
 ### place ###
 (test '(a b 777 d e) (place 3 '(a b c d e) 777))
 (test (777 b c d e) (place 1 '(a b c d e) 777))
-(t
-est '(a b c d e 777) (place 9 '(a b c d e) 777))
-}#
+(test '(a b c d e 777) (place 9 '(a b c d e) 777))
 
-# XXX, undefined
-#{
 ### strip ###
 (test 123 (strip 123))
 (test '(a) (strip '''(a)))
 (test '(a b c) (strip (quote quote a b c)))
-}#
 
 ### split ###
 (test '((1) (2 b) (c 4 d 5) (6))
