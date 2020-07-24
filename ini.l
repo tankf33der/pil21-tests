@@ -46,5 +46,3 @@
    (ini-get INI 'DriverConfig 'PrinterDriverID) )
 
 (msg 'ini-OK)
-(bye)
-
