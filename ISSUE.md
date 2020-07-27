@@ -194,3 +194,15 @@ o) crypto, keccak, shake, k12 - min (use smaller tests)
 ```
 add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
+
+```
+(de z7-2-seek (Lst Y)
+   (seek '((L) (fully = Y L)) Lst) )
+(println (z7-2-seek (1 2 3) (3 2 1)))
+```
+
+```
+(ifn (assoc 1 '((1 2) (3 4)))
+   (println 1 @)
+   (println 2 @) )
+```
