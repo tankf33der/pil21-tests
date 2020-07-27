@@ -196,18 +196,5 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
 ```
-adventof2017: f18-2, f22-1
-f22-2 run forever (should be ~30secs)
-f22 family left and right case shoule be modified to (cdr (assoc...))
-```
-
-```
-(de f22-left (D)
-   (case D
-      ((0 1) (-1 0))
-      ((1 0) (0 1))
-      ((0 -1) (1 0))
-      (T (0 -1)) ) )
-(setq Dir (f22-left (0 -1)))
-(println Dir)
+adventof2017: f18-2
 ```
