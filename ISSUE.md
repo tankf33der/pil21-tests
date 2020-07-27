@@ -198,6 +198,7 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 adventof2017: f18-2, f22-1
 f22-2 run forever (should be ~30secs)
+f22 family left and right case shoule be modified to (cdr (assoc...))
 ```
 
 ```
