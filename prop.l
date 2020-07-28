@@ -1,3 +1,7 @@
+(putl 'X '((123 . a) flg ("Hello" . b)))
+(test 123 (get 'X 'a))
+(test '((123 . a) ("Hello" . b) flg) (getl 'X))
+
 # Original test code from PicoLisp
 # copy-paste
 #
@@ -29,10 +33,7 @@
    (test (3 . z) (prop C 0 -1 'a 'z))
    (test 9 (with C (=: 0 -1 a z (* 3 3))))
    (test (9 . z) (with C (:: 0 -1 a z)))
-   # XXX, hang-bug
-   # flip undef, putl hang
-   #(test (putl C 0 -1 'a '((1 . x) (2 . y))) (flip (getl C 'b 0)))
-)
+   (test (putl C 0 -1 'a '((1 . x) (2 . y))) (flip (getl C 'b 0))) )
 
 (test NIL (get (1 2 3) 0))
 (test 1 (get (1 2 3) 1))
@@ -51,7 +52,6 @@
    (wipe X)
    (test NIL (val X))
    (test NIL (getl X)) )
-
 
 (setq "W" (1 2 3 4))
 (put '"W" 'a 1)

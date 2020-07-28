@@ -88,18 +88,6 @@ if call fifo with *single* argument it would insert and fetch in correct order
 ```
 
 ```
-# putl+get - wrong
-(putl 'X '((123 . a) flg ("Hello" . b)))
-(get 'X 'a) -> NIL
-(getl 'X) -> NIL
-```
-
-```
-putl can hang too
-: (let (A (box) B (box A) C (cons (cons A B))) (putl C 0))
-```
-
-```
 # will fail test
 (de w (N)
    (co (intern (pack 'i N))
