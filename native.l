@@ -108,12 +108,9 @@
 
 
 # adr example from doc
-(test
-   "12"
-   (hex (byte (>> -4 (adr (1))))) )
-(test
-   "22"
-   (hex (byte (>> -4 (adr (2))))) )
+(test (1 2) (struct (adr (1 . 2)) '(T T)))
+(test (18 34) (struct (adr (1 . 2)) '(P P)))
+
 (let P (native "@" "malloc" 'N 8)
    (byte P (char "A"))
    (byte (+ P 1) (char "B"))
