@@ -1,0 +1,10 @@
+### udp ###
+(test '(a b c)
+   (let P (port T 0 "UdpPort")
+      (if (fork)
+         (udp P)
+         (close P)
+         (wait 400)
+         (udp "localhost" "UdpPort" '(a b c))
+         (bye) ) ) )
+(msg 'net-OK)
