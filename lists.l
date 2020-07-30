@@ -170,20 +170,14 @@
    (test T (= L (copy L)))
    (test T (= (1 2 3) (copy L))) )
 
-
-# XXX, undefined
-#{
 ### mix ###
 (test '(c d a b) (mix '(a b c d) 3 4 1 2))
 (test '(a A d D) (mix '(a b c d) 1 'A 4 'D))
-}#
 
 ### append ###
 (test '(a b c 1 2 3) (append '(a b c) (1 2 3)))
 (test (1 2 3 . 4) (append (1) (2) (3) 4))
 
-# XXX, undefined
-#{
 ### delete ###
 (test (1 3)
    (delete 2 (1 2 3)) )
@@ -193,10 +187,7 @@
    (delete 1 (1 1 2 3 1 2 3)) )
 (test (2 3 2 3)
    (delete 1 (1 1 2 3 1 2 3) T) )
-}#
 
-# XXX, undefined
-#{
 ### delq ###
 (test '(a c)
    (delq 'b '(a b c)) )
@@ -206,7 +197,6 @@
    (delq 'a '(a a b c a b c)) )
 (test '(b c b c)
    (delq 'a '(a a b c a b c) T) )
-}#
 
 ### replace ###
 (test '(A b b A) (replace '(a b b a) 'a 'A))
@@ -273,12 +263,9 @@
 (test '(a b c d e f) (tail 10 '(a b c d e f)))
 (test '(d e f) (tail '(d e f) '(a b c d e f)))
 
-# XXX, undefined
-#{
 ### stem ###
 (test '("g" "h" "i") (stem (chop "abc/def\\ghi") "/" "\\"))
 (test '("g" "h" "i") (stem (chop "abc/def\\ghi") "\\" "/"))
-}#
 
 ### fin ###
 (test 'a (fin 'a))
@@ -344,22 +331,16 @@
 (test NIL (nT T))
 
 
-# XXX, undefined
-#{
 ### < ###
 (test T (< 3 4))
 (test T (< 'a 'b 'c))
 (test T (< 999 'a))
 (test T (< NIL 7 'x (1) T))
-}#
 
-# XXX, undefined
-#{
 ### <= ###
 (test T (<= 3 3))
 (test T (<= 1 2 3))
 (test T (<= "abc" "abc" "def"))
-}#
 
 ### > ###
 (test T (> 4 3))
@@ -372,19 +353,13 @@
 (test T (>= 3 2 2 1))
 
 
-# XXX, undefined
-#{
 ### max ###
 (test 'z (max 2 'a 'z 9))
 (test (5) (max (5) (2 3) 'X))
-}#
 
-# XXX, undefined
-#{
 ### min ###
 (test 2 (min 2 'a 'z 9))
 (test 'X (min (5) (2 3) 'X))
-}#
 
 ### atom ###
 (test T (atom 123))
@@ -512,10 +487,9 @@
 (test 3 (bytes 128))
 (test 10 (bytes (101 (102) 103)))
 (test 9 (bytes (101 102 103 .)))
-# XXX, call undefined
-# (let (L (7 "abc" (1 2 3) 'a)  F (tmp "bytes"))
-   # (out F (pr L))
-   # (test (bytes L) (car (info F))) )
+(let (L (7 "abc" (1 2 3) 'a)  F (tmp "bytes"))
+   (out F (pr L))
+   (test (bytes L) (car (info F))) )
 
 
 ### assoc ###
@@ -583,8 +557,6 @@
 (let X 2 (test (1 2 3) (fill (1 X 3) 'X)))
 (let X 2 (test (1 2 3) (fill (1 X 3) '(X))))
 
-# XXX, undefined
-#{
 ### prove ###
 (test T
    (prove (goal '((equal 3 3)))) )
@@ -592,16 +564,11 @@
    (prove (goal '((equal 3 @X)))) )
 (test NIL
    (prove (goal '((equal 3 4)))) )
-}#
 
-# XXX, undefined
-#{
 ### -> ###
 (test '((@A . 3) (@B . 7))
    (prove (goal '(@A 3 (^ @B (+ 4 (-> @A)))))) )
-}#
 
-# XXX, undefined
 #{
 ### unify ###
 (test '((@A ((NIL . @C) 0 . @C) ((NIL . @B) 0 . @B) T))
@@ -609,19 +576,14 @@
 }#
 
 # XXX, undefined
-#{
 ### group ###
 (test '((1 a b c) (2 d e f))
    (group '((1 . a) (1 . b) (1 . c) (2 . d) (2 . e) (2 . f))) )
-}#
 
-# XXX, undefined
-#{
 ### sort ###
 (test '(NIL 1 2 3 4 a b c d (1 2 3) (a b c) (x y z) T)
    (sort '(a 3 1 (1 2 3) d b 4 T NIL (a b c) (x y z) c 2)) )
 (test '(T (x y z) (a b c) (1 2 3) d c b a 4 3 2 1 NIL)
    (sort '(a 3 1 (1 2 3) d b 4 T NIL (a b c) (x y z) c 2) >) )
-}#
 
 (msg 'lists-OK)

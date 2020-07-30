@@ -469,7 +469,6 @@
 }#
 
 # XXX, undefined
-#{
 ### exec ###
 (test
    (123 abc)
@@ -477,12 +476,10 @@
       (list (read) (read)) ) )
 
 ### call ###
-(test T (call "test" "-d" (path "@test")))
-(test NIL (call "test" "-f" (path "@test")))
-
+(test T (call "test" "-d" (path "@misc")))
+(test NIL (call "test" "-f" (path "@misc")))
 
 ### kill ###
 (test T (kill *Pid 0))
-}#
 
 (msg 'flow-OK)
