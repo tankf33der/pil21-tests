@@ -50,16 +50,13 @@
 
 
 
-#{
 ### maps ###
 (let L '((1 . a) (2 . b) flg)
    (test L (let X (box) (putl X (reverse L)) (make (maps link X)))) )
-}#
 
 
 ### map ###
-# XXX
-#(test '((1 2 3) (2 3) (3)) (make (map link (1 2 3))))
+(test '((1 2 3) (2 3) (3)) (make (map link (1 2 3))))
 
 
 ### mapc ###
@@ -67,9 +64,7 @@
 
 
 ### maplist ###
-#(test '(((1 2 3) A B C) ((2 3) B C) ((3) C)) (maplist cons (1 2 3) '(A B C)))
-
-
+(test '(((1 2 3) A B C) ((2 3) B C) ((3) C)) (maplist cons (1 2 3) '(A B C)))
 
 
 ### mapcar ###
@@ -77,14 +72,10 @@
 (test (26 38 52 68) (mapcar '((X Y) (+ X (* Y Y))) (1 2 3 4) (5 6 7 8)))
 
 ### mapcon ###
-# XXX, (copy) undefined
-#(test (1 2 3 4 5 2 3 4 5 3 4 5 4 5 5) (mapcon copy (1 2 3 4 5)))
-
+(test (1 2 3 4 5 2 3 4 5 3 4 5 4 5 5) (mapcon copy (1 2 3 4 5)))
 
 ### mapcan ###
-# XXX, (reverse) undefined
-#(test '(c b a f e d i h g) (mapcan reverse '((a b c) (d e f) (g h i))))
-
+(test '(c b a f e d i h g) (mapcan reverse '((a b c) (d e f) (g h i))))
 
 
 ### filter ###
@@ -125,11 +116,9 @@
 (test T (fully gt0 (1 2 3)))
 (test NIL (fully gt0 (1 -2 3)))
 
-#{
 
 ### cnt ###
 (test 2 (cnt cdr '((1 . T) (2) (3 4) (5))))
-
 
 ### maxi mini ###
 (let (A 1 B 2 C 3)
@@ -152,7 +141,6 @@
    (by name group '("x" "x" "y" "z" "x" "z")) )
 (test '((123 "xyz") ((1 2) "XY") ("abcd" (1 2 3 4)))
    (by length group '(123 (1 2) "abcd" "xyz" (1 2 3 4) "XY")) )
-}#
 
 
 ### sum ###
