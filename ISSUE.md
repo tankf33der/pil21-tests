@@ -30,14 +30,6 @@ Requirements to this file and repo are:
 ```
 
 ```
-# finally, should not be NIL
-(finally (prinl "Done!")
-   (println 123)
-   (quit)
-   (println 456) )
-```
-
-```
 # hangs
 # fibonacci coroutine generator
 (de coFibo ()

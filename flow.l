@@ -443,9 +443,7 @@
       ("expected" (shouldNotComeHere))
       (T @) ) )
 
-# XXX, finally bug
 ### finally ###
-#{
 (test 'B
   mi I (let X 'A
       (catch NIL
@@ -454,7 +452,6 @@
             (throw)
             (setq X 'D) ) )
       X ) )
-}#
 
 ### co yield ###
 # XXX, co hangs
