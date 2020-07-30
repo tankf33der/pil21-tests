@@ -181,4 +181,6 @@ adventof2017: f18-2
 
 ```
 unify in lists.l
+(test '((@A ((NIL . @C) 0 . @C) ((NIL . @B) 0 . @B) T))
+   (prove (goal '((^ @A (unify '(@B @C)))))) )
 ```
