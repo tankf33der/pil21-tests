@@ -17,12 +17,9 @@
 # info
 (test '(T . @) (info "/etc"))
 (test 2 (length (info "/etc/passwd")))
-# XXX crash, deep bug
-#(test T (fully num? (info "/etc/passwd")))
-
+(test T (fully num? (info "/etc/passwd")))
 
 ### date time ###
-# XXX, time undef
 (use (Dat1 Tim1 Dat2 Tim2 D1 T1 D2 T2)
    (until
       (=
@@ -48,7 +45,6 @@
 (test 730622 (date (2000 7 15)))
 (test NIL (date NIL))
 
-# XXX, time undef
 (test (11 17 23) (time 40643))
 (test 40643 (time 11 17 23))
 (test 40643 (time (11 17 23)))
