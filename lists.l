@@ -569,6 +569,7 @@
 (test '((@A . 3) (@B . 7))
    (prove (goal '(@A 3 (^ @B (+ 4 (-> @A)))))) )
 
+# XXX
 #{
 ### unify ###
 (test '((@A ((NIL . @C) 0 . @C) ((NIL . @B) 0 . @B) T))
