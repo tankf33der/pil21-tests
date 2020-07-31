@@ -64,27 +64,27 @@
       ((> 14 N)
          (cons
             (get
-               '(one two three four five six seven 
-                  eight nine ten eleven twelve thirteen ) 
+               '(one two three four five six seven
+                  eight nine ten eleven twelve thirteen )
                N ) ) )
       ((= 15 N) (cons 'fifteen))
       ((= 18 N) (cons 'eighteen))
       ((> 20 N)
          (cons (intern (pack (numNm (% N 10)) "teen"))) )
       ((> 100 N)
-         (cons 
-            (intern 
+         (cons
+            (intern
                (pack
-                  (get 
-                     '("twen" "thir" "for" "fif" "six" "seven" "eigh" "nine") 
+                  (get
+                     '("twen" "thir" "for" "fif" "six" "seven" "eigh" "nine")
                      (dec (/ N 10)) )
                   "ty"
                   (and
                      (gt0 (% N 10))
                      (pack "-" (numNm @)) ) ) ) ) )
       ((rank
-         N 
-         '((100 . (hundred)) (1000 . (thousand)) 
+         N
+         '((100 . (hundred)) (1000 . (thousand))
             (1000000 . (million)) (1000000000 . (billion)) ) )
          (append
             (numNm (/ N (car @)))
@@ -151,8 +151,8 @@
             '(M CM D CD C XC L XL X IX V IV I)
             (1000 900 500 400 100 90 50 40 10 9 5 4 1) ) ) ) )
 (de create (S)
-   (let V 
-      '((I . 1) 
+   (let V
+      '((I . 1)
          (V . 5)
          (X . 10)
          (L . 50)
@@ -160,7 +160,7 @@
          (D . 500)
          (M . 1000) )
       (make
-         (for (I (chop S) I (cdr I))   
+         (for (I (chop S) I (cdr I))
             (let
                (A (assoc (car I) V)
                   B (assoc (cadr I) V) )
@@ -201,7 +201,7 @@
             (or
                (caddr L)
                (< 3 (maxi prog L))
-               (and 
+               (and
                   (cadr L)
                   (< 1 (mini prog L)) ) ) ) )
       '(I X C M) ) )
@@ -218,10 +218,10 @@
                   (when (= (car I) (car L))
                      (or
                         (nor
-                           (= (cadr I) (cadr L)) 
+                           (= (cadr I) (cadr L))
                            (= (cadr I) (caddr L)) )
                         (= (abs (car I)) (abs (caddr I)))
-                        (gt0 
+                        (gt0
                            (cnt
                               '((J) (> (abs J) (abs (car I))))
                               (cddr I) ) ) ) )
@@ -285,19 +285,19 @@
       'C
       (ixcm? (create I)) ) )
 (test
-   '(NIL)   
+   '(NIL)
    (chars? (create 'i)) )
 (test
    NIL
    (chars? (create 'MMM)) )
 (test
-   '(NIL)   
+   '(NIL)
    (chars? (create 'MMiXL)) )
 (test
    NIL
    (chars? (create 'CDMXI)) )
 (test
-   '(NIL)   
+   '(NIL)
    (chars? (create 'iMMM)) )
 (test
    NIL
@@ -321,12 +321,12 @@
    (test
       NIL
       (gap (create (roman I)))) )
-(for I 3999 
+(for I 3999
    (test
       T
       (roman? (roman I)) ) )
-(for 
-   I 
+(for
+   I
    '(MMMM DD CCCC LL XXXX VV IIII CMCM CDCD IVIV LXC VIX
       IIMXCC VX CMM IXIV MCMC XCX IVI LM LD LC DCM IIV )
    (test
@@ -470,7 +470,7 @@
 (de f1-18 (F Str)
    (glue
       " "
-      (mapcar 
+      (mapcar
          F
          (mapcar
             pack (split (chop Str) " ") ) ) ) )
@@ -480,7 +480,7 @@
       (pack Str) ) )
 (test
    (f1-18 uppc "ab cd")
-   (f1-18 
+   (f1-18
       uppc
       (f1-18 lowc "AB CD") ) )
 (test
@@ -536,9 +536,9 @@
 (scl 0)
 
 (de f1-23-2 (N)
-   (let R (frac 2 1)
+   (let R (frac~f 2 1)
       (for (I 2 (>= N I) (inc I))
-         (setq R (f+ R (frac (inc I) I))) )
+         (setq R (frac~f+ R (frac~f (inc I) I))) )
       R ) )
 (test
    (7 . 2)
@@ -666,7 +666,7 @@
    (format
       (mini
          format
-         (permute (chop N)) ) ) )
+         (simul~permute (chop N)) ) ) )
 (test
    33444455
    (f1-32 34544534) )
@@ -721,7 +721,7 @@
       '((X) (cons (car X) (length X)))
       (make
          (let Last NIL
-            (mapc 
+            (mapc
                '((X)
                   (if (= X (car Last))
                      (conc Last (cons X))
@@ -818,7 +818,10 @@
    (f1-46 11) )
 
 #1.47
+# XXX
+# math.l
 (scl 6)
+#{
 (de f1-47 (N)
    (format (*/ 1.0 1.0 (tan (* 1.0 90))) *Scl) )
 (test
@@ -831,6 +834,7 @@
 (test
    "7.957746"
    (f1-48 10) )
+}#
 
 #1.49
 (de f1-49 (Lst)
@@ -929,7 +933,7 @@
 (test
    "aabbaaabbbcsdk!4A!5b"
    (f1-56 "aabbaaabbbcsdkAAAAbbbbb") )
- 
+
 #1.57 - ignored
 
 #1.58 - ignored
@@ -950,17 +954,17 @@
 #1.60
 (de f1-60 (N)
    (let C 0
-      (for I N 
+      (for I N
          (case (% I 4)
             ((0 2)
                (setq C
-                  (+ 
+                  (+
                      C
                      (* 20 (** 30 (- (/ I 2) 1))) ) ) )
             (1
                (setq C
-                  (+ 
-                     C 
+                  (+
+                     C
                      (* 100 (** 500 (- (/ I 4) 1))) ) ) ) ) )
       C ) )
 (test
@@ -1046,9 +1050,9 @@
          (by format group (chop Str)) ) ) )
 (de f1-67-2 (Str)
    (bool
-      (find 
+      (find
          =
-         (mapcar length (by format group (chop Str))) 
+         (mapcar length (by format group (chop Str)))
          (3 .) ) ) )
 (test
    (f1-67-1 "1234")

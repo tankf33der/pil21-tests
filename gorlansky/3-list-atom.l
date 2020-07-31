@@ -151,7 +151,7 @@
    1
    (f3-12
       (quote
-         (a 5 5 5) 
+         (a 5 5 5)
          (b 5 4 4)
          (c 4 4 3) ) ) )
 
@@ -207,7 +207,7 @@
    (find atom (flip L)) )
 (test
    'e
-   (f3-16 '((a b c) d e (f g h))) ) 
+   (f3-16 '((a b c) d e (f g h))) )
 
 #3.17
 (de f3-17 (L)
@@ -259,7 +259,7 @@
                (num? I)
                (inc R I)
                (inc (cdr R)) ) )
-         (fish atom L) ) 
+         (fish atom L) )
       R ) )
 (test
    (14 4)
@@ -311,7 +311,7 @@
    (not
       (for (I L (cdr I) (cdr I))
          (NIL (>= (car I) (cadr I)) T) ) ) )
-(let (L1 (6 3 2 1)  L2 (3 2 1 4)) 
+(let (L1 (6 3 2 1)  L2 (3 2 1 4))
    (test
       (apply >= L1)
       (f3-27 L1) )
@@ -323,7 +323,7 @@
 (de f3-28 (L)
    (car (cdr (cdr L))) )
 (test
-   (caddr (1 2 3)) 
+   (caddr (1 2 3))
    (f3-28 (1 2 3)) )
 
 #3.29
@@ -419,7 +419,7 @@
 #3.36
 (de f3-36 (F . @)
    (bin
-      (apply 
+      (apply
          F
          (mapcar '((N) (bin (format N))) (rest)) ) ) )
 (test
@@ -443,8 +443,8 @@
          (mapcar '((N) (bin (pack N))) (rest)) ) ) )
 (test
    "1001001"
-   (f3-37 
-      + 
+   (f3-37
+      +
       (1 0 1 1)
       (1 1 1 0 0 1)
       (1 0 1)) )
@@ -511,7 +511,7 @@
          (range 1 N)
          Lst ) ) )
 (test
-   3   
+   3
    (f3-44
       (quote
          (1 0 0)
@@ -537,7 +537,7 @@
             (f3-45 (cdr L)) ) ) ) )
 (test
    0
-   (f3-45 (1 2 3)) ) 
+   (f3-45 (1 2 3)) )
 (test
    2
    (f3-45 (1 ((2)) 3)) )
@@ -560,7 +560,7 @@
    (cond
       ((not L) T)
       ((fully atom (cdr L))
-         (or 
+         (or
             (atom (car L))
             (f3-47 (car L)) ) )
       (T NIL) ) )
@@ -630,7 +630,7 @@
 (de minmax (L)
    (list
       (mini
-         '((I) (time (cadr I) (caddr I))) 
+         '((I) (time (cadr I) (caddr I)))
          L )
       (maxi
          '((I) (time (cadr I) (caddr I)))
@@ -767,10 +767,10 @@
 (de f3-63 (L)
    (let (Len (length (car L))  P (range 1 Len))
       (=
-         (* 
+         (*
             Len
             (sum '((L I) (get L I)) L P) )
-         (* 
+         (*
             Len
             (sum
                '((L I) (get L I))
@@ -802,7 +802,7 @@
 (test
    2
    (f3-64 '(a a 1)) )
-  
+
 #3.65
 (de f3-65 (L)
    (bool
@@ -825,14 +825,14 @@
    (let (I (posi L min)  A (posi L max))
       (if (< (cdr A) (cdr I))
          (+ (car A) (car I))
-         0 ) ) ) 
+         0 ) ) )
 (test
    10
    (f3-66 '(9 7 6 5 4 3 2 1)) )
 (test
    0
    (f3-66 '(7 6 5 4 3 2 1 9)) )
-      
+
 #3.67
 (de f3-67 (L)
    (if (atom L)
@@ -939,7 +939,7 @@
 #3.79
 (de f3-79 (L)
    (sum
-      '((N) (and (> N 10) N)) 
+      '((N) (and (> N 10) N))
       L ) )
 (test
    23
@@ -977,7 +977,7 @@
 (de f3-83 (L)
    (apply * (filter num? (fish atom L))) )
 (test
-   3456 
+   3456
    (f3-83 '(1 2 a 3 (3 b 6) 2 1 (2 4 c) 2 d)) )
 
 #3.84
@@ -1201,7 +1201,7 @@
                ((and (lt0 N) (not (bit? 1 N)))
                   (inc (cdr R)) )
                (T (inc (cddr R))) ) )
-         L ) 
+         L )
       R ) )
 (test
    (8 3 2)
@@ -1426,11 +1426,11 @@
 (test
    36
    (f3-123 '(1 2 (((3))) (4 a ((b)) 5 (((6 7)))) 8)) )
-   
+
 #3.124
 (de f3-124 (L)
    (sum
-      '((N) 
+      '((N)
          (and (num? N) (not (bit? 1 N)) N) )
       (fish atom L) ) )
 (test
@@ -1460,7 +1460,7 @@
       (apply
          +
          (mapcan
-            '((L X) (head X L)) 
+            '((L X) (head X L))
             L
             (range 0 M) ) ) ) )
 (test

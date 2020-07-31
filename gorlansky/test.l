@@ -2,7 +2,7 @@
 (seed (in "/dev/urandom" (rd 8)))
 (load "@lib/frac.l")
 (load "@lib/simul.l")
-(load "@lib/math.l")
+#(load "@lib/math.l")
 
 (load "1-atom-atom.l")
 (load "2-atom-list.l")
