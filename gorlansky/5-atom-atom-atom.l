@@ -1,6 +1,6 @@
 #5.1
 (de f5-1 (A B)
-   (f/ (frac (+ A B) 1) (frac 2 1)) )
+   (frac~f/ (frac~f (+ A B) 1) (frac~f 2 1)) )
 (test
    (5 . 2)
    (f5-1 2 3) )
@@ -58,6 +58,8 @@
       (f5-4 P "") ) )
 
 #5.5
+# XXX, math-pi
+#{
 (de f5-5 (R2 R1)
    (format (- (* pi R2 R2) (* pi R1 R1)) *Scl) )
 (test
@@ -70,7 +72,8 @@
 (test
    "9.869606577649"
    (f5-6 3 2) )
- 
+}#
+
 #5.7
 (de f5-7 (A N)
    (if (=0 N)
@@ -175,7 +178,7 @@
 #5.19
 #5.20 - ignored
 
-#5.21   
+#5.21
 (def 'f5-21 f5-11)
 (test
    "cangratalataans"
@@ -208,7 +211,7 @@
             71636269561882670428252483600823257530420752963450" ) ) )
 
 (de f5-22 (Lst N) # XXX, too simpler
-   (apply 
+   (apply
       *
       (maxi
          '((L) (apply * L))
@@ -247,7 +250,7 @@
 
 #5.25
 (de f5-25 (A B)
-   (sum 
+   (sum
       '((N) (sum '((A) (length A)) (numNm N)))
       (range A B)) )
 (test

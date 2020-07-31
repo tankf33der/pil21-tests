@@ -462,7 +462,7 @@
    (f4-40 '((a b) (a b c) (d e) (f g h))) )
 
 #4.41
-(def 'f4-41 permute)
+(def 'f4-41 simul~permute)
 (test
    '((1 2 3) (1 3 2) (2 1 3) (2 3 1) (3 1 2) (3 2 1))
    (f4-41 (1 2 3)) )
@@ -626,7 +626,7 @@
 
 #4.57
 (de f4-57 (Lst)
-   (let Lst (shuffle Lst)
+   (let Lst (simul~shuffle Lst)
       (make
          (while (cut 9 'Lst) (link @)) ) ) )
 (test
@@ -644,9 +644,9 @@
 (de f4-58 (Lst)
    (let
       (S (apply + Lst)
-         L (frac (dec (length Lst)) 1) )
+         L (frac~f (dec (length Lst)) 1) )
       (mapcar
-         '((N) (f/ (frac (- S N) 1) L))
+         '((N) (frac~f/ (frac~f (- S N) 1) L))
          Lst ) ) )
 (test
    '((14 . 3) (13 . 3) (11 . 3) (10 . 3))
@@ -2061,7 +2061,7 @@
             (sect
                (chop (car L))
                (chop (cadr L)) ) ) )
-      (subsets 2 Lst) ) )
+      (simul~subsets 2 Lst) ) )
 (test
    '(abcde bcdef)
    (f4-177 '(abcde defgi bcdef)) )
@@ -2680,7 +2680,7 @@
 (de f4-223 (Lst)
    (make
       (for (I 0 (>= 3 I) (inc I))
-         (apply link (subsets I Lst)) ) ) )
+         (apply link (simul~subsets I Lst)) ) ) )
 (test
    '(NIL (A) (B) (C) (A B) (A C) (B C) (A B C))
    (f4-223 '(A B C)) )
@@ -3176,13 +3176,12 @@
    (mapcar
       '((L)
          (let (S (sum gt0 L)  N (cnt gt0 L))
-
             (list
                S
                N
                (and
                   (gt0 N)
-                  (f/ (frac S 1) (frac N 1)) ) ) ) )
+                  (frac~f/ (frac~f S 1) (frac~f N 1)) ) ) ) )
       Lst ) )
 (test
    '((6 3 (2 . 1)) (11 2 (11 . 2)) (0 0 NIL))
