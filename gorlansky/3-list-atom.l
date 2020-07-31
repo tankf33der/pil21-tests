@@ -1267,6 +1267,13 @@
    (f3-108 '(1 2 NIL 3 4 5)) )
 
 #3.109
+(de gcd (A B)
+   (until (=0 B)
+      (let M (% A B)
+         (setq A B B M) ) )
+   (abs A) )
+(de lcm (A B)
+   (abs (*/ A B (gcd A B))) )
 (de reduce ("Fun" "Lst")
    (let "A" (car "Lst")
       (for "N" (cdr "Lst")
@@ -1359,7 +1366,7 @@
 
 #3.118
 (de f3-118 (L)
-   (format (maxi format (permute L))) )
+   (format (maxi format (simul~permute L))) )
 (test
    9534330
    (f3-118 (3 30 34 5 9)) )
