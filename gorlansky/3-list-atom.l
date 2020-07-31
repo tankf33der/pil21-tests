@@ -1046,10 +1046,10 @@
 
 #3.88
 (de f3-88 (X)
-   (let (R (frac 1 1)  X (frac X 1))
+   (let (R (frac~f 1 1)  X (frac~f X 1))
       (for I 4
          (setq R
-            (f+ R (f/ (f** X I) (frac I 1))) ) )
+            (frac~f+ R (frac~f/ (frac~f** X I) (frac~f I 1))) ) )
       R ) )
 (test
    (95653 . 12)
