@@ -184,29 +184,3 @@ unify in lists.l
 (test '((@A ((NIL . @C) 0 . @C) ((NIL . @B) 0 . @B) T))
    (prove (goal '((^ @A (unify '(@B @C)))))) )
 ```
-
-```
-(de i (X Y)
-   (cache
-      '(NIL)
-      (cons X Y)
-      (inc
-         (+
-            (* (dec X) 8)
-            (* 40 (dec Y)) ) ) ) )
-(bench
-   (do 1024
-      (for X 5
-         (for Y 5
-            (i X Y) ) ) ) )
-
-#{
-[mpech@lambda crypto]$ pil /home/mpech/t1.l +
-0.026 sec
-ok
-[mpech@lambda crypto]$
-[mpech@lambda crypto]$ pil21 /home/mpech/t1.l +
-0.835 sec
-ok
-}#
-```
