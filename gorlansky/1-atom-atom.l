@@ -150,7 +150,7 @@
                   (link C) ) )
             '(M CM D CD C XC L XL X IX V IV I)
             (1000 900 500 400 100 90 50 40 10 9 5 4 1) ) ) ) )
-(de create (S)
+(de _create (S)
    (let V
       '((I . 1)
          (V . 5)
@@ -239,7 +239,7 @@
          Lst ) ) )
 (de roman? (S)
    # core validation
-   (let? L (create S)
+   (let? L (_create S)
       (nor
          (chars? L)
          (vld? L)
@@ -248,79 +248,79 @@
          (positions L) ) ) )
 (test
    NIL
-   (create) )
+   (_create) )
 (test
    '((M . 1000) (NIL) (NIL) (NIL))
-   (create 'Mike))
+   (_create 'Mike))
 (test
    '((C . -100) (D . 500) (X . -10) (L . 50))
-   (create 'CDXL) )
+   (_create 'CDXL) )
 (test
    NIL
-   (vld? (create 'II) ) )
+   (vld? (_create 'II) ) )
 (test
    'L
-   (vld? (create 'LL)) )
+   (vld? (_create 'LL)) )
 (test
    'D
-   (vld? (create 'LIMMDDI)) )
+   (vld? (_create 'LIMMDDI)) )
 (test
    'V
-   (vld? (create 'VX)) )
+   (vld? (_create 'VX)) )
 (test
    NIL
-   (inrow 'M (create 'XLIII)) )
+   (inrow 'M (_create 'XLIII)) )
 (test
    (2 2)
-   (inrow 'I (create 'IIMII)) )
+   (inrow 'I (_create 'IIMII)) )
 (test
    (3 1)
-   (inrow 'M (create 'MiMMM)) )
+   (inrow 'M (_create 'MiMMM)) )
 (for I '(C CCI CCIM CCIMC CCCIMC)
    (test
       NIL
-      (ixcm? (create I)) ) )
+      (ixcm? (_create I)) ) )
 (for I '(CCIMCC CCCCCM CCMCCMCC CMMMCCCC)
    (test
       'C
-      (ixcm? (create I)) ) )
+      (ixcm? (_create I)) ) )
 (test
    '(NIL)
-   (chars? (create 'i)) )
+   (chars? (_create 'i)) )
 (test
    NIL
-   (chars? (create 'MMM)) )
+   (chars? (_create 'MMM)) )
 (test
    '(NIL)
-   (chars? (create 'MMiXL)) )
+   (chars? (_create 'MMiXL)) )
 (test
    NIL
-   (chars? (create 'CDMXI)) )
+   (chars? (_create 'CDMXI)) )
 (test
    '(NIL)
-   (chars? (create 'iMMM)) )
+   (chars? (_create 'iMMM)) )
 (test
    NIL
-   (positions (create 'CCXL)) )
+   (positions (_create 'CCXL)) )
 (test
    (-10 50 100)
-   (positions (create 'CCXLX)) )
+   (positions (_create 'CCXLX)) )
 (test
    (-10 50 100)
-   (positions (create 'CCXLM)) )
+   (positions (_create 'CCXLM)) )
 (test
    NIL
-   (positions (create 'CCXCII)) )
+   (positions (_create 'CCXCII)) )
 (test
    (-1 5 10)
-   (positions (create 'CCXCIIM)) )
+   (positions (_create 'CCXCIIM)) )
 (test
    (-10 50 100)
-   (positions (create 'XCXC)) )
+   (positions (_create 'XCXC)) )
 (for I 3999
    (test
       NIL
-      (gap (create (roman I)))) )
+      (gap (_create (roman I)))) )
 (for I 3999
    (test
       T
