@@ -81,7 +81,7 @@
    (f8-9
       '((N) (/ (- N (% N 10)) 10))
       (1 57 101 102 53 6) ) )
-      
+
 #8.10
 (de f8-10 (Lst N)
    (make
@@ -121,7 +121,7 @@
    (test
       '((a ((b (c) d))) (a ((b (c) d))))
       (f8-13 1 L) )
-   (test 
+   (test
       '(c c)
       (f8-13 5 L) ) )
 
@@ -254,9 +254,9 @@
             (cons (last Lst) (head L Lst)) ) ) ) )
 (let L '(a b c d e)
    (test
-      (f8-23-1 L 2) 
+      (f8-23-1 L 2)
       (f8-23-2 L 2) ) )
-     
+
 #8.24
 (de f8-24 (Lst N)
    (head N Lst) )
@@ -365,7 +365,7 @@
       (for (I . X) Lst
          (and
             (oddp? I)
-            (link (f/ (frac X 1) (frac N 1))) ) ) ) )
+            (link (frac~f/ (frac~f X 1) (frac~f N 1))) ) ) ) )
 (test
    '((1 . 3) (1 . 1) (5 . 3) (7 . 3))
    (f8-34 3 (1 2 3 4 5 6 7)) )
@@ -385,7 +385,7 @@
             (and (= N A) (push 'M Lst))
             (recurse (car Lst) (inc N))
             (and (cdr Lst) (recurse @ N)) ) )
-      M ) ) 
+      M ) )
 (let L '(a (b (c 1) d e) f ((2 (g)) 3))
    (test
       '(f a)
@@ -432,7 +432,7 @@
 (de f8-40 (Lst C)
    (make
       (for I (length Lst)
-         (for L (subsets I Lst)
+         (for L (simul~subsets I Lst)
             (and (= C (sum prog L)) (link L)) ) ) ) )
 (test
    13
@@ -465,7 +465,7 @@
    '(He has our seas ravaged burnt and the of people.)
    (f8-43 "He has plundered our seas, ravaged our coasts,
       burnt our towns, and destroyed the lives of our people."
-      '(plundered coasts towns destroyed lives people) ) ) 
+      '(plundered coasts towns destroyed lives people) ) )
 
 #8.44
 (de f8-44 (N M)
@@ -474,7 +474,7 @@
 (test
    '(12345 (1 2 3 4 5))
    (f8-44 1 5) )
-     
+
 #8.45 - ignored
 
 #8.46
@@ -686,7 +686,7 @@
                (>
                   (cnt
                      '((N) (= N L))
-                     (fish atom Lst) ) 
+                     (fish atom Lst) )
                   1 )
                A
                L
@@ -732,7 +732,7 @@
       (for I Lst
          (and (F I) (link I)) ) ) )
 (test
-   (f8-67-1 evenp? (0 1 2 3)) 
+   (f8-67-1 evenp? (0 1 2 3))
    (f8-67-2 evenp? (0 1 2 3)) )
 
 #8.68
@@ -750,7 +750,7 @@
             N
             Lst
             NIL
-            (cons 
+            (cons
                (recurse (car Lst) (inc N))
                (and (cdr Lst) (recurse @ N)) ) ) ) ) )
 (test
@@ -771,8 +771,8 @@
 #8.71
 (de f8-71 (N Lst)
    (extract
-      '((L) 
-         (and 
+      '((L)
+         (and
             (> (cadddr L) N)
             (car L) ) )
       Lst ) )

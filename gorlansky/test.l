@@ -22,5 +22,4 @@
 (load "16-list-list-atom-list.l")
 (load "17-list-list-list-list.l")
 (load "18-list-list-atom-atom-list.l")
-(msg 'OK-Gorlansky)
-
+(msg 'gorlansky-OK)

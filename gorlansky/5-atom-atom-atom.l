@@ -218,12 +218,15 @@
          (make
             (for (L Lst L (cdr L))
                (link (head N L)) ) ) ) ) )
+#{
+XXX, reading \
 (test
    5832
    (f5-22 *F5-22-DIGIT 4) )
 (test
    23514624000
    (f5-22 *F5-22-DIGIT 13) )
+}#
 
 #5.23
 (de f5-23 (N)

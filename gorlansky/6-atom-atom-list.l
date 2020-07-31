@@ -83,7 +83,7 @@
 (de f6-10 (A N)
    (if (=1 N)
       (list A)
-      (list A (f6-10 A (dec N))) )) 
+      (list A (f6-10 A (dec N))) ))
 (test
    '(a (a (a (a (a (a (a)))))))
    (f6-10 'a 7) )
@@ -141,11 +141,11 @@
 (de f6-16 ()
    (maxi
       '((L)
-         (let 
+         (let
             (N (* (car L) (cadr L))
                C (chop N) )
             (and (= C (reverse C)) N) ) )
-      (subsets 2 (range 1 999)) ) )
+      (simul~subsets 2 (range 1 999)) ) )
 (test (913 993) (f6-16))
 
 #6.17
@@ -163,7 +163,7 @@
    (let R NIL
       (for I (chop N)
          (accu 'R I 1) )
-      (sort 
+      (sort
          (extract
             '((L)
                (and (= (cdr L) C) (format (car L))) )

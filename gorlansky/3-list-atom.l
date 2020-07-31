@@ -1274,13 +1274,13 @@
    (abs A) )
 (de lcm (A B)
    (abs (*/ A B (gcd A B))) )
-(de reduce ("Fun" "Lst")
+(de _reduce ("Fun" "Lst")
    (let "A" (car "Lst")
       (for "N" (cdr "Lst")
          (setq "A" ("Fun" "A" "N")) )
       "A" ) )
 (de f3-109 (L)
-   (reduce lcm L) )
+   (_reduce lcm L) )
 (test
    232792560
    (f3-109 (range 20 11)) )
@@ -1446,7 +1446,7 @@
 
 #3.125
 (de f3-125 (L)
-   (reduce gcd L) )
+   (_reduce gcd L) )
 (test
    1
    (f3-125 (9 27 81 1000)) )

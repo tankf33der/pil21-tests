@@ -83,7 +83,7 @@
 #14.7
 (de f14-7 (Lst A N)
    (mapcar
-      '((I) 
+      '((I)
          (if (= I A)
             (intern (pack I N))
             I ) )
@@ -181,7 +181,7 @@
    (let N -1
       (make
          (recur (Lst N)
-            (if (atom Lst) 
+            (if (atom Lst)
                (and (<= A N B) (link Lst))
                (recurse (car Lst) (inc N))
                (and (cdr Lst) (recurse @ N)) ) ) ) ) )
@@ -206,11 +206,11 @@
       '((L) (apply F L))
       (make
          (while (cut N 'Lst)
-            (chain (subsets 2 @)) ) ) ) )
+            (chain (simul~subsets 2 @)) ) ) ) )
 (test
    4
    (f14-16 (1 1 3 5 4 5 2 3 2 2 1 1 1) 3 =) )
-         
+
 #14.17
 (de f14-17 (Lst F A)
    (mapcan
