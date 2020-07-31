@@ -47,9 +47,7 @@
 (load "test-hmac.l")
 (load "test-idea.l")
 (load "test-jh.l")
-# XXX, min
-#(load "test-kangaroo12.l")
-# XXX, add keccak too
+(load "test-kangaroo12.l")
 (load "test-md2.l")
 (load "test-md4.l")
 (load "test-pbkdf2.l")
@@ -61,7 +59,6 @@
 (load "test-sha1.l")
 (load "test-sha256.l")
 (load "test-sha512.l")
-# XXX, add shake
 (load "test-threefish.l")
 (load "test-tiger.l")
 (load "test-twofish.l")

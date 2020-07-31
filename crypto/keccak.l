@@ -10,16 +10,16 @@
             (>> (- N) X) ) ) ) )
 (de mod64 (N)
    (& N `(hex "FFFFFFFFFFFFFFFF")) )
-(de totwo (N)
+(de k_totwo (N)
    (or (ge0 N) (x| (dec (abs N)) `(hex "FFFFFFFFFFFFFFFFFF"))) )
-(de fromtwo (N)
+(de k_fromtwo (N)
    (if (> `(hex "800000000000000000") N)
       N
       (- (x| (dec N) `(hex "FFFFFFFFFFFFFFFFFF"))) ) )
-(de bitwise (F N1 N2)
-   (fromtwo (F (totwo N1) (totwo N2))) )
-(de tilde (N)
-   (fromtwo (x| N `(hex "FFFFFFFFFFFFFFFFFF"))) )
+(de k_bitwise (F N1 N2)
+   (k_fromtwo (F (k_totwo N1) (k_totwo N2))) )
+(de k_tilde (N)
+   (k_fromtwo (x| N `(hex "FFFFFFFFFFFFFFFFFF"))) )
 (de i (X Y) # my favourite part
    (cache
       '(NIL)
@@ -98,9 +98,9 @@
                   'X
                   (swap
                      'Y
-                     (inc 
+                     (inc
                         (%
-                           (+ 
+                           (+
                               (* 2 (dec X))
                               (* 3 (dec Y)) )
                            5 ) ) ) )
@@ -121,9 +121,9 @@
                   (nth State (i X Y))
                   (x|
                      (car (nth H X))
-                     (bitwise
+                     (k_bitwise
                         &
-                        (tilde (car (nth H (pop '*Chi))))
+                        (k_tilde (car (nth H (pop '*Chi))))
                         (car (nth H (pop *Chi))) ) ) ) ) )
          # iota
          (for (J 0 (>= 6 J) (inc J))
@@ -138,7 +138,7 @@
                   (x|
                      (load64 (nth State (i 1 1)))
                      (>> (- (dec (>> (- J) 1))) 1) ) ) ) ) ) ) )
-(de keccak (R C I DS OL File Kanga) 
+(de keccak (R C I DS OL File Kanga)
    (or
       (and
          (= 1600 (+ R C))
@@ -153,8 +153,8 @@
          (in File # dirty
             (while
                (and
-                  (setq 
-                     Lst 
+                  (setq
+                     Lst
                      (if File
                         (make
                            (do RB
@@ -184,14 +184,14 @@
       (f1600 State Kanga)
       # Squeeze
       (make
-         (while 
+         (while
             (and # I like LEGO
                (gt0 OL)
                (setq @@ (min OL RB))
                (chain (head @@ State))
                (dec 'OL @@)
                (gt0 OL)
-               (f1600 State Kanga) ) ) ) ) ) 
+               (f1600 State Kanga) ) ) ) ) )
 (de shake128 (I)
    (keccak 1344 256 I `(hex "1F") 32) )
 (de shake128sum (F)

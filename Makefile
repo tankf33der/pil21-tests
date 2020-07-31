@@ -1,4 +1,4 @@
-all:
+all: n
 	pil21 tests.l
 n:
 	gcc -fPIC -Wall -Wextra -c native.c -o native.o
