@@ -404,7 +404,7 @@
       Flag
       (assoc Key (val Var))
       (con @ (list (cadr @) (inc (caddr @)))) ) )
-(de f89 (Lst)
+(de 4f89 (Lst)
    (use R
       (for L Lst
          (if (= (car L) (cadr L))
@@ -419,25 +419,25 @@
                (or (=0 X) (= 2 X)) ) ) ) ) )
 (test
    T
-   (f89 '((:a :b))) )
+   (4f89 '((:a :b))) )
 (test
    NIL
-   (f89 '((:a :a) (:b :b))) )
+   (4f89 '((:a :a) (:b :b))) )
 (test
    NIL
-   (f89 '((:a :b) (:a :b) (:a :c) (:c :a)
+   (4f89 '((:a :b) (:a :b) (:a :c) (:c :a)
       (:a :d) (:b :d) (:c :d) ) ) )
 (test
    T
-   (f89 '((1 2) (2 3) (3 4) (4 1))) )
+   (4f89 '((1 2) (2 3) (3 4) (4 1))) )
 (test
    T
-   (f89 '((:a :b) (:a :c) (:c :b) (:a :e)
+   (4f89 '((:a :b) (:a :c) (:c :b) (:a :e)
       (:b :e) (:a :d) (:b :d) (:c :e)
       (:d :e) (:c :f) (:d :f) ) ) )
 (test
    NIL
-   (f89 '((1 2) (2 3) (2 4) (2 5))) )
+   (4f89 '((1 2) (2 3) (2 4) (2 5))) )
 
 #119 Win at Tic-Tac-Toe
 (de f119 (Lst)
