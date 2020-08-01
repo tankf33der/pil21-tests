@@ -159,3 +159,7 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 adventof2017: f18-2
 ```
+
+```
+find why 4clojure fails if run in whole bundle
+```
