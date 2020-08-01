@@ -663,10 +663,10 @@
 # reduce from elementary.l (task #64)
 (test
    6
-   (reduce lcm (2 3)) )
+   (4reduce lcm (2 3)) )
 (test
    105
-   (reduce lcm (3 5 7)) )
+   (4reduce lcm (3 5 7)) )
 
 #{
 ignore
@@ -697,11 +697,11 @@ ignore
       (for (I L (cdr I) (cdr I))
          (link (+ (car I) (cadr I))) )
       (link (last L)) ) )
-(de second "Prg"
+(de 4second "Prg"
    (do 2 (run "Prg")) )
 (test
    (2 5 5 2)
-   (second `(iterate f147 (2 3 2))) )
+   (4second `(iterate f147 (2 3 2))) )
 (test
    '((1) (1 1) (1 2 1) (1 3 3 1) (1 4 6 4 1))
    (take 5 `(iterate f147 (1))) )

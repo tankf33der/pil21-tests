@@ -100,7 +100,7 @@
 # reduce from task 64 (elementary.l)
 (de f79 (Lst)
    (car
-      (reduce
+      (4reduce
          '((X Y)
             (mapcar
                +
@@ -396,7 +396,7 @@
 
 #89 Graph Tour
 # Eulerian path
-(de accul (Var Key Flag)
+(de 4accul (Var Key Flag)
    (if (assoc Key (val Var))
       (con @ (list (inc (cdr @)) (caddr @)))
       (push Var (list Key 1 0)) )
@@ -408,9 +408,9 @@
    (use R
       (for L Lst
          (if (= (car L) (cadr L))
-            (accul 'R (car L))
-            (accul 'R (car L) T)
-            (accul 'R (cadr L) T) ) )
+            (4accul 'R (car L))
+            (4accul 'R (car L) T)
+            (4accul 'R (cadr L) T) ) )
       (bool
          (and
             (=0

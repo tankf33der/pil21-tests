@@ -52,7 +52,7 @@
 (test
    4
    ('((X) (* 2 X)) 2) )
-   
+
 #16 Hello World
 (test
    "Hello, Dave!"
@@ -100,11 +100,11 @@
       (filter upp? (chop "bA1B3Ce ")) ) )
 (when (and (== 64 64) (= *OS "Linux"))
    (test
-      "ABC" 
+      "ABC"
       (pack
          (let (P "[A-Z]+"  S "bA1B3Ce ")
             (use (R M)
-               (and 
+               (and
                   (=0
                      (native
                         "@"
@@ -114,7 +114,7 @@
                         P
                         1 ) )
                   (make
-                     (while 
+                     (while
                         (=0
                            (native
                               "@"
@@ -130,17 +130,17 @@
                         (setq S (pack S)) ) ) ) ) ) ) ) )
 
 #64 Intro to Reduce
-(de reduce ("Fun" "Lst")
+(de 4reduce ("Fun" "Lst")
    (let "A" (car "Lst")
       (for "N" (cdr "Lst")
          (setq "A" ("Fun" "A" "N")) )
       "A" ) )
 (test
    15
-   (reduce + (1 2 3 4 5)) )
+   (4reduce + (1 2 3 4 5)) )
 (test
-   NIL 
-   (reduce + ()) )
+   NIL
+   (4reduce + ()) )
 
 #57 Simple Recursion
 (de f57 (X)
@@ -201,7 +201,7 @@
 (test
    (1 5 9 13 17 21 25 29 33 37)
    (make
-      (for I 40 
+      (for I 40
          (when (= 1 (% I 4)) (link I)) ) ) )
 
 #162 Logical failsity and truth

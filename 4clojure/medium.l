@@ -165,7 +165,7 @@
    (f70 "Fools fall for foolish follies.") )
 
 #67 Prime Numbers
-(de prime? (N)
+(de 4prime? (N)
    (or
       (= N 2)
       (and
@@ -179,7 +179,7 @@
    (let X 1
       (make
          (while (gt0 N)
-            (when (prime? (inc 'X))
+            (when (4prime? (inc 'X))
                (link X)
                (dec 'N) ) ) ) ) )
 (test
@@ -274,7 +274,7 @@
    (1 2 3 4)
    (f60 + (1 1 1 1)) )
 (test
-   (reduce * (2 3 4 5))
+   (4reduce * (2 3 4 5))
    (last (f60 * (2 3 4 5))) )
 
 #69 Merge with a Function
@@ -638,16 +638,16 @@
    (comb 3 (0 1 2 3 4)) )
 
 #116 Prime Sandwich
-# (prime?) from task #67 (medium.l)
+# (4prime?) from task #67 (medium.l)
 (de genprime (N)
    (let X N
-      (until (prime? (dec 'N)))
-      (until (prime? (inc 'X)))
+      (until (4prime? (dec 'N)))
+      (until (4prime? (inc 'X)))
       (cons N X) ) )
 (de f116 (N)
    (let L (genprime N)
       (and
-         (prime? N)
+         (4prime? N)
          (= (- N (car L)) (- (cdr L) N)) ) ) )
 (test
    NIL
