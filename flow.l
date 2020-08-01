@@ -35,30 +35,9 @@
 (test 6 (eval (list '+ 1 2 3)))
 (let (X 'Y  Y 7)
    (test 7 (eval X)) )
-(let N 1
-   ((quote (N)
-         ((quote (N)
-               (test 3 N)
-               # XXX
-               #(test 2 (eval 'N 1))
-               #(test 2 (eval 'N 1 '(X)))
-               #(test 3 (eval 'N 1 '(N)))
-               #(test 1 (eval 'N 2))
-               #(test 3 (eval 'N 2 '(N)))
-          )
-            3 ) )
-      2 ) )
-
 
 ### run ###
 (test 6 (run (list (list '+ 1 2 3))))
-# XXX
-#{
-(test 2
-   (let N 1
-      ((quote (N) (run '((+ N N)) 1)) 2) ) )
-}#
-
 
 ### def ###
 (test '"a"

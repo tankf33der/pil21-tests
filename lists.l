@@ -569,14 +569,10 @@
 (test '((@A . 3) (@B . 7))
    (prove (goal '(@A 3 (^ @B (+ 4 (-> @A)))))) )
 
-# XXX
-#{
 ### unify ###
 (test '((@A ((NIL . @C) 0 . @C) ((NIL . @B) 0 . @B) T))
    (prove (goal '((^ @A (unify '(@B @C)))))) )
-}#
 
-# XXX, undefined
 ### group ###
 (test '((1 a b c) (2 d e f))
    (group '((1 . a) (1 . b) (1 . c) (2 . d) (2 . e) (2 . f))) )

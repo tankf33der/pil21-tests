@@ -4,25 +4,6 @@ Requirements to this file and repo are:
 * find . -name "*.l" | xargs grep -ci "xxx" - should returns all zeroes
 
 ```
-# eval
-(let N 1
-   ((quote (N)
-      (test 1 (eval 'N 1)) )
-      3 ) )
-# and dipper too
-(test 2 (eval 'N 1 '(X)))
-```
-
-```
-# run cant change environment too
-(let N 1
-   ((quote (N)
-      (test 2 (run '((+ N N)) 1)) )
-      2 ) )
-
-```
-
-```
 # failed
 (test '"foo>"
    (dm "foo>" (X Y)
@@ -177,10 +158,4 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 
 ```
 adventof2017: f18-2
-```
-
-```
-unify in lists.l
-(test '((@A ((NIL . @C) 0 . @C) ((NIL . @B) 0 . @B) T))
-   (prove (goal '((^ @A (unify '(@B @C)))))) )
 ```
