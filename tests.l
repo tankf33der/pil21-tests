@@ -4,7 +4,6 @@
 (load "math.l")
 (load "bitwise.l")
 (load "montgomery.l")
-
 (load "frac.l")
 (load "low-upp.l")
 (load "utf8.l")
@@ -32,7 +31,7 @@
 (load "forth.l")
 (load "fern.l")
 (load "net.l")
-#(load "pilog-rosetta.l")
+(load "pilog-rosetta.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")
