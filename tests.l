@@ -65,7 +65,7 @@
 (load "test-whirlpool.l")
 (prinl "\^\^\^ crypto finished!")
 (cd "../gorlansky")
-(load "test.l")
+(load "tests.l")
 (cd "../Touretzky")
 (load "tests.l")
 (cd "../4clojure"
