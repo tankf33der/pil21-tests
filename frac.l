@@ -17,5 +17,6 @@
          (= 1 (cdr Sum))
          (push 'R N) ) ) )
 (test 72450 (apply + R))
+(off R)
 
 (msg 'frac-OK)

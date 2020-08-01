@@ -6,10 +6,8 @@
 (load "montgomery.l")
 
 (load "frac.l")
-#{
 (load "low-upp.l")
 (load "utf8.l")
-
 (load "cXr.l")
 (load "flow.l")
 (load "mapping.l")
@@ -34,10 +32,8 @@
 (load "forth.l")
 (load "fern.l")
 (load "net.l")
-}#
 (cd "hash")
 (load "test.l")
-#{
 (prinl "cryptography will take some time:")
 (prinl "...")
 (cd "../crypto")
@@ -70,7 +66,6 @@
 (load "test-twofish.l")
 (load "test-whirlpool.l")
 (prinl "\^\^\^ crypto finished!")
-}#
 (cd "../gorlansky")
 (load "tests.l")
 (cd "../Touretzky")

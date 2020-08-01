@@ -459,7 +459,6 @@ ignore here
          (0 1 2) )
       (extract
          '((L)
-            (println 'L L)
             (use (R E)
                (for This L
                   (if (= 'e (: V))
