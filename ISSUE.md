@@ -163,3 +163,16 @@ adventof2017: f18-2
 ```
 add permrep.l (coroutine)
 ```
+
+```
+fix pilog-rosetta crash
+twofish-OK
+whirlpool-OK
+^^^ crypto finished!
+[1-atom-atom.l:670] !? (cdr Lst)
+make: *** [Makefile:2: all] Segmentation fault (core dumped)
+```
+
+```
+add rng/tests.l to bundle
+```
