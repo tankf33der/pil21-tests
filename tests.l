@@ -68,6 +68,8 @@
 (load "test.l")
 (cd "../Touretzky")
 (load "tests.l")
+(cd "../4clojure"
+(load "tests.l")
 (prinl "======")
 (msg 'All-OK)
 (bye)
