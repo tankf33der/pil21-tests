@@ -417,6 +417,8 @@
                (cnt '((L) (= 0 (caddr L))) R))
             (let X (cnt '((L) (bit? 1 (cadr L))) R)
                (or (=0 X) (= 2 X)) ) ) ) ) )
+#{
+ignore here
 (test
    T
    (4f89 '((:a :b))) )
@@ -438,6 +440,7 @@
 (test
    NIL
    (4f89 '((1 2) (2 3) (2 4) (2 5))) )
+}#
 
 #119 Win at Tic-Tac-Toe
 (de f119 (Lst)
