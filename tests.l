@@ -32,6 +32,7 @@
 (load "net.l")
 (cd "hash")
 (load "test.l")
+#{
 (prinl "cryptography will take some time:")
 (prinl "...")
 (cd "../crypto")
@@ -64,12 +65,13 @@
 (load "test-twofish.l")
 (load "test-whirlpool.l")
 (prinl "\^\^\^ crypto finished!")
+}#
 (cd "../gorlansky")
 (load "tests.l")
 (cd "../Touretzky")
 (load "tests.l")
-#(cd "../4clojure")
-#(load "tests.l")
+(cd "../4clojure")
+(load "tests.l")
 (prinl "======")
 (msg 'All-OK)
 (bye)

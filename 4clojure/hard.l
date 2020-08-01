@@ -443,7 +443,7 @@ ignore here
 }#
 
 #119 Win at Tic-Tac-Toe
-(de f119 (Lst)
+(de 4f119 (Lst)
    (let (Grid (simul~grid 3 3))
       (mapc
          '((G L S)
@@ -479,31 +479,31 @@ ignore here
             (c1 b2 a3) ) ) ) )
 (test
    '((2 2) (0 1) (0 2))
-   (f119
+   (4f119
       '((o e e)
         (o x o)
         (x x e) ) ) )
 (test
    '((1 2) (2 0) (2 2))
-   (f119
+   (4f119
       '((x o o)
         (x x e)
         (e o e) ) ) )
 (test
    '((0 1) (2 0) (2 2))
-   (f119
+   (4f119
       '((x e x)
         (o x o)
         (e o e) ) ) )
  (test
    NIL
-   (f119
+   (4f119
       '((x x o)
         (e e e)
         (e e e) ) ) )
  (test
    '((1 1) (2 2))
-   (f119
+   (4f119
       '((x x o)
         (o e o)
         (x e e) ) ) )
