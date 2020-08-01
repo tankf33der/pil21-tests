@@ -136,8 +136,8 @@
 # (fact -5) -> infitum
 
 #8.14
-(de f ()
-   (f) )
+(de ff ()
+   (ff) )
 
 #8.15
 # picture = (x .)
