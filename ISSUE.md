@@ -161,5 +161,5 @@ adventof2017: f18-2
 ```
 
 ```
-find why 4clojure fails if run in whole bundle
+add permrep.l (coroutine)
 ```
