@@ -180,7 +180,7 @@
    (add-nums 5) )
 
 #8.22
-(de f8-22 (L) # non-recursive
+(de ff8-22 (L) # non-recursive
    (for (I L (cdr I) (cdr I))
       (NIL (= (car I) (cadr I)))
       @ ) )
@@ -193,10 +193,10 @@
             (= (car L) (cadr L))
             (all-equal (cdr L)) ) ) ) )
 (test
-   (f8-22 (1 1 2))
+   (ff8-22 (1 1 2))
    (all-equal (1 1 2)) )
 (test
-   (f8-22 (1 1 1 1))
+   (ff8-22 (1 1 1 1))
    (all-equal (1 1 1 1)) )
 
 #8.23 - ignored
