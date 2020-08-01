@@ -66,6 +66,8 @@
 (prinl "\^\^\^ crypto finished!")
 (cd "../gorlansky")
 (load "test.l")
+(cd "../Touretzky")
+(load "tests.l")
 (prinl "======")
 (msg 'All-OK)
 (bye)
