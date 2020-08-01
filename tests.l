@@ -1,11 +1,15 @@
 (seed (in "/dev/urandom" (rd 8)))
 (prinl "check ulimit or crash!")
+
 (load "math.l")
 (load "bitwise.l")
 (load "montgomery.l")
+
 (load "frac.l")
+#{
 (load "low-upp.l")
 (load "utf8.l")
+
 (load "cXr.l")
 (load "flow.l")
 (load "mapping.l")
@@ -30,6 +34,7 @@
 (load "forth.l")
 (load "fern.l")
 (load "net.l")
+}#
 (cd "hash")
 (load "test.l")
 #{
