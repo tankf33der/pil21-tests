@@ -1,5 +1,5 @@
 #19 Last Element
-(de f19 (L) 
+(de f19 (L)
    (while (cdr L)
       (pop 'L) )
    (car L) )
@@ -76,7 +76,7 @@
    T
    (f27 (1 1 2 1 1)) )
 (test
-   T 
+   T
    (f27 (chop "racecar")) )
 
 #26 Fibonacci Sequence
@@ -93,10 +93,8 @@
    (f26 6) )
 
 #38 Maximum value
-(de f38 (N . @)
-   (while (args)
-      (when (> (next) N) (setq N (arg))) )
-   N )
+(de f38 @
+   (apply max (rest)) )
 (test
    8
    (f38 1 8 3 4) )
@@ -127,7 +125,7 @@
    '(a a b b c c)
    (f32 '(a b c)) )
 (test
-   '((1 2) (1 2) (3 4) (3 4)) 
+   '((1 2) (1 2) (3 4) (3 4))
    (f32 '((1 2) (3 4))) )
 
 #48 Intro to some
@@ -174,7 +172,7 @@
 
 #39 Interleave Two Seqs
 (de f39 (L1 L2)
-   (let 
+   (let
       (M (min (length L1) (length L2))
          L1 (head M L1)
          L2 (head M L2) )
@@ -243,7 +241,7 @@
 
 #40 Interpose a Seq
 (de f40 (C L)
-   (head -1 
+   (head -1
       (make
          (for I L
             (link I C) ) ) ) )
@@ -394,7 +392,7 @@
    (f166 < 5 1) )
 (test
    ':eq
-   (f166 
+   (f166
       '((X Y) (< (length X) (length Y)))
       "pear"
       "plum" ) )
@@ -474,7 +472,7 @@
    (f63 '((N) (> N 5)) (1 3 6 8)) )
 (test
    '((1 (1) (3)) (2 (1 2) (2 3)) (3 (1 2 3)))
-   (f63 length '((1) (1 2) (3) (1 2 3) (2 3))) )   
+   (f63 length '((1) (1 2) (3) (1 2 3) (2 3))) )
 
 #122 Read a binary number
 (test 0 (bin "0"))
@@ -482,7 +480,7 @@
 
 #88 Symmetric Difference
 (de f88 (Lst1 Lst2)
-   (conc 
+   (conc
       (diff Lst1 Lst2)
       (diff Lst2 Lst1) ) )
 (test
@@ -555,9 +553,9 @@
    (f97 1) )
 (test
    '(    (1)
-        (1 1) 
-       (1 2 1) 
-      (1 3 3 1) 
+        (1 1)
+       (1 2 1)
+      (1 3 3 1)
      (1 4 6 4 1) )
    (mapcar f97 (range 1 5)) )
 (test
@@ -581,7 +579,7 @@
             I
             (sum
                '((J) (* J J))
-               (mapcar format (chop I)) ) ) ) 
+               (mapcar format (chop I)) ) ) )
       L ) )
 (test
    8
@@ -622,14 +620,14 @@
    (f95 '(1 (2 (3 (4 nil nil) nil) nil) nil)) )
 
 #128 Recognize Playing Cards
-(setq *Suit 
-   '(("D" . diamond) ("S" . spade) 
+(setq *Suit
+   '(("D" . diamond) ("S" . spade)
       ("H" . heart) ("C" . club) ) )
 (setq *Rank
-   '(("2" . 0) ("3" . 1) ("4" . 2) 
-      ("5" . 3) ("6" . 4) ("7" . 5) 
-      ("8" . 6) ("9" . 7) ("T" . 8) 
-      ("J" . 9) ("Q" . 10) ("K" . 11) 
+   '(("2" . 0) ("3" . 1) ("4" . 2)
+      ("5" . 3) ("6" . 4) ("7" . 5)
+      ("8" . 6) ("9" . 7) ("T" . 8)
+      ("J" . 9) ("Q" . 10) ("K" . 11)
       ("A" . 12) ) )
 (de f128 (S)
    (let S (chop S)
@@ -647,8 +645,8 @@
    (f128 "CA") )
 (test
    (range 0 12)
-   (mapcar 
-      '((I) (cdr (f128 I))) 
+   (mapcar
+      '((I) (cdr (f128 I)))
       '(S2 S3 S4 S5 S6 S7
          S8 S9 ST SJ SQ SK SA) ) )
 
@@ -699,7 +697,7 @@
    (do 2 (run "Prg")) )
 (test
    (2 5 5 2)
-   (second `(iterate f147 (2 3 2))) ) 
+   (second `(iterate f147 (2 3 2))) )
 (test
    '((1) (1 1) (1 2 1) (1 3 3 1) (1 4 6 4 1))
    (take 5 `(iterate f147 (1))) )
@@ -733,7 +731,7 @@
 (for I *TESTS
    (test
       (car I)
-      (f96 
+      (f96
          (cadadr I)
          (car (cddadr I)) ) ) )
 
@@ -763,9 +761,9 @@
       T ) )
 (test
    NIL
-   (f153 '((a b c d e) (a b c d) (a b c) 
+   (f153 '((a b c d e) (a b c d) (a b c)
       (a b) (a) ) ) )
 (test
    T
-   (f153 '(((1 2 3) (4 5)) ((1 2) (3 4 5)) 
+   (f153 '(((1 2 3) (4 5)) ((1 2) (3 4 5))
       ((1) (2) 3 4 5) (1 2 (3 4) (5)) ) ) )
