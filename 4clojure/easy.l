@@ -128,6 +128,7 @@
    '((1 2) (1 2) (3 4) (3 4))
    (f32 '((1 2) (3 4))) )
 
+
 #48 Intro to some
 (let (S (2 7 6)  R (5 6 7 8))
    (test
@@ -667,12 +668,14 @@
    105
    (reduce lcm (3 5 7)) )
 
+#{
+ignore
 #173 Intro to Destructuring 2
 # destru from easy.l (task #52)
 (test
    3
    (let
-      (~(destru '(F A) '(+ (range 0 2))))
+      ((destru '(F A) '(+ (range 0 2))))
       (apply F A) ) )
 (test
    3
@@ -684,6 +687,7 @@
    (let
       (~(destru '(F A) '(inc 2)))
       (F A) ) )
+}#
 
 #147 Pascal's Trapezoid
 # take and iterate from easy.l #45

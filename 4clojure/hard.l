@@ -1,6 +1,6 @@
 # 53 Longest Increasing Sub-Seq
 (de f53 (Lst)
-   (maxi 
+   (maxi
       length
       (filter
          '((I) (and (car I) (cdr I)))
@@ -30,10 +30,10 @@
    (pick
       '((L)
          (and
-            (or 
+            (or
                (apply = L 'x)
                (apply = L 'o) )
-            (car L) ) ) 
+            (car L) ) )
       (list
          (car Lst)
          (cadr Lst)
@@ -44,7 +44,7 @@
          (mapcar get Lst (1 2 3))
          (mapcar get Lst (3 2 1)) ) ) )
 (test
-   NIL      
+   NIL
    (f73 '((e e e)
           (e e e)
           (e e e) ) ) )
@@ -134,16 +134,16 @@
          (link I)
          (when (assoc (cdr I) Lst)
             (link
-               (cons (car I) (cdr @)) ) ) ) ) ) 
+               (cons (car I) (cdr @)) ) ) ) ) )
 (test
-   '((8 . 4) (8 . 2) (9 . 3) (4 . 2) (27 . 9) (27 . 3)) 
+   '((8 . 4) (8 . 2) (9 . 3) (4 . 2) (27 . 9) (27 . 3))
    (f84 '((8 . 4) (9 . 3) (4 . 2) (27 . 9))) )
 
 #91 Graph Connectivity
 (de f91 (Lst)
    (let (X (caar Lst)  R)
       (not
-         (diff 
+         (diff
             (uniq (fish atom Lst))
             (recur (X)
                (cond
@@ -152,7 +152,7 @@
                      (recurse (car X))
                      (recurse (cdr X)) )
                   (T (push 'R X)
-                     (when 
+                     (when
                         (extract
                            '((I)
                               (let Y
@@ -160,7 +160,7 @@
                                     ((= (car I) X) (cadr I))
                                     ((= (cadr I) X) (car I)) )
                                  (unless (member Y R) Y) ) )
-                              Lst ) 
+                              Lst )
                         (recurse @) ) ) )
                R ) ) ) ) )
 (test
@@ -206,7 +206,7 @@
       R ) )
 (de f82 (Lst)
    (let (L Lst  P NIL)
-      (sym? 
+      (sym?
          (recur (L)
             (if (cdr L)
                (do (length L)
@@ -218,7 +218,7 @@
                   (NIL
                      (and
                         (>= 1 (- (cdar P) (cdadr P)))
-                        (= 
+                        (=
                            1
                            (cnt
                               '((I) (not (member I (caadr P))))
@@ -245,16 +245,16 @@
 
 #94 Game of Life
 (de f94 (Lst)
-   (let 
-      (Lst (mapcar chop Lst) 
-         Grid (grid (length (car Lst)) (length Lst)) )
+   (let
+      (Lst (mapcar chop Lst)
+         Grid (simul~grid (length (car Lst)) (length Lst)) )
       (mapc
          '((G L)
             (mapc '((This) (=: life NIL)) G)
             (mapc
                '((This Val)
                   (when (= 'X Val) (=: life T)) )
-               G 
+               G
                L ) )
          Grid
          (apply mapcar (reverse Lst) list) )
@@ -264,11 +264,11 @@
                (cnt
                   '((Dir) (get (Dir This) 'life))
                   (quote
-                     west east south north
-                     ((X) (south (west X)))
-                     ((X) (north (west X)))
-                     ((X) (south (east X)))
-                     ((X) (north (east X))) ) )
+                     simul~west simul~east simul~south simul~north
+                     ((X) (simul~south (simul~west X)))
+                     ((X) (simul~north (simul~west X)))
+                     ((X) (simul~south (simul~east X)))
+                     ((X) (simul~north (simul~east X))) ) )
                (=: next
                   (if (: life)
                      (>= 3 N 2)
@@ -278,19 +278,19 @@
                (=: life (: next)) ) )
       (mapcar
          '((L)
-            (pack 
+            (pack
                (mapcar
                   '((This) (if (: life) 'X " ") )
                   L ) ) )
          (reverse (apply mapcar Grid list)) ) ) )
 (test
    '("      "
-     " XX   " 
-     " X    " 
-     "    X " 
-     "   XX " 
+     " XX   "
+     " X    "
+     "    X "
+     "   XX "
      "      " )
-   (f94 
+   (f94
       '("      "
         " XX   "
         " XX   "
@@ -298,7 +298,7 @@
         "   XX "
         "      " ) ) )
 (test
-   '("     " 
+   '("     "
      "  X  "
      "  X  "
      "  X  "
@@ -310,7 +310,7 @@
         "     "
         "     " ) ) )
 (test
-   '("      " 
+   '("      "
      "   X  "
      " X  X "
      " X  X "
@@ -322,13 +322,13 @@
         "  XXX "
         " XXX  "
         "      "
-        "      " ) ) ) 
+        "      " ) ) )
 
 #106 Number Maze
 (de f106 (X Y)
    (let (R (list X)  C 1)
-      (until (member Y R) 
-         (setq R 
+      (until (member Y R)
+         (setq R
             (mapcan
                '((I)
                   (cons
@@ -360,7 +360,7 @@
 #101 Levenshtein Distance
 (de f101 (A B)
    (default
-      A (need (length B)) 
+      A (need (length B))
       B (need (length A)) )
    (let D
       (cons
@@ -413,7 +413,7 @@
             (accul 'R (cadr L) T) ) )
       (bool
          (and
-            (=0 
+            (=0
                (cnt '((L) (= 0 (caddr L))) R))
             (let X (cnt '((L) (bit? 1 (cadr L))) R)
                (or (=0 X) (= 2 X)) ) ) ) ) )
@@ -433,7 +433,7 @@
 (test
    T
    (f89 '((:a :b) (:a :c) (:c :b) (:a :e)
-      (:b :e) (:a :d) (:b :d) (:c :e) 
+      (:b :e) (:a :d) (:b :d) (:c :e)
       (:d :e) (:c :f) (:d :f) ) ) )
 (test
    NIL
@@ -441,14 +441,14 @@
 
 #119 Win at Tic-Tac-Toe
 (de f119 (Lst)
-   (let (Grid (grid 3 3))
+   (let (Grid (simul~grid 3 3))
       (mapc
          '((G L S)
-            (mapc 
-               '((This Val C) 
-                  (=: V Val) 
+            (mapc
+               '((This Val C)
+                  (=: V Val)
                   (=: P (list C S)) )
-               G 
+               G
                L
                (2 1 0) ) )
          Grid
@@ -484,7 +484,7 @@
    '((1 2) (2 0) (2 2))
    (f119
       '((x o o)
-        (x x e) 
+        (x x e)
         (e o e) ) ) )
 (test
    '((0 1) (2 0) (2 2))
@@ -504,12 +504,12 @@
       '((x x o)
         (o e o)
         (x e e) ) ) )
- 
+
 #117 For Science!
 (de f117 (Lst)
    (let
       (Lst (mapcar chop Lst)
-      Grid (grid (length (car Lst)) (length Lst))
+      Grid (simul~grid (length (car Lst)) (length Lst))
       M NIL  C NIL  F NIL)
       (mapc
          '((G L)
@@ -525,29 +525,29 @@
                         (with (: 0 -1 1) (con (: 0 -1)))  # S
                         (with (: 0 -1 -1) (set (: 0 -1))) # N
                         (set This) ) ) )
-               G 
+               G
                L ) )
          Grid
          (apply mapcar (reverse Lst) list) )
-      (with M 
+      (with M
          (recur (This)
             (when (and This (not (: visit)))
                (if (= C This)
                   (on F)
                   (=: visit T)
-                  (recurse (west This))
-                  (recurse (east This))
-                  (recurse (south This))
-                  (recurse (north This))
+                  (recurse (simul~west This))
+                  (recurse (simul~east This))
+                  (recurse (simul~south This))
+                  (recurse (simul~north This))
                   (=: visit NIL) ) ) ) )
       F ) )
 (test
    T
-   (f117 
+   (f117
       '("M   C") ) )
 (test
-   NIL 
-   (f117 
+   NIL
+   (f117
       '("M # C") ) )
 (test
    T
@@ -578,7 +578,7 @@
         "      "
         "      "
         "    ##"
-        "    #C" ) ) ) 
+        "    #C" ) ) )
 (test
    T
    (f117
@@ -612,17 +612,17 @@
          (conc
             (setq Lst (mapcar chop Lst))
             (apply mapcar (mapcar chop Lst) list) ) ) ) )
-(test 
+(test
    T
    (f111 "the" '("_#__e")) )
-(test 
+(test
    NIL
    (f111
       "the"
       '("c___"
         "d_#e"
         "ry__" ) ) )
-(test 
+(test
    T
    (f111
       "joy"
@@ -631,31 +631,31 @@
         "ry__" ) ) )
 (test
    NIL
-   (f111 
-      "joy" 
+   (f111
+      "joy"
       '("conj"
         "__y_"
         "r__#" ) ) )
 (test
    T
-   (f111 
-      "clojure" 
+   (f111
+      "clojure"
       '("___#joy"
         "__o____"
         "__f_#__" ) ) )
 
 #130 Tree reparenting
 (de f130 (N Lst)
-   (let 
+   (let
       (R (car (fish '((X) (member N X)) Lst))
-         A 
-         (delete 
-            R 
+         A
+         (delete
+            R
             (car (fish '((X) (member R X)) Lst)) )
-         B 
+         B
          (filter
-            '((X) 
-               (not (fish '((X) (= X N)) X)) ) 
+            '((X)
+               (not (fish '((X) (= X N)) X)) )
             Lst ) )
       (append
          R
@@ -675,31 +675,31 @@
 
 #124 Analyze Reversi
 (de f124 (Lst N)
-   (let (Grid (grid 4 4)  M NIL)
+   (let (Grid (simul~grid 4 4)  M NIL)
       (mapc
          '((G L S)
             (mapc
-               '((This Val C) 
+               '((This Val C)
                   (and
                      (=: V Val)
-                     (=: P (list C S)) 
+                     (=: P (list C S))
                      (= N Val)
                      (push 'M This) ) )
-               G 
+               G
                L
                (3 2 1 0) ) )
          Grid
          (apply mapcar (reverse Lst) list)
          (0 1 2 3) )
       (make
-         (for S M 
-            (for D 
+         (for S M
+            (for D
                (quote
-                  west east south north
-                  ((X) (south (west X)))
-                  ((X) (north (west X)))
-                  ((X) (south (east X)))
-                  ((X) (north (east X))) )
+                  simul~west simul~east simul~south simul~north
+                  ((X) (simul~south (simul~west X)))
+                  ((X) (simul~north (simul~west X)))
+                  ((X) (simul~south (simul~east X)))
+                  ((X) (simul~north (simul~east X))) )
                (with S
                   (let P NIL
                      (loop
@@ -771,8 +771,8 @@
             (= (-1 -1 -1 -9) Seq) )
             'straight )
          ((rassoc 3 R) 'three-of-a-kind)
-         ((= 
-            2 
+         ((=
+            2
             (cnt '((L) (= 2 (cdr L))) R) )
             'two-pair )
          ((rassoc 2 R) 'pair)
@@ -815,7 +815,7 @@
          (inc 'I) )
       I ) )
 (de f138 (N M)
-   (let 
+   (let
       (A
          (mapcan
             chop
@@ -825,13 +825,13 @@
          N (length A)
          M (pow N)
          N (+ M (dec M))
-         Grid (grid N N)
-         Dir 
-            (circ 
-               '((X) (south (east X)))
-               '((X) (south (west X)))
-               '((X) (north (west X)))
-               '((X) (north (east X))) ) )
+         Grid (simul~grid N N)
+         Dir
+            (circ
+               '((X) (simul~south (simul~east X)))
+               '((X) (simul~south (simul~west X)))
+               '((X) (simul~north (simul~west X)))
+               '((X) (simul~north (simul~east X))) ) )
       (mapc # init all to NILs
          '((G)
             (mapc '((This) (=: "V" NIL)) G) )
@@ -839,18 +839,18 @@
       (with #find required center
          (intern
             (pack
-               (char (+ 96 M)) 
+               (char (+ 96 M))
                (if (bit? 1 M) M (inc M)) ) )
          (do (** M 2)
             (=: "V" (if (pop 'A) @ "*"))
-            (or 
+            (or
                (get ((car Dir) This) "V")
                (setq This ((car Dir) This)) )
             (with ((cadr Dir) This)
                (or (: "V") (pop 'Dir)) ) ) )
       (mapcar
          '((L)
-            (pack 
+            (pack
                (mapcar
                   '((This) (if (: "V") @ " ") )
                   L ) ) )
@@ -873,9 +873,9 @@
 (test
    (quote
       "  6  "
-      " 5 * " 
-      "2 2 *" 
-      " 6 4 " 
+      " 5 * "
+      "2 2 *"
+      " 6 4 "
       "  1  " )
    (f138 2 256) )
 (test
@@ -902,17 +902,17 @@
             (setq This (D This)) ) ) ) )
 (de f127 (Lst)
    (let
-      (Lst (mapcar bin Lst) 
+      (Lst (mapcar bin Lst)
          Max (prog (maxi length Lst) @@)
-         Lst (mapcar '((X) (chop (pad Max X))) Lst) 
-         Grid (grid Max (length Lst))
+         Lst (mapcar '((X) (chop (pad Max X))) Lst)
+         Grid (simul~grid Max (length Lst))
          Jobs NIL )
       (mapc
          '((G L)
             (mapc
                '((This Val)
                   (cond
-                     ((= "1" Val) 
+                     ((= "1" Val)
                         (=: one T)
                         (push 'Jobs This) )
                      (T (=: one NIL)) ) )
@@ -937,14 +937,14 @@
                                     (cdr D) ) ) )
                            (and (< 1 C) C) ) )
                      (quote
-                        (((X) (south (west X))) . east)
-                        (((X) (south (east X))) . west)
-                        (((X) (east (south X))) . north)
-                        (((X) (east (north X))) . south)
-                        (((X) (north (west X))) . east)
-                        (((X) (north (east X))) . west)
-                        (((X) (west (north X))) . south)
-                        (((X) (west (south X))) . north) ) ) 
+                        (((X) (simul~south (simul~west X))) . simul~east)
+                        (((X) (simul~south (simul~east X))) . simul~west)
+                        (((X) (simul~east (simul~south X))) . simul~north)
+                        (((X) (simul~east (simul~north X))) . simul~south)
+                        (((X) (simul~north (simul~west X))) . simul~east)
+                        (((X) (simul~north (simul~east X))) . simul~west)
+                        (((X) (simul~west (simul~north X))) . simul~south)
+                        (((X) (simul~west (simul~south X))) . simul~north) ) )
                   (extract
                      '((D)
                         (let (S J  E J  C 1)
@@ -957,14 +957,14 @@
                                     (cddr D) ) ) )
                            (and (< 1 C) C) ) )
                      (quote
-                        (((X) (south (west X)))
-                           ((X) (south (east X))) . east)
-                        (((X) (east (south X)))
-                           ((X) (east (north X))) . north)
-                        (((X) (north (west X)))
-                           ((X) (north (east X))) . east)
-                        (((X) (west (south X)))
-                           ((X) (west (north X))) . north) ) ) ) ) ) ) ) )
+                        (((X) (simul~south (simul~west X)))
+                           ((X) (simul~south (simul~east X))) . simul~east)
+                        (((X) (simul~east (simul~south X)))
+                           ((X) (simul~east (simul~north X))) . simul~north)
+                        (((X) (simul~north (simul~west X)))
+                           ((X) (simul~north (simul~east X))) . simul~east)
+                        (((X) (simul~west (simul~south X)))
+                           ((X) (simul~west (simul~north X))) . simul~north) ) ) ) ) ) ) ) )
 (test
    10
    (f127 (15 15 15 15 15)) )
@@ -1010,8 +1010,8 @@
          Len (length V) )
       (case Len
          (2
-            (setq Grid (grid Len Len))
-            (setq P 
+            (setq Grid (simul~grid Len Len))
+            (setq P
                (list
                   (list (car V) (quote a1 a2))
                   (list (intern (lowc (car V))) (quote b1 b2))
@@ -1020,15 +1020,15 @@
             (queue 'V (intern (lowc (car V))))
             (queue 'V (intern (lowc (cadr V)))) )
          (3
-            (setq Grid (grid 4 2))
-            (setq P 
+            (setq Grid (simul~grid 4 2))
+            (setq P
                (list
                   (list (car V) (quote a1 a2 b1 b2))
                   (list
-                     (intern (lowc (car V))) 
+                     (intern (lowc (car V)))
                      (quote c1 c2 d1 d2) )
                   (list (cadr V) (quote a2 b2 c2 d2))
-                  (list 
+                  (list
                      (intern (lowc (cadr V)))
                      (quote a1 b1 c1 d1) )
                   (list (caddr V) (quote b1 b2 c1 c2))
@@ -1039,7 +1039,7 @@
             (queue 'V (intern (lowc (cadr V))))
             (queue 'V (intern (lowc (caddr V)))) )
          (4
-            (setq Grid (grid Len Len))
+            (setq Grid (simul~grid Len Len))
             (setq P
                (list
                   (list
@@ -1047,16 +1047,16 @@
                      (quote a1 a2 a3 a4 b1 b2 b3 b4) )
                   (list
                      (intern (lowc (car V)))
-                     (quote c1 c2 c3 c4 d1 d2 d3 d4) ) 
+                     (quote c1 c2 c3 c4 d1 d2 d3 d4) )
                   (list
                      (cadr V)
-                     (quote a3 b3 c3 d3 a4 b4 c4 d4) ) 
+                     (quote a3 b3 c3 d3 a4 b4 c4 d4) )
                   (list
                      (intern (lowc (cadr V)))
-                     (quote a1 b1 c1 d1 a2 b2 c2 d2) ) 
+                     (quote a1 b1 c1 d1 a2 b2 c2 d2) )
                   (list
                      (caddr V)
-                     (quote b1 b2 b3 b4 c1 c2 c3 c4) ) 
+                     (quote b1 b2 b3 b4 c1 c2 c3 c4) )
                   (list
                      (intern (lowc (caddr V)))
                      (quote a1 a2 a3 a4 d1 d2 d3 d4) )
@@ -1071,16 +1071,16 @@
             (queue 'V (intern (lowc (caddr V))))
             (queue 'V (intern (lowc (cadddr V)))) )
          (T (quit "Variable numbers doesnt support")) )
-      # zeroize 
+      # zeroize
       (mapc
          '((G)
-            (mapc 
-               '((This) 
-                  (=: visit NIL) (=: V NIL)) 
+            (mapc
+               '((This)
+                  (=: visit NIL) (=: V NIL))
                G ) )
          Grid )
       (for (N 2 (>= Len N) (inc N))
-         (for I (subsets N V)
+         (for I (simul~subsets N V)
             (and
                (sects
                   (mapcar '((J) (cadr (assoc J P))) I) )
@@ -1094,7 +1094,7 @@
       (make
          (for (J P J (cdr J))
             (and
-               (setq M 
+               (setq M
                   (maxi
                      '((Lst)
                         (cnt
@@ -1109,7 +1109,7 @@
                (mapc '((This) (=: visit T)) (cadr M)) ) ) ) ) )
 (test
    '(B)
-   (f140 '((A B) (a B))) ) 
+   (f140 '((A B) (a B))) )
 (test
    '(A B)
    (f140 '((a B) (A b) (A B))) )
@@ -1136,7 +1136,7 @@
    (f140 '((a b C) (A b C) (a B c) (A B c))) )
 (test
    '(A B C)
-   (f140 '((a b C) (a B C) (a B c) 
+   (f140 '((a b C) (a B C) (a B c)
       (A b c) (A b C) (A B C) (A B c) ) ) )
 (test
    '(c (B a))
@@ -1185,7 +1185,7 @@
             (mapcar '((Y) (cons Y X)) Lst) )
          (permrep (dec N) Lst) ) ) )
 (de aligns (Lst)
-   (let 
+   (let
       (Len (and (maxi length Lst) @@)
          L (mapcar '((L) (- Len (length L))) Lst)
          M (apply max L)
@@ -1214,11 +1214,11 @@
             (permrep (length L) (range 0 M)) )
          (circ (mapcar length Lst)) ) ) )
 (de squares (Grid)
-   (let 
+   (let
       (R NIL
          C 0
-         D '((X) (south (east X))) )
-      (mapc 
+         D '((X) (simul~south (simul~east X))) )
+      (mapc
          '((This)
             (let (C 0  S This)
                (while
@@ -1234,13 +1234,13 @@
                   (push 'R)
                   (push R (: D))
                   (do (cadr L)
-                     (setq This (east This))
+                     (setq This (simul~east This))
                      (push R (: D)) )
-                  (setq P (setq This (south P))) ) )
+                  (setq P (setq This (simul~south P))) ) )
             (queue 'L R) ) )
       (filter
          '((L)
-            (fully 
+            (fully
                '((I) (not (flg? I)))
                (fish atom (caddr L)) ) )
          R ) ) )
@@ -1251,7 +1251,7 @@
          M (and (maxi length Lst) @@)
          Rows (length Lst)
          Cols (and (maxi length Lst) @@)
-         Grid (grid Cols Rows) )
+         Grid (simul~grid Cols Rows) )
       (for L (aligns Lst)
          (mapc
             '((G L)
@@ -1262,15 +1262,15 @@
                   G
                   L ) )
             Grid
-            (apply 
-               mapcar 
-               (reverse 
-                  (mapcar 
-                     '((I J) 
+            (apply
+               mapcar
+               (reverse
+                  (mapcar
+                     '((I J)
                         (need (- M) (need J (copy I))) )
                      Lst
                      L ) )
-               list ) ) 
+               list ) )
          (for L (squares Grid)
             (let (R NIL  P (car L))
                (with (car L)
@@ -1278,18 +1278,18 @@
                      (push 'R)
                      (push R (: D))
                      (do (cadr L)
-                        (setq This (east This))
+                        (setq This (simul~east This))
                         (push R (: D)) )
-                     (setq P (setq This (south P))) ) )
+                     (setq P (setq This (simul~south P))) ) )
                (with (car L)
                   (setq P This)
                   (do (inc (cadr L))
                      (push 'R)
                      (push R (: D))
                      (do (cadr L)
-                        (setq This (south This))
+                        (setq This (simul~south This))
                         (push R (: D)) )
-                     (setq P (setq This (east P))) ) )
+                     (setq P (setq This (simul~east P))) ) )
                (and
                   (apply
                      =

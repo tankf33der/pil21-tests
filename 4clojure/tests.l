@@ -4,4 +4,4 @@
 (load "easy.l")
 (load "medium.l")
 (load "hard.l")
-(msg 'OK-4clojure)
+(msg '4clojure-OK)

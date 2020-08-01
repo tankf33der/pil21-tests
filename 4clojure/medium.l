@@ -97,12 +97,12 @@
    (f56 (range 1 50)) )
 
 #58 Function Composition
-(de f58 Args 
-   (list 
+(de f58 Args
+   (list
       '@
-      (recur (Args) 
-         (ifn (cdr Args) 
-            (list 'pass (car Args)) 
+      (recur (Args)
+         (ifn (cdr Args)
+            (list 'pass (car Args))
             (list (car Args) (recurse (cdr Args))) ) ) ) )
 (test
    (3 2 1)
@@ -149,7 +149,7 @@
          '((L)
             (mapcar '((I) (char (lowc I))) L) )
          sort
-         (split 
+         (split
             (filter
                '((I) (not (member I '("." "!"))))
                (chop S) )
@@ -174,7 +174,7 @@
          (let X (sqrt N)
             (for (D 3  T  (+ D 2))
                (T (> D X) T)
-               (T (=0 (% N D)) NIL) ) ) ) ) ) 
+               (T (=0 (% N D)) NIL) ) ) ) ) )
 (de f67 (N)
    (let X 1
       (make
@@ -285,9 +285,9 @@
             (nond
                ((assoc (car X) R)
                   (queue 'R (list (car X) (cdr X))) )
-               ((cdr (setq Y (cdr @))) 
+               ((cdr (setq Y (cdr @)))
                   (conc Y (list (cdr X))) )
-               (NIL (set @ (cdr X))) ) ) ) 
+               (NIL (set @ (cdr X))) ) ) )
       (for X R
          (con X
             (if (cddr X)
@@ -296,9 +296,9 @@
       R ) )
 (test
    '((a . 4) (b . 6) (c . 20))
-   (f69 
-      * 
-      '((a . 2) (b . 3) (c . 4)) 
+   (f69
+      *
+      '((a . 2) (b . 3) (c . 4))
       '((a . 2)) '((b . 2)) '((c . 5)) ) )
 (test
    '((1 . 7) (2 . 10) (3 . 15))
@@ -463,7 +463,7 @@
 #137 Digits and bases
 (de f137 (N B)
    (make
-      (while 
+      (while
          (and
             (gt0 N)
             (yoke (% N B))
@@ -511,13 +511,13 @@
 (test
    338
    (length
-      (last 
+      (last
          (take 17 `(iterate f110 (3 2))) ) ) )
 
 #144 Oscilrate
 (de cterate Args
    (let ("X" (car Args)  "F" (apply circ (cdr Args)))
-      (list 
+      (list
          'job
          (lit (env '("X" "F")))
          '(prog1 "X" (setq "X" ((pop '"F") "X"))) ) ) )
@@ -549,7 +549,7 @@
    (cond
       ((not L))
       ((atom (car L)) (cons L))
-      (T 
+      (T
          (conc
             (f93 (car L))
             (f93 (cdr L)) ) ) ) )
@@ -571,9 +571,9 @@
          (link I) ) ) )
 (test
    (2 3 5 7 11 13)
-   (f114 
-      4 
-      '((Y) (= 2 (% Y 3))) 
+   (f114
+      4
+      '((Y) (= 2 (% Y 3)))
       (2 3 5 7 11 13 17 19 23)) )
 
 #132 Insert between two items
@@ -633,7 +633,7 @@
    '((0 1) (0 2) (1 2))
    (comb 2 (0 1 2)) )
 (test
-   '((0 1 2) (0 1 3) (0 1 4) (0 2 3) (0 2 4) 
+   '((0 1 2) (0 1 3) (0 1 4) (0 2 3) (0 2 4)
       (0 3 4) (1 2 3) (1 2 4) (1 3 4) (2 3 4))
    (comb 3 (0 1 2 3 4)) )
 
@@ -642,7 +642,7 @@
 (de genprime (N)
    (let X N
       (until (prime? (dec 'N)))
-      (until (prime? (inc 'X))) 
+      (until (prime? (inc 'X)))
       (cons N X) ) )
 (de f116 (N)
    (let L (genprime N)
@@ -678,10 +678,10 @@
 (de f148 (N A B)
    (let
       (E '((X) (/ (dec N) X))
-         F 
-         '((X) 
-            (* 
-               X 
+         F
+         '((X)
+            (*
+               X
                (*/ (E X) (inc (E X)) 2) ) ) )
       (-
          (+ (F A) (F B))
@@ -712,10 +712,10 @@
 (de f171 (Lst)
    (let (R NIL  Lst (sort Lst)  Last NIL)
       (for I Lst
-         (case (- I Last) 
+         (case (- I Last)
             (NIL (push 'R (cons I)))
             ((0 1))
-            (T (conc (car R) (cons Last)) 
+            (T (conc (car R) (cons Last))
                (push 'R (cons I)) ) )
          (setq Last I) )
       (conc (car R) (cons Last))
@@ -748,11 +748,11 @@
                      '((I) (apply + I))
                      (make
                         (for N (length L)
-                           (chain (subsets N L)) ) ) ) ) )
+                           (chain (simul~subsets N L)) ) ) ) ) )
             Sets ) )
       (pick
          '((I)
-            (fully '((L) (member I L)) (cdr Sums)) ) 
+            (fully '((L) (member I L)) (cdr Sums)) )
          (car Sums) ) ) )
 (test
    T
@@ -782,7 +782,7 @@
 (test
    T
    (f131 (-10 9 -8 7 -6 5 -4 3 -2 1) (10 -9 8 -7 6 -5 4 -3 2 -1)) )
-    
+
 #112 Sequs Horribilis
 (de f112 (Sum X)
    (recur (X)
@@ -892,7 +892,7 @@
 # XXX Ignore now
 (de f168 (Fun M N Rows Cols)
    (nond
-      (M Fun)  
+      (M Fun)
       (Rows
         (curry (Fun M N) (I J)
           (Fun (+ M I) (+ N J)) ) )
