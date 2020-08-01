@@ -32,6 +32,7 @@
 (load "forth.l")
 (load "fern.l")
 (load "net.l")
+#(load "pilog-rosetta.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")
