@@ -1,5 +1,5 @@
 #7.1
-(de add1 (Lst)
+(de 7_add1 (Lst)
    (mapcar inc Lst) )
 (de add1-destr (Lst) # Destructive
    (for (L Lst L)
@@ -7,7 +7,7 @@
    Lst )
 (test
    (2 4 6 8 10)
-   (add1 (1 3 5 7 9)) )
+   (7_add1 (1 3 5 7 9)) )
 
 #7.2
 (setq *DAILY-PLANET
@@ -302,7 +302,7 @@
 #7.19
 (de all-odd (L)
    (fully oddp L) )
-   
+
 (test T (all-odd (1 1 3)))
 (test NIL (all-odd (1 2 3)))
 

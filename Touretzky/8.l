@@ -8,7 +8,7 @@
       (T (anyoddp (cdr L))) ) )
 (de anyoddp-if (L)
    (when L
-      (if (bit? 1 (car L)) 
+      (if (bit? 1 (car L))
          T
          (anyoddp-if (cdr L)) ) ) )
 (test
@@ -141,7 +141,7 @@
 
 #8.15
 # picture = (x .)
-# count-slices will be in infitum 
+# count-slices will be in infitum
 
 #8.16
 # didnt find difference in picolisp while testing switch
@@ -188,9 +188,9 @@
    (cond
       ((or (not L) (not (cdr L)))
          T )
-      (T 
+      (T
          (and
-            (= (car L) (cadr L)) 
+            (= (car L) (cadr L))
             (all-equal (cdr L)) ) ) ) )
 (test
    (f8-22 (1 1 2))
@@ -281,7 +281,7 @@
 
 #8.33
 # remove is delete in picolisp
-# 
+#
 (de my-delete (I L)
    (cond
       ((not L))
@@ -324,7 +324,7 @@
 (de count-odd-v2 (L)
    (cond
       ((not L) 0)
-      (T 
+      (T
          (+
             (if (bit? 1 (car L)) 1 0)
             (count-odd-v2 (cdr L)) ) ) ) )
@@ -338,7 +338,7 @@
 
 #8.37 - ignored
 
-#8.38 
+#8.38
 # additional Q for every NIL as atom
 
 #8.39
@@ -382,8 +382,8 @@
    (cond
       ((= L S) D)
       ((atom L) L)
-      (T 
-         (cons 
+      (T
+         (cons
             (my-replace (car L) S D)
             (my-replace (cdr L) S D) ) ) ) )
 (test
@@ -408,8 +408,8 @@
 (de tree-depth (L)
    (cond
       ((atom L) 0)
-      (T 
-         (+ 
+      (T
+         (+
             1
             (max (tree-depth (car L)) (tree-depth (cdr L))) ) ) ) )
 (test
@@ -435,8 +435,8 @@
    (paren-depth '(a b c)) )
 (test
    3
-   (paren-depth '(A B ((C) D) E)) ) 
-      
+   (paren-depth '(A B ((C) D) E)) )
+
 #8.46
 (de count-up (N)
    (cond
@@ -507,7 +507,7 @@
    (test
       (uniq (append L1 L2))
       (my-union L1 L2) ) )
-         
+
 #8.53
 (de largest-even (L)
    (cond
@@ -516,7 +516,7 @@
       (T (max (car L) (largest-even (cdr L)))) ) )
 (test # 10
    (maxi '((N) (or (bit? 1 N) N)) (range 0 10))
-   (largest-even (range 0 10)) ) 
+   (largest-even (range 0 10)) )
 
 #8.54
 # no helper, default!
@@ -529,7 +529,7 @@
 (de huge-anon (N)
    (let C N
       (recur (C)
-         (if (=0 C) 
+         (if (=0 C)
             1
             (* N (recurse (dec C))) ) ) ) )
 (let N 4
@@ -552,16 +552,16 @@
    (test
       (make
          (for (I L I (cddr I))
-            (link (car I)) ) ) 
+            (link (car I)) ) )
       (every-other L) ) )
-     
+
 #8.57
-(de half (N)
-   (/ 
+(de 8_half (N)
+   (/
       (+ (if (bit? 1 N) 1 0) N)
       2 ) )
 (de left-half (L Len)
-   (default Len (half (length L)))
+   (default Len (8_half (length L)))
    (and
       (gt0 Len)
       (cons (car L) (left-half (cdr L) (dec Len))) ) )
@@ -641,7 +641,7 @@
       X
       (uniq
          (conc
-            (children (father X)) 
+            (children (father X))
             (children (mother X)) ) ) ) )
 (de mapunion (F L)
    (uniq (mapcan F L)) )
@@ -672,7 +672,7 @@
    (cond
       ((not X))
       ((= X Y) N)
-      (T 
+      (T
          (or
             (generation-gap (father X) Y (inc N))
             (generation-gap (mother X) Y (inc N)) ) ) ) )

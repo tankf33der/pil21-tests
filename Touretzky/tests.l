@@ -21,5 +21,4 @@
 (load "13.l")
 (load "14.l")
 
-(msg 'OK-Touretzky)
-
+(msg 'Touretzky-OK)

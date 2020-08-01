@@ -14,13 +14,13 @@
 #3.4 - ignored
 
 #3.5
-(de half (N)
+(de 3_half (N)
    (/ N 2) )
 (de cube (N)
    (* N N N) )
 (de onemorep (A B)
    (= A (inc B)) )
-(test 10 (half 20))
+(test 10 (3_half 20))
 (test 27 (cube 3))
 (test T (onemorep 4 3))
 
@@ -34,7 +34,7 @@
    (initial-odometer-reading
       final-odometer-reading
       gallons-consumed )
-   (/ 
+   (/
       (-
          final-odometer-reading
          initial-odometer-reading )
@@ -148,20 +148,20 @@
 # sweet -- Undefined
 
 #3.20
-(de mystery (X)
+(de 3_mystery (X)
    (list (second X) (first X)) )
 (test
    '(bear dancing)
-   (mystery '(dancing bear)) )
+   (3_mystery '(dancing bear)) )
 # (mystery 'dancing 'bear) )
 # [3.l:156] !? (second X)
 # dancing -- List expected
 (test
    '(NIL zowie)
-   (mystery '(zowie)) )
+   (3_mystery '(zowie)) )
 (test
    '(second first)
-   (mystery (list 'first 'second)) )
+   (3_mystery (list 'first 'second)) )
 
 #3.21 - ignored
 
@@ -196,7 +196,7 @@
 (de mid-add1 (L)
    (list (car L) (inc (cadr L)) (caddr L)) )
 (de mid-add1-v2 (L) # pure magic
-   (inc (cdr L)) 
+   (inc (cdr L))
    L )
 (test
    '(take 3 cookies)
@@ -207,9 +207,9 @@
 
 # f
 (de f-to-c (F)
-   (f*
-      (frac (- F 32) 1)
-      (f/ (frac 5 1) (frac 9 1)) ) )
+   (frac~f*
+      (frac~f (- F 32) 1)
+      (frac~f/ (frac~f 5 1) (frac~f 9 1)) ) )
 (test
    (455 . 9)
    (f-to-c 123) )

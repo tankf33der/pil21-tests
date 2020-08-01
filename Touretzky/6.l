@@ -42,17 +42,17 @@
 (test '(ROSES ARE) (my-butlast '(ROSES ARE RED)))
 
 #6.9
-(de mystery (L)
+(de 6_mystery (L)
    (last (reverse L)) )
 (let L (1 2 3)
-   (test (car L) (mystery (1 2 3))) )
+   (test (car L) (6_mystery (1 2 3))) )
 
 #6.10
 (de palindromp (L)
    (= L (reverse L)) )
 (test NIL (palindromp (1 2 3)))
 (test T (palindromp (1 2 1)))
- 
+
 #6.11
 (de make-palindrome (L)
    (append L (reverse L)) )

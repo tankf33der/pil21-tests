@@ -10,7 +10,7 @@
 (test -1 (- 5 6))
 (test
    (2 . 3)
-   (f- (frac 1 1) (frac 1 3)) )
+   (frac~f- (frac~f 1 1) (frac~f 1 3)) )
 (test
    2
    (abs (+ -5 3)) )
@@ -98,18 +98,16 @@
 (test NIL (not-plusp 11))
 
 #1.17
-(de evenp (N)
-   (not (oddp N)) )
 (test T (evenp 4))
 (test NIL (evenp 7))
 
 #1.18
-(de add1 (N)
+(de 1_add1 (N)
    (+ N 1) )
 (de zerop (N)
    (bool (=0 N)) )
 (de 1-18 (N)
-   (zerop (add1 (add1 N))) )
+   (zerop (1_add1 (1_add1 N))) )
 (test T (1-18 -2))
 
 #1.19
