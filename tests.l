@@ -73,6 +73,8 @@
 (load "tests.l")
 (cd "../4clojure")
 (load "tests.l")
+(cd "../rng")
+(load "tests.l")
 (prinl "======")
 (msg 'All-OK)
 (bye)
