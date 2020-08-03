@@ -93,7 +93,6 @@
 (let (A (1 2 3)  B '(a b c))
    (test (1 2 3 a b c) (conc A B))
    (test (1 2 3 a b c) A) )
-
 (test (1 2 3 4 5 6)
    (conc (1 2 3) NIL (4 5 6)) )
 
