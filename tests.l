@@ -22,6 +22,7 @@
 (load "double.l")
 (load "passwd.l")
 (load "native.l")
+(load "struct.l")
 (load "base32.l")
 (load "base58.l")
 (load "parse2list.l")
