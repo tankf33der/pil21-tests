@@ -424,7 +424,7 @@
 
 ### finally ###
 (test 'B
-  mi I (let X 'A
+   (let X 'A
       (catch NIL
          (finally (setq X 'B)
             (setq X 'C)
