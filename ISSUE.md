@@ -180,3 +180,7 @@ add rng/tests.l to bundle
 ```
 add flood tests
 ```
+
+```
+add all coroutines from rosetta
+```
