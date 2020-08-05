@@ -76,7 +76,7 @@
 (cd "../rng")
 (load "tests.l")
 (prinl "AdventOfCode will take some time:")
-(prinl "...")
+(prinl "....")
 (cd "../advent2015")
 (load "code2015.l")
 (prinl "\^\^\^ advent finished!")
