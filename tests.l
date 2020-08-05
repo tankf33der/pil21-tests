@@ -80,8 +80,6 @@
 (cd "../advent2015")
 (load "code2015.l")
 (prinl "\^\^\^ advent finished!")
-
-
 (prinl "======")
 (msg 'All-OK)
 (bye)
