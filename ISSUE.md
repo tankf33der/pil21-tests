@@ -116,29 +116,6 @@ add tankf33der/cartesian.l (coroutine)
 add atomic.l task (requires DB)
 ```
 
-
-```
-crash in repl, enter:
-(
-Enter
-Ctrl-C
-Ctrl-C
-
-example:
-$ pil21
-: (
-   NIL
-NIL
-free(): double free detected in tcache 2
-Aborted (core dumped)
-```
-
-```
-WHAT I NEED:
-o) crypto, md5 - math
-o) crypto, keccak, shake, k12 - min (use smaller tests)
-```
-
 ```
 add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
@@ -152,22 +129,5 @@ add permrep.l (coroutine)
 ```
 
 ```
-fix pilog-rosetta crash
-twofish-OK
-whirlpool-OK
-^^^ crypto finished!
-[1-atom-atom.l:670] !? (cdr Lst)
-make: *** [Makefile:2: all] Segmentation fault (core dumped)
-```
-
-```
-add rng/tests.l to bundle
-```
-
-```
 add flood tests
-```
-
-```
-add all coroutines from rosetta
 ```
