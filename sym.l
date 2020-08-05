@@ -307,9 +307,6 @@
    (test (1 2 3) A) )
 
 
-# XXX, bug
-# comment all
-#{
 ### fifo ###
 (let X NIL
    (test 1 (fifo 'X 1))
@@ -317,7 +314,6 @@
    (test 1 (fifo 'X))
    (test 2 (fifo 'X))
    (test 3 (fifo 'X)) )
-}#
 
 ### idx lup ###
 (let X NIL

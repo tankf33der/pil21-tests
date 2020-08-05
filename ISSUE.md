@@ -1,4 +1,5 @@
 Requirements to this file and repo are:
+Requirements to this file and repo are:
 * TODO
 * Raw list of appended found and not fixed yet issue(s), file should be empty
 * find . -name "*.l" | xargs grep -ci "xxx" - should returns all zeroes
@@ -44,20 +45,6 @@ $ pil
 ```
 (glue NIL 1)
 should 1
-```
-
-```
-(off X)
-(fifo 'X 1)
-(fifo 'X 2 3) -> returns 2, should 3
-// inserted wrongly
-ok
-fetch will not work
-(fifo 'X) -> 1 - ok
-(fifo 'X) -> 2 - ok
-(fifo 'X) -> 1 - not ok
-so.
-if call fifo with *single* argument it would insert and fetch in correct order
 ```
 
 ```
