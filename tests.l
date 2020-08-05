@@ -75,6 +75,13 @@
 (load "tests.l")
 (cd "../rng")
 (load "tests.l")
+(prinl "AdventOfCode will take some time:")
+(prinl "...")
+(cd "../advent2015")
+(load "code2015.l")
+(prinl "\^\^\^ advent finished!")
+
+
 (prinl "======")
 (msg 'All-OK)
 (bye)
