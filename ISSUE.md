@@ -132,3 +132,7 @@ add permrep.l (coroutine)
 ```
 add flood tests
 ```
+
+```
+add md5 and adventofcode2015 after @lib/math
+```
