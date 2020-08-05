@@ -3,6 +3,7 @@
 (prin "2015:")
 
 # --- Day 1: Not Quite Lisp ---
+(prin ".")
 (de b1-1 (F)
    (let C 0
       (in F
@@ -12,7 +13,6 @@
                (")" (dec 'C)) ) ) )
       C ) )
 (test 3 (b1-1 "data/1-test-1.txt"))
-(prin ".")
 
 (de b1-2 (F)
    (let (C 0  P 0)
@@ -24,9 +24,9 @@
                (")" (dec 'C)) ) ) )
       P ) )
 (test 5 (b1-2 "data/1-test-2.txt"))
-(test 1771 (b1-2 "data/1.txt"))
 
 # --- Day 2: I Was Told There Would Be No Math ---
+(prin ".")(flush)
 (de b2-1 (F)
    (let S 0
       (in F
@@ -47,7 +47,6 @@
                   (inc 'S (* 2 (car A) (cadr A))) ) ) ) )
       S ) )
 (test 101 (b2-1 "data/2-test-1.txt"))
-(test 1606483 (b2-1 "data/2.txt"))
 
 (de prod1 (Lst)
    (let P 1
@@ -76,9 +75,9 @@
       S ) )
 
 (test 48 (b2-2 "data/2-test-1.txt"))
-(test 3842356 (b2-2 "data/2.txt"))
 
 # --- Day 3: Perfectly Spherical Houses in a Vacuum ---
+(prin ".")(flush)
 (de b3-1 (F)
    (let (L (list 0 0)  R)
       (push1 'R (copy L))
@@ -92,7 +91,6 @@
             (push1 'R (copy L)) ) )
       (length R) ) )
 (test 4 (b3-1 "data/3-test-1.txt"))
-(test 2565 (b3-1 "data/3.txt"))
 
 (de b3-2 (F)
    (let (L (circ (list 0 0) (list 0 0))  R)
@@ -107,9 +105,11 @@
             (push1 'R (copy (++ L))) ) )
       (length R) ) )
 (test 3 (b3-2 "data/3-test-1.txt"))
-(test 2639  (b3-2 "data/3.txt"))
 
 # --- Day 4: The Ideal Stocking Stuffer ---
+# XXX, after @lib/math.l (sinus)
+#{
+(prin ".")(flush)
 (load "../md5.l") # RosettaCode
 (de b4-1 (Str Z)
    (let
@@ -125,9 +125,10 @@
             (pre? Start (md5_hex Str)) ) )
       N ) )
 (test 346386 (b4-1 "iwrupvqb" 5))
-(test 9958218 (b4-1 "iwrupvqb" 6))
+}#
 
 # --- Day 5: Doesn't He Have Intern-Elves For This? ---
+(prin ".")(flush)
 (de b5-1 (F)
    (let L 0
       (in F
@@ -153,7 +154,6 @@
                   (inc 'L) ) ) ) )
       L ) )
 (test 2 (b5-1 "data/5-test-1.txt"))
-(test 255 (b5-1 "data/5.txt"))
 
 (de b5-accuP (Var Key Pos)
    (if (setq @@ (assoc Key (val Var)))
@@ -174,11 +174,11 @@
                (and (find cdadr D) (gt0 R) (inc 'L)) ) ) )
       L ) )
 (test 2 (b5-2 "data/5-test-2.txt"))
-(test 55 (b5-2 "data/5.txt"))
 
 # --- Day 6: Probably a Fire Hazard ---
+(prin ".")(flush)
 (de b6-1 (F)
-   (let G (grid 1000 1000)
+   (let G (simul~grid 1000 1000)
       (for Col G
          (for This Col
             (=: B6-1 0) ) )
@@ -205,8 +205,8 @@
                                  0
                                  Fun
                                  Fun ) )
-                           (setq This (east This)) ) )
-                     (setq This (north This)) ) ) ) ) )
+                           (setq This (simul~east This)) ) )
+                     (setq This (simul~north This)) ) ) ) ) )
       (sum
          '((L)
             (cnt '((This) (=1 (: B6-1))) L) )
@@ -214,7 +214,7 @@
 (test 400410 (b6-1 "data/6.txt"))
 
 (de b6-2 (F)
-   (let G (grid 1000 1000)
+   (let G (simul~grid 1000 1000)
       (for Col G
          (for This Col
             (=: B6-2 0) ) )
@@ -243,15 +243,15 @@
                                        0
                                        (- (: B6-2) 1) ) )
                                  (T (+ 2 (: B6-2))) ) )
-                           (setq This (east This)) ) )
-                     (setq This (north This)) ) ) ) ) )
+                           (setq This (simul~east This)) ) )
+                     (setq This (simul~north This)) ) ) ) ) )
       (sum
          '((L) (sum '((This) (: B6-2)) L))
          G ) ) )
 (test 2000001 (b6-2 "data/6-test-2.txt"))
-(test 15343601 (b6-2 "data/6.txt"))
 
 # --- Day 7: Some Assembly Required ---
+(prin ".")(flush)
 (de mod16 (N)
    (& N `(hex "FFFF")) )
 (de not16 (N)
@@ -316,16 +316,8 @@
 (test 123 (b7-1 'x))
 (test 456 (b7-1 'y))
 
-(off *B7-R)
-(setq *B7-D (b7-parse "data/7.txt"))
-(test 16076 (b7-1 'a))
-
-# part 2
-(off *B7-R)
-(set (cdr (assoc 'b *B7-D)) 16076)
-(test 2797 (b7-1 'a))
-
 # --- Day 8: Matchsticks ---
+(prin ".")(flush)
 (de b8-1-size (F)
    (let S 0
       (in F
@@ -348,11 +340,6 @@
                (char) ) ) )
       M ) )
 (test 11 (b8-1-mem "data/8-test-1.txt"))
-(test
-   1333
-   (-
-      (b8-1-size "data/8.txt")
-      (b8-1-mem "data/8.txt") ) )
 
 # part 2
 (de b8-2-q (F)
@@ -371,12 +358,9 @@
             (inc 'Q 6) ) )
       Q ) )
 (test 42 (b8-2-q "data/8-test-1.txt"))
-(test 2046
-   (-
-      (b8-2-q "data/8.txt")
-      (b8-1-size "data/8.txt") ) )
 
 # --- Day 9: All in a Single Night ---
+(prin ".")(flush)
 (de b9-list (F)
    (put 'mike 'mm 122)
    (make
@@ -403,18 +387,17 @@
             (let S 0
                (for (A L (cdr A) (cdr A))
                   (inc 'S (get (car A) (cadr A))) ) ) )
-         (permute U) )
+         (simul~permute U) )
       (mapc wipe U)
       @@ ) )
 (test 605 (b9-1 "data/9-test-1.txt" mini))
-(test 207 (b9-1 "data/9.txt" mini))
 
 # part 2
 (test 982 (b9-1 "data/9-test-1.txt" maxi))
-(test 804 (b9-1 "data/9.txt" maxi))
 
 # --- Day 10: Elves Look, Elves Say ---
 # http://rosettacode.org/wiki/Look-and-say_sequence#PicoLisp
+(prin ".")(flush)
 (de las (Lst)
    (make
       (while Lst
@@ -427,9 +410,9 @@
       (setq Lst (las Lst)) )
    (length Lst) )
 (test 329356  (b10-1 (3 1 1 3 3 2 2 1 1 3) 40))
-(test 4666278 (b10-1 (3 1 1 3 3 2 2 1 1 3) 50))
 
 # --- Day 11: Corporate Policy ---
+(prin ".")(flush)
 (de b11-req1 (Lst) # original
    (let L Lst
       (loop
@@ -465,13 +448,9 @@
                   (set L 97) ) ) ) )
       (pack (mapcar char (flip Lst))) ) )
 (test "abcdffaa" (b11-1 "abcdefgh"))
-(test "ghjaabcc" (b11-1 "ghijklmn"))
-(test "hepxxyzz" (b11-1 "hepxcrrq"))
-
-# part 2
-(test "heqaabcc" (b11-1 "hepxxzaa")) # manual step
 
 # --- Day 12: JSAbacusFramework.io ---
+(prin ".")(flush)
 (de b12-1 (F)
    (in F
       (let Lst (chop (line T) "_")
@@ -484,7 +463,6 @@
                   '`(chop "1234567890-") )
                Lst ) ) ) ) )
 (test 18 (b12-1 "data/12-test-1.txt"))
-(test 119433 (b12-1 "data/12.txt"))
 
 # part 2 - solution by @joebo
 (de b12-noRed (X)
@@ -522,9 +500,9 @@
 (test 4 (b12-2 "data/12-test-3.txt"))
 (test 0 (b12-2 "data/12-test-4.txt"))
 (test 6 (b12-2 "data/12-test-5.txt"))
-(test 68466 (b12-2 "data/12.txt"))
 
 # --- Day 13: Knights of the Dinner Table ---
+(prin ".")(flush)
 (de b13-add (L)
    (and
       (cdr L)
@@ -554,17 +532,16 @@
             (push 'D (0 (list 'Mike L)))
             (push 'D (0 (list L 'Mike))) )
          (push 'U 'Mike) )
-      (for P (permute U)
+      (for P (simul~permute U)
          (let (P (append P (cons (car P)))  C 0)
             (maplist b13-add P)
             (maplist b13-add (flip P))
             (and (> C M) (setq M C)) ) )
       M ) )
 (test 330 (b13-1 "data/13-test-1.txt"))
-(test 618 (b13-1 "data/13.txt"))
-(test 601 (b13-1 "data/13.txt" T))
 
 # --- Day 14: Reindeer Olympics ---
+(prin ".")(flush)
 (setq *B14-T '((14 10 127) (16 11 162)))
 (setq *B14-1
    (quote
@@ -585,7 +562,6 @@
       Lst )
    @@ )
 (test 1120 (b14-1 *B14-T 1000))
-(test 2696 (b14-1 *B14-1 2503))
 
 (de b14-2 (Lst Secs)
    (let
@@ -610,19 +586,11 @@
             Maxs ) )
       (apply max Maxs) ) )
 (test 689 (b14-2 *B14-T 1000))
-(test 1084 (b14-2 *B14-1 2503))
 
 # --- Day 15: Science for Hungry People ---
+(prin ".")(flush)
 (setq *B15-T-1 '((-1 -2 6 3) (2 3 -2 -1)))
 (setq *B15-T-2 '((-1 -2 6 3 8) (2 3 -2 -1 3)))
-(setq *B15-1
-   (quote
-      (4 -2 0 0) (0 5 -1 0)
-      (-1 0 5 0) (0 0 -2 2) ) )
-(setq *B15-2
-   (quote
-      (4 -2 0 0 5) (0 5 -1 0 8)
-      (-1 0 5 0 6) (0 0 -2 2 1) ) )
 
 (de b15-partitions (N K)
    (if (> K 1)
@@ -646,7 +614,6 @@
          (b15-partitions 100 (length (car Lst))) )
       @@ ) )
 (test 62842880 (b15-1 *B15-T-1))
-(test 18965440 (b15-1 *B15-1))
 
 (de b15-2 (Lst)
    (let Lst (apply mapcar Lst list)
@@ -661,9 +628,9 @@
                (b15-partitions 100 (length (car Lst))) ) )
       @@ ) )
 (test 57600000 (b15-2 *B15-T-2))
-(test 15862900 (b15-2 *B15-2))
 
 # --- Day 16: Aunt Sue ---
+(prin ".")(flush)
 (setq *B16-D
    (quote
       (children . 3) (cats . 7) (samoyeds . 2) (pomeranians . 3)
@@ -722,6 +689,7 @@
 (test 260 (b16-2 "data/16.txt"))
 
 # --- Day 17: No Such Thing as Too Much ---
+(prin ".")(flush)
 (de b17-1 (Lst N)
    (let D (conc (cons 1) (need N 0))
       (for A Lst
@@ -731,17 +699,13 @@
                (car (nth D (- B A))) ) ) )
       (last D) ) )
 (test 4 (b17-1 (5 5 10 15 20) 25))
-(test
-   654
-   (b17-1
-      (50 44 11 49 42 46 18 32 26 40 21 7 18 43 10 47 36 24 22 40)
-      150) )
 
 # --- Day 18: Like a GIF For Your Yard ---
+(prin ".")(flush)
 (de b18-1 (F Steps)
    (let
       (Lst (make (in F (until (eof) (link (line)))))
-         Grid (grid (length (car Lst)) (length Lst)) )
+         Grid (simul~grid (length (car Lst)) (length Lst)) )
       (mapc
          '((G L)
             (mapc
@@ -760,11 +724,11 @@
                         (let C
                            (cnt
                               '((D) (with (D This) (: Led)))
-                              '(west east south north
-                                 ((X) (south (west X)))
-                                 ((X) (north (west X)))
-                                 ((X) (south (east X)))
-                                 ((X) (north (east X))) ) )
+                              '(simul~west simul~east simul~south simul~north
+                                 ((X) (simul~south (simul~west X)))
+                                 ((X) (simul~north (simul~west X)))
+                                 ((X) (simul~south (simul~east X)))
+                                 ((X) (simul~north (simul~east X))) ) )
                            (if (: Led)
                               (or (= 2 C) (= 3 C))
                               (and (= 3 C)) ) ) )
@@ -779,12 +743,11 @@
          '((G) (cnt '((This) (: Led)) G))
          Grid ) ) )
 (test 4 (b18-1 "data/18-test-1.txt" 4))
-(test 768 (b18-1 "data/18.txt" 100))
 
 (de b18-2 (F Steps)
    (let
       (Lst (make (in F (until (eof) (link (line)))))
-         Grid (grid (length (car Lst)) (length Lst))
+         Grid (simul~grid (length (car Lst)) (length Lst))
          Crnrs
          (list
             (caar Grid)
@@ -814,11 +777,11 @@
                         (let C
                            (cnt
                               '((D) (with (D This) (: Led)))
-                              '(west east south north
-                                 ((X) (south (west X)))
-                                 ((X) (north (west X)))
-                                 ((X) (south (east X)))
-                                 ((X) (north (east X))) ) )
+                              '(simul~west simul~east simul~south simul~north
+                                 ((X) (simul~south (simul~west X)))
+                                 ((X) (simul~north (simul~west X)))
+                                 ((X) (simul~south (simul~east X)))
+                                 ((X) (simul~north (simul~east X))) ) )
                            (or
                               (memq This Crnrs)
                               (if (: Led)
@@ -835,9 +798,9 @@
          '((G) (cnt '((This) (: Led)) G))
          Grid ) ) )
 (test 17 (b18-2 "data/18-test-2.txt" 5))
-(test 781 (b18-2 "data/18.txt" 100))
 
 # --- Day 19: Medicine for Rudolph ---
+(prin ".")(flush)
 (setq *D19-T
    (quote
       ("H" . "HO")
@@ -900,7 +863,6 @@
 
 (test 4 (b19-1 "HOH" *D19-T))
 (test 7 (b19-1 "HOHOHO" *D19-T))
-(test 535 (b19-1 "CRnCaCaCaSiRnBPTiMgArSiRnSiRnMgArSiRnCaFArTiTiBSiThFYCaFArCaCaSiThCaPBSiThSiThCaCaPTiRnPBSiThRnFArArCaCaSiThCaSiThSiRnMgArCaPTiBPRnFArSiThCaSiRnFArBCaSiRnCaPRnFArPMgYCaFArCaPTiTiTiBPBSiThCaPTiBPBSiRnFArBPBSiRnCaFArBPRnSiRnFArRnSiRnBFArCaFArCaCaCaSiThSiThCaCaPBPTiTiRnFArCaPTiBSiAlArPBCaCaCaCaCaSiRnMgArCaSiThFArThCaSiThCaSiRnCaFYCaSiRnFYFArFArCaSiRnFYFArCaSiRnBPMgArSiThPRnFArCaSiRnFArTiRnSiRnFYFArCaSiRnBFArCaSiRnTiMgArSiThCaSiThCaFArPRnFArSiRnFArTiTiTiTiBCaCaSiRnCaCaFYFArSiThCaPTiBPTiBCaSiThSiRnMgArCaF" *D19-1))
 
 # part2
 (de b19-helper2 (Lst)
@@ -930,6 +892,7 @@
 (test 212 (b19-2 "CRnCaCaCaSiRnBPTiMgArSiRnSiRnMgArSiRnCaFArTiTiBSiThFYCaFArCaCaSiThCaPBSiThSiThCaCaPTiRnPBSiThRnFArArCaCaSiThCaSiThSiRnMgArCaPTiBPRnFArSiThCaSiRnFArBCaSiRnCaPRnFArPMgYCaFArCaPTiTiTiBPBSiThCaPTiBPBSiRnFArBPBSiRnCaFArBPRnSiRnFArRnSiRnBFArCaFArCaCaCaSiThSiThCaCaPBPTiTiRnFArCaPTiBSiAlArPBCaCaCaCaCaSiRnMgArCaSiThFArThCaSiThCaSiRnCaFYCaSiRnFYFArFArCaSiRnFYFArCaSiRnBPMgArSiThPRnFArCaSiRnFArTiRnSiRnFYFArCaSiRnBFArCaSiRnTiMgArSiThCaSiThCaFArPRnFArSiRnFArTiTiTiTiBCaCaSiRnCaCaFYFArSiThCaPTiBPTiBCaSiThSiRnMgArCaF"))
 
 # --- Day 20: Infinite Elves and Infinite Houses ---
+(prin ".")(flush)
 (de b20-sigma-1 (N)
    (let S 0
       (for A (/ N 2)
@@ -963,10 +926,11 @@
 
 
 # --- Day 21: RPG Simulator 20XX ---
-
+(prin ".")(flush)
 # --- Day 22: Wizard Simulator 20XX ---
-
+(prin ".")(flush)
 # --- Day 23: Opening the Turing Lock ---
+(prin ".")(flush)
 (de b23-1 (F a b)
    (default a 0  b 0)
    (let
@@ -1000,14 +964,12 @@
             (jmp (inc 'I (cadr @@))) ) )
       (cons a b) ) )
 (test (2 . 0) (b23-1 "data/23-test-1.txt"))
-(test (1 . 170) (b23-1 "data/23.txt"))
-
-# part 2
-(test (1 . 247) (b23-1 "data/23.txt" 1))
 
 # --- Day 24: It Hangs in the Balance ---
+(prin ".")(flush)
 
 # --- Day 25: Let It Snow ---
+(prin ".")(flush)
 (de b25-1 (R C)
    (let
       (N 20151125
@@ -1023,4 +985,4 @@
       N ) )
 (test 19980801 (b25-1 2947 3029))
 
-(msg 'OK-AoC15)
+(msg 'OK)

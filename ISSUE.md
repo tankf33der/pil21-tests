@@ -134,5 +134,5 @@ add flood tests
 ```
 
 ```
-add md5 and adventofcode2015 after @lib/math
+add md5 and adventofcode2015 after @lib/math, sinus
 ```
