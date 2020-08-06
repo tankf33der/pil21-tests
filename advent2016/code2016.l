@@ -1,5 +1,4 @@
 (load "@lib/simul.l")
-# XXX, legacy
 #(scl 0) # against md5
 
 (prin "2016:")
@@ -695,6 +694,7 @@
 # --- Day 15: Timing is Everything ---
 # http://rosettacode.org/wiki/Chinese_remainder_theorem#PicoLisp
 (prin ".")(flush)
+(scl 0)
 (de z15-modinv (A B)
    (let (B0 B  X0 0  X1 1  Q 0  T1 0)
       (while (< 1 A)
