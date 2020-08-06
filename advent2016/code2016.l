@@ -61,11 +61,11 @@
                            ((right? @@) (set (cdr D) 'inc) 'north)
                            (T (set (cdr D) 'dec) 'south) ) ) )
                   (do N
-                     (NIL 
+                     (NIL
                         (_pushz1
-                           'L 
-                           (setq 
-                              XY 
+                           'L
+                           (setq
+                              XY
                               (mapcar '((A B) (A B)) D XY) ) )
                         (throw 'Found) ) ) ) ) ) )
       (+ (abs (car XY)) (abs (cadr XY))) ) )
@@ -74,7 +74,7 @@
 
 # --- Day 2: Bathroom Security ---
 (de z2-1 (F)
-   (let (G (grid 3 3)  Z 0  R)
+   (let (G (simul~grid 3 3)  Z 0  R)
       (for Col G
          (for This Col
             (=: Z2 (inc 'Z)) ) )
@@ -84,10 +84,10 @@
                (for D (line)
                   (and
                      ((case D
-                           ("R" north)
-                           ("L" south)
-                           ("U" west)
-                           ("D" east) )
+                           ("R" simul~north)
+                           ("L" simul~south)
+                           ("U" simul~west)
+                           ("D" simul~east) )
                         This )
                      (setq This @) ) )
                (queue 'R (: Z2)) ) ) )
@@ -96,7 +96,7 @@
 (test 36629 1985 (z2-1 "data/2.txt"))
 
 (de z2-2 (F Lst)
-   (let (Grid (grid 5 5)  R)
+   (let (Grid (simul~grid 5 5)  R)
       (mapc
          '((G L)
             (mapc
@@ -118,10 +118,10 @@
                (for D (line)
                   (and
                      ((case D
-                           ("R" east)
-                           ("L" west)
-                           ("U" north)
-                           ("D" south) )
+                           ("R" simul~east)
+                           ("L" simul~west)
+                           ("U" simul~north)
+                           ("D" simul~south) )
                         This )
                      (setq This @) ) )
                (queue 'R (: Z2-2)) ) ) )
@@ -177,7 +177,7 @@
             (> (+ (cadr L) (caddr L)) (car L))
             (> (+ (caddr L) (car L)) (cadr L))
             (inc 'R) ) )
-      R ) ) 
+      R ) )
 (test 6 (z3-2 "data/3-test-1.txt"))
 (test 1544 (z3-2 "data/3.txt"))
 
@@ -216,7 +216,7 @@
 (setq *z4-Letters (apply circ (mapcar char (range 97 122))))
 (de z4-caesar (Str Key)
    (pack
-      (mapcar 
+      (mapcar
          '((C) (cadr (nth (member C *z4-Letters) Key)))
          Str ) ) )
 (de z4-2 (F)
@@ -236,7 +236,7 @@
                (= "northpole" (z4-caesar (car L) (last L)))
                (last L) ) )
          Lst ) ) )
-(test 501 (z4-2 "data/4.txt")) 
+(test 501 (z4-2 "data/4.txt"))
 
 # --- Day 5: How About a Nice Game of Chess? ---
 (de z5-md5 (Str)
@@ -294,7 +294,7 @@
 # --- Day 7: Internet Protocol Version 7 ---
 (de z7-1-check (Lst)
    (for (L Lst (cdddr L) (cdr L))
-      (T 
+      (T
          (and
             (<> (car L) (cadr L))
             (= (car L) (cadddr L))
@@ -304,7 +304,7 @@
    (let C 0
       (in F
          (until (eof)
-            (let R (list 0 0) 
+            (let R (list 0 0)
                (for (I . L) (split (line) "[" "]")
                   (and
                      (z7-1-check L)
@@ -327,7 +327,7 @@
 (de z7-2-seek (Lst Y)
    (seek '((L) (fully = Y L)) Lst) )
 (de z7-2 (F)
-   (let C 0 
+   (let C 0
       (in F
          (until (eof)
             (let R (need 2)
@@ -335,10 +335,10 @@
                   (push (if (bit? 1 I) R (cdr R)) L) )
                (and
                   (mapcan z7-2-create (car R))
-                  (find 
-                     '((A) 
+                  (find
+                     '((A)
                         (find '((B) (z7-2-seek B A)) (cadr R)) )
-                     @ ) 
+                     @ )
                   (inc 'C) ) ) ) )
       C ) )
 (test 3 (z7-2 "data/7-test-2.txt"))
@@ -347,7 +347,7 @@
 # --- Day 8: Two-Factor Authentication ---
 (de z8-row (Lst R N)
    (let L (get Lst (inc R))
-      (do N 
+      (do N
          (rot L) ) ) )
 (de z8-column (Lst C N)
    (let Col (mapcar '((L) (get L (inc C))) Lst)
@@ -357,7 +357,7 @@
          '((A B) (set (nth A (inc C)) B))
          Lst
          Col ) ) )
-(de z8-create (R C) 
+(de z8-create (R C)
    (make
       (do R
          (link (need C 0)) ) ) )
@@ -417,10 +417,10 @@
       (set L B)
       (T (>= I N)) ) )
 (de z9-2 (F)
-   (let 
+   (let
       (Len 0
          Pos 1
-         Lst 
+         Lst
          (need (in F (length (line T))) 1) )
       (in F
          (until (eof)
@@ -483,7 +483,7 @@
 (de z10-worker (Lst)
    (ifn (assoc (car Lst) R)
       (push 'R Lst)
-      (let 
+      (let
          (L (sort (list (cadr @) (cadr Lst)))
             A (cdr (assoc (car Lst) D)) )
          (push 'Fin (cons (car Lst) L))
@@ -555,7 +555,7 @@
 # --- Day 13: A Maze of Twisty Little Cubicles ---
 (de z13-space (X Y N) # T - space, NIL - wall
    (not
-      (bit? 
+      (bit?
          1
          (cnt
             '((D) (= "1" D))
@@ -577,17 +577,17 @@
                   (for C X
                      (link (z13-space C R N)) ) ) ) ) ) ) )
 (de z13-1 (X Y N)
-   (let 
+   (let
       (Path NIL
          Best NIL
          Goal NIL
          Lst (z13-floor X Y N)
-         Grid (grid (length Lst) (length (car Lst))) )
+         Grid (simul~grid (length Lst) (length (car Lst))) )
       (mapc
          '((G)
-            (mapc 
-               '((This) 
-                  (=: visit NIL) (=: V NIL)) 
+            (mapc
+               '((This)
+                  (=: visit NIL) (=: V NIL))
                G ) )
          Grid )
       (mapc
@@ -604,7 +604,7 @@
                G
                L ) )
          Grid
-         Lst ) 
+         Lst )
       (setq Goal (car (nth Grid Y X)))
       (with (caar Grid)
          (recur (This Path)
@@ -614,10 +614,10 @@
                   (unless (and Best (>= (length Path) (length Best)))
                      (setq Best Path) )
                   (=: visit T)
-                  (recurse (west This) Path)
-                  (recurse (east This) Path)
-                  (recurse (south This) Path)
-                  (recurse (north This) Path)
+                  (recurse (simul~west This) Path)
+                  (recurse (simul~east This) Path)
+                  (recurse (simul~south This) Path)
+                  (recurse (simul~north This) Path)
                   (=: visit NIL) ) ) ) )
       (dec (length Best)) ) )
 (test 11 (z13-1 7 4 10))
@@ -635,7 +635,7 @@
 (de z14-three (Lst)
    (for (L Lst (cddr L) (cdr L))
       (T (apply = (head 3 L))
-         (cons (car L) 3) ) ) ) 
+         (cons (car L) 3) ) ) )
 (de z14-five (Lst)
    (make
       (for (L Lst (cddddr L) (cdr L))
@@ -644,12 +644,12 @@
             (link (cons (car L) 5)) ) ) ) )
 (de z14-store (Str)
    (cache
-      '(NIL) 
+      '(NIL)
       Str
       (let Lst
          (chop
             (pack
-               (mapcar 
+               (mapcar
                   '((B) (pad 2 (hex B)))
                   (z14-md5 Str) ) ) )
          (cons (z14-three Lst) (z14-five Lst)) ) ) )
@@ -662,7 +662,7 @@
                   (car
                      (rassoc 3 (z14-store (pack Str (inc 'N)))) ) )
                (for (I (inc N) (>= (+ 1000 N) I) (inc I))
-                  (T (member (cons @@ 5) (z14-store (pack Str I))) 
+                  (T (member (cons @@ 5) (z14-store (pack Str I)))
                      T ) ) ) ) )
       N ) )
 (test 16106 (z14-1 "zpqevtbw"))
@@ -687,7 +687,7 @@
       '(NIL)
       N
       (let Lst (chop (z14-2016 (pack Str N)))
-         (cons (z14-three Lst) (z14-five Lst)) ) ) ) 
+         (cons (z14-three Lst) (z14-five Lst)) ) ) )
 (de z14-2 (Str)
    (let N 5460
       (do 64
@@ -743,7 +743,7 @@
                      (from "at position")
                      (link (read)) ) )
                (line) ) ) )
-      (z15-chinrem 
+      (z15-chinrem
          (mapcar '((L) (get L 2)) D)
          (mapcar
             '((L)
@@ -793,7 +793,7 @@
       (Path NIL
          Best NIL
          Goal 'd1
-         Grid (grid 4 4)
+         Grid (simul~grid 4 4)
          Door "b" )
       (with 'a4
          (recur (This Path Dir Door)
@@ -803,10 +803,10 @@
                   (unless (and Best (>= (length Path) (length Best)))
                      (setq Best Path) )
                   (let L (head 4 (chop (z17-md5 (pack Str Path))))
-                     (recurse (west This) Path "L" (caddr L))
-                     (recurse (east This) Path "R" (cadddr L))
-                     (recurse (south This) Path "D" (cadr L))
-                     (recurse (north This) Path "U" (car L)) ) ) ) ) )
+                     (recurse (simul~west This) Path "L" (caddr L))
+                     (recurse (simul~east This) Path "R" (cadddr L))
+                     (recurse (simul~south This) Path "D" (cadr L))
+                     (recurse (simul~north This) Path "U" (car L)) ) ) ) ) )
       (pack (cdr Best)) ) )
 (test "DDRRRD" (z17-1 "ihgpwlah"))
 (test "DDUDRLRRUDRD" (z17-1 "kglvqrro"))
@@ -818,7 +818,7 @@
       (Path NIL
          Best NIL
          Goal 'd1
-         Grid (grid 4 4)
+         Grid (simul~grid 4 4)
          Door "b" )
       (with 'a4
          (recur (This Path Dir Door)
@@ -828,10 +828,10 @@
                   (unless (<= (length Path) (length Best))
                      (setq Best Path) )
                   (let L (head 4 (chop (z17-md5 (pack Str Path))))
-                     (recurse (west This) Path "L" (caddr L))
-                     (recurse (east This) Path "R" (cadddr L))
-                     (recurse (south This) Path "D" (cadr L))
-                     (recurse (north This) Path "U" (car L)) ) ) ) ) )
+                     (recurse (simul~west This) Path "L" (caddr L))
+                     (recurse (simul~east This) Path "R" (cadddr L))
+                     (recurse (simul~south This) Path "D" (cadr L))
+                     (recurse (simul~north This) Path "U" (car L)) ) ) ) ) )
       (length (cdr Best)) ) )
 (test 370 (z17-2 "ihgpwlah"))
 (test 492 (z17-2 "kglvqrro"))
@@ -878,7 +878,7 @@
       (while (<= P N)
          (setq P (* 2 P))
          (+ (- (* 2 N) P) 1) ) ) )
-(test 1834903 (z19-1 3014603)) 
+(test 1834903 (z19-1 3014603))
 
 (de z19-2 (N)
    (let I 1
@@ -889,7 +889,7 @@
 
 # --- Day 20: Firewall Rules ---
 (de z20-1 (F)
-   (let 
+   (let
       (Lst
          (sort
             (in F
@@ -926,7 +926,7 @@
          (setq I (max I (inc (cadr L)))) )
       (inc 'S (- (** 2 32) I)) ) )
 (test 104 (z20-2 "data/20.txt"))
-      
+
 # --- Day 21: Scrambled Letters and Hash ---
 (de z21-swap (A B Lst) # zero based
    (let Lst (copy Lst)
@@ -965,7 +965,7 @@
       (z21-right Idx Lst) ) )
 (de z21-rotate-2 (C Lst)
    (for N (+ 2 (length Lst))
-      (T (= Lst (z21-rotate C (setq @@ (z21-left N Lst)))) 
+      (T (= Lst (z21-rotate C (setq @@ (z21-left N Lst))))
          @@ ) ) )
 (test
    '("b" "c" "d" "e" "f" "a")
@@ -1014,7 +1014,7 @@
                      (cond
                         ((= "left" (cadr L))
                            (z21-left (get L 3) Lst) )
-                        ((= "right" (cadr L)) 
+                        ((= "right" (cadr L))
                            (z21-right (get L 3) Lst) )
                         (T (z21-rotate (last L) Lst)) ) )
                   ("move" (z21-move (get L 3) (get L 6) Lst)) ) ) ) ) )
@@ -1043,7 +1043,7 @@
                      ((= "right" (cadr L))
                         (z21-left (get L 3) Lst) )
                      (T (z21-rotate-2 (last L) Lst)) ) )
-               ("move" (z21-move (get L 6) (get L 3) Lst)) ) ) )  
+               ("move" (z21-move (get L 6) (get L 3) Lst)) ) ) )
       (pack Lst) ) )
 (test "gahedfcb" (z21-2 "data/21.txt" (chop "fbgdceah")))
 
