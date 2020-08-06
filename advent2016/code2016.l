@@ -1,8 +1,11 @@
-`(== 64 64)
 (load "@lib/simul.l")
-(scl 0) # against md5
+# XXX, legacy
+#(scl 0) # against md5
+
+(prin "2016:")
 
 # --- Day 1: No Time for a Taxicab ---
+(prin ".")(flush)
 (de right? (Lst)
    (= "R" (car Lst)) )
 (de z1-1 (F)
@@ -31,7 +34,6 @@
 (test 5 (z1-1 "data/1-test-1.txt"))
 (test 2 (z1-1 "data/1-test-2.txt"))
 (test 12 (z1-1 "data/1-test-3.txt"))
-(test 231 (z1-1 "data/1.txt"))
 
 (de _pushz1 ("L" D)
    (unless (member D (val "L")) (push "L" D)) )
@@ -70,9 +72,9 @@
                         (throw 'Found) ) ) ) ) ) )
       (+ (abs (car XY)) (abs (cadr XY))) ) )
 (test 4 (z1-2 "data/1-test-4.txt"))
-(test 147 (z1-2 "data/1.txt"))
 
 # --- Day 2: Bathroom Security ---
+(prin ".")(flush)
 (de z2-1 (F)
    (let (G (simul~grid 3 3)  Z 0  R)
       (for Col G
@@ -93,7 +95,6 @@
                (queue 'R (: Z2)) ) ) )
       (format R) ) )
 (test 1985 (z2-1 "data/2-test-1.txt"))
-(test 36629 1985 (z2-1 "data/2.txt"))
 
 (de z2-2 (F Lst)
    (let (Grid (simul~grid 5 5)  R)
@@ -136,18 +137,9 @@
          (5 6 7 8 9)
          (0 A B C 0)
          (0 0 D 0 0) ) ) )
-(test
-   "99C3D"
-   (z2-2
-      "data/2.txt"
-      (quote
-         (0 0 1 0 0)
-         (0 2 3 4 0)
-         (5 6 7 8 9)
-         (0 A B C 0)
-         (0 0 D 0 0) ) ) )
 
 # --- Day 3: Squares With Three Sides ---
+(prin ".")(flush)
 (de z3-1 (F)
    (let C 0
       (in F
@@ -179,9 +171,9 @@
             (inc 'R) ) )
       R ) )
 (test 6 (z3-2 "data/3-test-1.txt"))
-(test 1544 (z3-2 "data/3.txt"))
 
 # --- Day 4: Security Through Obscurity ---
+(prin ".")(flush)
 (de z4-1 (F)
    (let Lst
       (make
@@ -211,7 +203,6 @@
                   (format (cadr L)) ) ) )
          Lst ) ) )
 (test 1514 (z4-1 "data/4-test-1.txt"))
-(test 137896 (z4-1 "data/4.txt"))
 
 (setq *z4-Letters (apply circ (mapcar char (range 97 122))))
 (de z4-caesar (Str Key)
@@ -239,6 +230,7 @@
 (test 501 (z4-2 "data/4.txt"))
 
 # --- Day 5: How About a Nice Game of Chess? ---
+(prin ".")(flush)
 (de z5-md5 (Str)
    (native
       "libcrypto.so"
@@ -278,6 +270,7 @@
 #(test "437e60fc" (z5-22 "wtnhxymk"))
 
 # --- Day 6: Signals and Noise ---
+(prin ".")(flush)
 (de z6-1 (F Fun N)
    (let Lst (need N)
       (in F
@@ -287,11 +280,10 @@
       (pack
          (mapcar '((L) (car (Fun cdr L))) Lst) ) ) )
 (test "easter" (z6-1 "data/6-test-1.txt" maxi 6))
-(test "ikerpcty" (z6-1 "data/6.txt" maxi 8))
 (test "advent" (z6-1 "data/6-test-1.txt" mini 6))
-(test "uwpfaqrq" (z6-1 "data/6.txt" mini 8))
 
 # --- Day 7: Internet Protocol Version 7 ---
+(prin ".")(flush)
 (de z7-1-check (Lst)
    (for (L Lst (cdddr L) (cdr L))
       (T
@@ -315,7 +307,6 @@
                   (inc 'C) ) ) ) )
       C ) )
 (test 2 (z7-1 "data/7-test-1.txt"))
-(test 110 (z7-1 "data/7.txt"))
 
 (de z7-2-create (Lst)
    (make
@@ -342,9 +333,9 @@
                   (inc 'C) ) ) ) )
       C ) )
 (test 3 (z7-2 "data/7-test-2.txt"))
-(test 242 (z7-2 "data/7.txt"))
 
 # --- Day 8: Two-Factor Authentication ---
+(prin ".")(flush)
 (de z8-row (Lst R N)
    (let L (get Lst (inc R))
       (do N
@@ -390,12 +381,11 @@
                   ("row"
                      (z8-row Lst (format (caddr L)) (format (cadddr L))))
                   (T (z8-column Lst (format (caddr L)) (format (cadddr L)))) ) ) ) ) )
-   #(z8-print Lst)
    (z8-count Lst) )
 (test 6 (z8-1 "data/8-test-1.txt" (z8-create 3 7)))
-(test 110 (z8-1 "data/8.txt" (z8-create 6 50)))
 
 # --- Day 9: Explosives in Cyberspace ---
+(prin ".")(flush)
 (de z9-1 (F)
    (let Len 0
       (in F
@@ -435,9 +425,9 @@
                      (z9-set Lst Pos A (* Mult B)) ) ) ) ) )
       Len ) )
 (test 20 (z9-2 "data/9-test-2.txt"))
-(test 11451628995 (z9-2 "data/9.txt"))
 
 # --- Day 10: Balance Bots ---
+(prin ".")(flush)
 (de z10-bots (F)
    (in F
       (make
@@ -509,8 +499,9 @@
 (test (116 23903) (z10-1-2 "data/10.txt"))
 
 # --- Day 11: Radioisotope Thermoelectric Generators ---
-
+(prin ".")(flush)
 # --- Day 12: Leonardo's Monorail ---
+(prin ".")(flush)
 (de z12-parse (F)
    (make
       (in F
@@ -548,11 +539,9 @@
                      (inc 'I (if (gt0 N) (caddr Op) 1)) ) ) ) ) )
       (cadr (assoc 'a R)) ) )
 (test 42 (z12-1 (z12-parse "data/12-test-1.txt")))
-(test 318117 (z12-1 (z12-parse "data/12.txt")))
-# part 2
-(test 9227771 (z12-1 (z12-parse "data/12.txt") '((c 1))))
 
 # --- Day 13: A Maze of Twisty Little Cubicles ---
+(prin ".")(flush)
 (de z13-space (X Y N) # T - space, NIL - wall
    (not
       (bit?
@@ -621,9 +610,9 @@
                   (=: visit NIL) ) ) ) )
       (dec (length Best)) ) )
 (test 11 (z13-1 7 4 10))
-(test 90 (z13-1 31 39 1352))
 
 # --- Day 14: One-Time Pad ---
+(prin ".")(flush)
 (de z14-md5 (Str)
    (native
       "libcrypto.so"
@@ -705,6 +694,7 @@
 
 # --- Day 15: Timing is Everything ---
 # http://rosettacode.org/wiki/Chinese_remainder_theorem#PicoLisp
+(prin ".")(flush)
 (de z15-modinv (A B)
    (let (B0 B  X0 0  X1 1  Q 0  T1 0)
       (while (< 1 A)
@@ -752,9 +742,9 @@
                   (cadr L) ) )
             D ) ) ) )
 (test 400589 (z15-1 "data/15.txt"))
-(test 3045959 (z15-1 "data/15-2.txt"))
 
 # --- Day 16: Dragon Checksum ---
+(prin ".")(flush)
 (de z16-flip (Lst) # flip and reverse
    (make
       (for L Lst
@@ -773,9 +763,9 @@
             (conc Str (cons 0) Lst) ) )
       (pack (z16-cksum (head N Str))) ) )
 (test "01100" (z16-1 "10000" 20))
-(test "11101010111100010" (z16-1 "10111011111001111" 272))
 
 # --- Day 17: Two Steps Forward ---
+(prin ".")(flush)
 (de z17-md5 (Str)
    (lowc
       (pack
@@ -809,9 +799,6 @@
                      (recurse (simul~north This) Path "U" (car L)) ) ) ) ) )
       (pack (cdr Best)) ) )
 (test "DDRRRD" (z17-1 "ihgpwlah"))
-(test "DDUDRLRRUDRD" (z17-1 "kglvqrro"))
-(test "DRURDRUDDLLDLUURRDULRLDUUDDDRR" (z17-1 "ulqzkmiv"))
-(test "RLRDRDUDDR" (z17-1 "rrrbmfta"))
 
 (de z17-2 (Str)
    (let
@@ -834,11 +821,9 @@
                      (recurse (simul~north This) Path "U" (car L)) ) ) ) ) )
       (length (cdr Best)) ) )
 (test 370 (z17-2 "ihgpwlah"))
-(test 492 (z17-2 "kglvqrro"))
-(test 830 (z17-2 "ulqzkmiv"))
-(test 420 (z17-2 "rrrbmfta"))
 
 # --- Day 18: Like a Rogue ---
+(prin ".")(flush)
 (de z18-safe (L C R)
    (default L 0  R 0)
    (or
@@ -868,11 +853,10 @@
                               (get @@ N)
                               (get @@ (inc N)) ) ) ) ) ) ) ) ) ) )
 (test 38 (z18-1 "data/18-test-1.txt" 10))
-(test 2016 (z18-1 "data/18.txt" 40))
-#(test 19998750 (z18-1 "data/18.txt" 400000)) # ~600MB heap
 
 # --- Day 19: An Elephant Named Joseph ---
 # http://rosettacode.org/wiki/Josephus_problem#PicoLisp
+(prin ".")(flush)
 (de z19-1 (N)
    (let P 1
       (while (<= P N)
@@ -888,6 +872,7 @@
 (test 1420280 (z19-2 3014603))
 
 # --- Day 20: Firewall Rules ---
+(prin ".")(flush)
 (de z20-1 (F)
    (let
       (Lst
@@ -905,7 +890,6 @@
             (<= R (cadr L))
             (setq R (inc (cadr L))) ) ) ) )
 (test 3 (z20-1 "data/20-test-1.txt"))
-(test 17348574 (z20-1 "data/20.txt"))
 
 (de z20-2 (F)
    (let
@@ -928,6 +912,7 @@
 (test 104 (z20-2 "data/20.txt"))
 
 # --- Day 21: Scrambled Letters and Hash ---
+(prin ".")(flush)
 (de z21-swap (A B Lst) # zero based
    (let Lst (copy Lst)
       (if (num? A)
@@ -970,34 +955,12 @@
 (test
    '("b" "c" "d" "e" "f" "a")
    (z21-rotate-2 "b" (chop "abcdef")) )
-(test
-   '("d" "e" "f" "a" "b" "c")
-   (z21-rotate-2 "f" (chop "abcdef")) )
 (test '(e c a b d) (z21-rotate 'b '(a b d e c)))
-(test '(d e c a b) (z21-rotate 'd '(e c a b d)))
-(test
-   '("d" "e" "c" "a" "b")
-   (z21-rotate "d" '("e" "c" "a" "b" "d")) )
 (test (range 1 4) (z21-right 0 (range 1 4)))
-(test '(d a b c) (z21-right 1 '(a b c d)))
-(test '(b c d a) (z21-right 3 '(a b c d)))
-(test '(d e c a b) (z21-right 6 '(e c a b d)))
 (test '(b c d e a) (z21-left 1 '(a b c d e)))
-(test '(c d e a b) (z21-left 2 '(a b c d e)))
-(test (range 1 4) (z21-left 0 (range 1 4)))
 (test (3 2 1 4) (z21-reverse 0 2 (range 1 4)))
-(test (1 2 4 3) (z21-reverse 2 3 (range 1 4)))
-(test (2 1 3 4) (z21-reverse 0 1 (range 1 4)))
-(test (4 3 2 1) (z21-reverse 0 3 (range 1 4)))
-(test (4 3 2 1 5 6 7) (z21-reverse 0 3 (range 1 7)))
-(test (1 4 3 2 5 6) (z21-reverse 1 3 (range 1 6)))
 (test '(a d c b e) (z21-swap 1 3 '(a b c d e)))
-(test '(d b c a e) (z21-swap 3 0 '(a b c d e)))
-(test '(c z z z a) (z21-swap 'a 'c '(a z z z c)))
-(test '(y x) (z21-swap 'x 'y '(x y)))
 (test '(b d e a c) (z21-move 1 4 '(b c d e a)))
-(test '(a b d e c) (z21-move 3 0 '(b d e a c)))
-(test (range 1 4) (z21-move 0 0 (range 1 4)))
 
 (de z21-1 (F Lst)
    (in F
@@ -1020,7 +983,6 @@
                   ("move" (z21-move (get L 3) (get L 6) Lst)) ) ) ) ) )
    (pack Lst) )
 (test "decab" (z21-1 "data/21-test-1.txt" (chop "abcde")))
-(test "gbhcefad" (z21-1 "data/21.txt" (chop "abcdefgh")))
 
 (de z21-2 (F Lst)
    (let Op
@@ -1048,11 +1010,12 @@
 (test "gahedfcb" (z21-2 "data/21.txt" (chop "fbgdceah")))
 
 # --- Day 22: Grid Computing ---
-
+(prin ".")(flush)
 # --- Day 23: Safe Cracking ---
-
+(prin ".")(flush)
 # --- Day 24: Air Duct Spelunking ---
-
+(prin ".")(flush)
 # --- Day 25: Clock Signal ---
+(prin ".")(flush)
 
-(msg 'OK-AoC16)
+(msg 'OK)

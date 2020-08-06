@@ -9,4 +9,6 @@ $ ulimit -s
 16384
 ```
 
+You will need openssl (libcrypto).
+
 Happy coding.
