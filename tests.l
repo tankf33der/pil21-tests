@@ -2,7 +2,6 @@
 (seed (in "/dev/urandom" (rd 8)))
 (prinl "check ulimit or crash!")
 
-#{
 (load "math.l")
 (load "bitwise.l")
 (load "montgomery.l")
@@ -37,6 +36,8 @@
 (load "pilog-rosetta.l")
 (cd "hash")
 (load "test.l")
+
+#{
 (prinl "cryptography will take some time:")
 (prinl "...")
 (cd "../crypto")
@@ -91,5 +92,6 @@
 (load "code2018.l")
 (prinl "\^\^\^\^ advent finished!")
 (prinl "======")
+
 (msg 'All-OK)
 (bye)
