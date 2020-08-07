@@ -973,7 +973,7 @@
 (de removeprops (This)
    (=: points)
    (=: piece) )
-(de move (This Goal)
+(de a15-move (This Goal)
    (put Goal 'points (: points))
    (put Goal 'piece  (: piece))
    (removeprops This) )
@@ -1084,7 +1084,7 @@
                         (let Adjs (enemies-adj Enem)
                            (setq NextMove (select-move My Adjs))
                            (when NextMove
-                              (move (car L) NextMove)
+                              (a15-move (car L) NextMove)
                               # if moved, update position for attack next
                               (set
                                  L NextMove
