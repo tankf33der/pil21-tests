@@ -4,7 +4,7 @@
 
 # --- Day 1: Inverse Captcha ---
 (prin ".")(flush)
-(de f1-1 (Lst)
+(de i1-1 (Lst)
    (let Lst (append Lst (cons (car Lst)))
       (sum
          prog
@@ -14,9 +14,9 @@
                   (= (car L) (cadr L))
                   (cons (car L)) ) )
             Lst ) ) ) )
-(test 3 (f1-1 (1 1 2 2)))
+(test 3 (i1-1 (1 1 2 2)))
 
-(de f1-2 (Lst)
+(de i1-2 (Lst)
    (let N (inc (/ (length Lst) 2))
       (sum
          prog
@@ -27,19 +27,19 @@
                   (cons (car A)) ) )
             Lst
             (apply circ Lst) ) ) ) )
-(test 6  (f1-2 (1 2 1 2)))
+(test 6  (i1-2 (1 2 1 2)))
 
 # --- Day 2: Corruption Checksum ---
 (prin ".")(flush)
-(de f2-1 (Lst)
+(de i2-1 (Lst)
    (sum
       '((L) (- (apply max L) (apply min L)))
       Lst ) )
 (test
    18
-   (f2-1 '((5 1 9 5) (7 5 3) (2 4 6 8))) )
+   (i2-1 '((5 1 9 5) (7 5 3) (2 4 6 8))) )
 
-(de f2-2 (Lst)
+(de i2-2 (Lst)
    (sum
       prog
       (mapcan
@@ -56,7 +56,7 @@
 (in "data/2.txt"
    (test
       282
-      (f2-2
+      (i2-2
          (make
             (do 16
                (link (flip (sort (make (do 16 (link (read))))))) ) ) ) ) )
@@ -73,7 +73,7 @@
 #    (515, (- 265225 265149)) = (515, 439)
 # o) calculate steps: (+ (- 515 258) (- 439 258)) = 438
 
-(de f3-2 NIL
+(de i3-2 NIL
    (let
    (G (simul~grid 9 9)
          This (get G 5 5)
@@ -96,11 +96,11 @@
             (with ((cadr Dir) This) (: val))
             (pop 'Dir) ) )
       A ) )
-(test 266330 (f3-2))
+(test 266330 (i3-2))
 
 # --- Day 4: High-Entropy Passphrases ---
 (prin ".")(flush)
-(de f4-1 (F)
+(de i4-1 (F)
    (let C 0
       (in F
          (until (eof)
@@ -112,9 +112,9 @@
                   (inc 'C)
                   (char) ) ) ) )
       C ) )
-(test 451 (f4-1 "data/4.txt"))
+(test 451 (i4-1 "data/4.txt"))
 
-(de f4-2 (F)
+(de i4-2 (F)
    (let C 0
       (in F
          (until (eof)
@@ -127,12 +127,12 @@
                   (inc 'C)
                   (char) ) ) ) )
       C ) )
-(test 223 (f4-2 "data/4.txt"))
+(test 223 (i4-2 "data/4.txt"))
 
 
 # --- Day 5: A Maze of Twisty Trampolines, All Alike ---
 (prin ".")(flush)
-(de f5-1 (L)
+(de i5-1 (L)
    (let (S 0  I 1  Len (length L))
       (while (>= Len I)
          (inc 'S)
@@ -141,9 +141,9 @@
                L
                (swap 'I (+ I (get L I))) ) ) )
       S ) )
-(test 5 (f5-1 (0 3 0 1 -3)))
+(test 5 (i5-1 (0 3 0 1 -3)))
 
-(de f5-2 (L)
+(de i5-2 (L)
    (let (S 0  I 1  Len (length L))
       (while (>= Len I)
          (let @@ (get L I)
@@ -151,11 +151,11 @@
             ((if (>= @@ 3) dec inc)
                (nth L (swap 'I (+ I @@))) ) ) )
       S ) )
-(test 10 (f5-2 (0 3 0 1 -3)))
+(test 10 (i5-2 (0 3 0 1 -3)))
 
 # --- Day 6: Memory Reallocation ---
 (prin ".")(flush)
-(de f6-1 (Lst)
+(de i6-1 (Lst)
    (let (S 0  Len (length Lst)  R)
       (until (num? (accu 'R (copy Lst) 1))
          (let
@@ -170,9 +170,9 @@
                      Lst
                      (inc (% (swap 'Idx (inc Idx)) Len)) ) ) ) ) )
       S ) )
-(test 5 (f6-1 (0 2 7 0)))
+(test 5 (i6-1 (0 2 7 0)))
 
-(de f6-2 (Lst)
+(de i6-2 (Lst)
    (let (S 0  Len (length Lst)  R)
       (until (= 3 (accu 'R (copy Lst) 1))
          (let
@@ -190,12 +190,12 @@
 (test
    8038
    (-
-      (f6-2 (4 10 4 1 8 4 9 14 5 1 14 15 0 15 3 5))
-      (f6-1 (4 10 4 1 8 4 9 14 5 1 14 15 0 15 3 5))) )
+      (i6-2 (4 10 4 1 8 4 9 14 5 1 14 15 0 15 3 5))
+      (i6-1 (4 10 4 1 8 4 9 14 5 1 14 15 0 15 3 5))) )
 
 # --- Day 7: Recursive Circus ---
 (prin ".")(flush)
-(de f7-1 (F)
+(de i7-1 (F)
    (let R NIL
       (in F
          (until (eof)
@@ -210,7 +210,7 @@
       R ) )
 (test
    '(tknk . 1)
-   (rassoc 1 (f7-1 "data/7-test.txt")) )
+   (rassoc 1 (fi-1 "data/7-test.txt")) )
 
 (setq
    F7D
@@ -235,7 +235,7 @@
                   (f7-2-sum (caddr A))
                   (f7-2-sum (cdddr A)) ) ) ) )
       (T (+ (f7-2-sum (car L)) (f7-2-sum (cdr L)))) ) )
-(de f7-2 NIL
+(de i7-2 NIL
    (let (D NIL  R NIL  B 'cqmvs  S 0)
       (loop
          (mapc
@@ -254,11 +254,11 @@
       (cons (head 2 @@) S) ) )
 (test
    '(("vmttcwe" 2318) . -8)
-   (f7-2) )
+   (i7-2) )
 
 # --- Day 8: I Heard You Like Registers ---
 (prin ".")(flush)
-(de f8-1-2 (F) # both parts
+(de i8-1-2 (F) # both parts
    (let (Dir NIL  M 0)
       (in F
          (until (eof)
@@ -288,11 +288,11 @@
                   (setq M @@) )
                (line) ) ) )
       (cons (car (flip (by cadr sort Dir))) M) ) )
-(test '((a 1) . 10) (f8-1-2 "data/8-test.txt"))
+(test '((a 1) . 10) (i8-1-2 "data/8-test.txt"))
 
 # --- Day 9: Stream Processing ---
 (prin ".")(flush)
-(de f9-1-2 (F) # both parts
+(de i9-1-2 (F) # both parts
    (let (S 0  C 0  B 0  G NIL)
       (in F
          (until (eof)
@@ -308,12 +308,12 @@
                ("!" (and G (char)))
                (T (and G (inc 'C))) ) ) )
       (cons S C) ) )
-(test (1 . 0) (f9-1-2 "data/9-test-1.txt"))
-(test (6 . 0) (f9-1-2 "data/9-test-2.txt"))
+(test (1 . 0) (i9-1-2 "data/9-test-1.txt"))
+(test (6 . 0) (i9-1-2 "data/9-test-2.txt"))
 
 # --- Day 10: Knot Hash ---
 (prin ".")(flush)
-(de f10-1 (N Lens)
+(de i10-1 (N Lens)
    (let
       (C 1
          S 0
@@ -331,9 +331,9 @@
                (flip (head N (nth Lst Y)))
                (nth Lst Y) ) ) )
       (* (car Lst) (cadr Lst)) ) )
-(test 12 (f10-1 4 (3 4 1 5)))
+(test 12 (i10-1 4 (3 4 1 5)))
 
-(de f10-2 (Lens)
+(de i10-2 (Lens)
    (let
       (C 1
          S 0
@@ -361,15 +361,15 @@
                      (link (apply x| (cut 16 'Lst))) ) ) ) ) ) ) )
 (test
    "a2582a3a0e66e6e86e3812dcb672a272"
-   (f10-2) )
+   (i10-2) )
 (test
    "33efeb34ea91902bb2f59c9920caa6cd"
-   (f10-2 (mapcar char (chop "AoC 2017"))) )
+   (i10-2 (mapcar char (chop "AoC 2017"))) )
 
 # --- Day 11: Hex Ed ---
 # https://www.redblobgames.com/grids/hexagons/
 (prin ".")(flush)
-(de f11-1-2 (F)
+(de i11-1-2 (F)
    (let (B (list 0 0) M 0)
       (in F
          (until (eof)
@@ -385,7 +385,7 @@
                (setq M @@) )
             (char) ) )
       (cons (apply max B) M) ) )
-(test (743 . 1493) (f11-1-2 "data/11.txt"))
+(test (743 . 1493) (i11-1-2 "data/11.txt"))
 
 # --- Day 12: Digital Plumber ---
 (prin ".")(flush)
@@ -492,7 +492,7 @@
    (make
       (for (L (chop H) L (cddr L))
          (link (hex (pack (car L) (cadr L)))) ) ) )
-(de f14-1 (Str)
+(de i14-1 (Str)
    (let S 0
       (for (I 0 (>= 127 I) (inc I))
          (let Str
@@ -501,9 +501,9 @@
                (f14-hex2L
                   (f10-2 (mapcar char (chop (pack Str "-" I)))) ) )
             (inc 'S (cnt =1 Str)) ) ) ) )
-(test 8108 (f14-1 "flqrgnkx"))
+(test 8108 (i14-1 "flqrgnkx"))
 
-(de f14-2 (Str)
+(de i14-2 (Str)
    (let
       (Lst
          (make
@@ -535,11 +535,11 @@
                      (recurse (simul~south This))
                      (recurse (simul~north This)) ) ) ) ) )
       C ) )
-(test 1242 (f14-2 "flqrgnkx"))
+(test 1242 (i14-2 "flqrgnkx"))
 
 # --- Day 15: Dueling Generators ---
 (prin ".")(flush)
-(de f15-1 (A B)
+(de i15-1 (A B)
    (let C 0
       (do 40000000
          (and
@@ -552,9 +552,9 @@
                   `(hex "FFFF") ) )
             (inc 'C) ) )
       C ) )
-(test 588 (f15-1 65 8921))
+(test 588 (i15-1 65 8921))
 
-(de f15-2 (A B)
+(de i15-2 (A B)
    (let C 0
       (do 5000000
          (until (=0 (% (setq A (% (* A 16807) 2147483647)) 4)))
@@ -563,11 +563,11 @@
             (= (& A `(hex "FFFF")) (& B `(hex "FFFF")))
             (inc 'C) ) )
       C ) )
-(test 309 (f15-2 65 8921))
+(test 309 (i15-2 65 8921))
 
 # --- Day 16: Permutation Promenade ---
 (prin ".")(flush)
-(de f16-1 (F)
+(de i16-1 (F)
    (let L '(a b c d e f g h i j k l m n o p)
       (in F
          (until (eof)
@@ -590,9 +590,9 @@
                         (get L @) ) ) ) )
             (char) ) )
       (intern (pack L)) ) )
-(test 'iabmedjhclofgknp (f16-1 "data/16.txt"))
+(test 'iabmedjhclofgknp (i16-1 "data/16.txt"))
 
-(de f16-2 (F)
+(de i16-2 (F)
    (let
       (L '(a b c d e f g h i j k l m n o p)
          Dir
@@ -628,22 +628,22 @@
                         (nth L (index (caddr D) L))
                         (get L @) ) ) ) ) ) )
       (intern (pack L)) ) )
-(test 'oildcmfeajhbpngk (f16-2 "data/16.txt"))
+(test 'oildcmfeajhbpngk (i16-2 "data/16.txt"))
 
 # --- Day 17: Spinlock ---
 (prin ".")(flush)
-(de f17-1 (N)
+(de i17-1 (N)
    (let (C 1  L (list 0))
       (for X 2017
          (setq
             C (inc (% (dec (+ C N)) X))
             L (insert (inc 'C) L X) ) )
       (get L (inc C)) ) )
-(test 638 (f17-1 3))
+(test 638 (i17-1 3))
 
 # --- Day 18: Duet ---
 (prin ".")(flush)
-(de f18-1 (F)
+(de i18-1 (F)
    (let
       (P
          (make
@@ -696,7 +696,7 @@
                (inc 'I (caddr L))
                (inc 'I) ) ) )
       (or (= "jgz" (car L)) (inc 'I)) ) )
-(test 4 (f18-1 "data/18-test.txt"))
+(test 4 (i18-1 "data/18-test.txt"))
 
 # part 2
 (de f18-generic (L)
@@ -754,7 +754,7 @@
          (while (and (> PL I) (f18-exec-child (get Prg I)))
             (yield 'next) )
          NIL ) ) )
-(de f18-2 (F) # rewrite me without coroutines
+(de i18-2 (F) # rewrite me without coroutines
    (let
       (Prg
          (make
@@ -784,7 +784,7 @@
             ("rcv" (yield (fifo 'CB) 'child)) ) )
       C ) )
 # XXX, co
-#(test 6858 (f18-2 "data/18.txt"))
+#(test 6858 (i18-2 "data/18.txt"))
 
 # --- Day 19: A Series of Tubes ---
 (prin ".")(flush)
@@ -792,7 +792,7 @@
    (if (member D (car Cross))
       (cadr Cross)
       (car Cross) ) )
-(de f19-1-2 (F)
+(de i19-1-2 (F)
    (let
       (Lst (make (in F (until (eof) (link (line)))))
          Grid (simul~grid (length Lst) (length (car Lst)))
@@ -824,7 +824,7 @@
          (cons (pack R) Steps) ) ) )
 (test
    '("ABCDEF" . 38)
-   (f19-1-2 "data/19-test.txt") )
+   (i19-1-2 "data/19-test.txt") )
 
 # --- Day 20: Particle Swarm ---
 (prin ".")(flush)
@@ -840,7 +840,7 @@
          (lst? L) # for part2
          (f20-1-add (caddr L) (cadddr L))
          (f20-1-add (cadr L) (caddr L)) ) ) )
-(de f20-1 (F)
+(de i20-1 (F)
    (let
       (I -1
          Lst
@@ -862,7 +862,7 @@
       (do 512 # long term
          (f20-1-tick Lst) )
       (car (mini f20-1-sum Lst)) ) )
-(test 0 (f20-1 "data/20-test.txt"))
+(test 0 (i20-1 "data/20-test.txt"))
 
 # part 2
 (de f20-2-accuL (V K N)
@@ -878,7 +878,7 @@
          (and (lst? L) (f20-2-accuL 'R (cadr L) I)) )
       (for L R
          (and (cdadr L) (f20-2-zero Lst (cadr L))) ) ) )
-(de f20-2 (F)
+(de i20-2 (F)
    (let
       (I -1
          Lst
@@ -901,7 +901,7 @@
          (f20-1-tick Lst)
          (f20-2-collapse Lst) )
       (cnt lst? Lst) ) )
-(test 1 (f20-2 "data/20-test-2.txt"))
+(test 1 (i20-2 "data/20-test-2.txt"))
 
 # --- Day 21: Fractal Art ---
 (prin ".")(flush)
@@ -928,7 +928,7 @@
 (de f22-add ("Dst" Src)
    (inc "Dst" (car Src))
    (inc (cdr "Dst") (cadr Src)) )
-(de f22-1 (F)
+(de i22-1 (F)
    (let
       (Lst (make (in F (until (eof) (link (line)))))
          D NIL
@@ -954,14 +954,14 @@
                (idx 'D (copy XY) T)
                (setq Dir (f22-left Dir)) ) ) )
       C ) )
-(test 5348 (f22-1 "data/22.txt"))
+(test 5348 (i22-1 "data/22.txt"))
 
 # Legend:
 # 0 - clean
 # 1 - weakened
 # 2 - infected
 # 3 - Flagged
-(de f22-2 (F)
+(de i22-2 (F)
    (let
       (Lst (make (in F (until (eof) (link (line)))))
          D NIL
@@ -993,11 +993,11 @@
                   (setq Dir (f22-left Dir)) ) )
             (f22-add XY Dir) ) )
       C ) )
-(test 2512225 (f22-2 "data/22.txt"))
+(test 2512225 (i22-2 "data/22.txt"))
 
 # --- Day 23: Coprocessor Conflagration ---
 (prin ".")(flush)
-(de f23-1 (F)
+(de i23-1 (F)
    (let
       (P
          (make
@@ -1033,7 +1033,7 @@
             (inc 'I (caddr L))
             (inc 'I) ) ) )
    (or (= "jnz" (car L)) (inc 'I)) )
-(test 8281 (f23-1 "data/23.txt"))
+(test 8281 (i23-1 "data/23.txt"))
 
 (de f23-2-prime? (N)
    (and
@@ -1042,12 +1042,12 @@
          (for (D 3  T  (+ D 2))
             (T (> D S) N)
             (T (=0 (% N D)) NIL) ) ) ) )
-(de f23-2 (A B)
+(de i23-2 (A B)
    (cnt '((N) (not (f23-2-prime? N))) (range A B 17)) )
-(test 911 (f23-2 109300 126300))
+(test 911 (i23-2 109300 126300))
 
 # --- Day 24: Electromagnetic Moat ---
-(de f24-1 (Lst I)
+(de i24-1 (Lst I)
    (default I 0)
    (let S 0
       (for L Lst
@@ -1074,9 +1074,9 @@
                   (char)
                   (link (read)) ) )
             (line) ) ) ) )
-(test 31 (f24-1 (f24-file "data/24-test.txt")))
+(test 31 (i24-1 (f24-file "data/24-test.txt")))
 
-(de f24-2 (Lst I)
+(de i24-2 (Lst I)
    (default I 0)
    (let S (list 0 0)
       (for L Lst
@@ -1099,7 +1099,7 @@
                            (cdr BB) (+ (cadr @) A B) ) ) )
                      (setq S (max S BA BB)) ) ) ) )
       S ) )
-(test (4 19) (f24-2 (f24-file "data/24-test.txt")))
+(test (4 19) (i24-2 (f24-file "data/24-test.txt")))
 
 # --- Day 25: The Halting Problem ---
 (prin ".")(flush)
@@ -1139,7 +1139,7 @@
       C ) )
 (test 3 (f25-test-1))
 
-(de f25-1 (NIL)
+(de i25-1 (NIL)
    (let (D '((0 NIL) 0 NIL)  L (car D)  C 0)
       (do 12134527
          (state '(A)
@@ -1170,6 +1170,6 @@
       (for (L (car D) L (cddr L))
          (and (=1 (car L)) (inc 'C)) )
       C ) )
-(test 5593 (f25-1))
+(test 5593 (i25-1))
 
 (msg 'OK)

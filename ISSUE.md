@@ -122,7 +122,7 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
 ```
-adventof2017: f18-2 (coroutine)
+adventofcode: 2017, 2019: XXX, coroutines
 ```
 
 ```
@@ -132,3 +132,4 @@ add permrep.l (coroutine)
 ```
 add flood tests
 ```
+
