@@ -89,7 +89,7 @@
                         N ) ) ) )
             (line) ) ) ) )
 (de a3-1 (F N)
-   (let (Grid (grid N N)  Data (a3-data F))
+   (let (Grid (simul~grid N N)  Data (a3-data F))
       (for Col Grid
          (for This Col
             (=: A3-1 0) ) )
@@ -99,8 +99,8 @@
                (use (This)
                   (do (cadddr D)
                      (=: A3-1 (if (=0 (: A3-1)) 1 T))
-                     (setq This (north This)) ) )
-               (setq This (east This)) ) ) )
+                     (setq This (simul~north This)) ) )
+               (setq This (simul~east This)) ) ) )
       (cons
          (sum
             '((Col)
@@ -115,8 +115,8 @@
                            (use (This)
                               (do (cadddr D)
                                  (setq Over? (x| Over? (=1 (: A3-1))))
-                                 (setq This (north This)) ) )
-                           (setq This (east This)) ) )
+                                 (setq This (simul~north This)) ) )
+                           (setq This (simul~east This)) ) )
                      Over? ) )
                Data ) ) ) ) )
 # Both parts
@@ -1024,7 +1024,7 @@
                      (and
                         (= (: piece) A)
                         (cons (list This (: points) N)) ) ) )
-               '(north west east south)
+               '(simul~north simul~west simul~east simul~south)
                (1 2 3 4) ) ) ) ) )
 # stollen code from rosetta, fat&slow
 # and I cant implement better
@@ -1037,10 +1037,10 @@
                (unless (and Best (>= (length Path) (length Best)))
                   (setq Best Path) )
                (=: mark T)
-               (recurse (north This) Path)
-               (recurse (west This) Path)
-               (recurse (east This) Path)
-               (recurse (south This) Path)
+               (recurse (simul~north This) Path)
+               (recurse (simul~west This) Path)
+               (recurse (simul~east This) Path)
+               (recurse (simul~south This) Path)
                (=: mark NIL) ) ) )
       Best ) )
 (de a15-enemy (U)
@@ -1083,13 +1083,13 @@
       '((Dir N)
          (with (Dir This)
             (and (val This) (list (list This N))) ) )
-      '(north west east south)
+      '(simul~north simul~west simul~east simul~south)
       '(1 2 3 4) ) )
 (de adjacent (This)
    (mapcan
       '((Dir)
          (with (Dir This) (and (val This) (cons This))) )
-      '(north west east south) ) )
+      '(simul~north simul~west simul~east simul~south) ) )
 (de enemies (X Grid)
    (let A (a15-enemy X)
       (make
@@ -1101,7 +1101,7 @@
 (de a15-1 (F)
    (let
       (Lst (a15-read F)
-         Grid (grid (length (car Lst)) (length Lst))
+         Grid (simul~grid (length (car Lst)) (length Lst))
          Rounds 0 )
       (a15-grid-set Grid Lst)
       (catch 'exit
@@ -1356,7 +1356,7 @@
 (de a18-1 (F N)
    (let
       (Lst (a18-read F)
-         Grid (grid (length (car Lst)) (length Lst))
+         Grid (simul~grid (length (car Lst)) (length Lst))
          C (need 2 0) )
       (a18-set Grid Lst)
       (do N
@@ -1367,11 +1367,11 @@
                      '((Dir)
                         (accu 'R (get (Dir This) 'unit) 1) )
                      (quote
-                        west east south north
-                        ((X) (south (west X)))
-                        ((X) (north (west X)))
-                        ((X) (south (east X)))
-                        ((X) (north (east X))) ) )
+                        simul~west simul~east simul~south simul~north
+                        ((X) (simul~south (simul~west X)))
+                        ((X) (simul~north (simul~west X)))
+                        ((X) (simul~south (simul~east X)))
+                        ((X) (simul~north (simul~east X))) ) )
                   (=: next
                      (case (: unit)
                         (0
