@@ -558,7 +558,7 @@
       (do X
          (link
             (need Y ".") ) ) ) )
-(de a10 (F)
+(de a10-1 (F)
    (let
       (Lst (a10-data F)
          D (a10-dimn Lst)
@@ -593,7 +593,7 @@
             (prinl L) )
          }#
          (dec Ticks) ) ) )
-(test 3 (a10 "data/10-test.txt"))
+(test 3 (a10-1 "data/10-test.txt"))
 
 # --- Day 11: Chronal Charge ---
 (prin ".")(flush)

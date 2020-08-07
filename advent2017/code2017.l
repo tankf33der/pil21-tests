@@ -210,7 +210,7 @@
       R ) )
 (test
    '(tknk . 1)
-   (rassoc 1 (fi-1 "data/7-test.txt")) )
+   (rassoc 1 (i7-1 "data/7-test.txt")) )
 
 (setq
    F7D
@@ -499,7 +499,7 @@
             (mapcan
                '((N) (mapcar format (chop (bin N))))
                (f14-hex2L
-                  (f10-2 (mapcar char (chop (pack Str "-" I)))) ) )
+                  (i10-2 (mapcar char (chop (pack Str "-" I)))) ) )
             (inc 'S (cnt =1 Str)) ) ) ) )
 (test 8108 (i14-1 "flqrgnkx"))
 
@@ -512,7 +512,7 @@
                   (mapcan
                      '((N) (mapcar format (chop (pad 8 (bin N)))))
                      (f14-hex2L
-                        (f10-2 (mapcar char (chop (pack Str "-" I)))) ) ) ) ) )
+                        (i10-2 (mapcar char (chop (pack Str "-" I)))) ) ) ) ) )
          Grid (simul~grid 128 128)
          C 0 )
       (mapc
@@ -1059,9 +1059,9 @@
                      BB 0 )
                   (cond
                      ((= I A)
-                        (setq BA (+ A B (f24-1 Lst B))) )
+                        (setq BA (+ A B (i24-1 Lst B))) )
                      ((= I B)
-                        (setq BB (+ A B (f24-1 Lst A))) ) )
+                        (setq BB (+ A B (i24-1 Lst A))) ) )
                      (setq S (max S BA BB)) ) ) ) )
       S ) )
 (de f24-file (F)
@@ -1089,12 +1089,12 @@
                   (cond
                      ((= I A)
                         (set
-                           '@ (f24-2 Lst B)
+                           '@ (i24-2 Lst B)
                            BA (inc (car @))
                            (cdr BA) (+ (cadr @) A B) ) )
                      ((= I B)
                         (set
-                           '@ (f24-2 Lst A)
+                           '@ (i24-2 Lst A)
                            BB (inc (car @))
                            (cdr BB) (+ (cadr @) A B) ) ) )
                      (setq S (max S BA BB)) ) ) ) )

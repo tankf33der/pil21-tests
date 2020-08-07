@@ -1,6 +1,8 @@
+`(== 64 64)
 (seed (in "/dev/urandom" (rd 8)))
 (prinl "check ulimit or crash!")
 
+#{
 (load "math.l")
 (load "bitwise.l")
 (load "montgomery.l")
@@ -68,7 +70,8 @@
 (load "test-twofish.l")
 (load "test-whirlpool.l")
 (prinl "\^\^\^ crypto finished!")
-(cd "../gorlansky")
+}#
+(cd "gorlansky")
 (load "tests.l")
 (cd "../Touretzky")
 (load "tests.l")
