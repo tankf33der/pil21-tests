@@ -1,8 +1,15 @@
 ﻿# A.Burger for rosettacode
 
 (scl 12)
-(load "@lib/math.l")  # For 'sin'
- 
+#(load "@lib/math.l")  # For 'sin'
+
+# let it be.
+(setq
+   "Dbl1" (0 . 1.0)
+   "Dbl2" (0 . 1.0) )
+(de sin (A)
+   (set "Dbl1" A)
+   (native "@" "sin" 1.0 "Dbl1") )
 (de *Md5-R
    7 12 17 22  7 12 17 22  7 12 17 22  7 12 17 22
    5  9 14 20  5  9 14 20  5  9 14 20  5  9 14 20
