@@ -53,6 +53,7 @@
 (load "test-kangaroo12.l")
 (load "test-md2.l")
 (load "test-md4.l")
+(load "test-md5.l")
 (load "test-pbkdf2.l")
 (load "test-rc2.l")
 (load "test-rc5.l")

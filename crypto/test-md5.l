@@ -1,4 +1,4 @@
-(load "../md5.l")
+(load "md5.l")
 
 (de hex2L (H)
    (make
@@ -11,7 +11,7 @@
          (cons (hex (caddr Lst)))
          (need (abs (- @ 63)) 0) ) ) )
 (use (K C)
-   (in "tests/Md5-128.unverified.test-vectors"
+   (in "vectors/Md5-128.unverified.test-vectors"
       (until (eof)
          (and
             (from "string: ")
@@ -20,5 +20,4 @@
             (setq C (hex2L (line T)))
             #(println K C)
             (test C (md5 K)) ) ) ) )
-(msg 'OK-test-MD5)
-
+(msg 'md5-OK)
