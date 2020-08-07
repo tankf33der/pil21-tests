@@ -82,6 +82,8 @@
 (load "code2015.l")
 (cd "../advent2016")
 (load "code2016.l")
+(cd "../advent2017")
+(load "code2017.l")
 (cd "../advent2018")
 (load "code2018.l")
 (prinl "\^\^\^\^ advent finished!")
