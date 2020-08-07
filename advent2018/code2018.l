@@ -1,9 +1,9 @@
-`(== 64 64)
 (load "@lib/simul.l")
-#(seed (in "/dev/urandom" (rd 8)))
-#(gc 128)
+
+(prin "2018:")
 
 # --- Day 1: Chronal Calibration ---
+(prin ".")(flush)
 (setq *A1
    (make
       (in "data/1.txt"
@@ -24,11 +24,9 @@
             N ) ) ) )
 (test 0 (a1-2 (1 -1)))
 (test 10 (a1-2 (3 3 4 -2 -4)))
-(test 5 (a1-2 (-6 3 8 5 -6)))
-(test 14 (a1-2 (7 7 -2 -7 -4)))
-(test 488 (a1-2 *A1))
 
 # --- Day 2: Inventory Management System ---
+(prin ".")(flush)
 (de a2cons (Word)
    (let (R (list 0 0)  D)
       (for C Word
@@ -46,7 +44,6 @@
    (let L (a2list F)
       (* (sum car L) (sum cadr L)) ) )
 (test 12 (a2-1 "data/2-test.txt"))
-(test 7688 (a2-1 "data/2.txt"))
 
 # part2
 (de a2char (F)
@@ -64,11 +61,9 @@
 (test
    "fgij"
    (a2-2 "data/2-test-2.txt") )
-(test
-   "lsrivmotzbdxpkxnaqmuwcchj"
-   (a2-2 "data/2.txt") )
 
 # --- Day 3: No Matter How You Slice It ---
+(prin ".")(flush)
 (de a3-data (F)
    (make
       (in F
@@ -121,7 +116,6 @@
                Data ) ) ) ) )
 # Both parts
 (test (cons 4 3) (a3-1 "data/3-test.txt" 8))
-(test (cons 110389 552) (a3-1 "data/3.txt" 1000))
 
 # --- Day 4: Repose Record ---
 #{
@@ -187,7 +181,6 @@
          (car R)
          (caar (flip (by cdr sort Z))) ) ) )
 (test 240 (a4-1 "data/4-test-unsorted.txt"))
-(test 3212 (a4-1 "data/4.txt"))
 
 (de a4-2 (F)
    (let
@@ -229,9 +222,9 @@
                Z ) ) )
       (* (car Z) (cadr Z)) ) )
 (test 4455 (a4-2 "data/4-test-unsorted.txt"))
-(test 4966 (a4-2 "data/4.txt"))
 
 # --- Day 5: Alchemical Reduction ---
+(prin ".")(flush)
 (de dec0 ("N")
    (or
       (=0 (val "N"))
@@ -251,8 +244,6 @@
                   (link (++ L)) ) ) ) )
       (length Lst) ) )
 (test 10 (a5-1 (mapcar char (chop "dabAcCaCBAcCcaDA"))))
-(setq *A5-D (in "data/5.txt" (mapcar char (line))))
-(test 10384 (a5-1 *A5-D))
 
 # Should be faster:
 # o) keep head, garanties no pairs in 1:head
@@ -293,10 +284,9 @@
       (range (char A) (char B)) )
    @@ )
 (test 4 (a5-2 (mapcar char (chop "dabAcCaCBAcCcaDA")) 'A 'D) )
-# 26*8secs
-#(test 5412 (a5-2 *A5-D 'A 'Z))
 
 # --- Day 6: Chronal Coordinates ---
+(prin ".")(flush)
 (de a6-data (F)
    (make
       (in F
@@ -347,7 +337,6 @@
             '((L) (and (=T (car L)) (cadr L)))
             Lst ) ) ) )
 (test 17 (a6-1 "data/6-test.txt"))
-(test 3660 (a6-1 "data/6.txt"))
 
 (de a6-2 (F Lim)
    (let
@@ -372,9 +361,9 @@
                   0 ) ) ) )
       S ) )
 (test 16 (a6-2 "data/6-test.txt" 32))
-(test 35928 (a6-2 "data/6.txt" 10000))
 
 # --- Day 7: The Sum of Its Parts ---
+(prin ".")(flush)
 (de a7-accu ("V" K I)
    (if (assoc K (val "V"))
       (conc @ (cons I))
@@ -420,7 +409,6 @@
                   (setq N (sort N)) ) ) ) )
       (pack (reverse R)) ) )
 (test "CABDFE" (a7-1 "data/7-test.txt"))
-(test "CFGHAEMNBPRDISVWQUZJYTKLOX" (a7-1 "data/7.txt"))
 
 (de a7-time (M O Tm)
    (+ (- (char M) 64) O Tm) )
@@ -463,9 +451,9 @@
          (inc 'Tm) )
    Will ) )
 (test 15 (a7-2 "data/7-test.txt" 2 0))
-(test 828 'fin (a7-2 "data/7.txt" 5 60))
 
 # --- Day 8: Memory Maneuver ---
+(prin ".")(flush)
 (de a8-data (F)
    (make
       (in F
@@ -485,9 +473,9 @@
    (let (Lst (a8-data F)  I 0)
       (a8-tree) ) )
 (test 138 (a8-1 "data/8-test.txt"))
-(test 38567 (a8-1 "data/8.txt"))
 
 # --- Day 9: Marble Mania ---
+(prin ".")(flush)
 (de a9-shift (L)
    (let L (copy L)
       (conc (cdr L) (cons (car L))) ) )
@@ -530,23 +518,10 @@
                      (tail 8 (made)) (head -9 (made)) ) )
                (a9-shift-11) ) ) )
       (cdr (maxi cdr D)) ) )
-(test 32     (a9-1 9 25))
-(test 8317   (a9-1 10 1618))
-(test 146373 (a9-1 13 7999))
-(test 2764   (a9-1 17 1104))
-(test 54718  (a9-1 21 6111))
-(test 37305  (a9-1 30 5807))
-(test (a9-1 9 25) (a9-11 9 25))
-(test (a9-1 10 1618) (a9-11 10 1618))
-(test (a9-1 13 7999) (a9-11 13 7999))
-(test (a9-1 17 1104) (a9-11 17 1104))
-(test (a9-1 21 6111) (a9-11 21 6111))
-(test (a9-1 30 5807) (a9-11 30 5807))
-(test 418237 (a9-11 423 71944))
-# part 2, to infinity and beyond, long run
-#(test 3505711612 (a9-11 423 7194400))
+(test 32 (a9-1 9 25))
 
 # --- Day 10: The Stars Align ---
+(prin ".")(flush)
 (de a10-data (F)
    (make
       (in F
@@ -619,9 +594,9 @@
          }#
          (dec Ticks) ) ) )
 (test 3 (a10 "data/10-test.txt"))
-(test 10946 (a10 "data/10.txt"))
 
 # --- Day 11: Chronal Charge ---
+(prin ".")(flush)
 (de a11-digit (N)
    (if (> 100 N)
       0
@@ -657,8 +632,6 @@
                (setq Max (cons X Y @@)) ) ) )
       Max ) )
 (test (33 45 . 29) (a11-1 18))
-(test (21 61 . 30) (a11-1 42))
-(test (243 68 . 28) (a11-1 8444))
 
 # part2
 (de a11-get-2 (X Y)
@@ -700,10 +673,9 @@
                   (setq Max (cons X Y Z @@)) ) ) ) )
       Max ) )
 (test (90 269 16 . 113) (a11-2 18))
-(test (232 251 12 . 119) (a11-2 42))
-(test (236 252 12 . 96) (a11-2 8444))
 
 # --- Day 12: Subterranean Sustainability ---
+(prin ".")(flush)
 (de a12-state (F)
    (in F (from "state: ") (line)) )
 (de a12-rules (F)
@@ -777,6 +749,7 @@
 (test 4000000000866 (a12-2 "data/12.txt"))
 
 # --- Day 13: Mine Cart Madness ---
+(prin ".")(flush)
 (de a13-cart (X Y D)
    (push 'Carts
       (list
@@ -890,7 +863,6 @@
                @ ) ) )
       (cons (dec (caddr Coll)) (dec (cadr Coll))) ) )
 (test (7 . 3) (a13-1 "data/13-test.txt"))
-(test (94 . 78) (a13-1 "data/13.txt"))
 
 (de a13-2 (F)
    (let
@@ -923,9 +895,9 @@
          (NIL (cdr Carts)) )
       (cons (dec (caddar Carts)) (dec (cadar Carts))) ) )
 (test (6 . 4) (a13-2 "data/13-test-2.txt"))
-(test (26 . 85) (a13-2 "data/13.txt"))
 
 # --- Day 14: Chocolate Charts ---
+(prin ".")(flush)
 (de a14-1 (N)
    (let
       (Len 2
@@ -956,12 +928,9 @@
                         Len ) ) ) ) ) )
    (pack (head 10 (nth Lst (inc N)))) ) )
 (test "0124515891" (a14-1 5))
-(test "9251071085" (a14-1 18))
-(test "5941429882" (a14-1 2018))
-# ~200secs.
-#(test "3410710325" (a14-1 330121))
 
 # --- Day 15: Beverage Bandits ---
+(prin ".")(flush)
 (de a15-read (F)
    (make (in F (while (line) (link @)))) )
 (de a15-grid-set (Grid Lst)
@@ -1133,13 +1102,9 @@
                Grid ) )
          (a15-grid-remove Grid) ) ) )
 (test 27730 (a15-1 "data/15-test-6.txt"))
-(test 36334 (a15-1 "data/15-test-7.txt"))
-(test 39514 (a15-1 "data/15-test-8.txt"))
-(test 27755 (a15-1 "data/15-test-9.txt"))
-(test 28944 (a15-1 "data/15-test-10.txt"))
-(test 18740 (a15-1 "data/15-test-11.txt"))
 
 --- Day 16: Chronal Classification ---
+(prin ".")(flush)
 (setq
    Funcs
    '(mulr muli addi addr seti setr
@@ -1221,10 +1186,8 @@
                Funcs ) )
          Runs )
       (cnt '((L) (>= (car L) 3)) Runs) ) )
-## XXX
 (test 1 (a16-1 "data/16-test-1.txt"))
 (test 547 (a16-1 "data/16-part1.txt"))
-(test 10 (a16-1 "data/16-part1-1.txt"))
 
 # part2
 (setq Undefs  '(valA valB regA regB regC setC))
@@ -1324,8 +1287,10 @@
 (test 582 (a16-2 "data/16-part1.txt" "data/16-part2.txt"))
 
 # --- Day 17: Reservoir Research ---
+(prin ".")(flush)
 
 # --- Day 18: Settlers of The North Pole ---
+(prin ".")(flush)
 (de a18-read (F)
    (make (in F (while (line) (link @)))) )
 (de a18-set (Grid Lst)
@@ -1396,11 +1361,5 @@
                (inc (cdr C)) ) ) )
       (apply * C) ) )
 (test 1147 (a18-1 "data/18-test.txt" 10))
-(test 584714 (a18-1 "data/18.txt" 10))
-# to infinity and beyond
-#(a18-1 "data/18.txt" 1000000000))
 
-# --- Day 19: Go With The Flow ---
-
-
-(msg 'OK-AoC18)
+(msg 'OK)
