@@ -122,7 +122,7 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
 ```
-adventof2017: f18-2
+adventof2017: f18-2 (coroutine)
 ```
 
 ```
@@ -131,8 +131,4 @@ add permrep.l (coroutine)
 
 ```
 add flood tests
-```
-
-```
-add md5 and adventofcode2015 after @lib/math, sinus
 ```

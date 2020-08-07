@@ -107,10 +107,8 @@
 (test 3 (b3-2 "data/3-test-1.txt"))
 
 # --- Day 4: The Ideal Stocking Stuffer ---
-# XXX, after @lib/math.l (sinus)
-#{
 (prin ".")(flush)
-(load "../md5.l") # RosettaCode
+(load "../crypto/md5.l") # RosettaCode
 (de b4-1 (Str Z)
    (let
       (Str (mapcar char (chop Str))
@@ -125,7 +123,6 @@
             (pre? Start (md5_hex Str)) ) )
       N ) )
 (test 346386 (b4-1 "iwrupvqb" 5))
-}#
 
 # --- Day 5: Doesn't He Have Intern-Elves For This? ---
 (prin ".")(flush)
