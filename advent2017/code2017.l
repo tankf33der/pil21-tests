@@ -1102,7 +1102,7 @@
 (test (4 19) (i24-2 (f24-file "data/24-test.txt")))
 
 # --- Day 25: The Halting Problem ---
-(prin ".")(flush)
+(prin "..")(flush)
 (de f25-right NIL
    (if (cddr L)
       (setq L @)

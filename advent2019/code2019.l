@@ -193,7 +193,7 @@
 # modes:
 # 0 - position, [50];
 # 1 - immediate, 50;
-(de c5 ("Var" Lst)
+(de cc5 ("Var" Lst)
    (put "Var" 'c Lst)
    (put "Var" 'l (length (get "Var" 'c))) )
 (de i55-mode ("Var" M N X)
@@ -206,7 +206,7 @@
    (i55-mode "Var" M N 1000) )
 (de pp55 (Lst I)
    (let (L NIL  R NIL  Op NIL)
-      (c5 'R (copy Lst))
+      (cc5 'R (copy Lst))
       (setq L (get 'R 'c))
       (loop
          (set 'Op (% (car L) 100))
@@ -429,7 +429,7 @@
 
 # --- Day 9: Sensor Boost ---
 (prin ".")(flush)
-(de c9 ("Var" Lst)
+(de cc9 ("Var" Lst)
    (put "Var" 'c Lst)
    (put "Var" 'b 0)
    (put "Var" 'l (length (get "Var" 'c))) )
@@ -473,7 +473,7 @@
       (put "Var" 'c N V) ) )
 (de pp9-1 (Lst I)
    (let (L NIL  R NIL  Op NIL)
-      (c9 'R (copy Lst))
+      (cc9 'R (copy Lst))
       (setq L (get 'R 'c))
       (loop
          (set 'Op (% (car L) 100))
@@ -573,7 +573,7 @@
 # 0 - north, 1 - south, 2 - west, 3 - east
 # inc dc; (put 'R 'dc (inc (get 'R 'dc)))
 #
-(de c11 ("Var" Lst)
+(de cc11 ("Var" Lst)
    (put "Var" 'c Lst)
    (put "Var" 'b 0)
    (put "Var" 'l (length (get "Var" 'c))) )
@@ -591,7 +591,7 @@
          Trn 0
          Fl NIL
          K NIL )
-      (c11 'R (copy Lst))
+      (cc11 'R (copy Lst))
       (setq L (get 'R 'c))
       (loop
          (set 'Op (% (car L) 100))
@@ -735,7 +735,7 @@ Valid Result: EGZCRKGK
 
 # --- Day 13: Care Package ---
 (prin ".")(flush)
-(de c13 ("Var" Lst)
+(de cc13 ("Var" Lst)
    (put "Var" 'c Lst)
    (put "Var" 'b 0)
    (put "Var" 'l (length (get "Var" 'c))) )
@@ -745,7 +745,7 @@ Valid Result: EGZCRKGK
          R NIL
          D NIL
          Op NIL )
-      (c11 'R (copy Lst))
+      (cc11 'R (copy Lst))
       (setq L (get 'R 'c))
       (loop
          (set 'Op (% (car L) 100))

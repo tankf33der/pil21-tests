@@ -1287,7 +1287,7 @@
 (test 582 (a16-2 "data/16-part1.txt" "data/16-part2.txt"))
 
 # --- Day 17: Reservoir Research ---
-(prin ".")(flush)
+(prin ".......")(flush)
 
 # --- Day 18: Settlers of The North Pole ---
 (prin ".")(flush)
