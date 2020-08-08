@@ -1290,7 +1290,7 @@
 (prin ".......")(flush)
 
 # --- Day 18: Settlers of The North Pole ---
-(prin ".")(flush)
+(prin "...")(flush)
 (de a18-read (F)
    (make (in F (while (line) (link @)))) )
 (de a18-set (Grid Lst)

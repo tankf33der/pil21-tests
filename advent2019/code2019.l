@@ -827,6 +827,6 @@ Valid Result: EGZCRKGK
       (inc '*C13) ) )
 (test 247 *C13)
 
-(prin ".............")(flush)
+(prin "...................")(flush)
 
 (msg 'OK)

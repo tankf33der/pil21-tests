@@ -1,8 +1,6 @@
 `(== 64 64)
 (seed (in "/dev/urandom" (rd 8)))
 (prinl "check ulimit or crash!")
-
-#{
 (load "math.l")
 (load "bitwise.l")
 (load "montgomery.l")
@@ -34,10 +32,8 @@
 (load "fern.l")
 (load "net.l")
 (load "pilog-rosetta.l")
-}#
 (cd "hash")
 (load "test.l")
-#{
 (prinl "cryptography will take some time:")
 (prinl "...")
 (cd "../crypto")
@@ -79,7 +75,6 @@
 (load "tests.l")
 (cd "../rng")
 (load "tests.l")
-}#
 (prinl "AdventOfCode will take some time:")
 (prinl "....")
 (cd "../advent2015")
