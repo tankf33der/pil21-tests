@@ -20,7 +20,7 @@
          (put K 'p I)
          (idx "Var" K T) ) ) )
 # get
-(de g ("Var" I)
+(de g2 ("Var" I)
    (let K (char (hash I))
       (if (idx "Var" K) (val (car @)) 0) ) )
 # create
@@ -60,8 +60,8 @@
             'R
             (cadddr L)
             ((if (=1 (car L)) '+ '*)
-               (g 'R (cadr L))
-               (g 'R (caddr L)) ) )
+               (g2 'R (cadr L))
+               (g2 'R (caddr L)) ) )
          (do 4
             (++ L) ) )
       (car (sorted 'R)) ) )
