@@ -1,3 +1,4 @@
+#{
 # trail
 (de f (A B)
    (g (inc A) (dec B)) )
@@ -7,6 +8,8 @@
 (test
    '((f 3 4) A 3 B 4 (g (inc A) (dec B)) X 4 Y 3)
    *Trail )
+}#
+(msg 1)
 
 # Original test code from PicoLisp
 # copy-paste
@@ -14,11 +17,13 @@
 ### quote ###
 (test (1 2 3) (quote 1 2 3))
 
+(msg 2)
 
 ### as ###
 (test NIL (as (= 3 4) A B C))
 (test '(A B C) (as (= 3 3) A B C))
 
+(msg 3)
 
 ### lit ###
 (test 123 (lit 123))
@@ -31,13 +36,19 @@
 (test ''(a b c) (lit '(a b c)))
 
 
+(msg 4)
+
 ### eval ###
 (test 6 (eval (list '+ 1 2 3)))
 (let (X 'Y  Y 7)
    (test 7 (eval X)) )
 
+(msg 5)
+
 ### run ###
 (test 6 (run (list (list '+ 1 2 3))))
+
+(msg 6)
 
 ### def ###
 (test '"a"
@@ -46,6 +57,7 @@
    '((X Y) (* X (+ X Y)))
    "a" )
 
+(msg 7)
 
 ### de ###
 (test '"b"
@@ -54,6 +66,7 @@
    '((X Y) (* X (+ X Y)))
    "b" )
 
+(msg 8)
 
 ### dm ###
 (off "+Cls" "+A")
@@ -73,6 +86,7 @@
    (test X (box? X))
    (test '(A B C) (val X)) )
 
+(msg 9)
 
 # XXX, undefined
 #{
@@ -119,6 +133,7 @@
    (test (1 2)
       (with X (list (: a) (: b))) ) )
 
+(msg 10)
 
 ### bind ###
 (let X 123
@@ -141,7 +156,7 @@
 (test (2 . 4) ("tst"))
 (test (3 . 6) ("tst"))
 
-
+(msg 11)
 
 ### let let? use ###
 (let N 1
@@ -175,6 +190,7 @@
 )
 
 
+(msg 12)
 
 ### and ###
 (test 7 (and T 123 7))
@@ -222,6 +238,7 @@
 ### t ###
 (test T (t (+ 1 2 3)))
 
+(msg 13)
 
 ### prog ###
 (let N 7
@@ -229,16 +246,17 @@
       (prog (dec 'N) (dec 'N) (dec 'N) (dec 'N) N) ) )
 
 
+(msg 14)
 ### prog1 prog2 ###
 (test 1 (prog1 1 2 3))
 (test 2 (prog2 1 2 3))
 
-
+(msg 15)
 ### if ###
 (test 1 (if (= 3 3) 1 2))
 (test 2 (if (= 3 4) 1 2))
 
-
+(msg 16)
 ### if2 ###
 (test 'both
    (if2 T T 'both 'first 'second 'none) )
@@ -253,7 +271,7 @@
 (test 7 (and 7 (if2 @ NIL 1 @)))
 (test 7 (and 7 (if2 NIL @ 1 2 @)))
 
-
+(msg 17)
 ### ifn ###
 (test 2 (ifn (= 3 3) 1 2))
 (test 1 (ifn (= 3 4) 1 2))
@@ -261,17 +279,19 @@
 ### when ###
 (test 7 (when (= 3 3) 7))
 (test NIL (when (= 3 4) 7))
-
+(msg 18)
 
 ### unless ###
 (test NIL (unless (= 3 3) 7))
 (test 7 (unless (= 3 4) 7))
 
+(msg 19)
 
 ### cond ###
 (test 1 (cond ((= 3 3) 1) (T 2)))
 (test 2 (cond ((= 3 4) 1) (T 2)))
 
+(msg 20)
 
 ### nond ###
 (test 2 (nond ((= 3 3) 1) (NIL 2)))
@@ -281,6 +301,7 @@
 (test (2 . 7)
    (nond ((num? 7) (cons 1 7)) (NIL (cons 2 @))) )
 
+(msg 21)
 
 ### case ###
 (test 1 (case 'a (a 1) ((b c) 2) (T 3)))
@@ -296,6 +317,7 @@
 (test 2 (casq '"c" ("a" 1) (("b" "c") 2) (T 3)))
 (test 3 (casq 'b (a 1) ("b" 2) ((a b c) 3) (c 4)))
 
+(msg 22)
 
 ### state ###
 (off "tst")
@@ -318,6 +340,7 @@
 (test '(start run run)
    (make (do 3 ("tst"))) )
 
+(msg 23)
 
 ### while ###
 (test (1 2 3 4 5 6 7)
@@ -334,6 +357,7 @@
          (until (> (inc 'N) 7)
             (link N) ) ) ) )
 
+(msg 24)
 
 ### loop ###
 (test (1 2 3 4 5 6 7)
@@ -353,6 +377,7 @@
    '(a . 3)
    (loop (T NIL (cons @ 1)) (NIL 'a (cons @ 2)) (NIL NIL (cons @ 3))) )
 
+(msg 25)
 
 ### do ###
 (test (1 2 3 4 5 6 7)
@@ -376,6 +401,7 @@
             (link (inc 'N))
             (at (0 . 3) (link '-)) ) ) ) )
 
+(msg 25)
 ### for ###
 (test (1 2 3 4 5 6 7)
    (make
@@ -403,6 +429,8 @@
          (link N)
          (T (> (inc 'N) 7)) ) ) )
 
+
+(msg 26)
 
 ### catch throw ###
 (test NIL (catch NIL (throw)))
@@ -460,5 +488,7 @@
 
 ### kill ###
 (test T (kill *Pid 0))
+
+(msg 27)
 
 (msg 'flow-OK)
