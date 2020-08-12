@@ -149,4 +149,14 @@ aug.2020, fails in gc+
 (test
    (12 15)
    (f4-48 '(2 15 10 20 12 25)) )
+
+#4.91
+(de f4-91 (L1 L2)
+   (diff (fish atom L1) (fish atom L2)) )
+(test
+   '(a b)
+   (f4-91 '(a b (c) d) '((c d) e)) )
+
+#4.152, 4.177
+
 ```
