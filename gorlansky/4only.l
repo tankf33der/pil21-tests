@@ -73,6 +73,9 @@
 (load "@lib/simul.l")
 (load "@lib/frac.l")
 
+#(load "1-atom-atom.l")
+#(load "2-atom-list.l")
+#(load "3-list-atom.l")
 #(load "4-list-list.l")
 #(load "5-atom-atom-atom.l")
 (load "6-atom-atom-list.l")
