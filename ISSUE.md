@@ -136,3 +136,17 @@ add flood tests
 ```
 trail the same unwind non-implementation as coroutine
 ```
+
+```
+aug.2020, fails in gc+
+#4.48
+(de f4-48 (Lst)
+   (let A (range (car Lst) (cadr Lst))
+      (for (L (cddr Lst) L (cddr L))
+         (setq A
+            (sect A (range (car L) (cadr L))) ) )
+      (and A (list (car A) (last A))) ) )
+(test
+   (12 15)
+   (f4-48 '(2 15 10 20 12 25)) )
+```
