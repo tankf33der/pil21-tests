@@ -68,6 +68,14 @@
    (make
       (do 4096
          (link (rand 1 4096)) ) ) )
+(de f4-295 (Lst)
+   (let (N 0  R NIL)
+      (recur (Lst N)
+         (if (atom Lst)
+            (accu 'R N 1)
+            (recurse (car Lst) (inc N))
+            (and (cdr Lst) (recurse @ N)) ) )
+      R ) )
 
 
 (load "@lib/simul.l")
@@ -78,7 +86,7 @@
 #(load "3-list-atom.l")
 #(load "4-list-list.l")
 #(load "5-atom-atom-atom.l")
-(load "6-atom-atom-list.l")
+#(load "6-atom-atom-list.l")
 #(load "7-list-atom-atom.l")
 #(load "8-list-atom-list.l")
 #(load "9-list-list-atom.l")
@@ -90,7 +98,7 @@
 #(load "15-list-list-atom-atom.l")
 #(load "16-list-list-atom-list.l")
 #(load "17-list-list-list-list.l")
-#(load "18-list-list-atom-atom-list.l")
+(load "18-list-list-atom-atom-list.l")
 
 (msg 'ok)
 
