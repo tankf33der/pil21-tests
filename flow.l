@@ -1,5 +1,5 @@
 #{
-# trail
+# XXX, trail
 (de f (A B)
    (g (inc A) (dec B)) )
 (de g (X Y)
