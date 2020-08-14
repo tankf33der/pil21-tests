@@ -1377,29 +1377,29 @@ ignore here
 #113 Making Data Dance
 (when `(== 64 64)
    (symbols '4clojure 'pico)
-   (local str1 seq Prg Lst)
+   (local str1 4seq Prg Lst)
 
    (de str1 Prg
       (run Prg) )
-   (de seq Prg
+   (de 4seq Prg
       (run Prg) )
    (de f113 @
       (let Lst (rest)
          (casq (car (up 2))
             (str1 (glue ", " (sort Lst)))
-            (seq (uniq Lst))
+            (4seq (uniq Lst))
             (T Lst) ) ) )
    (test "1, 2, 3"
       (str1 (f113 2 1 3)) )
    (test (2 1 3)
-      (seq (f113 2 1 3)) )
+      (4seq (f113 2 1 3)) )
    (test (2 1 3)
-      (seq (f113 2 1 3 3 1 2)) )
+      (4seq (f113 2 1 3 3 1 2)) )
    (test (1)
-      (seq (apply f113 (need 5 1))) )
+      (4seq (apply f113 (need 5 1))) )
    (test "1, 1, 1, 1, 1"
       (str1 (apply f113 (need 5 1))) )
    (test NIL
-      (seq (f113)) )
+      (4seq (f113)) )
    (test ""
       (str1 (f113)) ) )
