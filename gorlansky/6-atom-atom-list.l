@@ -1,12 +1,9 @@
-# XXX, fails in gc+
-#{
 #6.1
 (de f6-1 (A B)
    (sect (str A) (str B)) )
 (test
    '(b c)
    (f6-1 "a b c" "b c d") )
-}#
 
 #6.2
 (def 'f6-2 f5-16)

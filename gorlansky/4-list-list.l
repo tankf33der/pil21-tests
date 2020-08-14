@@ -529,8 +529,6 @@
    (9 8 7 4 3)
    (f4-47 '(1 2 (((2 3 4))) 7 (8 (9 1)))) )
 
-# XXX, fails in gc+
-#{
 #4.48
 (de f4-48 (Lst)
    (let A (range (car Lst) (cadr Lst))
@@ -541,7 +539,6 @@
 (test
    (12 15)
    (f4-48 '(2 15 10 20 12 25)) )
-}#
 
 #4.49
 (de f4-49 (L)
@@ -978,15 +975,12 @@
    '(d b c a)
    (f4-90 '(a b c d)) )
 
-# XXX, fails in gc+
-#{
 #4.91
 (de f4-91 (L1 L2)
    (diff (fish atom L1) (fish atom L2)) )
 (test
    '(a b)
    (f4-91 '(a b (c) d) '((c d) e)) )
-}#
 
 #4.92
 (de f4-92 (L)
@@ -2061,8 +2055,6 @@
    '((1 5 9) (4 8 12))
    (f4-176 (1 2 3 4 1 2 3 4 1 2 3 4)) )
 
-# XXX, fails in gc+
-#{
 #4.177
 (de f4-177 (Lst)
    (maxi
@@ -2075,7 +2067,6 @@
 (test
    '(abcde bcdef)
    (f4-177 '(abcde defgi bcdef)) )
-}#
 
 #4.178
 (de f4-178 (Lst)
