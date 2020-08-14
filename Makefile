@@ -1,6 +1,6 @@
 all: n
 	pil21 tests.l
-min:
+m: n
 	pil21 minima.l
 n:
 	gcc -fPIC -Wall -Wextra -c native.c -o native.o
