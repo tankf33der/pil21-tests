@@ -1,3 +1,12 @@
+# up
+(test
+   1
+   (let N 1
+      ((quote (N) (up N)) 2) ) )
+(test
+   (2 1 . 7)
+   (let N 1 ((quote (N) (cons N (up N) (up N 7))) 2)) )
+
 # copy-paste PicoLisp original code
 
 # adr

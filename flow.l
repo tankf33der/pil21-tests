@@ -1,4 +1,3 @@
-#{
 # XXX, trail
 (de f (A B)
    (g (inc A) (dec B)) )
@@ -8,7 +7,8 @@
 (test
    '((f 3 4) A 3 B 4 (g (inc A) (dec B)) X 4 Y 3)
    *Trail )
-}#
+
+(msg 'trail)
 
 # Original test code from PicoLisp
 # copy-paste
