@@ -67,6 +67,17 @@
    (make (do 8 (link (yield 'next 'fibo)))) )
 (yield NIL 'fibo) # stop generator
 
+(de numbers NIL
+   (co 'numbers
+      (let N 7
+         (for P N
+            (for S N
+               (for F N
+                  (yield (list P S F)) ) ) ) ) ) )
+(test
+   343
+   (length
+      (make (while (numbers) (link @))) ) )
 
 (msg 'co-OK)
 (bye)
