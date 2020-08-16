@@ -100,7 +100,7 @@
 
 (msg 7)
 
-(de permute (N Lst)
+(de 11permute (N Lst)
    (co 'next
       (let
          (Lst Lst
@@ -118,10 +118,10 @@
                      (set A 1)
                      (++ A) ) ) ) )
          NIL ) ) )
-(permute 3 (range 1 4))               # set iterator
-(test (1 1 1) (permute 'next))        # first
-(do 32 (permute 'next))               # skip a few
-(test (2 1 3) (permute 'next))        # next after skip
+(11permute 3 (range 1 4))               # set iterator
+(test (1 1 1) (11permute 'next))        # first
+(do 32 (11permute 'next))               # skip a few
+(test (2 1 3) (11permute 'next))        # next after skip
 
 (msg 8)
 
@@ -132,6 +132,7 @@
          N ) ) )
 (test 9 (yield 5000 'ring1))
 
+(msg 9)
 
 (de product (Lst)
    (co 'cartesian
@@ -198,7 +199,7 @@
                   (++ B) ) ) ) )
       Max ) )
 
-
+(msg 10)
 
 (setq L
    (list
@@ -214,6 +215,7 @@
    S
    (sum '((L) (sum prog L)) (apply cartesian L)) )
 
+(msg 11)
 
 
 # prev iter finished.
@@ -224,7 +226,7 @@
    (product 'cartesian) )     # take one number
 (co 'cartesian)               # oops, i need bigger list, stop it
 
-
+(msg 12)
 
 (setq L '((1 2) (3 4 5) (100 111)))
 (product L)                   # define bigger list, start again
@@ -235,6 +237,7 @@
    S
    (sum '((L) (sum prog L)) (apply cartesian L)) )
 
+(msg 13)
 
 # sum over 4M items of product
 (setq L (make (do 4 (link (range 1 21)))))
@@ -246,6 +249,7 @@
    S
    (cartesian-sum L) )
 
+(msg 14)
 
 # adventofcode2015-day13
 # Find max sum of items in cartesian product
