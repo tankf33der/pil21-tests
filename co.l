@@ -258,6 +258,4 @@
    330
    (cartesian-maxi L) )
 
-
 (msg 'co-OK)
-(bye)
