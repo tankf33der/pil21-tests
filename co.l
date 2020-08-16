@@ -1,0 +1,2 @@
+(msg 'co-OK)
+(bye)
