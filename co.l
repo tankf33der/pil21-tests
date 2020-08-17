@@ -258,4 +258,33 @@
    330
    (cartesian-maxi L) )
 
+(msg 15)
+
+(de wagon (Prg N)
+   (co (intern (pack 'zw N))
+      (let
+         (N N
+            Send
+            (intern
+               (pack
+                  'zw
+                  (if (= 3 N) 1 (inc N))))
+            *Lst (copy Prg) )
+         (for (L *Lst L)
+            (T (= 9 (car L)) (yield 567))   # halt
+            (case (car L)
+               (3
+                  (set (nth *Lst (inc (cadr L))) (yield))
+                  (inc *Lst) )
+               (4
+                  (if (= 3 N) (inc *Lst))
+                  (yield (get *Lst (inc (cadr L))) Send)) )
+            (++ L)
+            (++ L) ) ) ) )
+(setq *zW7 (list 3 0 4 0 9))
+(wagon (copy *zW7) 1)
+(wagon (copy *zW7) 2)
+(wagon (copy *zW7) 3)
+(test 567 (yield 7 'zw1))
+
 (msg 'co-OK)
