@@ -32,6 +32,7 @@
 (load "fern.l")
 (load "net.l")
 (load "pilog-rosetta.l")
+(load "cartesian.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")

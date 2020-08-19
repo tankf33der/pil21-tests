@@ -5,10 +5,10 @@
             '((A) ((if (atom A) list cons) I A))
             L2 ) )
       L1 ) )
-(de reduce (L . @)
-   (ifn (rest) L (2lists L (apply reduce (rest)))) )
+(de c_reduce (L . @)
+   (ifn (rest) L (2lists L (apply c_reduce (rest)))) )
 (de cartesian (L . @)
-   (and L (rest) (pass reduce L)) )
+   (and L (rest) (pass c_reduce L)) )
 
 (test
    NIL
