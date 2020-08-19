@@ -56,6 +56,6 @@
    (cartesian (1 2 3) NIL (500 100)) )
 }#
 
-#(msg 'ok)
+(msg 'cartesian-OK)
 #(bye)
 
