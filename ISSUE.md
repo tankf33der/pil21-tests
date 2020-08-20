@@ -1,4 +1,3 @@
-
 Requirements to this file and repo are:
 Requirements to this file and repo are:
 * TODO
@@ -13,29 +12,6 @@ Requirements to this file and repo are:
 ```
 
 ```
-# hangs
-# fibonacci coroutine generator
-(de coFibo ()
-   (co 'fibo
-      (let (A 0  B 1)
-         (loop
-            (yield
-               (swap 'B (+ (swap 'A B) B)) ) ) ) ) )
-# XXX
-(prinl "start")
-(setq L
-   (make
-      (do 100
-         (link (coFibo)) ) ) )
-(gc 0) # <- hang
-
-XXX, it can be trigger easier way:
-$ pil
-(co 'd (cons))
-(gc) <- hang
-```
-
-```
 # ???
 # Second argument to 'name' (i.e. renaming) is removed
 (setq X (box))
@@ -46,31 +22,6 @@ $ pil
 ```
 (glue NIL 1)
 should 1
-```
-
-```
-# will fail test
-(de w (N)
-   (co (intern (pack 'i N))
-      (let (N N  G)
-         (setq G (yield))
-         (cons N G) ) ) )
-(w 1)
-(test (1 . 2) (yield 2 'i1))
-
-# Mike, when above will be fixed checkout this error and crash again:
-#
-$ pil21 tankf33der/co-ring.l
-loop NIL Rnd 8 Got 10 C 1
-[co-ring.l:30] !? (yield (inc 'Rnd Got) Send)
-i71 -- Reentrant coroutine
-? (bye)
-Segmentation fault
-```
-
-```
-# XXX
-add coroutine ring(s) for testings
 ```
 
 ```
