@@ -75,3 +75,7 @@ add permrep.l (coroutine)
 ```
 add flood tests
 ```
+
+```
+enable co.l in tests and minima.l
+```
