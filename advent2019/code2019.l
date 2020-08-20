@@ -81,8 +81,7 @@
             19690720
             (pp2-1 (copy *I2-Lst) (car @@) (cdr @@)) ) ) )
    (+ (cdr @@) (* 100 (car @@))) )
-# XXX, coroutine
-#(test 4967 (i2-2))
+(test 4967 (pp2-2))
 
 # --- Day 5: Sunny with a Chance of Asteroids ---
 (prin ".")(flush)
@@ -335,12 +334,10 @@
             (++ L)
             (++ L) ) ) ) )
 (setq *W7 (list 3 0 4 0 9))
-# XXX, coroutine
-#(wagon (copy *W7) 1)
-#(wagon (copy *W7) 2)
-#(wagon (copy *W7) 3)
-# XXX, yield
-#(test 567 (yield 7 'w1))
+(wagon (copy *W7) 1)
+(wagon (copy *W7) 2)
+(wagon (copy *W7) 3)
+(test 567 (yield 7 'w1))
 
 # part 2
 (de i7-runner (Prg N)
@@ -419,12 +416,10 @@
          (simul~permute (range 5 9)) )
       @@ ) )
 (setq *I77 (read-code "data/7-test-4.txt"))
-# XXX, coroutine
-#(test 139629729  (i7-wagon *I77 (list 9 8 7 6 5)))
+(test 139629729  (i7-wagon *I77 (list 9 8 7 6 5)))
 (setq *I77 (read-code "data/7-test-5.txt"))
-# XXX, coroutines
-#(test 18216 (i7-wagon *I77 (list 9 7 8 5 6)))
-#(test 36384144 (pp7-2 "data/7.txt"))
+(test 18216 (i7-wagon *I77 (list 9 7 8 5 6)))
+(test 36384144 (pp7-2 "data/7.txt"))
 
 
 # --- Day 9: Sensor Boost ---

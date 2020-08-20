@@ -783,8 +783,7 @@
                (yield T 'child) )
             ("rcv" (yield (fifo 'CB) 'child)) ) )
       C ) )
-# XXX, co
-#(test 6858 (i18-2 "data/18.txt"))
+(test 6858 (i18-2 "data/18.txt"))
 
 # --- Day 19: A Series of Tubes ---
 (prin ".")(flush)
