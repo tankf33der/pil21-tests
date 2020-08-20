@@ -91,13 +91,13 @@
 
 (msg 6)
 
-(de foo ()
+(de co_foo ()
    (co "html"
       (catch "err"
          (yield)
          (throw "err") ) ) )
-(foo)
-(do 1 (foo))
+(co_foo)
+(do 1 (co_foo))
 
 (msg 7)
 
@@ -135,7 +135,7 @@
 
 (msg 9)
 
-(de product (Lst)
+(de co_product (Lst)
    (co 'cartesian
       (let
          (Lst Lst
@@ -207,9 +207,9 @@
       (range 1 5)
       (range 1 10)
       (range 1 20) ) )
-(product L)
+(co_product L)
 (zero S)
-(while (product 'cartesian)   # sum over every list
+(while (co_product 'cartesian)   # sum over every list
    (inc 'S (sum prog @)) )
 (test
    S
@@ -220,18 +220,18 @@
 
 # prev iter finished.
 (setq L '((1 2) (3 4 5)))
-(product L)                   # set new iter on smaller lists.
+(co_product L)                   # set new iter on smaller lists.
 (test
    (1 3)
-   (product 'cartesian) )     # take one number
+   (co_product 'cartesian) )     # take one number
 (co 'cartesian)               # oops, i need bigger list, stop it
 
 (msg 12)
 
 (setq L '((1 2) (3 4 5) (100 111)))
-(product L)                   # define bigger list, start again
+(co_product L)                   # define bigger list, start again
 (zero S)
-(while (product 'cartesian)   # sum over every list
+(while (co_product 'cartesian)   # sum over every list
    (inc 'S (sum prog @)) )
 (test
    S
