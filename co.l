@@ -24,7 +24,7 @@
 
 (msg 2)
 
-(de pythag (N)
+(de co_pythag (N)
    (co 'pythag
       (for X N
          (for Y (range X N)
@@ -33,7 +33,7 @@
                   (yield (list X Y Z)) ) ) ) ) ) )
 (test
    '((3 4 5) (5 12 13) (6 8 10) (8 15 17) (9 12 15) (12 16 20))
-   (make (while (pythag 20) (link @))) )
+   (make (while (co_pythag 20) (link @))) )
 
 (msg 3)
 
@@ -77,7 +77,7 @@
 
 (msg 5)
 
-(de numbers NIL
+(de co_numbers NIL
    (co 'numbers
       (let N 7
          (for P N
@@ -87,7 +87,7 @@
 (test
    343
    (length
-      (make (while (numbers) (link @))) ) )
+      (make (while (co_numbers) (link @))) ) )
 
 (msg 6)
 
@@ -250,7 +250,7 @@
 
 (msg 15)
 
-(de wagon (Prg N)
+(de co_wagon (Prg N)
    (co (intern (pack 'zw N))
       (let
          (N N
@@ -272,9 +272,9 @@
             (++ L)
             (++ L) ) ) ) )
 (setq *zW7 (list 3 0 4 0 9))
-(wagon (copy *zW7) 1)
-(wagon (copy *zW7) 2)
-(wagon (copy *zW7) 3)
+(co_wagon (copy *zW7) 1)
+(co_wagon (copy *zW7) 2)
+(co_wagon (copy *zW7) 3)
 (test 567 (yield 7 'zw1))
 
 (msg 'co-OK)

@@ -1,4 +1,3 @@
-(stack 512)
 (scl 6)
 (seed (in "/dev/urandom" (rd 8)))
 (load "@lib/frac.l")
