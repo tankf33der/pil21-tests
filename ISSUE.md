@@ -94,14 +94,6 @@ $ pil21 +
 ```
 
 ```
-pythag coroutine code crash-hang in math.l
-```
-
-```
-add tankf33der/cartesian.l (coroutine)
-```
-
-```
 1.
 (later)
 2.
