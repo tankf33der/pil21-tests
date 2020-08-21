@@ -77,5 +77,5 @@ add flood tests
 ```
 
 ```
-enable co.l in tests and minima.l
+co-powers crash in co.l
 ```
