@@ -75,7 +75,3 @@ add permrep.l (coroutine)
 ```
 add flood tests
 ```
-
-```
-co-powers crash in co.l
-```

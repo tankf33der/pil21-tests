@@ -17,10 +17,9 @@
                (setq F (powers M))
                (and (> F V) (yield V))
                (setq V (powers N)) ) ) ) ) )
-# XXX, crashing
-# (test
-   # (4 9 16 25 36 49 81 100)
-   # (make (do 8 (link (filtered 2 3)))) )
+(test
+   (4 9 16 25 36 49 81 100)
+   (make (do 8 (link (filtered 2 3)))) )
 
 (msg 2)
 
