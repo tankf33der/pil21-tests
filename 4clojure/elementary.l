@@ -94,6 +94,8 @@
       Z ) )
 
 #37 Regular Expressions
+# disable for portability purposes
+#{
 (test
    "ABC"
    (pack
@@ -128,6 +130,7 @@
                         (setq S (nth (chop S) (inc (car M))))
                         (chain (cut (- (cadr M) (car M)) 'S))
                         (setq S (pack S)) ) ) ) ) ) ) ) )
+}#
 
 #64 Intro to Reduce
 (de 4reduce ("Fun" "Lst")
