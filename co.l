@@ -90,8 +90,6 @@
 
 (msg 6)
 
-#{
-# not allowed anymore inside co. Keep for history.
 (de co_foo ()
    (co "html"
       (catch "err"
@@ -99,7 +97,6 @@
          (throw "err") ) ) )
 (co_foo)
 (do 1 (co_foo))
-}#
 
 (msg 7)
 
