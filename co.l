@@ -2,8 +2,6 @@
 
 (test 7 (co 'aa (yield 7)))
 
-(msg 1)
-
 (de powers (M)
    (co (intern (pack 'powers M))
       (for (I 0 (inc 'I))
@@ -21,8 +19,6 @@
    (4 9 16 25 36 49 81 100)
    (make (do 8 (link (filtered 2 3)))) )
 
-(msg 2)
-
 (de co_pythag (N)
    (co 'pythag
       (for X N
@@ -34,7 +30,6 @@
    '((3 4 5) (5 12 13) (6 8 10) (8 15 17) (9 12 15) (12 16 20))
    (make (while (co_pythag 20) (link @))) )
 
-(msg 3)
 
 (de nuggets1 (M)
    (let Lst (range 0 M)
@@ -61,7 +56,6 @@
       (nuggets1 100)
       (nuggets2 100) ) )
 
-(msg 4)
 
 (co 'fibo
    (let (A 0  B 1)
@@ -74,7 +68,6 @@
    (make (do 8 (link (yield 'next 'fibo)))) )
 (yield NIL 'fibo) # stop generator
 
-(msg 5)
 
 (de co_numbers NIL
    (co 'numbers
@@ -88,7 +81,6 @@
    (length
       (make (while (co_numbers) (link @))) ) )
 
-(msg 6)
 
 (de co_foo ()
    (co "html"
@@ -98,7 +90,6 @@
 (co_foo)
 (do 1 (co_foo))
 
-(msg 7)
 
 (de 11permute (N Lst)
    (co 'next
@@ -123,7 +114,6 @@
 (do 32 (11permute 'next))               # skip a few
 (test (2 1 3) (11permute 'next))        # next after skip
 
-(msg 8)
 
 (for N 64
    (co (intern (pack 'ring N))
@@ -132,7 +122,6 @@
          N ) ) )
 (test 9 (yield 5000 'ring1))
 
-(msg 9)
 
 (de co_product (Lst)
    (co 'cartesian
@@ -199,7 +188,6 @@
                   (++ B) ) ) ) )
       Max ) )
 
-(msg 10)
 
 (setq L
    (list
@@ -214,7 +202,6 @@
    S
    (sum '((L) (sum prog L)) (apply cartesian L)) )
 
-(msg 11)
 
 
 # prev iter finished.
@@ -225,7 +212,6 @@
    (co_product 'cartesian) )     # take one number
 (co 'cartesian)               # oops, i need bigger list, stop it
 
-(msg 12)
 
 (setq L '((1 2) (3 4 5) (100 111)))
 (co_product L)                   # define bigger list, start again
@@ -236,9 +222,7 @@
    S
    (sum '((L) (sum prog L)) (apply cartesian L)) )
 
-(msg 13)
 
-(msg 14)
 
 # adventofcode2015-day13
 # Find max sum of items in cartesian product
@@ -247,7 +231,6 @@
    330
    (cartesian-maxi L) )
 
-(msg 15)
 
 (de co_wagon (Prg N)
    (co (intern (pack 'zw N))
