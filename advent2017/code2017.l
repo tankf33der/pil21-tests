@@ -1138,7 +1138,7 @@
       C ) )
 (test 3 (f25-test-1))
 
-(de i25-1 (NIL)
+(de i25-1 ()
    (let (D '((0 NIL) 0 NIL)  L (car D)  C 0)
       (do 12134527
          (state '(A)
