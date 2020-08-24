@@ -1114,7 +1114,7 @@
       (set D (cons 0 NIL L))
       (set (cdr L) (car D))
       (setq L (car D)) ) )
-(de f25-test-1 (NIL)
+(de f25-test-1 ()
    (let
       (D '((0 NIL) 0 NIL)
          L (car D)
