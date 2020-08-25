@@ -1,3 +1,16 @@
+# plio
+(de pliopr (L)
+   (pipe
+      (out NIL (pr L))
+      (make
+         (while (rd 1)
+            (link @) ) ) ) )
+(de pliord (L)
+   (pipe (out NIL (mapc wr L)) (rd)) )
+(let L (pliopr (conc (range 1 10) (chop "mike")))
+   (test L (1 4 2 4 4 4 6 4 8 4 10 4 12 4 14 4 16 4 18 4 20 6 109 6 105 6 107 6 101 3))
+   (test (1 2 3 4 5 6 7 8 9 10 "m" "i" "k" "e") (pliord L)) )
+
 # foldl implementation
 (de foldl (F I . @)
    (pass

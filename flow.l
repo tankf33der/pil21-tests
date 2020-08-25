@@ -151,6 +151,12 @@
          (test 3 N) )
       (test 2 N) )
    (test 1 N) )
+(de f_let (A (B . C) D)
+   (test A 1)
+   (test B 2)
+   (test C (3 4))
+   (test D 42) )
+(f_let 1 (2 3 4) 42)
 
 (when (== 64 64)
    (test (1 2 (3) 4)
