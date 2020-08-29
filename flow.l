@@ -53,15 +53,14 @@
 ### dm ###
 (off "+Cls" "+A")
 (class "+Cls" "+A")
-# XXX
-#(test '"foo>"
-#   (dm "foo>" (X Y)
-#      (* X (+ X Y)) ) )
-#(test '"foo>"
-#   (dm ("foo>" . "+Cls") (X Y)
-#      (* X (+ X Y)) ) )
-#(test '(("foo>" (X Y) (* X (+ X Y))) "+A")
-#   "+Cls" )
+(test '"foo>"
+  (dm "foo>" (X Y)
+     (* X (+ X Y)) ) )
+(test '"foo>"
+  (dm ("foo>" . "+Cls") (X Y)
+     (* X (+ X Y)) ) )
+(test '(("foo>" (X Y) (* X (+ X Y))) "+A")
+  "+Cls" )
 
 ### box ###
 (let X (box '(A B C))
@@ -422,8 +421,6 @@
       X ) )
 
 ### co yield ###
-# XXX, co hangs
-#{
 (when co
    (test (1 2 3 (1 2 3))
       (make
@@ -434,9 +431,7 @@
                      (yield (link 1))
                      (yield (link 2))
                      (yield (link 3)) ) ) ) ) ) ) )
-}#
 
-# XXX, undefined
 ### exec ###
 (test
    (123 abc)
