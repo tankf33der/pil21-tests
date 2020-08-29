@@ -86,8 +86,7 @@
 
 ### symbols nsp ###
 (when symbols
-   # XXX, bool undefined
-   #(test T (bool (pair pico)))
+   (test T (bool (pair pico)))
    (test '(pico) (symbols 'myLib 'pico)) )
 
 (when symbols
@@ -285,7 +284,6 @@
 ### del ###
 # XXX, new undef
 # lets comment all
-#{
 (let (L '((a b c) (d e f))  S (new))
    (put S 'lst L)
    (test '((a b c)) (del '(d e f) 'L))
@@ -297,7 +295,6 @@
       (test NIL (: lst)) ) )
 (let L (1 1 2 3 1 2 3)
    (test (2 3 2 3) (del 1 'L T)) )
-}#
 
 ### queue ###
 (let A NIL

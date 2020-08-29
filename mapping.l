@@ -5,8 +5,6 @@
          (loop
             (yield
                (swap 'B (+ (swap 'A B) B)) ) ) ) ) )
-# XXX, hanging
-#{
 (let L
    (make
       (do 1000
@@ -14,7 +12,6 @@
    (test
       (sum prog L)
       (apply + L) ) )
-}#
 
 #http://rosettacode.org/wiki/Matrix_transposition#PicoLisp
 (de matTrans (Mat)
