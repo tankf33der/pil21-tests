@@ -1,13 +1,10 @@
 # oop
-# XXX, failed
-#{
 (class +Rectangle)
 (dm area> ()
    (* (: dx) (: dy)) )
 (test
    12
    (area> (new '(+Rectangle) 'dx 3 'dy 4)) )
-}#
 
 (de f (A B)
    (g (inc A) (dec B)) )
@@ -78,8 +75,6 @@
    (test X (box? X))
    (test '(A B C) (val X)) )
 
-# XXX, undefined
-#{
 ### new type isa method meth send try ###
 (let X (new '("+Cls"))
    (test X (box? X))
@@ -113,8 +108,6 @@
    (extra X Y) )
 (let X (new '("+Pref" "+Sub"))
    (test 21 ("foo>" X 3 4)) )
-
-}#
 
 ### with ###
 (let X (box)
