@@ -1,18 +1,3 @@
-# fibo.l from PicoLisp
-(de coFibo ()
-   (co 'fibo
-      (let (A 0  B 1)
-         (loop
-            (yield
-               (swap 'B (+ (swap 'A B) B)) ) ) ) ) )
-(let L
-   (make
-      (do 1000
-         (link (coFibo)) ) )
-   (test
-      (sum prog L)
-      (apply + L) ) )
-
 #http://rosettacode.org/wiki/Matrix_transposition#PicoLisp
 (de matTrans (Mat)
    (apply mapcar Mat list) )
