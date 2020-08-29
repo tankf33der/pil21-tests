@@ -1,3 +1,14 @@
+# oop
+# XXX, failed
+#{
+(class +Rectangle)
+(dm area> ()
+   (* (: dx) (: dy)) )
+(test
+   12
+   (area> (new '(+Rectangle) 'dx 3 'dy 4)) )
+}#
+
 (de f (A B)
    (g (inc A) (dec B)) )
 (de g (X Y)
