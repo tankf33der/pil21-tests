@@ -33,6 +33,7 @@
 (load "net.l")
 (load "pilog-rosetta.l")
 (load "co.l")     # + cartesian.l
+(load "rsa.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")
