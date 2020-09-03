@@ -32,6 +32,7 @@
 (load "net.l")
 (load "pilog-rosetta.l")
 (load "rsa.l")
+(load "lah.l")
 (prinl "======")
 (msg 'All-OK)
 (bye)
