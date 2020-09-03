@@ -8,12 +8,10 @@
             M )
          (setq X (% (* X X) N)) ) ) )
 (de int (Lst)
-   (apply
-      |
-      (mapcar
-         >>
-         (range (* -8 (dec (length Lst))) 0 8)
-         Lst ) ) )
+   (let N 0
+      (for L Lst
+         (setq N (>> -8 N))
+         (inc 'N L) ) ) )
 (test
    9339818067420603508647824643763706884124019
    (**Mod
