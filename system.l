@@ -1,3 +1,11 @@
+# XXX
+# later
+#{
+(prog1
+   (mapcan '((N) (later (cons) (* N N))) (1 2 3 4))
+      (wait NIL (full @)) )
+}#
+
 # up
 (test
    1

@@ -5,13 +5,6 @@ Requirements to this file and repo are:
 * find . -name "*.l" | xargs grep -ci "xxx" - should returns all zeroes
 
 ```
-# failed
-(test '"foo>"
-   (dm "foo>" (X Y)
-      (* X (+ X Y)) ) )
-```
-
-```
 # ???
 # Second argument to 'name' (i.e. renaming) is removed
 (setq X (box))
