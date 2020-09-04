@@ -65,13 +65,9 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
 ```
-adventofcode: 2017, 2019: XXX, coroutines
-```
-
-```
-add permrep.l (coroutine)
-```
-
-```
 add flood tests
+```
+
+```
+ht.l tests
 ```
