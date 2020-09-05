@@ -128,12 +128,12 @@
 # infitum = (1 2)
 
 #8.13
-(de fact (N)
+(de t_fact (N)
    (cond
       ((=0 N) 1)
-      (T (* N (fact (dec N)))) ) )
-# (fact 5) -> 120
-# (fact -5) -> infitum
+      (T (* N (t_fact (dec N)))) ) )
+# (t_fact 5) -> 120
+# (t_fact -5) -> infitum
 
 #8.14
 (de ff ()
