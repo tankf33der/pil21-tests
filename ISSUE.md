@@ -13,11 +13,6 @@ Requirements to this file and repo are:
 ```
 
 ```
-(glue NIL 1)
-should 1
-```
-
-```
 not equal to pil64 output
 (in "data.txt"
     (while (line NIL 2 0)
@@ -38,12 +33,6 @@ $ pil21 +
 ```
 
 ```
-1.
-(later)
-2.
-(prog1
-   (mapcan '((N) (later (cons) (* N N))) (1 2 3 4))
-      (wait NIL (full @)) )
 3.
 (key)
 # press arrow up

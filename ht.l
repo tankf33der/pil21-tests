@@ -10,7 +10,6 @@
 (test "+123&abc&$def&-123&_+1_xyz_+7"
    (ht:Fmt 123 "abc" 'def '{123} (1 "xyz" 7)) )
 
-
 ### ht:Pack ###
 (test "A+B%20C"
    (ht:Pack '("A" "+" "B" "%" "2" "0" "C")) )
@@ -24,20 +23,20 @@
    (ht:Pack '("%" "C" "3" "%" "A" "4" "%" "C" "3" "%" "B" "6" "%" "C" "3" "%" "B" "C") T) )
 
 ### ht:Read ###
-# (test NIL
-   # (pipe (prin "abcde") (ht:Read 0)) )
-# (test NIL
-   # (pipe (prin "abcde") (ht:Read 6)) )
-# (test NIL
-   # (pipe NIL (ht:Read 3)) )
-# (test NIL
-   # (pipe (prin "äö") (ht:Read 3)) )
-# (test '("ä" "ö")
-   # (pipe (prin "äö") (ht:Read 4)) )
-# (test '("a" "b" "c")
-   # (pipe (prin "abcde") (ht:Read 3)) )
-# (test '("ä" "ö" "ü")
-   # (pipe (prin "äöüxyz") (ht:Read 6)) )
+(test NIL
+   (pipe (prin "abcde") (ht:Read 0)) )
+(test NIL
+   (pipe (prin "abcde") (ht:Read 6)) )
+(test NIL
+   (pipe NIL (ht:Read 3)) )
+(test NIL
+   (pipe (prin "äö") (ht:Read 3)) )
+(test '("ä" "ö")
+   (pipe (prin "äö") (ht:Read 4)) )
+(test '("a" "b" "c")
+   (pipe (prin "abcde") (ht:Read 3)) )
+(test '("ä" "ö" "ü")
+   (pipe (prin "äöüxyz") (ht:Read 6)) )
 
 ### ht:In ht:Out ###
 # (test "Hello world"

@@ -155,8 +155,7 @@
 
 
 ### glue ###
-# XXX, glue-bug
-#(test 1 (glue NIL 1))
+(test 1 (glue NIL 1))
 (test "a" (glue NIL '(a)))
 (test "ab" (glue NIL '(a b)))
 (test "a,b" (glue "," '(a b)))
