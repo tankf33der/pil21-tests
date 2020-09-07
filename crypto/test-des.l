@@ -1,0 +1,17 @@
+(load "des.l")
+
+(use (K M R)
+   (in "vectors/des.testvec"
+      (line)
+      (until (eof)
+         (from "\"")
+         (setq K (hex (till "\"" T)))
+         (char)
+         (from "\"")
+         (setq M (hex (till "\"" T)))
+         (char)
+         (from "\"")
+         (test (till "\"" T) (encrypt K M))
+         (char)
+         (line) ) ) )
+(msg 'OK-des)

@@ -48,6 +48,7 @@
 (load "test-blake2s.l")
 (load "test-blowfish.l")
 (load "test-camellia.l")
+(load "test-des.l")
 (load "test-hkdf.l")
 (load "test-hmac.l")
 (load "test-idea.l")
