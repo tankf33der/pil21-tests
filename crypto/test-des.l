@@ -14,4 +14,4 @@
          (test (till "\"" T) (encrypt K M))
          (char)
          (line) ) ) )
-(msg 'OK-des)
+(msg 'des-OK)
