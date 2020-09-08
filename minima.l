@@ -23,6 +23,7 @@
 (load "struct.l")
 (load "base32.l")
 (load "base58.l")
+(load "base64.l")
 (load "parse2list.l")
 (load "chemical.l")
 (load "csv.l")
