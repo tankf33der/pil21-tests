@@ -21,6 +21,7 @@
 (load "passwd.l")
 (load "native.l")
 (load "struct.l")
+(load "ht.l")
 (load "base32.l")
 (load "base58.l")
 (load "base64.l")

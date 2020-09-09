@@ -39,7 +39,7 @@
    (pipe (prin "äöüxyz") (ht:Read 6)) )
 
 ### ht:In ht:Out ###
-# (test "Hello world"
-   # (pipe (ht:Out T (prinl "Hello world")) (ht:In T (line T))) )
+(test "Hello world"
+   (pipe (ht:Out T (prinl "Hello world")) (ht:In T (line T))) )
 
 (msg 'ht-OK)
