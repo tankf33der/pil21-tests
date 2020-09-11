@@ -51,5 +51,29 @@ add flood tests
 ```
 
 ```
-ht.l tests
+1244
+1245
+!? ((N) (recurse (println (inc N))))
+Stack overflow
+? (stack)
+-> (a T . 64)
+?
+:
+```
+
+```
+# pil21 +
+: (load "mapping.l")
+mapping-OK
+-> mapping-OK
+: (stack0
+   )
+!? (stack0)
+stack0 -- Undefined
+? (stack)
+-> 64
+? (load "minima.l")
+pi-OK
+cartesian-OK
+Segmentation fault
 ```
