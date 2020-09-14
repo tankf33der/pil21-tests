@@ -40,3 +40,4 @@
 ### dbck ###
 (test NIL (dbck))
 
+(msg 'db-OK)
