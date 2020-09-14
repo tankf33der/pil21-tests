@@ -1,5 +1,7 @@
 `(== 64 64)
 (seed (in "/dev/urandom" (rd 8)))
+(test T (pool (tmp "db")))
+
 (load "pi.l")
 (load "co.l")
 (load "bitwise.l")
@@ -23,6 +25,7 @@
 (load "native.l")
 (load "struct.l")
 (load "ht.l")
+(load "db.l")
 (load "base32.l")
 (load "base58.l")
 (load "base64.l")
