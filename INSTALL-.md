@@ -55,7 +55,7 @@ $ ../pil
 $
 ```
 
-### FreeBSD 12 (x86_64)
+### FreeBSD 12.1 (x86_64)
 ```
 install somehow readline, libffi, llvm
 $ llvm-as -o base.bc base.ll
