@@ -75,7 +75,7 @@ $ llvm-as -o base.bc base.ll
 $ clang -c -O3 -D_OS='"NetBSD"' -D_CPU='"x86"' `pkg-config --cflags libffi` -emit-llvm lib.c
 $ llvm-link -o picolisp.bc base.bc lib.bc
 $ llc picolisp.bc -o picolisp.s
-$ clang picolisp.s -o ../bin/picolisp  `pkg-config --libs libffi` -L/usr/pkg/lib -Wl,-R/usr/pkg/lib -lreadline
+$ clang picolisp.s -o ../bin/picolisp -lm -lc `pkg-config --libs libffi` -L/usr/pkg/lib -Wl,-R/usr/pkg/lib -lreadline
 /usr/bin/ld: /tmp/picolisp-4d1655.o: in function `_throw':
 llvm-link:(.text+0xeecc): undefined reference to `longjmp'
 /usr/bin/ld: /tmp/picolisp-4d1655.o: in function `_co':
