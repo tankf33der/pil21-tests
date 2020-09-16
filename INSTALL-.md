@@ -54,3 +54,15 @@ $ ../pil
 : (bye)
 $
 ```
+
+### FreeBSD 12 (x86_64)
+```
+install somehow readline, libffi, llvm
+$ llvm-as -o base.bc base.ll
+# XXX, readline include issue
+$ clang -c -O3 -D_OS='"FreeBSD"' -D_CPU='"x86"' `pkg-config --cflags libffi` -I/usr/local/include -emit-llvm lib.c
+$ llvm-link -o picolisp.bc base.bc lib.bc
+$ clang picolisp.s -o ../bin/picolisp -lc -lm -ldl `pkg-config --libs libffi` `pkg-config --libs readline`
+$ ../bin/picolisp
+Bus error (core dumped)
+```
