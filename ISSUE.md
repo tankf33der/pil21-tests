@@ -33,12 +33,6 @@ $ pil21 +
 ```
 
 ```
-3.
-(key)
-# press arrow up
-```
-
-```
 add atomic.l task (requires DB)
 ```
 
