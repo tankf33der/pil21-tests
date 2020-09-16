@@ -62,7 +62,35 @@ $ llvm-as -o base.bc base.ll
 # XXX, readline include issue
 $ clang -c -O3 -D_OS='"FreeBSD"' -D_CPU='"x86"' `pkg-config --cflags libffi` -I/usr/local/include -emit-llvm lib.c
 $ llvm-link -o picolisp.bc base.bc lib.bc
+$ llc picolisp.bc -o picolisp.s
 $ clang picolisp.s -o ../bin/picolisp -lc -lm -ldl `pkg-config --libs libffi` `pkg-config --libs readline`
 $ ../bin/picolisp
 Bus error (core dumped)
+```
+
+### NetBSD 9 (x86_64)
+```
+$ pkgin install clang llvm readline bla-bla-bla
+$ llvm-as -o base.bc base.ll
+$ clang -c -O3 -D_OS='"NetBSD"' -D_CPU='"x86"' `pkg-config --cflags libffi` -emit-llvm lib.c
+$ llvm-link -o picolisp.bc base.bc lib.bc
+$ llc picolisp.bc -o picolisp.s
+$ clang picolisp.s -o ../bin/picolisp  `pkg-config --libs libffi` -L/usr/pkg/lib -Wl,-R/usr/pkg/lib -lreadline
+/usr/bin/ld: /tmp/picolisp-4d1655.o: in function `_throw':
+llvm-link:(.text+0xeecc): undefined reference to `longjmp'
+/usr/bin/ld: /tmp/picolisp-4d1655.o: in function `_co':
+llvm-link:(.text+0xf120): undefined reference to `setjmp'
+/usr/bin/ld: llvm-link:(.text+0xf143): undefined reference to `longjmp'
+/usr/bin/ld: llvm-link:(.text+0xf14f): undefined reference to `setjmp'
+/usr/bin/ld: llvm-link:(.text+0xf311): undefined reference to `longjmp'
+/usr/bin/ld: /tmp/picolisp-4d1655.o: in function `_yield':
+llvm-link:(.text+0xf5b9): undefined reference to `setjmp'
+/usr/bin/ld: llvm-link:(.text+0xf7ab): undefined reference to `longjmp'
+/usr/bin/ld: /tmp/picolisp-4d1655.o: in function `err':
+llvm-link:(.text+0x18ad6): undefined reference to `longjmp'
+/usr/bin/ld: llvm-link:(.text+0x18cb4): undefined reference to `longjmp'
+/usr/bin/ld: /tmp/picolisp-4d1655.o: in function `main':
+llvm-link:(.text+0x265c5): undefined reference to `setjmp'
+/usr/bin/ld: /tmp/picolisp-4d1655.o: in function `boxFloat':
+
 ```
