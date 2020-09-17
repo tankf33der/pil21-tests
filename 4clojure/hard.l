@@ -812,7 +812,7 @@ ignore here
    (f178 '("HA" "HK" "HQ" "HJ" "HT")) )
 
 #138 Squares Squared
-(de pow (N)
+(de _pow (N)
    (let I 1
       (while (> N (* I I))
          (inc 'I) )
@@ -826,7 +826,7 @@ ignore here
                (while (<= N M)
                   (link (prog1 N (setq N (* N N)))) ) ) )
          N (length A)
-         M (pow N)
+         M (_pow N)
          N (+ M (dec M))
          Grid (simul~grid N N)
          Dir

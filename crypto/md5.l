@@ -7,7 +7,7 @@
 (setq
    "Dbl1" (0 . 1.0)
    "Dbl2" (0 . 1.0) )
-(de sin (A)
+(de __sin (A)
    (set "Dbl1" A)
    (native "@" "sin" 1.0 "Dbl1") )
 (de *Md5-R
@@ -19,7 +19,7 @@
    ~(make
       (for I 64
          (link
-            (/ (* (abs (sin (* I 1.0))) `(** 2 32)) 1.0) ) ) ) )
+            (/ (* (abs (__sin (* I 1.0))) `(** 2 32)) 1.0) ) ) ) )
 (de mod32 (N)
    (& N `(hex "FFFFFFFF")) )
 (de not32 (N)
