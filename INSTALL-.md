@@ -2,7 +2,7 @@
 ```
 $ brew install llvm libffi ncurses readline
 $ cd pil21/src
-$ llvm-as -o base.bc base.ll
+$ opt -O3 -o base.bc base.ll
 $ clang -c -O3 -D_OS='"Macos"' -D_CPU='"x86-64"' -I/usr/local/opt/libffi/include -emit-llvm lib.c -I/usr/local/opt/readline/include
 $ llvm-link -o picolisp.bc base.bc lib.bc
 $ mkdir -p ../bin ../lib
@@ -36,7 +36,7 @@ index 60d460b..7df7bbd 100644
 
  char *getDir(char *nm) {
 ##
-$ llvm-as -o base.bc base.ll
+$ opt -O3 -o base.bc base.ll
 $ clang -c -O3 -D_OS='"Solaris"' -D_CPU='"Sparc"' `pkg-config --cflags libffi` -emit-llvm lib.c
 $ llvm-link -o picolisp.bc base.bc lib.bc
 $ mkdir -p ../bin ../lib
@@ -58,7 +58,7 @@ $
 ### FreeBSD 12.1 (x86_64)
 ```
 install somehow readline, libffi, llvm
-$ llvm-as -o base.bc base.ll
+$ opt -O3 -o base.bc base.ll
 # XXX, readline include issue
 $ clang -c -O3 -D_OS='"FreeBSD"' -D_CPU='"x86"' `pkg-config --cflags libffi` -I/usr/local/include -emit-llvm lib.c
 $ llvm-link -o picolisp.bc base.bc lib.bc
