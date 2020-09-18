@@ -42,7 +42,12 @@ $ llvm-link -o picolisp.bc base.bc lib.bc
 $ mkdir -p ../bin ../lib
 $ llc picolisp.bc -o picolisp.s
 $ clang picolisp.s -o ../bin/picolisp -lc -lm -ldl -lffi -lreadline -lncursesw
-$ gcc sysdefs.c && ./a.out > ../lib/sysdefs
+$ opt -O3   -o ext.bc ext.ll
+$ llc ext.bc -relocation-model=pic -o ext.s
+$ clang ext.s -o ../lib/ext.so -shared
+$ opt -O3   -o ht.bc ht.ll
+$ llc ht.bc -relocation-model=pic -o ht.s
+$ clang ht.s -o ../lib/ht.so -shared
 $ ../pil
 : *OS
 -> "Solaris"
