@@ -17,7 +17,7 @@ $ ../pil
 $
 ```
 
-### Solaris 11.4 (SPARC)
+### Solaris 11.4 (>= SRU 24, SPARC)
 ```
 $ pkg install readline libffi llvm
 $ export PKG_CONFIG_PATH=/usr/lib/64/pkgconfig
