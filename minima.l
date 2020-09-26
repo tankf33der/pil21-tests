@@ -27,6 +27,7 @@
 (load "struct.l")
 (load "ht.l")
 (load "db.l")
+(load "oop.l")
 (load "base32.l")
 (load "base58.l")
 (load "base64.l")

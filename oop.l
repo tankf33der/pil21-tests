@@ -1,5 +1,4 @@
-# 25jun07abu
-# (c) Software Lab. Alexander Burger
+# Original code from PicoLisp
 
 # The Shape base class
 (class +Shape)
@@ -56,4 +55,27 @@
 
 (dm move> (DX DY))  # A do-nothing method
 
-# vi:et:ts=3:sw=3
+# ^^^^ original code fin
+
+(setq R (new '(+Rectangle) 0 0 30 20))
+(test 600 (area> R))
+(test 100 (perimeter> R))
+(test 5 (move> R 10 5))
+
+(setq C (new '(+Circle) 10 10 30))
+(test 2827 (area> C))
+(test 188 (perimeter> C))
+(test 15 (move> C 10 5))
+
+(test (600 2827) (mapcar 'area> (list R C)))
+(mapc
+   '((Shape) (move> Shape 10 10))
+   (list R C) )
+(test 20 (get R 'x))
+(test 30 (get C 'x))
+
+(setq R (new '(+Fixed +Rectangle) 0 0 30 20))
+(move> R 10 5)
+(test 0 (get R 'x))
+
+(msg 'oop-OK)

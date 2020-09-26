@@ -1,10 +1,10 @@
 # oop
-(class +Rectangle)
+(class +Rectan)
 (dm area> ()
    (* (: dx) (: dy)) )
 (test
    12
-   (area> (new '(+Rectangle) 'dx 3 'dy 4)) )
+   (area> (new '(+Rectan) 'dx 3 'dy 4)) )
 
 (de f (A B)
    (g (inc A) (dec B)) )
