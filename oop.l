@@ -78,4 +78,6 @@
 (move> R 10 5)
 (test 0 (get R 'x))
 
+(off R C)
+
 (msg 'oop-OK)
