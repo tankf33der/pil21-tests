@@ -1,5 +1,8 @@
 `(== 64 64)
 (seed (in "/dev/urandom" (rd 8)))
+
+(pool (tmp "ff"))
+
 (prinl "check ulimit or crash!")
 (load "math.l")
 (load "math-pil.l")

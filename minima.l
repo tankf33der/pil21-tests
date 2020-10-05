@@ -1,5 +1,8 @@
 `(== 64 64)
 (seed (in "/dev/urandom" (rd 8)))
+
+(pool (tmp "fg"))
+
 (load "pi.l")
 (load "co.l")
 (load "bitwise.l")

@@ -62,22 +62,17 @@
 (test NIL "W")
 (test NIL (getl '"W"))
 
-# XXX, *DB
-#{
 (set *DB (1 2 3 4))
 (put *DB 'a 1)
 (put *DB 'b 2)
 (test (1 2 3 4) (val *DB))
-#XXX
-#(test '((2 . b) (1 . a)) (getl *DB))
+(test '((2 . b) (1 . a)) (getl *DB))
 (wipe *DB)
 (test (1 2 3 4) (val *DB))
-#XXX
-#(test '((2 . b) (1 . a)) (getl *DB))
+(test '((2 . b) (1 . a)) (getl *DB))
 (rollback)
 (test NIL "W")
 (test NIL (getl '"W"))
-}#
 
 ### meta ###
 (let A '("B")
