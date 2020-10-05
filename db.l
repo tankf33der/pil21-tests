@@ -1,3 +1,4 @@
+(test T (pool (tmp "db")))
 
 # from picoLisp source base
 

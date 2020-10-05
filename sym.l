@@ -105,8 +105,7 @@
 
 ### extern ###
 (test NIL (extern (box)))
-# XXX, undef
-#(test *DB (extern "1"))
+(test *DB (extern "1"))
 
 
 ### box? ###
@@ -124,8 +123,6 @@
 (test "abc" (str? "abc"))
 
 
-# XXX, undef
-#{
 ### ext? ###
 (test *DB (ext? *DB))
 (test NIL (ext? 'abc))
@@ -135,11 +132,9 @@
 ### touch ###
 (test *DB (touch *DB))
 (rollback)
-}#
 
 ### zap ###
 (test "abc" (str? (zap 'abc)))
-
 
 ### chop ###
 (test '("c" "a" "r") (chop 'car))
@@ -281,8 +276,6 @@
 
 
 ### del ###
-# XXX, new undef
-# lets comment all
 (let (L '((a b c) (d e f))  S (new))
    (put S 'lst L)
    (test '((a b c)) (del '(d e f) 'L))
@@ -338,23 +331,5 @@
       (lup X 3 5) )
    (test '((1 . A) (2 . B) (3 . C) (4 . D) (5 . E) (6 . F) (7 . G))
          (lup X 0 9) ) )
-
-# XXX
-# [sym.l:405] !? (set *DB (1 2 3 4))
-# {1} -- Protected symbol
-# ?
-#{
-(set *DB (1 2 3 4))
-(put *DB 'a 1)
-(put *DB 'b 2)
-(test (1 2 3 4) (val *DB))
-(test '((2 . b) (1 . a)) (getl *DB))
-(wipe *DB)
-(test (1 2 3 4) (val *DB))
-(test '((2 . b) (1 . a)) (getl *DB))
-(rollback)
-(test NIL "W")
-(test NIL (getl '"W"))
-}#
 
 (msg 'sym-OK)

@@ -1,8 +1,5 @@
 `(== 64 64)
 (seed (in "/dev/urandom" (rd 8)))
-# for db.l
-(test T (pool (tmp "db")))
-
 (prinl "check ulimit or crash!")
 (load "math.l")
 (load "math-pil.l")
