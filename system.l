@@ -1,5 +1,3 @@
-# XXX
-# later
 (prog1
    (mapcan '((N) (later (cons) (* N N))) (1 2 3 4))
       (wait NIL (full @)) )
@@ -82,25 +80,19 @@
 ### datStr ###
 (test "2007-06-01" (datStr (date 2007 6 1)))
 
-# XXX, no locale yet
-#{
 (locale "DE" "de")
 (test "01.06.2007" (datStr (date 2007 6 1)))
 (test "01.06.07" (datStr (date 2007 6 1) T))
 (locale)
-}#
 
 ### strDat ###
 (test 733134 (strDat "2007-06-01"))
 (test NIL (strDat "01.06.2007"))
 
-# XXX, no locale yet
-#{
 (locale "DE" "de")
 (test 733134 (strDat "01.06.2007"))
 (test 733134 (strDat "1.6.2007"))
 (locale)
-}#
 
 ### expDat ###
 (test 733133 (date 2007 5 31))
@@ -114,25 +106,18 @@
    (test (inc D) (expDat "+1"))
    (test (dec D) (expDat "-1")) )
 
-# XXX, no locale yet
-#{
 (locale "DE" "de")
 (test 733133 (expDat "31.5.7"))
 (locale)
-}#
-
 
 ### day ###
 (test "Friday" (day (date 2007 6 1)))
 
-# XXX, no locale yet
-#{
 (locale "DE" "de")
 (test "Freitag" (day (date 2007 6 1)))
 (test "Fr"
    (day (date 2007 6 1) '("Mo" "Tu" "We" "Th" "Fr" "Sa" "Su")) )
 (locale)
-}#
 
 ### week ###
 (test 22 (week (date 2007 6 1)))
