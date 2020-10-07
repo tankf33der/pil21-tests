@@ -36,8 +36,6 @@
 (test (1 abc (d e f))
    (pipe (prinl "(1 abc (d e f))")
       (read) ) )
-# XXX, bug
-# read dont support "_" "#"
 (test '(abc "=" def_ghi "(" ("x" "y" "z") "+" "-" 123 ")")
    (pipe (prinl "abc = def_ghi(\"xyz\"+-123) # Comment")
       (make
