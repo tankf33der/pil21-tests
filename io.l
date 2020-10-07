@@ -37,12 +37,12 @@
    (pipe (prinl "(1 abc (d e f))")
       (read) ) )
 # XXX, bug
-# name dont support "_" "#"
-# (test '(abc "=" def_ghi "(" ("x" "y" "z") "+" "-" 123 ")")
-   # (pipe (prinl "abc = def_ghi(\"xyz\"+-123) # Comment")
-      # (make
-         # (while (read "_" "#")
-            # (link @) ) ) ) )
+# read dont support "_" "#"
+(test '(abc "=" def_ghi "(" ("x" "y" "z") "+" "-" 123 ")")
+   (pipe (prinl "abc = def_ghi(\"xyz\"+-123) # Comment")
+      (make
+         (while (read "_" "#")
+            (link @) ) ) ) )
 
 ### skip ###
 (test "a"

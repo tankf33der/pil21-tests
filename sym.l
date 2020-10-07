@@ -42,11 +42,7 @@
 (test "abc" (name 'abc))
 (test "A123" (name '{A123}))
 (let X (box)
-   (test NIL (name X))
-   (name X "xxx")
-   # XXX, name-bug
-   #(test "xxx" (name X))
-)
+   (test NIL (name X)) )
 
 ### sp? ###
 (test T (sp? " ^I^J"))
