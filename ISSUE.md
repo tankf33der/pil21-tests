@@ -7,3 +7,9 @@ Requirements to this file and repo are:
 add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
+```
+# should be (2 0)
+: (out "a" (pr (2 0))) (in "a" (rd))
+-> (2 .)
+:
+```
