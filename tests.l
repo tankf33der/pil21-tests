@@ -45,6 +45,7 @@
 (load "rsa.l")
 (load "lah.l")
 (load "plio.l")
+(load "fixedpoint.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")

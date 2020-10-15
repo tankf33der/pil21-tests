@@ -42,6 +42,7 @@
 (load "rsa.l")
 (load "lah.l")
 (load "plio.l")
+(load "fixedpoint.l")
 (prinl "======")
 (msg 'All-OK)
 (bye)
