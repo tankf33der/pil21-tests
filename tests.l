@@ -41,9 +41,10 @@
 (load "fern.l")
 (load "net.l")
 (load "pilog-rosetta.l")
-(load "co.l")     # + cartesian.l
+(load "co.l")              # + cartesian.l
 (load "rsa.l")
 (load "lah.l")
+(load "plio.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")
