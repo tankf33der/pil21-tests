@@ -15,6 +15,12 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
 ```
+crashes under gc+
+(test (1 2 3) (~(1 2) 3))
+(test (1 3) (~(1 . 2) 3))
+```
+
+```
 pil21 can execute irb, pil64 can
 $ pil21 +
 (call 'irb)

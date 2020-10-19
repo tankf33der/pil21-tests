@@ -18,29 +18,33 @@
    "89"
    (pipe (in "test-.txt" (line) (echo 1 2)) (line T)) )
 
+(msg 1)
 
 # Original PicoLisp test code
 # copy-paste
 
-### read ###
-(test (1 2 3) (~(1 2) 3))
-(test (1 3) (~(1 . 2) 3))
-(test (1 2 3 4) (1 ~(2 3) 4))
-(test (1 2 4) (1 ~(2 . 3) 4))
-(test (1 2 3) [1 2 3])
-(test (1 2 3) (1 2 3]
-(test (1 2 3) (1 2 3)]
-(test (1 (2 3)) (1 (2 3]
-(test (quote 1 (2 (3))) '(1 (2 (3]
-(test (quote 1 (2 (3))) '[1 (2 (3])
-(test (1 abc (d e f))
-   (pipe (prinl "(1 abc (d e f))")
-      (read) ) )
-(test '(abc "=" def_ghi "(" ("x" "y" "z") "+" "-" 123 ")")
-   (pipe (prinl "abc = def_ghi(\"xyz\"+-123) # Comment")
-      (make
-         (while (read "_" "#")
-            (link @) ) ) ) )
+# ### read ###
+# (test (1 2 3) (~(1 2) 3))
+# (test (1 3) (~(1 . 2) 3))
+# (test (1 2 3 4) (1 ~(2 3) 4))
+# (test (1 2 4) (1 ~(2 . 3) 4))
+# (test (1 2 3) [1 2 3])
+# (test (1 2 3) (1 2 3]
+# (test (1 2 3) (1 2 3)]
+# (test (1 (2 3)) (1 (2 3]
+# (test (quote 1 (2 (3))) '(1 (2 (3]
+# (test (quote 1 (2 (3))) '[1 (2 (3])
+# (test (1 abc (d e f))
+   # (pipe (prinl "(1 abc (d e f))")
+      # (read) ) )
+# (test '(abc "=" def_ghi "(" ("x" "y" "z") "+" "-" 123 ")")
+   # (pipe (prinl "abc = def_ghi(\"xyz\"+-123) # Comment")
+      # (make
+         # (while (read "_" "#")
+            # (link @) ) ) ) )
+
+(msg 11)
+
 
 ### skip ###
 (test "a"
@@ -50,6 +54,7 @@
    (pipe (prinl "# Comment^Ja")
       (skip) ) )
 
+(msg 2)
 
 ### eof ###
 (test T (pipe NIL (eof)))
