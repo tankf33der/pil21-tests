@@ -35,15 +35,15 @@
    B )
 
 # task 3
-(de pow (A B)     # fixedpoint
+(de t3__pow (A B)     # fixedpoint
    (*/ 1.0 (** A B) (** 1.0 B)) )
 (de task3 (A B)
    (let
-      (A2 (pow A 2)
-         B2 (pow B 2)
-         B4 (pow B 4)
-         B6 (pow B 6)
-         B8 (pow B 8) )
+      (A2 (t3__pow A 2)
+         B2 (t3__pow B 2)
+         B4 (t3__pow B 4)
+         B6 (t3__pow B 6)
+         B8 (t3__pow B 8) )
       (+
          (*/ 333.75 B6 1.0)
          (*/
