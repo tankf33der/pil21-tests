@@ -24,40 +24,4 @@
 (test
    T
    (and (= `(hex "EA") (car "L")) (= `(hex "57") (last "L"))) )
-
-(setq "L"
-   (pbkdf2
-      'sha1
-      (mapcar char (chop "password"))
-      (mapcar char (chop "salt"))
-      4096
-      20 ) )
-(test
-   T
-   (and (= `(hex "4B") (car "L")) (= `(hex "C1") (last "L"))) )
-
-(setq "L"
-   (pbkdf2
-      'sha1
-      (mapcar char (chop "passwordPASSWORDpassword"))
-      (mapcar char (chop "saltSALTsaltSALTsaltSALTsaltSALTsalt"))
-      4096
-      25 ) )
-(test
-   T
-   (and (= `(hex "3D") (car "L")) (= `(hex "38") (last "L"))) )
-
-# Internet
-(setq "L"
-   (pbkdf2
-      'sha256
-      (mapcar char (chop "passwordPASSWORDpassword"))
-      (mapcar char (chop "saltSALTsaltSALTsaltSALTsaltSALTsalt"))
-      4096
-      40 ) )
-(test
-   T
-   (and (= `(hex "34") (car "L")) (= `(hex "E9") (last "L"))) )
-
 (msg 'pbkdf2-OK)
-
