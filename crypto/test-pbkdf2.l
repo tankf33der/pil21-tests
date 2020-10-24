@@ -13,15 +13,4 @@
 (test
    T
    (and (= `(hex "0C") (car "L")) (= `(hex "A6") (last "L"))) )
-
-(setq "L"
-   (pbkdf2
-      'sha1
-      (mapcar char (chop "password"))
-      (mapcar char (chop "salt"))
-      2
-      20 ) )
-(test
-   T
-   (and (= `(hex "EA") (car "L")) (= `(hex "57") (last "L"))) )
 (msg 'pbkdf2-OK)
