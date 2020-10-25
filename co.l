@@ -1,6 +1,7 @@
 (load "cartesian.l")
 
 (test 7 (co 'aa (yield 7)))
+(co 'aa)
 
 (de powers (M)
    (co (intern (pack 'powers M))
@@ -18,6 +19,9 @@
 (test
    (4 9 16 25 36 49 81 100)
    (make (do 8 (link (filtered 2 3)))) )
+(co 'filtered)
+(co 'powers2)
+(co 'powers3)
 
 (de co_pythag (N)
    (co 'pythag
@@ -113,7 +117,7 @@
 (test (1 1 1) (11permute 'next))        # first
 (do 32 (11permute 'next))               # skip a few
 (test (2 1 3) (11permute 'next))        # next after skip
-
+(co 'next)
 
 (for N 64
    (co (intern (pack 'ring N))
@@ -121,6 +125,8 @@
          (for (I (yield)  (gt0 (yield (dec I) Send))  @))
          N ) ) )
 (test 9 (yield 5000 'ring1))
+(for N 64
+   (co (intern (pack 'ring N))) )
 
 
 (de co_product (Lst)
@@ -258,5 +264,8 @@
 (co_wagon (copy *zW7) 2)
 (co_wagon (copy *zW7) 3)
 (test 567 (yield 7 'zw1))
+(co 'zw1)
+(co 'zw2)
+(co 'zw3)
 
 (msg 'co-OK)
