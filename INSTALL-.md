@@ -8,7 +8,7 @@ $ llvm-link -o picolisp.bc base.bc lib.bc
 $ mkdir -p ../bin ../lib
 $ llc picolisp.bc -o picolisp.s
 $ clang picolisp.s -o ../bin/picolisp -lm -ldl -lffi -lreadline -lncurses -L/usr/local/opt/readline/lib
-$ gcc sysdefs.c && ./a.out > ../lib/sysdefs
+$ clang -D_OS='"Macos"' -D_CPU='"x86-64"' sysdefs.c && ./a.out > ../lib/sysdefs
 $ ../pil
 : (version)
 21.0.0
