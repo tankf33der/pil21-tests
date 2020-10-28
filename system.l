@@ -12,6 +12,8 @@
    (let N 1 ((quote (N) (cons N (up N) (up N 7))) 2)) )
 
 # copy-paste PicoLisp original code
+
+
 ### Evaluation ###
 (test 2
    (when 1
@@ -85,6 +87,71 @@
 (test '(T . @) (info "/etc"))
 (test 2 (length (info "/etc/passwd")))
 (test T (fully num? (info "/etc/passwd")))
+
+### sys ###
+(test "PicoLisp" (sys "TEST" "PicoLisp"))
+(test "PicoLisp" (sys "TEST"))
+
+
+### args next arg rest ####
+(test '(T 1 3 (2 3 4))
+   (let foo '(@ (list (args) (next) (arg 2) (rest)))
+      (foo 1 2 3 4) ) )
+
+(test (7 NIL)
+   ((quote @ (list (next) (next))) 7) )
+
+
+### usec ###
+(let U (usec)
+   (wait 400)
+   (test 4 (*/ (- (usec) U) 100000)) )
+
+
+### pwd ###
+(test
+   (in '(pwd) (line T))
+   (pwd) )
+
+
+### cd ###
+(chdir "/"
+   (test "/" (pwd)) )
+
+
+### file ###
+(test (cons (tmp) "file" 1)
+   (out (tmp "file") (println '(file)))
+   (load (tmp "file")) )
+
+
+### cmd ###
+(setq *CMD (cmd))
+(cmd "test")
+(test "test" (cmd))
+
+
+### argv ###
+(test '("abc" "123")
+   (pipe
+      (call *CMD "-prog (println (argv)) (bye)" "abc" 123)
+      (read) ) )
+(test '("abc" "123")
+   (pipe
+      (call *CMD "-prog (argv A B) (println (list A B)) (bye)" "abc" 123)
+      (read) ) )
+
+
+### opt ###
+(test '("abc" "123")
+   (pipe
+      (call *CMD "-prog (println (list (opt) (opt))) (bye)" "abc" 123)
+      (read) ) )
+(test "abc"
+   (pipe
+      (call *CMD "-de f () (println (opt))" "-f" "abc" "-bye")
+      (read) ) )
+
 
 ### date time ###
 (use (Dat1 Tim1 Dat2 Tim2 D1 T1 D2 T2)
