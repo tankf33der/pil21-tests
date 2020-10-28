@@ -12,6 +12,60 @@
    (let N 1 ((quote (N) (cons N (up N) (up N 7))) 2)) )
 
 # copy-paste PicoLisp original code
+### Evaluation ###
+(test 2
+   (when 1
+      ('((N) N) (and 2))
+      @ ) )
+
+### alarm ###
+(let N 6
+   (alarm 1 (inc 'N))
+   (test 6 N)
+   (wait 2000)
+   (test 7 N)
+   (alarm 0) )
+
+
+### sigio ###
+(unless (member *OS '("SunOS" "OpenBSD" "Cygwin" "AIX" "HP-UX" "IRIX64"))
+   (sigio (setq "SigSock" (port T 0 "SigPort"))
+      (setq "SigVal" (udp "SigSock")) )
+   (udp "localhost" "SigPort" '(a b c))
+   (wait 200)
+   (test '(a b c) "SigVal")
+   (close "SigSock") )
+
+
+### kids ###
+(test
+   (make
+      (do 7
+         (link (or (fork) (wait 2000) (bye))) ) )
+   (flip (kids)) )
+
+### protect ###
+(test NIL (pipe (prog (kill *Pid) (pr 7)) (rd)))
+(test 7 (pipe (protect (kill *Pid) (pr 7)) (rd)))
+
+
+### quit ###
+(test "Quit" (catch '("Quit") (quit "Quit")))
+
+
+### byte ###
+(test (hex "12")
+   (byte (adr (1))) )
+
+(test "ABC"
+   (let P (native "@" "malloc" 'N 8)
+      (byte P (char "A"))
+      (byte (inc P) (char "B"))
+      (byte (+ P 2) (char "C"))
+      (byte (+ P 3) 0)
+      (prog1
+         (native "@" "strdup" 'S P)
+         (native "@" "free" NIL P) ) ) )
 
 # adr
 (de adr1 (Lst)
