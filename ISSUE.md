@@ -8,13 +8,6 @@ add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 
 ```
-# should be (2 0)
-: (out "a" (pr (2 0))) (in "a" (rd))
--> (2 .)
-:
-```
-
-```
 crashes under gc+
 (test (1 2 3) (~(1 2) 3))
 (test (1 3) (~(1 . 2) 3))
