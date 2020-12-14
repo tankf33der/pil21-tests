@@ -7,6 +7,8 @@
 
 (native "@" "free" NIL P)
 
+(off A)
+(wipe 'A)
 (setq A '(a b c))
 (put 'A 'a 1)
 (test '(a b c) (struct (adr 'A) T))
