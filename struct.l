@@ -7,4 +7,12 @@
 
 (native "@" "free" NIL P)
 
+(setq A '(a b c))
+(put 'A 'a 1)
+(test '(a b c) (struct (adr 'A) T))
+(test '((1 . a) . 65) (struct (- (adr 'A) 8) T))
+(test
+   '(((1 . a) . 65) (a b c))
+   (struct (- (adr 'A) 8) '(T T)) )
+
 (msg 'struct-OK)
