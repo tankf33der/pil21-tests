@@ -40,7 +40,7 @@
                   (x|
                      (car Y)
                      ("rol"
-                        (mod32+ # XXX
+                        (mod32+
                            (car (nth "Lst" (cadr R)))
                            (car (nth "Lst" (caddr R))) )
                         (cadddr R) ) ) ) ) ) )

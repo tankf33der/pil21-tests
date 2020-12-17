@@ -611,7 +611,7 @@
                      ("p"
                         (link
                            (make (link 2 (prog1 (char) (char)) (char))) ) ) ) ) ) ) )
-      (do 1000 # not 1B times, XXX !!!
+      (do 1000
          (for D Dir
             (case (car D)
                (0 (do (cadr D) (rot L)))

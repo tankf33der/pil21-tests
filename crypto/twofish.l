@@ -12,7 +12,7 @@
    (| (mod32 (>> (- C) X)) (>> (- 32 C) X)) )
 (de rightRotate (X C)
    (| (>> C X) (mod32 (>> (- C 32) X))) )
-(de gfMult (A B P) # XXX overflow?
+(de gfMult (A B P)
    (let R 0
       (do 7
          (and
