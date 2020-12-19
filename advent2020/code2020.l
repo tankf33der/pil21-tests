@@ -205,15 +205,15 @@
 (de content (Entry)
   (make
     (link (car Entry))
-    (expand (cdr Entry) 1)))
+    (expand7 (cdr Entry) 1)))
 
-(de expand (Bags N)
+(de expand7 (Bags N)
   (for B Bags
     (let ((Name . Count) B
           NewN (* Count N)
           SubBags (cdr (assoc Name List2)))
     (link (cons Name NewN))
-    (expand SubBags NewN))))
+    (expand7 SubBags NewN))))
 
 (setq TestList '(("shiny gold" ("dull magenta" . 2)) ("dull magenta" ("drab purple" . 3)) ("drab purple")))
 (test '("shiny gold" ("dull magenta" . 2) ("drab purple" . 6))
