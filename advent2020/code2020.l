@@ -255,6 +255,80 @@
 (test 1797 (runit List2))
 
 --- Day 9: Encoding Error ---
+(setq Inp (in "data/09.txt" (till NIL T)))
+(setq List (mapcar 'format (filter 'and (split (chop Inp) "\n"))))
+
+# 9a
+(setq Preamble (head 25 List))
+(setq Numbers (tail -25 List))
+
+(setq TestList (35 20 15 25 47 40 62 55 65 95 102 117 150 182 127 219 299 277 309 576))
+(setq TestPreamble (head 5 TestList))
+(setq TestNumbers (tail -5 TestList))
+
+(de sums (Lst)
+  (make
+    (for (I . L) Lst Lst (pop 'Lst)
+      (mapcar '((X) (link (+ L X))) Lst))))
+
+(de check9 (Lst Pre)
+  (for (I . L) Lst Lst (pop 'Lst)
+    #(println L Pre (if (member L (sums Pre)) T NIL))
+    # (NIL (member L (sums Pre)) (prinl "number: " L)
+    (NIL (member L (sums Pre)) L)
+    (setq Pre (remove 1 Pre))
+    (setq Pre (append Pre (list L)))
+    ))
+(out "/dev/null" (test 127 (check9 TestNumbers TestPreamble)))
+(setq Target (check9 Numbers Preamble))
+(test 756008079 Target)
+
+# 9b
+(de scanit (Target Lst)
+  (for I (range 2 (length Lst))
+    (setq Res (maplist '((L) (list (apply '+ (head I L)) (head I L))) Lst))
+    # (T (assoc Target Res) (let Set (cadr @) (prinl "value: "(+ (apply 'min Set) (apply 'max Set)))))
+    (T (assoc Target Res) (let Set (cadr @) (+ (apply 'min Set) (apply 'max Set))))
+  ))
+(out "/dev/null" (test 62 (scanit 127 TestList)))
+(test 93727241 (scanit Target List))
+
+
+--- Day 10: Adapter Array ---
+(setq Inp (in "data/10.txt" (till NIL T)))
+(setq List (mapcar 'format (filter 'and (split (chop Inp) "\n"))))
+
+# 10a
+(setq TList1 (16 10 15 5 1 11 7 19 6 12 4))
+(setq TList2 (28 33 18 42 31 14 46 20 48 47 24 23 49 45 19 38 39 11 1 32 25 35 8 17 7 9 4 2 34 10 3))
+
+(de compute (List)
+  (let (SList (sort (copy List))
+        ExtList (insert 0 (insert (inc (length SList)) SList (+ 3 (last SList))) 0)
+        Diffs (mapcar - (tail -1 ExtList) (head -1 ExtList))
+        Jolts (by format group Diffs))
+    (* (length (assoc 1 Jolts)) (length (assoc 3 Jolts)))))
+(test 35 (compute TList1))
+(test 220 (compute TList2))
+(test 2482 (compute List))
+
+# 10b
+(de combine (List)
+  (let (SList (sort (copy List))
+        Sol '((0 . 1)))
+    (for I SList
+      (push 'Sol (cons I 0))
+      (if (assoc (- I 1) Sol)
+        (push 'Sol (cons I (+ (cdr (assoc I Sol)) (cdr (assoc (- I 1) Sol))))))
+      (if (assoc (- I 2) Sol)
+        (push 'Sol (cons I (+ (cdr (assoc I Sol)) (cdr (assoc (- I 2) Sol))))))
+      (if (assoc (- I 3) Sol)
+        (push 'Sol (cons I (+ (cdr (assoc I Sol)) (cdr (assoc (- I 3) Sol)))))))
+    (assoc (last SList) Sol)))
+(test 8 (cdr (combine TList1)))
+(test 19208 (cdr (combine TList2)))
+(test 96717311574016 (cdr (combine List)))
+
 
 
 (msg 'ok)
