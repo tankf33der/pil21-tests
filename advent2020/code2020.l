@@ -331,5 +331,5 @@
 
 
 
-(msg 'ok)
+(msg '10-ok)
 (bye)
