@@ -329,7 +329,539 @@
 (test 19208 (cdr (combine TList2)))
 (test 96717311574016 (cdr (combine List)))
 
+--- Day 11: Seating System ---
+(setq Inp (in "data/11.txt" (till NIL)))
+(setq List (filter 'and (split Inp "\n")))
+
+# 11a
+(setq Demo (filter 'and (split (in "data/demo11.txt" (till)) "\n")))
+(de seat-round (Lst)
+  (make
+    (for (I . R) Lst
+      (link (make
+        (for (J . C) R
+          (let Cnt 0
+            # same line
+            (when (= (car (nth R (- J 1))) "#") (setq Cnt (inc Cnt)))
+            (when (= (car (nth R (+ J 1))) "#") (setq Cnt (inc Cnt)))
+            # above
+            (when (= (car (nth (car (nth Lst (- I 1))) (- J 1))) "#") (setq Cnt (inc Cnt)))
+            (when (= (car (nth (car (nth Lst (- I 1))) (+ J 1))) "#") (setq Cnt (inc Cnt)))
+            (when (= (car (nth (car (nth Lst (- I 1))) J)) "#") (setq Cnt (inc Cnt)))
+            # below
+            (when (= (car (nth (car (nth Lst (+ I 1))) (- J 1))) "#") (setq Cnt (inc Cnt)))
+            (when (= (car (nth (car (nth Lst (+ I 1))) (+ J 1))) "#") (setq Cnt (inc Cnt)))
+            (when (= (car (nth (car (nth Lst (+ I 1))) J)) "#") (setq Cnt (inc Cnt)))
+            # check
+            #(println I J C)
+            (cond
+              ((and (= C "L") (= Cnt 0)) (link "#"))
+              ((and (= C "#") (> Cnt 3)) (link "L"))
+              (T (link C))))))))))
+
+(de print-seats (Lst)
+  (for R Lst
+    (for C R
+      (prin C))
+    (prinl)))
+(de compare-seats (OldLst NewLst)
+  (= (fish 'atom OldLst) (fish 'atom NewLst)))
+(de count-seats (Lst)
+  (length (filter '((C) (= C "#")) (fish 'atom Lst))))
+(de loop-seats (Lst)
+  (let (OldLst Lst
+        NewLst (seat-round OldLst))
+    (until (compare-seats OldLst NewLst)
+      (setq OldLst NewLst)
+      (setq NewLst (seat-round OldLst)))
+    NewLst))
+(test 37 (count-seats (loop-seats Demo)))
+
+# 11b
+(de diag+ (Lst I J)
+  (let (NI (length Lst)
+        NJ (length (car Lst)))
+    (by 'cadr 'sort
+      (uniq (make
+        (let (SI I SJ J)
+          (while (and (<= SJ NJ) (> SI 0))
+            (link (list SI SJ (car (nth (car (nth Lst SI)) SJ))))
+            (setq SI (dec SI) SJ (inc SJ))))
+        (let (SI I SJ J)
+          (while (and (> SJ 0) (<= SI NI))
+            (link (list SI SJ (car (nth (car (nth Lst SI)) SJ))))
+            (setq SI (inc SI) SJ (dec SJ))))
+        )))))
+(de diag- (Lst I J)
+  (let (NI (length Lst)
+        NJ (length (car Lst)))
+    (by 'cadr 'sort
+      (uniq (make
+        (let (SI I SJ J)
+          (while (and (<= SJ NJ) (<= SI NI))
+            (link (list SI SJ (car (nth (car (nth Lst SI)) SJ))))
+            (setq SI (inc SI) SJ (inc SJ))))
+        (let (SI I SJ J)
+          (while (and (> SJ 0) (> SI 0))
+            (link (list SI SJ (car (nth (car (nth Lst SI)) SJ))))
+            (setq SI (dec SI) SJ (dec SJ))))
+        )))))
+(de seat-round-2 (Lst)
+  (make
+    (for (I . R) Lst
+      (link (make
+        (for (J . C) R
+          (let (Cnt 0
+                Vert  (mapcar '((X) (car (nth X J))) Lst)
+                Diag+ (filter '((X) (not (= (caddr X) "."))) (diag+ Lst I J))
+                Diag- (filter '((X) (not (= (caddr X) "."))) (diag- Lst I J)))
+            # same line
+            (when (= "#" (last (filter '((X) (not (= X "."))) (head (- J 1) R)))) (setq Cnt (inc Cnt)))
+            (when (= "#" (car  (filter '((X) (not (= X "."))) (tail (- J)   R)))) (setq Cnt (inc Cnt)))
+            # diag
+            (when (= "#" (last (mapcar 'caddr (filter '((X) (< (cadr X) J)) Diag+)))) (setq Cnt (inc Cnt)))
+            (when (= "#" (car  (mapcar 'caddr (filter '((X) (> (cadr X) J)) Diag+)))) (setq Cnt (inc Cnt)))
+            (when (= "#" (last (mapcar 'caddr (filter '((X) (< (cadr X) J)) Diag-)))) (setq Cnt (inc Cnt)))
+            (when (= "#" (car  (mapcar 'caddr (filter '((X) (> (cadr X) J)) Diag-)))) (setq Cnt (inc Cnt)))
+            # vert
+            (when (= "#" (last (filter '((X) (not (= X "."))) (head (- I 1) Vert)))) (setq Cnt (inc Cnt)))
+            (when (= "#" (car  (filter '((X) (not (= X "."))) (tail (- I)   Vert)))) (setq Cnt (inc Cnt)))
+            # check
+            #(println I J C)
+            (cond
+              ((and (= C "L") (= Cnt 0)) (link "#"))
+              ((and (= C "#") (> Cnt 4)) (link "L"))
+              (T (link C))))))))))
+(de loop-seats-2 (Lst)
+  (let (OldLst Lst
+        NewLst (seat-round-2 OldLst))
+    (until (compare-seats OldLst NewLst)
+      (setq OldLst NewLst)
+      (setq NewLst (seat-round-2 OldLst)))
+    NewLst))
+(test 26 (count-seats (loop-seats-2 Demo)))
+
+--- Day 12: Rain Risk ---
+(setq Inp (in "data/12.txt" (till NIL)))
+(setq List (mapcar '((X) (cons (car X) (format (pack (cdr X))))) (filter 'and (split Inp "\n"))))
+
+(setq Demo '(("F" . 10) ("N" . 3) ("F" . 7) ("R" . 90) ("F" . 11)))
+
+# 12a
+(setq Ship '("E" 0 0))
+
+(de turn (A V)
+  (let ((D X Y) Ship
+        Rose '("N" "E" "S" "W" .)
+        Val (/ V 90)
+        Dir (if (= A "L") '- '+)
+        Idx (index D Rose)
+        N (Dir (+ Idx 4) Val)
+        NewD (car (nth Rose N)))
+    (setq Ship (list NewD X Y))))
+
+(de move (V)
+  (let ((D X Y) Ship)
+    (case D
+      ("N" (setq Ship (list D X (+ Y V))))
+      ("S" (setq Ship (list D X (- Y V))))
+      ("E" (setq Ship (list D (+ X V) Y)))
+      ("W" (setq Ship (list D (- X V) Y))))))
+
+(de act (Action)
+  (let ((A . V) Action
+        (D X Y) Ship)
+    (case A
+      ("N" (setq Ship (list D X (+ Y V))))
+      ("S" (setq Ship (list D X (- Y V))))
+      ("E" (setq Ship (list D (+ X V) Y)))
+      ("W" (setq Ship (list D (- X V) Y)))
+      ("L" (turn A V))
+      ("R" (turn A V))
+      ("F" (move V)))))
+
+(de manhattan ()
+  (let ((D X Y) Ship)
+    (+ (abs X) (abs Y))))
+
+(setq Ship '("E" 0 0))
+(mapcar 'act Demo)
+(test 25 (manhattan))
+
+(setq Ship '("E" 0 0))
+(mapcar 'act List)
+(test 636  (manhattan))
+
+# 12b
+(setq Ship '("E" 0 0))
+(setq Way '(10 1))
+
+(de rotate (A V)
+  (let ((XW YW) Way)
+    (case V
+      (90  (setq Way (if (= A "R") (list YW (- XW)) (list (- YW) XW))))
+      (180 (setq Way (list (- XW) (- YW))))
+      (270  (setq Way (if (= A "L") (list YW (- XW)) (list (- YW) XW)))))))
+
+(de act2 (Action)
+  (let ((A . V) Action
+        (D X Y) Ship
+        (XW YW) Way)
+    (case A
+      ("N" (setq Way (list XW (+ YW V))))
+      ("S" (setq Way (list XW (- YW V))))
+      ("E" (setq Way (list (+ XW V) YW)))
+      ("W" (setq Way (list (- XW V) YW)))
+      ("L" (rotate A V))
+      ("R" (rotate A V))
+      ("F" (setq Ship (list D (+ X (* V XW)) (+ Y (* V YW))))))))
+
+(setq Ship '("E" 0 0))
+(setq Way '(10 1))
+(mapcar 'act2 Demo)
+(test 286 (manhattan))
+
+(setq Ship '("E" 0 0))
+(setq Way '(10 1))
+(mapcar 'act2 List)
+(test 26841 (manhattan))
+
+--- Day 13: Shuttle Search ---
+
+(setq Inp (in "data/13.txt" (till NIL)))
+(setq All (filter 'and (split Inp "\n")))
+
+(setq Timestamp (format (pack (car All))))
+(setq Buses (filter 'and (mapcar 'format (split (last All) ","))))
+
+(setq DemoTimestamp 939)
+(setq DemoBuses (7 13 59 31 19))
+
+# 13a
+(de departures (Ts Buses)
+  (let f '((B) (if (=0 (% Ts B))
+                 Ts
+                 (+ B (* B (/ Ts B)))))
+    (mapcar 'f Buses)))
+
+(de result (Ts Buses)
+  (let (Deps (departures Ts Buses)
+        Mins (mapcar '((D) (- D Ts)) Deps)
+        Zip (mapcar 'cons Buses Mins)
+        Bus (car (by cdr sort Zip)))
+    (* (car Bus) (cdr Bus))))
+
+(test 295 (result DemoTimestamp DemoBuses))
+(test 3966 (result Timestamp Buses))
+
+# 13b
+(setq Buses2 (mapcar 'format (split (last All) ",")))
+(setq Offsets (range 0 (length Buses2)))
+(setq Pairs (filter 'car (mapcar 'cons Buses2 Offsets)))
+
+(setq DemoPairs1 '((17 . 0) (13 . 2) (19 . 3)))
+(setq DemoPairs2 '((67 . 0) (7 . 1) (59 . 2) (61 . 3)))
+
+# brute-force... endless!
+(de compute-raw (Pairs)
+  (let (f '((P) (=0 (% (+ Ts (cdr P)) (car P))))
+        Max (last (by car sort (copy Pairs)))
+        Inc (car Max)
+        Ts (- (cdr Max)))
+    (loop
+      (setq Ts (+ Ts Inc))
+      (T (fully 'f Pairs))
+      (when (=0 (% Ts 10000000)) (prinl Ts)))
+    Ts))
+
+# using chinese reminder is fast
+# pairs are (m_i . -off_i)
+# Timestamp≡-off_i(mod m_i)
+(de compute13 (Pairs)
+  (let (Sorted (by car sort (copy Pairs))
+        M (apply * (mapcar car Sorted))
+        Zs (mapcar '((X) (/ M (car X))) Sorted)
+         f '((Z P)
+            (let (N 0 X (% Z (car P)))
+              (loop
+                (setq N (inc N))
+                (T (= 1 (% (* X N) (car P))) (* N Z)))))
+        Ws (mapcar 'f Zs Sorted)
+        Cs (mapcar '((W P) (* W (- (cdr P)))) Ws Sorted)
+        Sum (apply + Cs))
+    (+ M (% Sum M))))
+(test 3417 (compute13 DemoPairs1))
+(test 754018 (compute13 DemoPairs2))
+(test 800177252346225 (compute13 Pairs))
+
+--- Day 14: Docking Data ---
+
+(setq Inp (in "data/14.txt" (till NIL)))
+(setq All (mapcar 'str (mapcar 'pack (filter 'and (split Inp "\n")))))
+
+(setq Blocks '())
+
+# 14a
+(de to-mem (Idx Num Mask)
+  (let (N (chop Num)
+        M (chop Mask)
+        f '((CN CM) (if (= "X" CM) CN CM))
+        R (pack (mapcar f N M)))
+    (push 'Mem (cons Idx R))))
+
+(setq Mem '())
+(for S All
+  (cond
+    ((match '(mask = @Mask) S)
+      (setq Mask (name (car @Mask))))
+    ((match '(mem (@Idx) = @Num) S)
+      (to-mem (car @Idx) (pad 36 (bin (car @Num))) Mask))))
+(setq Set '())
+(for M Mem
+  (unless (assoc (car M) Set) (push 'Set M)))
+(test
+   10050490168421
+   (apply + (mapcar '((Pair) (let ((Idx . Num) Pair) (bin Num))) Set)))
+
+--- Day 15: Rambunctious Recitation ---
+(setq Inp (0 5 4 1 10 14 7))
+# 15a
+(de turn15 ()
+  (let Idx (index Next Spoken)
+    (push 'Spoken Next)
+    (if Idx
+      (setq Next Idx)
+      (setq Next 0))))
+
+(de game15 (Input N)
+  (let (Spoken (flip (copy Input))
+        Next 0)
+    (for I (- N (length Spoken))
+      #(prinl I)
+      (turn15))
+    (car Spoken)))
+
+(test 436 (game15 (0 3 6) 2020))
+(test 1836 (game15 (3 1 2) 2020))
+(test 203 (game15 Inp 2020))
+
+# 15b
+(class +BTree)
+(dm put> (K V)
+  (del> This K)
+  (idx (:: D) (cons K V) T))
+(dm del> (K)
+  (if (lup (: D) K)
+    (idx (:: D) @ NIL)))
+(dm get> (K)
+  (cdr (lup (: D) K)))
+(dm size> ()
+  (length (idx (:: D))))
+(dm bal> ()
+  (balance (:: D) (idx (:: D))))
+
+# reimplement using binary tree for speed
+(de turn15b (I)
+  (let Val (get> Spoken Next)
+    (put> Spoken Next I)
+    (if Val
+      (setq Next (- I Val))
+      (setq Next 0))))
+
+(de game15b (Input N)
+  (let (Spoken (new +BTree)
+        Last (last Input)
+        I (length Input)
+        Next 0)
+    (mapcar '((X Y) (put> Spoken X Y)) Input (range 1 (length Input)))
+    (while (< I (dec N))
+      (setq I (inc I))
+      (when (=0 (% I 500000))
+        (bal> Spoken))
+      #(prinl I)
+      (turn15b I))
+    Next))
+(test 436 (game15b (0 3 6) 2020))
+(test 1836 (game15b (3 1 2) 2020))
 
 
-(msg '10-ok)
+--- Day 16: Ticket Translation ---
+(de parse-rule (Str)
+  (let ((I1 _ I2) (str Str)
+        (@I11 @I12) (mapcar format (split (chop (name I1)) "-"))
+        (@I21 @I22) (mapcar format (split (chop (name I2)) "-")))
+    (fill '((X) (or (and (>= X @I11) (<= X @I12)) (and (>= X @I21) (<= X @I22)))))))
+
+(setq Inp (in "data/16.txt" (till NIL)))
+(setq Blocks (split (split Inp "\n") NIL))
+(setq Rules (mapcar '((X) (split X ":")) (car Blocks)))
+(setq Rules (mapcar '((X) (mapcar '((Y) (pack Y)) X)) Rules))
+(setq Rules (mapcar '((X) (list (car X) (parse-rule (cadr X)))) Rules))
+(setq MyTicket (mapcar format (split (cadr (cadr Blocks)) ",")))
+(setq NearbyTickets (mapcar '((X) (mapcar format (split X ","))) (tail -1 (caddr Blocks))))
+
+(setq DemoInp (in "data/demo16-1.txt" (till NIL)))
+(setq DemoBlocks (split (split DemoInp "\n") NIL))
+(setq DemoRules (mapcar '((X) (split X ":")) (car DemoBlocks)))
+(setq DemoRules (mapcar '((X) (mapcar '((Y) (pack Y)) X)) DemoRules))
+(setq DemoRules (mapcar '((X) (list (car X) (parse-rule (cadr X)))) DemoRules))
+(setq DemoMyTicket (mapcar format (split (cadr (cadr DemoBlocks)) ",")))
+(setq DemoNearbyTickets (mapcar '((X) (mapcar format (split X ","))) (tail -1 (caddr DemoBlocks))))
+
+(setq Demo2Inp (in "data/demo16-2.txt" (till NIL)))
+(setq Demo2Blocks (split (split Demo2Inp "\n") NIL))
+(setq Demo2Rules (mapcar '((X) (split X ":")) (car Demo2Blocks)))
+(setq Demo2Rules (mapcar '((X) (mapcar '((Y) (pack Y)) X)) Demo2Rules))
+(setq Demo2Rules (mapcar '((X) (list (car X) (parse-rule (cadr X)))) Demo2Rules))
+(setq Demo2MyTicket (mapcar format (split (cadr (cadr Demo2Blocks)) ",")))
+(setq Demo2NearbyTickets (mapcar '((X) (mapcar format (split X ","))) (tail -1 (caddr Demo2Blocks))))
+
+# 16a
+(de check-values (Rules Tickets)
+  (let Checks (mapcar cadr Rules)
+    (mapcar '((Ticket) (check-ticket Ticket Checks)) Tickets)))
+
+(de check-ticket (Ticket Checks)
+  (mapcar '((Val) (if (filter =T (mapcar '((Fn) (Fn Val)) Checks)) T Val)) Ticket))
+
+(de error-rate (Rules Tickets)
+  (apply + (fish 'num? (check-values Rules Tickets))))
+
+(test 71 (error-rate DemoRules DemoNearbyTickets))
+(test 23009 (error-rate Rules NearbyTickets))
+
+# 16b
+(de remove-wrong-tickets (Rules Tickets)
+  (let (Filter (mapcar '((X) (not (filter num? X))) (check-values Rules Tickets)))
+    (filter '((X F) F) Tickets Filter)))
+
+(setq ValidNearbyTickets (remove-wrong-tickets Rules NearbyTickets))
+
+(de find-fields (Rules ValidTickets)
+  (let Checks (mapcar cadr Rules)
+    (make
+      (for I (length (car ValidTickets))
+        (link (cons I (check-field (mapcar '((X) (car (nth X I))) ValidTickets) Checks)))))))
+
+(de check-field (Field Checks)
+  (mapcar '((Fn) (if (filter not (mapcar '((Val) (Fn Val)) Field)) NIL T)) Checks))
+
+(de order-fields (Rules ValidTickets)
+  (let (Map (find-fields Rules ValidTickets)
+        Sorted (by '((X) (length (filter =T (cdr X)))) sort Map))
+    (make
+      (while Sorted
+        (let L (pop 'Sorted)
+          (link L)
+          (setq Sorted (mapcar '((X) (cons (car X) (mapcar 'xor (cdr L) (cdr X)))) Sorted)))))))
+
+(de field-names (Rules ValidTickets)
+  (let Map (order-fields Rules ValidTickets)
+    (make
+      (for L Map
+        (link (cons (caar (nth Rules (index T (cdr L)))) (car L)))))))
+
+(test '(("row" . 1) ("class" . 2) ("seat" . 3)) (field-names Demo2Rules Demo2NearbyTickets))
+
+(de solve-pt2 (Shortlist Ticket)
+  (let Fields (mapcar cdr (filter '((X) (pre? "departure" (car X))) Shortlist))
+    (apply * (mapcar '((X) (car (nth Ticket X))) Fields))))
+
+(test
+   10458887314153
+   (solve-pt2 (field-names Rules ValidNearbyTickets) MyTicket))
+
+
+--- Day 17: Conway Cubes ---
+(setq Inp (in "data/17.txt" (till NIL)))
+(setq Blocks (filter 'and (split Inp "\n")))
+
+(setq DemoInp (in "data/demo17.txt" (till NIL)))
+(setq DemoBlocks (filter 'and (split DemoInp "\n")))
+
+(class +BTree17)
+(dm put> (K V)
+  (del> This K)
+  (idx (:: D) (cons K V) T))
+(dm del> (K)
+  (if (lup (: D) K)
+    (idx (:: D) @ NIL)))
+(dm get> (K)
+  (cdr (lup (: D) K)))
+(dm size> ()
+  (length (list> This)))
+(dm bal> ()
+  (balance (:: D) (list> This)))
+(dm list> ()
+  (idx (:: D)))
+
+# 17a
+(de prepare-matrix (Blocks)
+  (let Matrix (new '(+BTree17))
+    (for (I . Row) Blocks
+      (for (J . C) Row
+        (put> Matrix (list I J 0) (if (= C "#") T NIL))))
+    Matrix))
+
+(de render (Matrix)
+  (let (Cells (list> Matrix)
+        Xs (sort (uniq (mapcar caar Cells)))
+        Ys (sort (uniq (mapcar cadar Cells)))
+        Zs (sort (uniq (mapcar caddar Cells))))
+    (for Z Zs
+      (prinl)
+      (prinl "Z = " Z)
+      (for X Xs
+        (for Y Ys
+          (prin (if (get> Matrix (list X Y Z)) "#" ".")))
+        (prinl)))))
+
+(setq Matrix (prepare-matrix Blocks))
+(setq DemoMatrix (prepare-matrix DemoBlocks))
+
+(de neighbors (Cell Matrix)
+  (let ((X Y Z) (car Cell))
+    (make
+      (for I (range (dec X) (inc X))
+        (for J (range (dec Y) (inc Y))
+          (for K (range (dec Z) (inc Z))
+            (let Location (list I J K)
+              (when (or (<> I X) (<> J Y) (<> K Z))
+                (link (cons Location (get> Matrix Location)))))))))))
+
+(de grow (Matrix)
+  (let (Cells (list> Matrix)
+        Neighbors (mapcar '((C) (neighbors C Matrix)) Cells))
+    (for CNs Neighbors
+      (for CN CNs
+        (put> Matrix (car CN) (cdr CN))))))
+
+(de cycle (Cell Neighbors Matrix)
+  (let ((Location . Active) Cell
+        ActiveNeighbors (length (filter '((X) (=T (cdr X))) Neighbors)))
+    (cond
+      ((and Active (or (< ActiveNeighbors 2) (> ActiveNeighbors 3))) (put> Matrix Location NIL))
+      ((and (not Active) (= ActiveNeighbors 3)) (put> Matrix Location T)))))
+
+(de cycle-all (Matrix)
+  (grow Matrix)
+  (let (Cells (list> Matrix)
+        Neighbors (mapcar '((Cell) (neighbors Cell Matrix)) Cells))
+    (mapcar '((Cell Neighs) (cycle Cell Neighs Matrix)) Cells Neighbors))
+  Matrix)
+
+(de mcycle (Matrix N)
+  (for I N
+    (cycle-all Matrix)))
+
+(de count-active (Matrix)
+  (length (filter '((X) (=T (cdr X))) (list> Matrix))))
+
+(test 112 (count-active (mcycle DemoMatrix 6)))
+(test 202 (count-active (mcycle Matrix 6)))
+
+--- Day 18: Operation Order ---
+
+
+(msg '18-ok)
 (bye)
