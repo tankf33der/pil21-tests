@@ -1,3 +1,4 @@
+
 --- Day 1: Report Repair ---
 (setq Inp (in "data/01.txt" (till NIL T)))
 (setq List (filter 'and (mapcar '((X) (format (pack X))) (split (chop Inp) "\n"))))
