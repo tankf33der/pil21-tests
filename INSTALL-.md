@@ -61,6 +61,7 @@ $
 ```
 
 ### FreeBSD 12.1 (x86_64)
+TOOD: add and readline via pkg-config, otherwise failed on FreeBSD 12
 ```
 install somehow readline, libffi, llvm
 $ opt -O3 -o base.bc base.ll
