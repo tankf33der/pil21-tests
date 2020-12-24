@@ -1,4 +1,3 @@
-
 --- Day 1: Report Repair ---
 (setq Inp (in "data/01.txt" (till NIL T)))
 (setq List (filter 'and (mapcar '((X) (format (pack X))) (split (chop Inp) "\n"))))
@@ -461,7 +460,7 @@
         NewD (car (nth Rose N)))
     (setq Ship (list NewD X Y))))
 
-(de move (V)
+(de move12 (V)
   (let ((D X Y) Ship)
     (case D
       ("N" (setq Ship (list D X (+ Y V))))
@@ -479,7 +478,7 @@
       ("W" (setq Ship (list D (- X V) Y)))
       ("L" (turn A V))
       ("R" (turn A V))
-      ("F" (move V)))))
+      ("F" (move12 V)))))
 
 (de manhattan ()
   (let ((D X Y) Ship)
@@ -497,12 +496,12 @@
 (setq Ship '("E" 0 0))
 (setq Way '(10 1))
 
-(de rotate (A V)
+(de rotate12 (A V)
   (let ((XW YW) Way)
     (case V
       (90  (setq Way (if (= A "R") (list YW (- XW)) (list (- YW) XW))))
       (180 (setq Way (list (- XW) (- YW))))
-      (270  (setq Way (if (= A "L") (list YW (- XW)) (list (- YW) XW)))))))
+      (270 (setq Way (if (= A "L") (list YW (- XW)) (list (- YW) XW)))))))
 
 (de act2 (Action)
   (let ((A . V) Action
@@ -513,8 +512,8 @@
       ("S" (setq Way (list XW (- YW V))))
       ("E" (setq Way (list (+ XW V) YW)))
       ("W" (setq Way (list (- XW V) YW)))
-      ("L" (rotate A V))
-      ("R" (rotate A V))
+      ("L" (rotate12 A V))
+      ("R" (rotate12 A V))
       ("F" (setq Ship (list D (+ X (* V XW)) (+ Y (* V YW))))))))
 
 (setq Ship '("E" 0 0))
@@ -837,7 +836,7 @@
       (for CN CNs
         (put> Matrix (car CN) (cdr CN))))))
 
-(de cycle (Cell Neighbors Matrix)
+(de cycle17 (Cell Neighbors Matrix)
   (let ((Location . Active) Cell
         ActiveNeighbors (length (filter '((X) (=T (cdr X))) Neighbors)))
     (cond
@@ -848,7 +847,7 @@
   (grow Matrix)
   (let (Cells (list> Matrix)
         Neighbors (mapcar '((Cell) (neighbors Cell Matrix)) Cells))
-    (mapcar '((Cell Neighs) (cycle Cell Neighs Matrix)) Cells Neighbors))
+    (mapcar '((Cell Neighs) (cycle17 Cell Neighs Matrix)) Cells Neighbors))
   Matrix)
 
 (de mcycle (Matrix N)
