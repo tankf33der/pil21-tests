@@ -1,7 +1,7 @@
 
 (prin "2020:")
 
---- Day 1: Report Repair ---
+# --- Day 1: Report Repair ---
 (prin ".")(flush)
 (setq Inp (in "data/01.txt" (till NIL T)))
 (setq List (filter 'and (mapcar '((X) (format (pack X))) (split (chop Inp) "\n"))))
@@ -26,7 +26,7 @@
                @ ) )
          @ ) ) )
 
---- Day 2: Password Philosophy ---
+# --- Day 2: Password Philosophy ---
 (prin ".")(flush)
 (setq Inp (in "data/02.txt" (till NIL T)))
 (setq List (filter 'and (mapcar '((X) (pack X)) (split (chop Inp) "\n"))))
@@ -54,7 +54,7 @@
    (length (filter 'and (mapcar '((S) (check2 (parse S))) List))) )
 
 
---- Day 3: Toboggan Trajectory ---
+# --- Day 3: Toboggan Trajectory ---
 (prin ".")(flush)
 (setq Inp (in "data/03.txt" (till NIL T)))
 (setq List (filter 'and (mapcar '((X) (apply 'circ X)) (split (chop Inp) "\n"))))
@@ -135,7 +135,7 @@
        (fully 'check4 Card)))
 (test 131 (length (filter 'valid2? List2)))
 
---- Day 5: Binary Boarding ---
+# --- Day 5: Binary Boarding ---
 (prin ".")(flush)
 (setq Inp (in "data/05.txt" (till NIL T)))
 (setq List (filter 'and (split (chop Inp) "\n")))
@@ -169,7 +169,7 @@
       L2 (tail (dec (length Ids)) Ids))
   (mapcar 'check5 L1 L2))
 
---- Day 6: Custom Customs ---
+# --- Day 6: Custom Customs ---
 (prin ".")(flush)
 (setq Inp (in "data/06.txt" (till NIL T)))
 (setq List (filter 'and (split (split (chop Inp) "\n") NIL)))
@@ -186,7 +186,7 @@
     (length (filter '((L) (= Len (length L))) Grouped))))
 (test 3125 (apply + (mapcar 'everyone List)))
 
---- Day 7: Handy Haversacks ---
+# --- Day 7: Handy Haversacks ---
 (prin ".")(flush)
 (setq Inp (in "data/07.txt" (till NIL T)))
 (setq List (filter 'and (split (chop Inp) "\n")))
@@ -236,7 +236,7 @@
 # 7b
 (test 14177 (apply '+ (mapcar 'cdr (cdr (content (assoc "shiny gold" List2))))))
 
---- Day 8: Handheld Halting ---
+# --- Day 8: Handheld Halting ---
 (prin ".")(flush)
 (setq Inp (in "data/08.txt" (till NIL T)))
 (setq List (filter 'and (split (chop Inp) "\n")))
@@ -265,7 +265,7 @@
 ))
 (test 1797 (runit List2))
 
---- Day 9: Encoding Error ---
+# --- Day 9: Encoding Error ---
 (prin ".")(flush)
 (setq Inp (in "data/09.txt" (till NIL T)))
 (setq List (mapcar 'format (filter 'and (split (chop Inp) "\n"))))
@@ -306,7 +306,7 @@
 (test 93727241 (scanit Target List))
 
 
---- Day 10: Adapter Array ---
+# --- Day 10: Adapter Array ---
 (prin ".")(flush)
 (setq Inp (in "data/10.txt" (till NIL T)))
 (setq List (mapcar 'format (filter 'and (split (chop Inp) "\n"))))
@@ -342,7 +342,7 @@
 (test 19208 (cdr (combine TList2)))
 (test 96717311574016 (cdr (combine List)))
 
---- Day 11: Seating System ---
+# --- Day 11: Seating System ---
 (prin ".")(flush)
 (setq Inp (in "data/11.txt" (till NIL)))
 (setq List (filter 'and (split Inp "\n")))
@@ -455,7 +455,7 @@
     NewLst))
 (test 26 (count-seats (loop-seats-2 Demo)))
 
---- Day 12: Rain Risk ---
+# --- Day 12: Rain Risk ---
 (prin ".")(flush)
 (setq Inp (in "data/12.txt" (till NIL)))
 (setq List (mapcar '((X) (cons (car X) (format (pack (cdr X))))) (filter 'and (split Inp "\n"))))
@@ -541,7 +541,7 @@
 (mapcar 'act2 List)
 (test 26841 (manhattan))
 
---- Day 13: Shuttle Search ---
+# --- Day 13: Shuttle Search ---
 (prin ".")(flush)
 (setq Inp (in "data/13.txt" (till NIL)))
 (setq All (filter 'and (split Inp "\n")))
@@ -609,7 +609,7 @@
 (test 754018 (compute13 DemoPairs2))
 (test 800177252346225 (compute13 Pairs))
 
---- Day 14: Docking Data ---
+# --- Day 14: Docking Data ---
 (prin ".")(flush)
 (setq Inp (in "data/14.txt" (till NIL)))
 (setq All (mapcar 'str (mapcar 'pack (filter 'and (split Inp "\n")))))
@@ -638,7 +638,7 @@
    10050490168421
    (apply + (mapcar '((Pair) (let ((Idx . Num) Pair) (bin Num))) Set)))
 
---- Day 15: Rambunctious Recitation ---
+# --- Day 15: Rambunctious Recitation ---
 (prin ".")(flush)
 (setq Inp (0 5 4 1 10 14 7))
 # 15a
@@ -700,7 +700,7 @@
 (test 436 (game15b (0 3 6) 2020))
 (test 1836 (game15b (3 1 2) 2020))
 
---- Day 16: Ticket Translation ---
+# --- Day 16: Ticket Translation ---
 (prin ".")(flush)
 (de parse-rule (Str)
   (let ((I1 _ I2) (str Str)
@@ -788,7 +788,7 @@
    (solve-pt2 (field-names Rules ValidNearbyTickets) MyTicket))
 
 
---- Day 17: Conway Cubes ---
+# --- Day 17: Conway Cubes ---
 (prin ".")(flush)
 (setq Inp (in "data/17.txt" (till NIL)))
 (setq Blocks (filter 'and (split Inp "\n")))
@@ -877,7 +877,7 @@
 (test 112 (count-active (mcycle DemoMatrix 6)))
 (test 202 (count-active (mcycle Matrix 6)))
 
---- Day 18: Operation Order ---
+# --- Day 18: Operation Order ---
 (prin ".")(flush)
 (setq Inp (in "data/18.txt" (till NIL)))
 (setq Blocks (filter 'and (split Inp "\n")))
@@ -990,7 +990,13 @@
 
 (test 314455761823725 (solve-pt2-18 Expressions))
 
---- Day 19: Monster Messages ---
+# --- Day 19: Monster Messages ---
+# --- Day 20: Jurassic Jigsaw ---
+# --- Day 21: Allergen Assessment ---
+# --- Day 22: Crab Combat ---
+# --- Day 23: Crab Cups ---
+# --- Day 24: Lobby Layout ---
+# --- Day 25: Combo Breaker ---
 (prin ".")(flush)
 
 
