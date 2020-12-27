@@ -997,7 +997,7 @@
 # --- Day 23: Crab Cups ---
 # --- Day 24: Lobby Layout ---
 # --- Day 25: Combo Breaker ---
-(prin ".")(flush)
+(prin ".......")(flush)
 
 
 (msg 'OK)
