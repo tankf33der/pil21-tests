@@ -9,3 +9,5 @@ r: c n
 	gcc native.c && ./a.out
 c:
 	rm -rf *.o *.so
+b:
+	pil21 bench.l +
