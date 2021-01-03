@@ -991,12 +991,531 @@
 (test 314455761823725 (solve-pt2-18 Expressions))
 
 # --- Day 19: Monster Messages ---
+(prin ".")(flush)
+(setq Inp (in "data/19.txt" (till NIL)))
+(setq Blocks (split (split Inp "\n") NIL))
+(setq RawRules (car Blocks))
+(setq Messages (cadr Blocks))
+
+(setq DemoInp (in "data/demo19-1.txt" (till NIL)))
+(setq DemoBlocks (split (split DemoInp "\n") NIL))
+(setq DemoRawRules (car DemoBlocks))
+(setq DemoMessages (cadr DemoBlocks))
+
+(setq Demo2Inp (in "data/demo19-2.txt" (till NIL)))
+(setq Demo2Blocks (split (split Demo2Inp "\n") NIL))
+(setq Demo2RawRules (car Demo2Blocks))
+(setq Demo2Messages (cadr Demo2Blocks))
+
+(de parse-rule-19 (RawRule)
+  (let ((Name Rule) (split RawRule ":")
+        Num (format (pack Name))
+        Body (str (pack Rule))
+        Len (length Body)
+        Fn (case Len
+             (1 (let @V (car Body)
+                  #(println 1 '- @V)
+                  (if (str? @V)
+                    (fill '(@
+                      (if (= (next) @V)
+                        (let Rest (rest)
+                          (if Rest Rest T)))) '(@V))
+                    (fill '(@
+                      (let Rest (rest)
+                        (check-19 @V Rest))) '(@V)))))
+             (2 (let ((@R1 @R2) Body)
+                  #(println 2 '- @R1 @R2)
+                  (fill '(@
+                    (let Rest (rest)
+                      (check-19 @R2 (check-19 @R1 Rest)))) '(@R1 @R2))))
+             (3 (let ((@R1 @RM @R2) Body)
+                  #(println 3 '- @R1 @RM @R2)
+                  (if (= @RM '|)
+                    (fill '(@
+                      (let (Rest (rest)
+                            A (check-19 @R1 Rest)
+                            B (check-19 @R2 Rest))
+                        (if (and A B) (println 3 '- T))
+                        (or A B))) '(@R1 @R2))
+                    (fill '(@
+                      (let Rest (rest)
+                        (check-19 @R2 (check-19 @RM (check-19 @R1 Rest))))) '(@R1 @R2 @RM)))))
+             (4 (let ((@R1 _ @R3 @R4) Body)
+                  #(println 4 '- @R1 _ @R3 @R4)
+                  (fill '(@
+                    (let (Rest (rest)
+                          A (check-19 @R1 Rest)
+                          B (check-19 @R4 (check-19 @R3 Rest)))
+                        (if (and A B) (println 4 '- T))
+                      (or A B))) '(@R1 @R3 @R4))))
+             (5 (let ((@R1 @R2 _ @R3 @R4) Body)
+                  #(println 5 '- @R1 @R2 _ @R3 @R4)
+                  (fill '(@
+                    (let Rest (rest)
+                      (or (check-19 @R2 (check-19 @R1 Rest))
+                          (check-19 @R4 (check-19 @R3 Rest)))
+                      )) '(@R1 @R2 @R3 @R4))))
+             (6 (let ((@R1 @R2 _ @R3 @R4 @R5) Body)
+                  #(println 6 '- @R1 @R2 _ @R3 @R4 @R5)
+                  (fill '(@
+                    (let Rest (rest)
+                      (or
+                        (check-19 @R2 (check-19 @R1 Rest))
+                        (check-19 @R5 (check-19 @R4 (check-19 @R3 Rest)))
+                        ))) '(@R1 @R2 @R3 @R4 @R5))))
+             (T (quit "Don't know this rule" Body))))
+    (cons Num Fn)))
+
+(de rule (N)
+  (cdr (assoc N *Rules)))
+
+(de check-19 (N Msg)
+  #(println N Msg)
+  (cond
+    ((not Msg) Msg)
+    (T (apply (rule N) Msg))))
+
+(de check0 (Msg)
+  (check-19 0 Msg))
+
+(de count-res (Res)
+  (length (filter =T Res)))
+
+# 19a
+(setq *Rules (mapcar parse-rule-19 DemoRawRules))
+(test 2 (count-res (mapcar check0 DemoMessages)))
+
+# (setq *Rules (mapcar parse-rule-19 RawRules))
+# (prinl "res: " (count-res (mapcar check0 Messages)))
+
+# 19b
+#(setq *Rules (mapcar parse-rule-19 Demo2RawRules))
+#(test 3 (count-res (mapcar check0 Demo2Messages)))
+
+#(push '*Rules (parse-rule (chop "8: 42 | 42 8")))
+#(push '*Rules (parse-rule (chop "11: 42 31 | 42 11 31")))
+
+#(test 12 (count-res (mapcar check0 Demo2Messages)))
+
+#(prinl "res: " (count-res (mapcar check0 Messages)))
+
 # --- Day 20: Jurassic Jigsaw ---
+(prin ".")(flush)
+(de to-tiles (Block)
+  (let Car (format (head 4 (tail 5 (car Block))))
+    (cons Car (cdr Block))))
+
+(de get-edges (Tile)
+  (let (Image (cdr Tile)
+        Top (car Image)
+        Bottom (last Image)
+        Left (mapcar 'car Image)
+        Right (mapcar 'last Image))
+    (list (car Tile) Top Bottom Left Right)))
+
+(setq Inp (in "data/20.txt" (till NIL)))
+(setq Blocks (filter 'and (split (split Inp "\n") NIL)))
+(setq Tiles (mapcar 'to-tiles Blocks))
+(setq Edges (mapcar 'get-edges Tiles))
+
+(setq DemoInp (in "data/demo20.txt" (till NIL)))
+(setq DemoBlocks (filter 'and (split (split DemoInp "\n") NIL)))
+(setq DemoTiles (mapcar 'to-tiles DemoBlocks))
+(setq DemoEdges (mapcar 'get-edges DemoTiles))
+
+(de matches (Edge1 Edge2)
+  (let (Res NIL
+        Id1 (car Edge1)
+        Id2 (car Edge2))
+    (when (<> Id1 Id2)
+      (for I (cdr Edge1)
+        (for J (cdr Edge2)
+          (when (or (= I J) (= (reverse I) J))
+            (setq Res (car Edge2)))
+          (T Res))
+        (T Res))
+      Res)))
+
+(de find-matches (Edge Edges)
+  (let Res (mapcar '((E2) (matches Edge E2)) Edges)
+    (cons (car Edge) (filter and Res))))
+
+(de finder (Edges)
+  (mapcar '((E1) (find-matches E1 Edges)) Edges))
+
+(de solve-pt1-19 (Edges)
+  (apply * (mapcar car (head 4 (by length sort (finder Edges))))))
+
+(test 20899048083289 (solve-pt1-19 DemoEdges))
+
 # --- Day 21: Allergen Assessment ---
+(prin ".")(flush)
+(setq *Inp (in "data/21.txt" (till NIL)))
+(setq *Foods (filter 'and (split *Inp "\n")))
+
+(setq *DemoInp (in "data/demo21.txt" (till NIL)))
+(setq *DemoFoods (filter 'and (split *DemoInp "\n")))
+
+(de parse-21 (Food)
+  (let (Data (str (pack Food))
+        Ingredients (filter atom Data)
+        Allergenes (cdr (last Data)))
+    (for A Allergenes
+      (push '*F (cons A Ingredients)))))
+
+(de parse-all (Foods)
+  (let *F '()
+    (mapcar parse-21 Foods)
+    *F))
+
+(de all-ingredients (Foods)
+  (let *I '()
+    (mapcar '((F) (push '*I (filter atom (str (pack F))))) Foods)
+    (fish atom *I)))
+
+(setq *Ingredients (all-ingredients *Foods))
+(setq *DemoIngredients (all-ingredients *DemoFoods))
+
+(setq *IngrSets (parse-all *Foods))
+(setq *DemoIngrSets (parse-all *DemoFoods))
+
+# 21a
+(de allergenes (IngrSets)
+  (uniq (mapcar car IngrSets)))
+
+(de ingredients (IngrSets Unique)
+  (uniq (fish atom (mapcar cdr IngrSets))))
+
+(de reduce (Fun Lst Init)
+  (if (= NIL Lst)
+    Init
+    (if (= NIL Init)
+      (reduce Fun (cddr Lst) (Fun (car Lst) (cadr Lst)))
+      (reduce Fun (cdr Lst) (Fun Init (car Lst))))))
+
+(de sumup (@Allergene IngrSets)
+  (macro (filter '((S) (= '@Allergene (car S))) IngrSets)))
+
+(de sets (IngrSets)
+  (mapcar cdr IngrSets))
+
+(de narrow (Allergene IngrSets)
+  (let Sets (sets (sumup Allergene IngrSets))
+    (if (> (length Sets) 1)
+      (reduce 'sect Sets)
+      (car Sets))))
+
+(de narrow-all (IngrSets)
+  (mapcar '((A) (cons A (narrow A IngrSets))) (allergenes IngrSets)))
+
+(setq *Candidates (narrow-all *IngrSets))
+(setq *DemoCandidates (narrow-all *DemoIngrSets))
+
+(setq *Safe (diff (ingredients *IngrSets) (ingredients *Candidates)))
+(setq *DemoSafe (diff (ingredients *DemoIngrSets) (ingredients *DemoCandidates)))
+
+(de solve-pt1-21 (Safe Ingredients)
+  (length (sect Ingredients Safe)))
+
+(test 5 (solve-pt1-21 *DemoSafe *DemoIngredients))
+# (prinl "count: " (solve-pt1 *Safe *Ingredients))
+
+# 21b
+(de find-dangerous (Candidates)
+  (let (Cand (copy Candidates)
+        *D '())
+    (while Cand
+      (for C (copy Cand)
+        (when (= 2 (length C))
+          (push '*D C)
+          (setq Cand (delete C Cand))
+          (setq Cand (mapcar '((X) (delete (cadr C) X)) Cand)))))
+    *D))
+
+(setq *Dangerous (find-dangerous *Candidates))
+(setq *DemoDangerous (find-dangerous *DemoCandidates))
+
+(de interwine (List1 List2)
+  (make
+    (loop
+      (link (pop 'List1) (pop 'List2))
+      (NIL List1)
+      (NIL List2))))
+
+(de canonical (Dangerous)
+  (pack (head -1 (interwine (mapcar cadr (by car sort Dangerous))
+                            (need (length Dangerous) ",")))))
+
+(test "mxmxvkd,sqjhc,fvjkl" (canonical *DemoDangerous))
+# (prinl "canonical: " (canonical *Dangerous))
+
 # --- Day 22: Crab Combat ---
+(prin ".")(flush)
+(setq Inp (in "data/22.txt" (till NIL)))
+(setq Blocks (filter 'and (split (split Inp "\n") NIL)))
+(for I (mapcar format (cdr (car Blocks)))
+  (queue 'Deck1 I))
+(for I (mapcar format (cdr (last Blocks)))
+  (queue 'Deck2 I))
+
+(setq DemoInp (in "data/demo22.txt" (till NIL)))
+(setq DemoBlocks (filter 'and (split (split DemoInp "\n") NIL )))
+(for I (mapcar format (cdr (car DemoBlocks)))
+  (queue 'DemoDeck1 I))
+(for I (mapcar format (cdr (last DemoBlocks)))
+  (queue 'DemoDeck2 I))
+
+# 22a
+(de play (Deck1 Deck2)
+  (let (Deck1 (copy Deck1)
+        Deck2 (copy Deck2))
+    (while (and Deck1 Deck2)
+      #(prin "Deck1: ") (println Deck1)
+      #(prin "Deck2: ") (println Deck2)
+      (let (C1 (pop 'Deck1)
+            C2 (pop 'Deck2))
+        #(prinl "C1: " C1)
+        #(prinl "C2: " C2)
+        (if (> C1 C2)
+          (prog
+            (queue 'Deck1 C1)
+            (queue 'Deck1 C2))
+          (prog
+            (queue 'Deck2 C2)
+            (queue 'Deck2 C1)))))
+    (let Deck (if Deck1 Deck1 Deck2)
+      (score Deck))))
+
+(de score (Deck)
+  (apply + (mapcar * Deck (reverse (range 1 (length Deck))))))
+
+(test 306 (play DemoDeck1 DemoDeck2))
+
+# (play Deck1 Deck2)
+
+# 22b
+(de play-rec (Deck1 Deck2 Recur)
+  # (if Recur (prinl "Playing subgame..."))
+  (let (Deck1 (copy Deck1)
+        Deck2 (copy Deck2)
+        #Rounds NIL
+        End NIL)
+    (loop
+      #(prin "Deck1: ") (println Deck1)
+      #(prin "Deck2: ") (println Deck2)
+      (NIL (and Deck1 Deck2))
+      (T End)
+      (let (C1 (pop 'Deck1)
+            C2 (pop 'Deck2)
+            Pair (cons C1 C2))
+        #(prinl "C1: " C1)
+        #(prinl "C2: " C2)
+        (if (index Pair Rounds)
+          (prog
+            # (prin "Hand ") (print Pair)
+            # (prinl " was already dealt. P1 wins!")
+            (setq End T))
+          (prog
+            (push 'Rounds Pair)
+            (cond
+              ((and (>= (length Deck1) C1)
+                    (>= (length Deck2) C2))
+                 # (prinl "Enter subgame")
+                 (let Res (play-rec Deck1 Deck2 T)
+                   (cond
+                     ((=T Res)
+                       (queue 'Deck1 C1)
+                       (queue 'Deck1 C2))
+                     (T
+                       (queue 'Deck2 C2)
+                       (queue 'Deck2 C1)))))
+              ((> C1 C2)
+                 (queue 'Deck1 C1)
+                 (queue 'Deck1 C2))
+              (T
+                 (queue 'Deck2 C2)
+                 (queue 'Deck2 C1)))))))
+    (let Deck (if Deck1 Deck1 Deck2)
+      (cond
+        (End
+          # (prinl "Score: " (score Deck))
+          (quit))
+        (Recur
+          # (prinl "subgame finished")
+          (cond
+            (Deck1 T)
+            (T NIL)))
+        (T (score Deck))))))
+
+# (test 291 (play-rec DemoDeck1 DemoDeck2))
+# (play-rec Deck1 Deck2)
+
 # --- Day 23: Crab Cups ---
+(prin ".")(flush)
+# too interactive
 # --- Day 24: Lobby Layout ---
+(de read-path (Line)
+  (make
+    (while Line
+      (let C (pop 'Line)
+        (cond
+          ((or (member C '("e" "w"))) (link (intern C)))
+          ((or (member C '("s" "n"))) (link (intern (pack C (pop 'Line))))))))))
+
+(setq Inp (in "data/24.txt" (till)))
+(setq List (mapcar read-path (filter 'and (split Inp "\n"))))
+
+(setq DemoInp (in "data/demo24.txt" (till)))
+(setq DemoList (mapcar read-path (filter 'and (split DemoInp "\n"))))
+
+(class +BTree24)
+(dm put> (K V)
+  (del> This K)
+  (idx (:: D) (cons K V) T))
+(dm del> (K)
+  (if (lup (: D) K)
+    (idx (:: D) @ NIL)))
+(dm get> (K)
+  (cdr (lup (: D) K)))
+(dm size> ()
+  (length (list> This)))
+(dm bal> ()
+  (balance (:: D) (list> This)))
+(dm list> ()
+  (idx (:: D)))
+(dm keys> ()
+  (mapcar car (list> This)))
+(dm vals> ()
+  (mapcar cdr (list> This)))
+
+(de get-or-create-tile (X Y)
+  (if (get> *Tiles (cons X Y))
+    @
+    (new '(+Tile) X Y)))
+
+(class +Tile)
+(dm T (X Y)
+  (=: X X)
+  (=: Y Y)
+  (=: C 'w)
+  (=: F NIL)
+  (put> *Tiles (cons X Y) This))
+(dm flip> ()
+  (=: C (if (= (: C) 'w) 'b 'w)))
+(dm w>  ()
+  (get-or-create-tile (dec (: X)) (: Y)))
+(dm e>  ()
+  (get-or-create-tile (inc (: X)) (: Y)))
+(dm nw> ()
+  (get-or-create-tile (dec (: X)) (inc (: Y))))
+(dm ne> ()
+  (get-or-create-tile (: X) (inc (: Y))))
+(dm sw> ()
+  (get-or-create-tile (: X) (dec (: Y))))
+(dm se> ()
+  (get-or-create-tile (inc (: X)) (dec (: Y))))
+(dm neighbors> ()
+  (if (: N)
+    @
+    (=: N (list (w> This) (e> This)
+                (nw> This) (ne> This)
+                (sw> This) (se> This)))))
+(dm col> ()
+  (: C))
+(dm should-flip> ()
+  (let (Neigh (neighbors> This)
+        Colors (mapcar 'col> Neigh)
+        Blacks (cnt '((C) (= 'b C)) Colors))
+    (cond
+      ((and (= 'b (: C))
+            (or (= Blacks 0) (> Blacks 2)))
+         (=: F T))
+      ((and (= 'w (: C))
+            (= Blacks 2))
+         (=: F T))
+      (T (=: F NIL)))))
+
+(de follow-path (Path)
+  (let Tile (get-or-create-tile 1 1)
+    (for P Path
+      (setq Tile ((intern (pack P '>)) Tile)))
+    (flip> Tile)))
+
+(de count-black ()
+  (cnt '((Tl) (= (get (cdr Tl) 'C) 'b))
+       (list> *Tiles)))
+
+# 24a
+(setq *Tiles (new '(+BTree24)))
+(mapcar '((Path) (follow-path Path)) DemoList)
+(test 10 (count-black))
+
+(setq *Tiles (new '(+BTree24)))
+(mapcar '((Path) (follow-path Path)) List)
+(test 320 (count-black))
+
+# 24b
+(de grow-floor ()
+  (for Tl (vals> *Tiles)
+    (when (= (col> Tl) 'b)
+      (neighbors> Tl))))
+
+(de day-flip ()
+  (grow-floor)
+  (let Tiles (vals> *Tiles)
+    (for Tl Tiles
+      (should-flip> Tl))
+    (for Tl Tiles
+      (if (=T (get Tl 'F))
+        (flip> Tl)))
+    (count-black)))
+
+# bonus: function to visualize floor
+(de view-floor ()
+  (grow-floor)
+  (let (Tiles (list> *Tiles)
+        Xs (sort (mapcar caar Tiles))
+        Ys (sort (mapcar cdar Tiles))
+        Ry (range (car Ys) (last Ys))
+        Rx (range (car Xs) (last Xs)))
+    (for I Ry
+      # (prin (need (- (last Ry) I) " "))
+      (for J Rx
+        (if (get> *Tiles (cons J I))
+          # (prin (uppc (get @ 'C)) " ")
+          # (prin ". ")
+          ))
+      (prinl))))
+
+(setq *Tiles (new '(+BTree24)))
+(mapcar '((Path) (follow-path Path)) DemoList)
+(test 15 (day-flip))
+(test 12 (day-flip))
+
+(setq *Tiles (new '(+BTree24)))
+(mapcar '((Path) (follow-path Path)) DemoList)
+(test 37 (for I 10 (day-flip)))
+
+#{
+(setq *Tiles (new '(+BTree24)))
+(mapcar '((Path) (follow-path Path)) DemoList)
+(test 2208 (prog
+             (for I 100
+               (prinl "Day " I ": " (day-flip))
+               (if (=0 (% I 25)
+                 (bal> *Tiles))))
+             (count-black)))
+
+(setq *Tiles (new '(+BTree24)))
+(mapcar '((Path) (follow-path Path)) List)
+(for I 100
+  (prinl "Day " I ": " (day-flip))
+    (if (=0 (% I 25)
+      (bal> *Tiles))))
+}#
+
 # --- Day 25: Combo Breaker ---
+(prin ".")(flush)
 (setq *CardPK 6930903)
 (setq *DoorPK 19716708)
 
@@ -1029,6 +1548,6 @@
 
 (test 10548634 (enc-key *CardPK *DoorPK))
 
-(prin ".......")(flush)
+(prin ".")(flush)
 
 (msg 'OK)
