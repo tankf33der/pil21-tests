@@ -1,4 +1,3 @@
-
 (prin "2020:")
 
 # --- Day 1: Report Repair ---
@@ -39,6 +38,8 @@
 (de check (L)
   (let ((Low High Letter Password) L
         Occurs (length (filter '((X) (= Letter X)) Password)))
+
+
     (and (>= Occurs Low) (<= Occurs High))))
 (test
    506
@@ -1186,12 +1187,12 @@
 (de ingredients (IngrSets Unique)
   (uniq (fish atom (mapcar cdr IngrSets))))
 
-(de reduce (Fun Lst Init)
+(de reduce-21 (Fun Lst Init)
   (if (= NIL Lst)
     Init
     (if (= NIL Init)
-      (reduce Fun (cddr Lst) (Fun (car Lst) (cadr Lst)))
-      (reduce Fun (cdr Lst) (Fun Init (car Lst))))))
+      (reduce-21 Fun (cddr Lst) (Fun (car Lst) (cadr Lst)))
+      (reduce-21 Fun (cdr Lst) (Fun Init (car Lst))))))
 
 (de sumup (@Allergene IngrSets)
   (macro (filter '((S) (= '@Allergene (car S))) IngrSets)))
@@ -1202,7 +1203,7 @@
 (de narrow (Allergene IngrSets)
   (let Sets (sets (sumup Allergene IngrSets))
     (if (> (length Sets) 1)
-      (reduce 'sect Sets)
+      (reduce-21 'sect Sets)
       (car Sets))))
 
 (de narrow-all (IngrSets)
@@ -1266,7 +1267,7 @@
   (queue 'DemoDeck2 I))
 
 # 22a
-(de play (Deck1 Deck2)
+(de play-22 (Deck1 Deck2)
   (let (Deck1 (copy Deck1)
         Deck2 (copy Deck2))
     (while (and Deck1 Deck2)
@@ -1289,7 +1290,7 @@
 (de score (Deck)
   (apply + (mapcar * Deck (reverse (range 1 (length Deck))))))
 
-(test 306 (play DemoDeck1 DemoDeck2))
+(test 306 (play-22 DemoDeck1 DemoDeck2))
 
 # (play Deck1 Deck2)
 
