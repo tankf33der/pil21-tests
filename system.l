@@ -1,3 +1,9 @@
+(de ggg @
+   (rest) )
+(de fff @
+   (pass ggg (next)) )
+(test (1 2 3) (fff 1 2 3))
+
 (prog1
    (mapcan '((N) (later (cons) (* N N))) (1 2 3 4))
       (wait NIL (full @)) )
