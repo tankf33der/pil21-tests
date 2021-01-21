@@ -1,7 +1,7 @@
 all: n
-	pil21 tests.l
+	pil tests.l
 m: n
-	pil21 minima.l
+	pil minima.l
 n:
 	gcc -fPIC -Wall -Wextra -c native.c -o native.o
 	gcc -shared -Wl,-soname,native.so -o native.so native.o -lc
@@ -10,4 +10,4 @@ r: c n
 c:
 	rm -rf *.o *.so
 b:
-	pil21 bench.l +
+	pil bench.l +
