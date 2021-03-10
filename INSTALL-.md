@@ -120,3 +120,52 @@ llvm-link:(.text+0x265c5): undefined reference to `setjmp'
 /usr/bin/ld: /tmp/picolisp-4d1655.o: in function `boxFloat':
 
 ```
+
+### OpenBSD 6.8 (x86_64)
+```
+## install OS, let it be user root
+# syspatch -l
+# reboot
+# pkg_add vim git wget llvm gmake libffi
+# wget ftp://ftp.cwru.edu/pub/bash/readline-8.1.tar.gz
+# tar zxf readline-8.1.tar.gz
+# cd readline-8.1
+# ./configure && make && make install
+# cd
+# git clone https://github.com/picolisp/pil21
+# export PATH=$PATH:/root/pil21
+# cd pil21/src
+# touch *.ll
+# apply patch
+===
+diff --git a/src/Makefile b/src/Makefile
+index 80e69c3..fb709f1 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -2,10 +2,10 @@
+
+ .SILENT:
+
+-CC = clang
++CC = clang-10  # non local
+ PIL = ../pil  # pil
+ ASM = opt -O3  # llvm-as
+-MAIN = -rdynamic -lc -lm -ldl -lreadline -lffi
++MAIN = -rdynamic -lc -lm -lreadline `pkg-config --libs libffi` -lncurses
+ SHARED = -shared
+ OS = $(shell uname)
+ CPU = $(shell uname -m)
+===
+# gmake
+# pil +
+: (version)
+21.3.10
+-> (21 3 10)
+: (call 'uname '-a)
+OpenBSD otemp.localdomain 6.8 GENERIC#5 amd64
+-> T
+: (** 2 222)
+-> 6739986666787659948666753771754907668409286105635143120275902562304
+: (bye)
+#
+```
