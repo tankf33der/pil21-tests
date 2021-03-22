@@ -29,7 +29,8 @@ int64_t * return64(void) {
 
 uint8_t * returnbytes(void) {
     static uint8_t r[10];
-    for (size_t i = 0; i < 10; i++) {
+    size_t i;
+    for (i = 0; i < 10; i++) {
         r[i] = i;
     }
     return r;
@@ -37,7 +38,8 @@ uint8_t * returnbytes(void) {
 
 int * returnints(void) {
     static int r[10];
-    for (size_t i = 0; i < 10; i++) {
+    size_t i;
+    for (i = 0; i < 10; i++) {
         r[i] = 1234567890;
     }
     return r;
@@ -45,7 +47,8 @@ int * returnints(void) {
 
 uint64_t * returnlongs(void) {
     static uint64_t r[10];
-    for (size_t i = 0; i < 10; i++) {
+    size_t i;
+    for (i = 0; i < 10; i++) {
         r[i] = 1234567890123456789;
     }
     return r;
@@ -71,7 +74,8 @@ struct S2 {
 struct S2 * returnS2(void) {
     static struct S2 R;
     R.i = 7777;
-    for (size_t i = 0; i < 4; i++) {
+    size_t i;
+    for (i = 0; i < 4; i++) {
         R.c[i] = 7;
     }
     return &R;
@@ -85,7 +89,8 @@ struct S3 {
 struct S3 * returnS3(void) {
     static struct S3 R;
     R.i = 7777;
-    for (size_t i = 0; i < 4; i++) {
+    size_t i;
+    for (i = 0; i < 4; i++) {
         R.c[i] = 7;
     }
     return &R;
@@ -129,8 +134,9 @@ char * argN(uint64_t n) {
 char * argLB (const uint8_t *x, size_t size) {
     static char r[BUFSIZ];
     size_t n = 0;
+    size_t i;
 
-    for(size_t i = 0; i < size; i++)
+    for(i = 0; i < size; i++)
         n += sprintf(r+n, "%d", x[i]);
     return r;
 }
