@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include <inttypes.h>
 
 #define UNUSED(x) (void)(x)
 
@@ -127,7 +128,7 @@ char * argI(int n) {
 
 char * argN(uint64_t n) {
     static char r[128];
-    sprintf(r, "%lu", n);
+    sprintf(r, "%" PRIu64, n);
     return r;
 }
 
@@ -159,7 +160,7 @@ char *arg1(const struct arg1s *s) {
     static char r[BUFSIZ];
 
     memset(r, 0, BUFSIZ);
-    sprintf(r, "%d%d%lu", s->u8, s->u32, s->u64);
+    sprintf(r, "%" PRIu8 "%" PRIu32 "%" PRIu64, s->u8, s->u32, s->u64);
     //for (char *p = (char *)s, i = 0; i < 16; ++i) printf(" %x", *p++);
     return r;
 }
@@ -174,7 +175,7 @@ char *arg2(const struct arg2s *s) {
     static char r[BUFSIZ];
 
     memset(r, 0, BUFSIZ);
-    sprintf(r, "%d%d%lu", s->u32, s->u8, s->u64);
+    sprintf(r, "%" PRIu32 "%" PRIu8 "%" PRIu64, s->u32, s->u8, s->u64);
     //for (char *p = (char *)s, i = 0; i < 16; ++i) printf(" %x", *p++);
     return r;
 }
@@ -189,7 +190,7 @@ char *arg3(const struct arg3s *s) {
     static char r[BUFSIZ];
 
     memset(r, 0, BUFSIZ);
-    sprintf(r, "%d%lu%d", s->u32, s->u64, s->u8);
+    sprintf(r, "%" PRIu32 "%" PRIu64 "%" PRIu8, s->u32, s->u64, s->u8);
     //for (char *p = (char *)s, i = 0; i < 16; ++i) printf(" %x", *p++);
     return r;
 }
