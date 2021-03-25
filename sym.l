@@ -1,3 +1,13 @@
+# enum
+(de enumFibo (N)
+   (let E '(NIL)
+      (or
+         (enum E N)
+         (enum E N
+            (if (>= 2 N)
+               1
+               (+ (enumFibo (dec N)) (enumFibo (- N 2))) ) ) ) ) )
+(test 24157817 (enumFibo 37))
 # idx
 (let (C 0  R)
    (for A (range -128 128)
