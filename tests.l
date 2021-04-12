@@ -20,6 +20,7 @@
 (load "sym.l")
 (load "system.l")
 (load "tomohiko.l")
+(load "turing.l")
 (load "io.l")
 (load "setf.l")
 (load "sieve.l")
