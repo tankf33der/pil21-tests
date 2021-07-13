@@ -126,4 +126,8 @@
       (native "@" "strdup" 'S P) )
    (native "@" "free" 'N P) )
 
+(test
+   (sys "TERM")
+   (%@ "getenv" 'S "TERM") )
+
 (msg 'native-OK)
