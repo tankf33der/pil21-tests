@@ -44,6 +44,7 @@
 (load "lah.l")
 (load "plio.l")
 (load "fixedpoint.l")
+(load "huffman.l")
 (cd "hash")
 (load "test.l")
 (cd "../gorlansky")
