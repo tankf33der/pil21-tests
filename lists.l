@@ -563,9 +563,9 @@
    (test '(a b (c 1234) (((1 2 3 4) . d) e))
       (fill '(a b (c @X) ((@Y . d) e))) ) )
 (test (1 a b c 9)
-   (fill (1 ^ (list 'a 'b 'c) 9)) )
-(test (1 9)
-   (fill (1 ^ 7 9)) )
+   (fill (1 ^(list 'a 'b 'c) 9)) )
+(test (1 5 7)
+   (fill (1 ^(+ 2 3) 7)) )
 (let X 2 (test (1 2 3) (fill (1 X 3) 'X)))
 (let X 2 (test (1 2 3) (fill (1 X 3) '(X))))
 
