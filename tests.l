@@ -48,6 +48,7 @@
 (load "plio.l")
 (load "fixedpoint.l")
 (load "huffman.l")
+(load "isprime.l")
 (cd "hash")
 (load "test.l")
 (prinl "cryptography will take some time:")
