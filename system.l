@@ -62,9 +62,9 @@
 
 
 ### byte ###
-(test (hex "12")
-   (byte (adr (1))) )
-
+(test (18 18)
+   (let A (adr (81064793292668929))  # cnt 1200000000000012
+      (list (byte A) (byte (+ A 7))) ) )
 (test "ABC"
    (let P (native "@" "malloc" 'N 8)
       (byte P (char "A"))
