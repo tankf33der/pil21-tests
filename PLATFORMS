@@ -1,0 +1,4 @@
+o) SPARC, Solaris 11.4
+	.) co failed, stack manipulation (co 'a (* 3 4))
+o) S390x, AlpineLinux 3.16
+	.) opt -O3 failed (ext:Snx "sss"), Undefined
