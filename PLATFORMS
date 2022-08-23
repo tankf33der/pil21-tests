@@ -4,3 +4,5 @@ o) S390x, AlpineLinux 3.16
 	.) opt -O3 failed (ext:Snx "sss"), Undefined
 o) riscv64, Fedora33 (Rawhide), kernel 5.18, llvm11
 	o) pil @lib/test.l + - all passed
+o) aarch64, AlpineLinux 3.16
+	o) pil @lib/test.l + - all passed
