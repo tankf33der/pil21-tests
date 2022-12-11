@@ -106,6 +106,8 @@
 (load "code2019.l")
 (cd "../advent2020")
 (load "code2020.l")
+(cd "../advent2021")
+(load "code2021.l")
 (prinl "\^\^\^\^\^ advent finished!")
 (prinl "======")
 (msg 'All-OK)
