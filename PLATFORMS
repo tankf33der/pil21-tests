@@ -1,8 +1,8 @@
 o) SPARC, Solaris 11.4
 	.) co failed, stack manipulation (co 'a (* 3 4))
-o) S390x, AlpineLinux 3.16
-	.) opt -O3 failed (ext:Snx "sss"), Undefined
+o) S390x, AlpineLinux edge
+	.) (ext:Snx "sss") undefined
 o) riscv64, Fedora33 (Rawhide), kernel 5.18, llvm11
-	o) pil @lib/test.l + - all passed
+	.) pil @lib/test.l + - all passed
 o) aarch64, AlpineLinux 3.16
-	o) pil @lib/test.l + - all passed
+	.) pil @lib/test.l + - all passed
