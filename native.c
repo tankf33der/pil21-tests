@@ -192,6 +192,35 @@ char *arg3(const struct arg3s *s) {
     return r;
 }
 
+typedef struct {
+	uint32_t algorithm;  // Argon2d, Argon2i, Argon2id
+	uint32_t nb_blocks;  // memory hardness, >= 8 * nb_lanes
+	uint32_t nb_passes;  // CPU hardness, >= 1 (>= 3 recommended for Argon2i)
+	uint32_t nb_lanes;   // parallelism level (single threaded anyway)
+} crypto_argon2_config;
+
+typedef struct {
+	const uint8_t *pass;
+	const uint8_t *salt;
+	uint32_t pass_size;
+	uint32_t salt_size;  // 16 bytes recommended
+} crypto_argon2_inputs;
+
+typedef struct {
+	const uint8_t *key; // may be NULL if no key
+	const uint8_t *ad;  // may be NULL if no additional data
+	uint32_t key_size;  // 0 if no key (32 bytes recommended otherwise)
+	uint32_t ad_size;   // 0 if no additional data
+} crypto_argon2_extras;
+
+int mono(crypto_argon2_config config) {
+             // crypto_argon2_inputs inputs,
+             // crypto_argon2_extras extras) {
+	printf("%d -> algo\n", config.algorithm);
+	// printf("%d -> pass\n", inputs.pass_size);
+	// printf("%d ->  key\n", extras.key_size);
+	return 123;
+}
 
 int main(void) {
     struct arg3s s;
