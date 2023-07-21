@@ -73,11 +73,11 @@
       (native "./native.so" "argLB" 'S (cons NIL (cons 7) L) 7) ) )
 
 # Monocypher test
-(let Config (%@ "malloc" 'P 1)
-   (struct Config NIL (1 . 4))
-   (println 'c (struct Config 'I))
-   (native "./native.so" "mono" 'I Config) )
-(bye)
+# (let Config (%@ "malloc" 'P 1)
+   # (struct Config NIL (1 . 4))
+   # (println 'c (struct Config 'I))
+   # (native "./native.so" "mono" 'I Config) )
+# (bye)
 
 ################################################################
 # native doc
