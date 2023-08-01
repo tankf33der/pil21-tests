@@ -121,13 +121,13 @@ llvm-link:(.text+0x265c5): undefined reference to `setjmp'
 
 ```
 
-### OpenBSD 6.8 (x86_64)
+### OpenBSD 7.3 (x86_64)
 ```
 ## install OS, let it be user root
 # syspatch -l
 # reboot
 # pkg_add vim git wget llvm gmake libffi
-# wget ftp://ftp.cwru.edu/pub/bash/readline-8.1.tar.gz
+# wget https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
 # tar zxf readline-8.1.tar.gz
 # cd readline-8.1
 # ./configure && make && make install
@@ -139,30 +139,26 @@ llvm-link:(.text+0x265c5): undefined reference to `setjmp'
 # apply patch
 ===
 diff --git a/src/Makefile b/src/Makefile
-index 80e69c3..fb709f1 100644
+index f3d84c5..980f492 100644
 --- a/src/Makefile
 +++ b/src/Makefile
-@@ -2,10 +2,10 @@
-
- .SILENT:
-
--CC = clang
-+CC = clang-10  # non local
- PIL = ../pil  # pil
+@@ -7,7 +7,7 @@ PIL = ../pil  # pil
  ASM = opt -O3  # llvm-as
--MAIN = -rdynamic -lc -lm -ldl -lreadline -lffi
-+MAIN = -rdynamic -lc -lm -lreadline `pkg-config --libs libffi` -lncurses
+ LLC = llc
+ LINK = llvm-link
+-MAIN = -rdynamic -lc -lutil -lm -ldl -lreadline -lffi
++MAIN= -rdynamic -lc -lutil -lm `pkg-config --libs readline` `pkg-config --libs libffi` -lncursesw
  SHARED = -shared
- OS = $(shell uname)
- CPU = $(shell uname -m)
+ STRIP = strip
+
 ===
 # gmake
 # pil +
 : (version)
-21.3.10
--> (21 3 10)
+23.7.28
+-> (23 7 28)
 : (call 'uname '-a)
-OpenBSD otemp.localdomain 6.8 GENERIC#5 amd64
+OpenBSD openbsd.localdomain 7.3 GENERIC#1072 amd64
 -> T
 : (** 2 222)
 -> 6739986666787659948666753771754907668409286105635143120275902562304
