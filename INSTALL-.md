@@ -102,9 +102,9 @@ llvm-link:(.text+0x265c5): undefined reference to `setjmp'
 # syspatch -l
 # reboot
 # pkg_add vim git wget llvm gmake libffi
-# wget https://ftp.gnu.org/gnu/readline/readline-8.1.tar.gz
-# tar zxf readline-8.1.tar.gz
-# cd readline-8.1
+# wget https://ftp.gnu.org/gnu/readline/readline-8.2.tar.gz
+# tar zxf readline-8.2.tar.gz
+# cd readline-8.2
 # ./configure && make && make install
 # cd
 # git clone https://github.com/picolisp/pil21
