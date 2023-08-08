@@ -113,19 +113,22 @@ llvm-link:(.text+0x265c5): undefined reference to `setjmp'
 # touch *.ll
 # apply patch
 ===
-diff --git a/src/Makefile b/src/Makefile
-index f3d84c5..980f492 100644
---- a/src/Makefile
-+++ b/src/Makefile
-@@ -7,7 +7,7 @@ PIL = ../pil  # pil
+--- Makefile    Tue Aug  8 12:43:19 2023
++++ Makefile.openbsd    Tue Aug  8 12:44:25 2023
+@@ -1,13 +1,12 @@
+ # 28jul23 Software Lab. Alexander Burger
+
+-.SILENT:
+
+ CC = clang
+ PIL = ../pil  # pil
  ASM = opt -O3  # llvm-as
  LLC = llc
  LINK = llvm-link
 -MAIN = -rdynamic -lc -lutil -lm -ldl -lreadline -lffi
-+MAIN= -rdynamic -lc -lutil -lm `pkg-config --libs readline` `pkg-config --libs libffi` -lncursesw
++MAIN = -rdynamic -lc -lutil -lm -lreadline -lffi -L/usr/local/lib  -lncursesw
  SHARED = -shared
  STRIP = strip
-
 ===
 # gmake
 # pil +
@@ -139,4 +142,19 @@ OpenBSD openbsd.localdomain 7.3 GENERIC#1072 amd64
 -> 6739986666787659948666753771754907668409286105635143120275902562304
 : (bye)
 #
+
+FAILS:
+
+((let P (port 0 "ListenPort") (unless (fork) (close P) (until (connect "localhost" "ListenPort") (wait 80)) (out @ (pr '(a b c))) (bye)) (prog1 (in (listen P) (rd)) (close P))))
+[../test/src/net.l:4] (a b c) -- 'test' failed
+
+HANG:
+
+(test (3 . 4)
+   (let (*Run NIL  *A NIL  *B NIL)
+      (task -10 0 (setq *A 3))
+      (task (port T 0 "TaskPort") (eval (udp @)))
+      (udp "localhost" "TaskPort" '(setq *B 4))
+      (wait NIL (and *A *B))
+      (cons *A *B) ) )
 ```
