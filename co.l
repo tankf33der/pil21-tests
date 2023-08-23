@@ -1,5 +1,14 @@
 (load "cartesian.l")
 
+(test 123
+   (co 'a
+      (catch 'ok
+         (co 'b
+            (loop
+               (yield) ) )
+         (yield T 'b)
+         (throw 'ok 123) ) ) )
+
 (test 7 (co 'aa (yield 7)))
 (co 'aa)
 
