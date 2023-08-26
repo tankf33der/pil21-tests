@@ -14,6 +14,7 @@
       (loop
          (yield (yield T 'aaa)) ) ) )
 (test 1 (co 'aaa T))
+(test 2 (co 'bbb T))
 #==================
 
 (test 123
