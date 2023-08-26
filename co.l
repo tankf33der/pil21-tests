@@ -2,19 +2,23 @@
 
 #===================
 (one A)
-(co 'aaa
+(co 'a
    (loop
       (yield A) ) )
-(co 'bbb
+(co 'b
    (let A 2
       (loop
-         (yield (co 'aaa T)) ) ) )
-(co 'ccc
+         (yield (co 'a T)) ) ) )
+(co 'c
    (let A 3
       (loop
-         (yield (yield T 'aaa)) ) ) )
-(test 1 (co 'aaa T))
-(test 2 (co 'bbb T))
+         (yield (yield T 'a)) ) ) )
+(test 1 (co 'a T))
+(test 2 (co 'b T))
+(co 'a)
+(co 'a)
+(co 'b)
+(co 'c)
 #==================
 
 (test 123
