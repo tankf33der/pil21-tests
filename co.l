@@ -1,5 +1,21 @@
 (load "cartesian.l")
 
+#===================
+(one A)
+(co 'aaa
+   (loop
+      (yield A) ) )
+(co 'bbb
+   (let A 2
+      (loop
+         (yield (co 'aaa T)) ) ) )
+(co 'ccc
+   (let A 3
+      (loop
+         (yield (yield T 'aaa)) ) ) )
+(test 1 (co 'aaa T))
+#==================
+
 (test 123
    (co 'a
       (catch 'ok
