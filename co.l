@@ -149,16 +149,16 @@
 (test (2 1 3) (11permute 'next))        # next after skip
 (co 'next)
 
+#===============================
 (for N 64
    (co (intern (pack 'ring N))
       (let (N N  Send (intern (pack 'ring (if (= 64 N) 1 (inc N)))))
          (for (I (yield)  (gt0 (yield (dec I) Send))  @))
          N ) ) )
-(test 9 (yield 5000 'ring1))
+(test 33 (yield 500000 'ring1))
 (for N 64
    (co (intern (pack 'ring N))) )
-
-
+#===========================
 (de co_product (Lst)
    (co 'cartesian
       (let
