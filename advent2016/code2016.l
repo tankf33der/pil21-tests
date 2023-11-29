@@ -642,15 +642,15 @@
                   (z14-md5 Str) ) ) )
          (cons (z14-three Lst) (z14-five Lst)) ) ) )
 (de z14-1 (Str)
-   (let N 1
+   (let (N 1  X)
       (do 64
          (until
             (and
-               (setq @@
+               (setq X
                   (car
                      (rassoc 3 (z14-store (pack Str (inc 'N)))) ) )
                (for (I (inc N) (>= (+ 1000 N) I) (inc I))
-                  (T (member (cons @@ 5) (z14-store (pack Str I)))
+                  (T (member (cons X 5) (z14-store (pack Str I)))
                      T ) ) ) ) )
       N ) )
 (test 16106 (z14-1 "zpqevtbw"))
