@@ -69,6 +69,16 @@ OK
 :
 ```
 
+### FreeBSD 14 (x86_64)
+```
+: add clang15 as CC
+: add -L/usr/local/lib to MAIN in Makefile
+: compile
+: pil @lib/test.l +
+OK
+:
+```
+
 ### NetBSD 9 (x86_64)
 ```
 $ pkgin install clang llvm readline bla-bla-bla

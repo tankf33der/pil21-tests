@@ -26,7 +26,7 @@
          (setq State (++ Curr)) )
       C ) )
 # Three-state busy beaver
-(test 
+(test
    13
    (turing
       '(NIL)
