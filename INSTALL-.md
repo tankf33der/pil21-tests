@@ -79,9 +79,9 @@ OK
 :
 ```
 
-### NetBSD 9 (x86_64)
+### NetBSD 10 (x86_64)
 ```
-$ pkgin install clang llvm readline bla-bla-bla
+$ pkgin install clang llvm readline libffi
 $ llvm-as -o base.bc base.ll
 $ clang -c -O3 -D_OS='"NetBSD"' -D_CPU='"x86"' `pkg-config --cflags libffi` -emit-llvm lib.c
 $ llvm-link -o picolisp.bc base.bc lib.bc
@@ -103,7 +103,7 @@ llvm-link:(.text+0x18ad6): undefined reference to `longjmp'
 /usr/bin/ld: /tmp/picolisp-4d1655.o: in function `main':
 llvm-link:(.text+0x265c5): undefined reference to `setjmp'
 /usr/bin/ld: /tmp/picolisp-4d1655.o: in function `boxFloat':
-
+$
 ```
 
 ### OpenBSD 7.3 (x86_64)
