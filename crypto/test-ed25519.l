@@ -1,16 +1,21 @@
 (load "ed25519.l")
-(de _r NIL
-   (make
-      (do 32
-         (link (rand 0 32)) ) ) )
-(let
-   (S (_r)
-      P (publickey S)
-      Sig (signature P S P) )
-   (test
-      T
-      (checkvalid
-         (signature P S P)
-         P
-         P ) ) )
-(msg 'ed25519-OK)
+
+(use (Keys SK PK M S Sig)
+   (in "sign.input"
+      (until (eof)
+         (msg 'line)
+         (setq Keys (hexL (till ":")))
+         (setq SK (head 32 Keys))
+         (setq PK (publickey SK))
+         (test PK (tail 32 Keys))
+         (do 2
+            (from ":") )
+         (setq M (hexL (till ":")))
+         (setq S (signature M SK PK))
+         (from ":")
+         (setq Sig (head 64 (hexL (till ":"))))
+         (test Sig S)
+         (test T (checkvalid S M PK))
+         (line) ) ) )
+(msg 'ok)
+(bye)

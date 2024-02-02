@@ -1,3 +1,5 @@
+# XXX on pil64 works after v16.1.10
+#
 (load "sha512.l")
 
 (de modulo (X Y)
@@ -6,6 +8,10 @@
    (make
       (while (cut 2 'Lst)
          (link (hex (pack @))) ) ) )
+(de L2hex (Lst)
+   (lowc
+      (pack
+         (mapcar '((B) (pad 2 (hex B))) Lst) ) ) )
 (de steps (E)
    (flip
       (make
@@ -13,14 +19,26 @@
             (and
                (link (swap 'E (/ E 2)))
                (gt0 E) ) ) ) ) )
-(de expmod (B E M)
+(de expmod- (B E M)
+   (println 'B B 'E E 'M M)
    (let R 1
       (for I (steps E)
          (and
             (setq R (modulo (* R R) M))
             (bit? 1 I)
             (setq R (modulo (* R B) M)) ) )
+      (println 'R R)
       R ) )
+(de expmod (B E M)
+   (if (=0 E)
+      1
+      (let R
+         (%
+            (** (expmod B (/ E 2) M) 2)
+            M )
+         (when (bit? 1 E)
+            (setq R (modulo (* R B) M)) )
+         R ) ) )
 (de inv (X)
    (expmod X (- *Q 2) *Q) )
 (de xrecover (Y)
@@ -35,7 +53,6 @@
          (n0 (% X 2))
          (setq X (- *Q X)) )
       X ) )
-
 (setq *S (0 -1 -2 -3 -4 -5 -6 -7 .))
 (setq *B 256)
 (setq *Q `(- (** 2 255) 19))
@@ -47,7 +64,6 @@
    (cons
       (% (xrecover *By) *Q)
       (% *By *Q) ) )
-
 (de edwards (P Q)
    (let
       (X1 (car P)
@@ -65,7 +81,7 @@
                (+ (* Y1 Y2) (* X1 X2))
                (inv (- 1 (* *D X1 X2 Y1 Y2))) )
             *Q ) ) ) )
-(de scalarmult (P E)
+(de scalarmult-OLD (P E)
    (let Q (cons 0 1)
       (for I (steps E)
          (and
@@ -73,6 +89,14 @@
             (bit? 1 I)
             (setq Q (edwards Q P)) ) )
       Q ) )
+(de scalarmult (P E)
+   (if (=0 E)
+      (cons 0 1)
+      (let Q (scalarmult P (/ E 2))
+         (setq Q (edwards Q Q))
+         (when (bit? 1 E)
+            (setq Q (edwards Q P)) )
+         Q ) ) )
 (de isoncurve (P)
    (let
       (X (car P)
@@ -86,7 +110,6 @@
                1
                (* *D XX YY) )
             *Q ) ) ) )
-
 (de bits (Y B)
    (make
       (for (I 0 (> B I) (inc I))
@@ -171,3 +194,4 @@
                PK
                M ) ) )
       (= (scalarmult *Bxy S) (edwards R (scalarmult A H))) ) )
+
