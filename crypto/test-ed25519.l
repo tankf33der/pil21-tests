@@ -1,9 +1,7 @@
 (load "ed25519.l")
-
 (use (Keys SK PK M S Sig)
-   (in "sign.input"
+   (in "vectors/sign.input"
       (until (eof)
-         (msg 'line)
          (setq Keys (hexL (till ":")))
          (setq SK (head 32 Keys))
          (setq PK (publickey SK))
@@ -17,5 +15,4 @@
          (test Sig S)
          (test T (checkvalid S M PK))
          (line) ) ) )
-(msg 'ok)
-(bye)
+(msg 'ed25519-OK)
