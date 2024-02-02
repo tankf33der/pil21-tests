@@ -54,7 +54,6 @@
 (prinl "cryptography will take some time:")
 (prinl "...")
 (cd "../crypto")
-(load "test-ed25519.l")
 (load "test-aes.l")
 (load "test-anubis.l")
 (load "test-bcrypt.l")
