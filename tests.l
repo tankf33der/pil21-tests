@@ -115,6 +115,6 @@
 (prinl "======")
 (msg 'All-OK)
 
-(stack)
+(println (stack))
 
 (bye)
