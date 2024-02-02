@@ -63,6 +63,7 @@
 (load "test-blowfish.l")
 (load "test-camellia.l")
 (load "test-des.l")
+(load "test-ed25519.l")
 (load "test-hkdf.l")
 (load "test-hmac.l")
 (load "test-idea.l")
