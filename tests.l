@@ -1,4 +1,7 @@
 `(== 64 64)
+
+(stack 128 4096)
+
 (seed (in "/dev/urandom" (rd 8)))
 
 (pool (tmp "ff"))
@@ -111,4 +114,7 @@
 (prinl "\^\^\^\^\^ advent finished!")
 (prinl "======")
 (msg 'All-OK)
+
+(stack)
+
 (bye)
