@@ -1,4 +1,3 @@
-# (gc 12)
 (off R)
 (in "1m.csv"
    (use (A B)
@@ -12,11 +11,7 @@
                (when (< B (cadr Lst)) (set (cdr Lst) B))
                (when (> B (cadddr Lst)) (set (cdddr Lst) B))
                (inc (cddr Lst) B) ) ) ) ) )
-# weather_stations.csv - (9 -346000 639952 379905)
-# (println (caar (idx 'R "San Rafael")))
 (test
    (13 13651 5251585 951278)
    (caar (idx 'R "Riga")) )
-
-(msg 'ok)
-(bye)
+(msg 'million-rows-OK)
