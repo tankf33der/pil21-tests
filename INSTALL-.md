@@ -153,12 +153,7 @@ OpenBSD openbsd.localdomain 7.3 GENERIC#1072 amd64
 : (bye)
 #
 
-FAILS:
-
-((let P (port 0 "ListenPort") (unless (fork) (close P) (until (connect "localhost" "ListenPort") (wait 80)) (out @ (pr '(a b c))) (bye)) (prog1 (in (listen P) (rd)) (close P))))
-[../test/src/net.l:4] (a b c) -- 'test' failed
-
-HANG:
+HANG on wait: ipv4-ipv6 mismatch
 
 (test (3 . 4)
    (let (*Run NIL  *A NIL  *B NIL)
