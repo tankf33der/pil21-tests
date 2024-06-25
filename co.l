@@ -1,6 +1,10 @@
 (load "cartesian.l")
 
 #===================
+(co 'a (yield 1) 2)
+(co 'a (yield 1) 2)
+(co 'a)
+#===================
 (one A)
 (co 'a
    (loop
