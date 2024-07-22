@@ -65,6 +65,7 @@
 (load "test-blake2s.l")
 (load "test-blowfish.l")
 (load "test-camellia.l")
+(load "chacha20.l")
 (load "test-des.l")
 (load "test-ed25519.l")
 (load "test-hkdf.l")
