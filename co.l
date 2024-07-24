@@ -17,6 +17,10 @@
 (test 12 (co 'b12 T))
 (test 12 (yield 'b12 'b12))
 #===================
+(co 'b (yield 12) (yield 13))
+(test 13 (co 'b T))
+(test NIL (co 'b T))
+#===================
 (one A)
 (co 'a
    (loop
