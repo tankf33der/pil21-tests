@@ -13,6 +13,9 @@
 (co 'a (co 'b (co 'c (co 'd (yield (co))) (co))))
 (co 'd T)
 #===================
+(test 12 (co 'a12 (co 'b12 (loop (yield 12))) (co 'b12 T)))
+(test 12 (co 'b12 T))
+#===================
 (one A)
 (co 'a
    (loop
