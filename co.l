@@ -18,6 +18,7 @@
 (test 12 (co 'a12 (co 'b12 (loop (yield 12))) (co 'b12 T)))
 (test 12 (co 'b12 T))
 (test 12 (yield 'b12 'b12))
+(co 'b12 T)
 #===================
 (co 'b (yield 12) (yield 13))
 (test 13 (co 'b T))
