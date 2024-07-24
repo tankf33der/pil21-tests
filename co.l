@@ -10,6 +10,9 @@
 (co 'a (yield 1) 2)
 (co 'a)
 #===================
+(co 'a (co 'b (co 'c (co 'd (yield (co))) (co))))
+(co 'd T)
+#===================
 (one A)
 (co 'a
    (loop
