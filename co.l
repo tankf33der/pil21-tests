@@ -15,6 +15,7 @@
 #===================
 (test 12 (co 'a12 (co 'b12 (loop (yield 12))) (co 'b12 T)))
 (test 12 (co 'b12 T))
+(test 12 (yield 'b12 'b12))
 #===================
 (one A)
 (co 'a
