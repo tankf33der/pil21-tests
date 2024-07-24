@@ -1,6 +1,8 @@
 (load "cartesian.l")
 
 #===================
+(test T (co))
+#===================
 (co 'a 123)
 (co 'a 123)
 (co 'a (* 3 4))
@@ -20,6 +22,10 @@
 (co 'b (yield 12) (yield 13))
 (test 13 (co 'b T))
 (test NIL (co 'b T))
+#===================
+(test "mike" (co "mike" (co)))
+#===================
+(co "mike" (yield "mike" "mike") (* 3 4))
 #===================
 (one A)
 (co 'a
