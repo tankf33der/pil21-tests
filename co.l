@@ -27,6 +27,8 @@
 #===================
 (co "mike" (yield "mike" "mike") (* 3 4))
 #===================
+(co 'b (co 'a (yield 'b 'b) 123) (yield 'a 'a))
+#===================
 (one A)
 (co 'a
    (loop
