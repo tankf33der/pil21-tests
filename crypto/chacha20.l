@@ -148,6 +148,8 @@
 (test
    (114 179 176 109 54 82 144 145 235 51 148 178 22 172 244 48 247 79 64 91 234 133 243 113 140 223 70 131 234 107 231 73)
    (chacha20_h (need 32 255) (need 16 255)) )
-(do 64
-   (chacha20_h (randL 32) (randL 16)) )
+(in "vectors/chacha20.dat"
+   (setq Lst (read)) )
+(while Lst
+   (test (++ Lst) (chacha20_h (++ Lst) (++ Lst)) ) )
 (msg 'chacha20-OK)
