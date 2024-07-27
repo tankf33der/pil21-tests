@@ -594,5 +594,7 @@
    (sort '(a 3 1 (1 2 3) d b 4 T NIL (a b c) (x y z) c 2)) )
 (test '(T (x y z) (a b c) (1 2 3) d c b a 4 3 2 1 NIL)
    (sort '(a 3 1 (1 2 3) d b 4 T NIL (a b c) (x y z) c 2) >) )
-
+(test '(NIL 123 DEF "abc" (d e f) T)
+   (sort '("abc" T (d e f) NIL 123 DEF)) )
+   
 (msg 'lists-OK)
