@@ -110,7 +110,7 @@
 (de chacha20_h (Key Data)
    (let
       (C (circ 0 8 16 24)
-         Lst (conc (mapcar char (chop "expand 32-byte k")) Key Data)
+         Lst (conc (mapcar char '`(chop "expand 32-byte k")) Key Data)
          In
          (make
             (do 16
