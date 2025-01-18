@@ -1,6 +1,6 @@
 o) SPARC, Solaris 11.4
 	.) co failed, stack manipulation (co 'a (* 3 4))
-o) S390x, AlpineLinux edge
+o) S390x, AlpineLinux edge ATTENTION to "opt -O0" !!!
 	.) (ext:Snx "sss") undefined
 o) riscv64, Fedora33 (Rawhide), kernel 5.18, llvm11
 	.) pil @lib/test.l + - all passed
