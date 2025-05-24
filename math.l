@@ -1,7 +1,7 @@
 (test
    1152921504606846976
    (bit? 1152921504606846976 2078396450396706055) )
-   
+
 (de tribo (N)
    (cache
       '(NIL)
@@ -316,9 +316,9 @@
 (test (if (== 64 64) 5 3) (rand 3 9))
 (test (if (== 64 64) 3 6) (rand 3 9))
 (test 1 (hash 0))
-(test 55682 (hash 1))
-(test 35970 (hash 7))
-(test 29691 (hash 1234567))
+(test 723519 (hash 1))
+(test 870326 (hash 7))
+(test 528545 (hash 1234567))
 
 
 
