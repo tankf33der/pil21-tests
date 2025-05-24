@@ -1364,13 +1364,6 @@
    5
    (f3-117 (1 2 3 4)) )
 
-#3.118
-(de f3-118 (L)
-   (format (maxi format (simul~permute L))) )
-(test
-   9534330
-   (f3-118 (3 30 34 5 9)) )
-
 #3.119
 (de f3-119 (L)
    (ifn (cdr L)

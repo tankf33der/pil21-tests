@@ -461,12 +461,6 @@
    '((a b c) (d e) (f g h))
    (f4-40 '((a b) (a b c) (d e) (f g h))) )
 
-#4.41
-(def 'f4-41 simul~permute)
-(test
-   '((1 2 3) (1 3 2) (2 1 3) (2 3 1) (3 1 2) (3 2 1))
-   (f4-41 (1 2 3)) )
-
 #4.42
 (de f4-42 (L)
    (remove (dec (length L)) L) )
@@ -2222,22 +2216,6 @@
 (test
    (1 3 5)
    (f4-190 (1 2 3 4 5 6)) )
-
-#4.191
-(de accuNum (V I)
-   (let X (accu V I 1)
-      (if (num? X) @ (cdr X)) ) )
-(de f4-191 (L)
-   (let R NIL
-      (make
-         (for I L
-            (and
-               (accuNum 'R I)
-               (not (=0 (% @ 3)))
-               (link I) ) ) ) ) )
-(test
-   '(a 1 s 2 d 3 a 1 s 2 d)
-   (f4-191 '(a 1 s 2 d 3 a 1 s 2 2 d a 1 s d)) )
 
 #4.192
 (de f4-192 (L)
