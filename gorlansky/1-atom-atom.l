@@ -664,9 +664,12 @@
 #1.32
 (de f1-32 (N)
    (format
-      (mini
-         format
-         (simul~permute (chop N)) ) ) )
+      (min
+         (make
+            (simul~permute
+               (chop 34544534)
+                  '((L)
+                  (link (copy L)) ) ) ) ) ) )
 (test
    33444455
    (f1-32 34544534) )
