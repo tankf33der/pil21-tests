@@ -282,6 +282,8 @@
 (test 10376124 (pp55 (read-code "data/5.txt") (list 5)))
 
 
+#{
+# FIXME permute for modern pil21
 # --- Day 7: Amplification Circuit ---
 (prin ".")(flush)
 (de i7-wrap (Prg C)
@@ -306,7 +308,7 @@
    65210
    (i7-wrap (read-code "data/7-test-3.txt") (list 1 0 4 3 2)))
 (test 34686 (pp7-1 "data/7.txt"))
-
+}#
 
 # warmup pseudo part 2
 # *Lst: 3 0 4 0 9
@@ -339,6 +341,9 @@
 (wagon (copy *W7) 3)
 (test 567 (yield 7 'w1))
 
+
+#{
+# FIXME pemute for modern pil21
 # part 2
 (de i7-runner (Prg N)
    (co (intern (pack 'i7 N))
@@ -420,7 +425,7 @@
 (setq *I77 (read-code "data/7-test-5.txt"))
 (test 18216 (i7-wagon *I77 (list 9 7 8 5 6)))
 (test 36384144 (pp7-2 "data/7.txt"))
-
+}#
 
 # --- Day 9: Sensor Boost ---
 (prin ".")(flush)

@@ -2217,6 +2217,25 @@
    (1 3 5)
    (f4-190 (1 2 3 4 5 6)) )
 
+#{
+# FIXME for pil21
+#4.191
+(de accuNum (V I)
+   (let X (accu V I 1)
+      (if (num? X) @ (cdr X)) ) )
+(de f4-191 (L)
+   (let R NIL
+      (make
+         (for I L
+            (and
+               (accuNum 'R I)
+               (not (=0 (% @ 3)))
+               (link I) ) ) ) ) )
+(test
+   '(a 1 s 2 d 3 a 1 s 2 d)
+   (f4-191 '(a 1 s 2 d 3 a 1 s 2 2 d a 1 s d)) )
+}#
+
 #4.192
 (de f4-192 (L)
    (filter
